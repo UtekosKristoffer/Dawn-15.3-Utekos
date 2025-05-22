@@ -1,0 +1,407 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Breakpoints */
+  --breakpoint-md: 740px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  /* Layout dimensions */
+  --header-height: 80px;
+  --sticky-top-offset: 50px;
+
+  /* Colors */
+  --color-light-bg: #FCFCFC;
+  --color-light-gray: oklch(0.89 0 0);
+  --color-layer-medium: oklch(0.92 0 0);
+  --color-fill-gray: oklch(0.87 0.0068 286.26);
+  --color-heading-gray: oklch(0.23 0.0038 286.1);
+  --color-subtext-gray: oklch(0.62 0.0074 286.18);
+  --color-norrona-gray: #2c2f32;
+  --color-norrona-lightgray: #1f1f1f; /* Note: Duplicated values, consider consolidating if same as pri-black */
+  --color-pri-black: oklch(0.23 0.0038 286.1);
+  --color-finance-white: #f5f5f7;
+  --color-orange-50: oklch(0.7 0.1996 44.67);
+  --color-utekos-blue: #0072ff;
+  --color-nordic-grey: #f5f5f5;
+  --color-utekos-dark-blue: oklch(0.18 0.1175 266.28);
+  --color-gray-300: oklch(0.92 0.005 270);
+  --color-link-blue: oklch(0.57 0.23507 260.1068);
+  --color-blue-800: oklch(0.18 0.1175 266.28); /* Note: Duplicated value with utekos-dark-blue */
+
+  /* Gradients */
+  --color-hero-light-gradient: linear-gradient(to right, #00c6ff, #0072ff);
+  --color-cartoon-blue-rec: radial-gradient(350px 600px ellipse at 47% 49% in oklab, oklch(75% 0.5 230) 0%, 4%, oklch(26% 0.12 273) 275% 275%);
+  --color-cartoon-blue-l: radial-gradient(200px 300px ellipse at 56% 38% in oklab, oklch(75% 0.5 230) 0%, 4%, oklch(26% 0.12 273) 125% 125%);
+  --color-cartoon-blue-m: radial-gradient(200px 300px ellipse at 50% 34% in oklab, oklch(75% 0.5 230) 0%, 4%, oklch(26% 0.12 273) 125% 125%);
+  --color-cartoon-blue-r: radial-gradient(200px 300px ellipse at 47% 49% in oklab, oklch(75% 0.5 230) 0%, 4%, oklch(26% 0.12 273) 125% 125%);
+  --color-gradient-sand: linear-gradient(to right, #f7e7ce, #f1c40f);
+  --color-fuchsia-50: radial-gradient(350px 600px ellipse at 47% 49% in oklab, oklch(75% 0.5 230) 0%, 4%, oklch(26% 0.12 273) 275% 275%);
+  --color-blue-100: radial-gradient(350px 600px ellipse at 47% 49% in oklab, oklch(75% 0.5 230) 0%, 4%, oklch(26% 0.12 273) 275% 275%);
+  --color-blue-200: radial-gradient(200px 300px ellipse at 56% 38% in oklab, oklch(75% 0.5 230) 0%, 4%, oklch(26% 0.12 273) 125% 125%);
+  --color-blue-300: radial-gradient(200px 300px ellipse at 50% 34% in oklab, oklch(75% 0.5 230) 0%, 4%, oklch(26% 0.12 273) 125% 125%);
+  --color-blue-400: radial-gradient(200px 300px ellipse at 47% 49% in oklab, oklch(75% 0.5 230) 0%, 4%, oklch(26% 0.12 273) 125% 125%);
+
+  /* Fonts */
+  --font-heading-family: 'DIN Next Rounded Pro', sans-serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 500;
+  --font-heading-scale: 1;
+
+  --font-alt-family: 'DIN Next Rounded LT Pro', sans-serif;
+  --font-alt-weight: normal;
+  --font-alt-weight-semi-bold: 500;
+  --font-alt-weight-bold: bold;
+  --font-alt-style: normal;
+  --font-alt-scale: 1;
+
+  --font-display: 'DIN Next LT Pro', sans-serif;
+  --font-sans: 'DIN Next LT Pro', sans-serif; /* Often used as fallback */
+  --font-body-family: 'DIN Next LT Pro', sans-serif;
+
+  --font-body-style: normal;
+  --font-body-weight: 500;
+  --font-body-weight-bold: bold;
+  --font-body-weight-semi-bold: 500;
+  --font-body-weight-light: 300;
+  --font-body-weight-ultra-light: 200;
+  --font-body-scale: 1;
+}
+
+@layer base {
+  :root {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-body-family);
+    font-weight: var(--font-body-weight);
+    font-style: var(--font-body-style);
+  }
+
+  /* Styling for underline - applying to native 'u' tag for accessibility and semantic correctness */
+  u {
+    color: var(--color-orange-50);
+    text-decoration: none; /* Remove default underline */
+    font-family: var(--font-alt-family);
+    font-weight: var(--font-alt-weight-semi-bold);
+    font-style: normal;
+  }
+}
+
+@layer utilities {
+  .webkit-sticky {
+    position: -webkit-sticky;
+  }
+  .outline-fix {
+    outline: 1px solid white;
+    outline-style: var(--tw-outline-style);
+  }
+  .grid-cols-3-metafield-block {
+    display: grid;
+    grid-template-columns: 40px 1fr 30px;
+  }
+  .no-decoration {
+    text-decoration: none !important;
+  }
+  .top-header-sticky {
+    top: calc(var(--header-height) + var(--sticky-top-offset));
+  }
+  .font-base {
+    font-weight: var(--font-body-weight); /* Assuming font-base maps to font-body-weight */
+  }
+  .button-text {
+    font-weight: var(--font-alt-weight-semi-bold);
+    font-family: var(--font-alt-family);
+    font-size: 16px;
+    place-self: center;
+    justify-self: center;
+    border-radius: 12px;
+  }
+  .all-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    place-content: center; /* Combines align-content and justify-content */
+    place-items: center; /* Combines align-items and justify-items */
+  }
+  .all-grid-center {
+    display: grid;
+    place-items: center; /* Combines align-items and justify-items */
+    place-content: center; /* Combines align-content and justify-content */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+}
+
+@layer components {
+  /* MODAL STYLING FOR POPUP LINKS */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stays in place */
+    z-index: 1000; /* Sits on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if content is too large */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in width/height */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+  }
+
+  .modal.is-open {
+    display: flex; /* Display as flex when open */
+  }
+
+  .modal-content {
+    background-color: var(--color-light-bg);
+    padding: 20px;
+    border: 1px solid var(--color-subtext-gray);
+    max-width: 800px;
+    width: 95%;
+    max-height: 95vh;
+    overflow-y: auto;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .close-button {
+    color: var(--color-subtext-gray);
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 1001;
+    background-color: var(--color-light-bg);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  .close-button:hover,
+  .close-button:focus {
+    color: var(--color-pri-black);
+    text-decoration: none;
+    outline: none; /* Remove default outline on focus */
+  }
+
+  /* MOBILLAYOUT (from your code) */
+  .intro-on-mobile {
+    @apply max-sm:bg-slate-100 size-full max-sm:rounded-3xl max-sm:align-middle max-sm:h-50;
+  }
+  .icon-chevron.open {
+    @apply rotate-180;
+  }
+  .icon-chevron {
+    @apply size-10 hover:scale-105 inline-block transform transition-transform duration-500 ease-in-out;
+  }
+  .product-preview-section {
+    @apply md:h-fit size-full md:w-full py-12 md:pt-36 bg-light-bg lg:px-0 px-2;
+  }
+
+  .product-preview-header {
+    @apply text-5xl text-pri-black font-bold md:text-6xl lg:text-7xl text-left;
+  }
+  .product-preview-subtext {
+    @apply text-2xl md:text-3xl font-[400] text-pri-black flex flex-row text-left pb-8 md:pb-0 pt-2 md:pt-6;
+  }
+
+  .metafield-content {
+    @apply font-normal font-alt-family text-pri-black text-xl md:text-2xl text-left;
+  }
+
+  .product-preview-main-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 md:gap-x-8;
+  }
+
+  .product-preview-image-column {
+    @apply md:col-span-2 md:h-[950px] md:pb-20 order-1 md:order-none md:align-top md:place-items-start relative max-sm:w-full flex flex-col justify-center md:justify-start md:w-full md:items-start md:rounded-3xl;
+  }
+
+  .swiper-sticky-wrapper {
+    @apply md:items-start md:justify-start md:!sticky md:h-[565px] md:!top-[60px] md:z-12 items-center md:w-[785px] aspect-3/4 rounded-3xl md:rounded-3xl bg-finance-white;
+  }
+
+  .options-column-positioner {
+    @apply w-full md:col-span-1 order-2 md:order-none md:justify-start md:justify-items-start pr-12 md:pt-6 md:h-[850px];
+  }
+  .options-column-content {
+    @apply w-full h-fit;
+  }
+
+  /* Styles for the size guide link (semantic change: no h4 inside 'a') */
+  .size-guide-link span {
+      @apply font-bold prose prose-lg text-link-blue hover:underline hover:scale-103 cursor-pointer;
+  }
+
+  .slide-title-main {
+    @apply max-sm:all-flex-center size-fit text-3xl md:text-4xl pl-6 md:pl-0 font-base text-heading-gray font-alt-family;
+  }
+  .slide-title-sub {
+    @apply text-2xl max-sm:all-flex-center size-fit md:text-3xl font-base text-subtext-gray font-alt-family;
+  }
+
+  .option-button {
+    @apply bg-black text-white font-base font-alt-family hover:bg-black/80 button-text rounded-xl py-4 px-12 min-w-[190px] flex flex-row justify-center cursor-pointer;
+  }
+
+  .price-display-container {
+    @apply size-fit items-center;
+  }
+
+  .info-card-pricing {
+    @apply size-full grid grid-cols-2 gap-y-2 font-alt-family max-sm:text-center text-left items-center place-self-center text-2xl w-full;
+  }
+  .info-card-term-price,
+  .info-card-term-compare-price {
+    @apply font-normal size-full text-pri-black place-self-start font-alt-family;
+  }
+  .info-card-value-price,
+  .info-card-value-compare-price {
+    @apply text-pri-black place-self-end font-alt-family;
+  }
+  .metafield-main-grid {
+    @apply size-full col-span-full max-sm:pt-6;
+  }
+
+  .metafield-subgrid {
+    @apply border-t-pri-black border-t w-full h-fit items-center;
+  }
+
+  .metafield-header {
+    @apply w-full h-fit grid-cols-3-metafield-block text-xl font-base text-pri-black font-body-family items-center py-4 rounded-t-2xl;
+  }
+  .metafield-title { /* Changed from h4 to general title for clarity */
+    @apply place-self-center;
+  }
+
+  /* Specific styles for product description container (no heading trigger, only content and button) */
+  .product-description-container {
+    @apply w-full py-4 border-b border-b-pri-black border-t border-t-pri-black prose prose-2xl text-heading-gray max-w-none;
+  }
+
+  .left-icon {
+    @apply text-pri-black place-self-center hover:scale-105 transition-all duration-300 ease-in-out;
+  }
+  .icon-chevron-up {
+    @apply size-10 self-center hover:scale-105 transition-all duration-300 ease-in-out;
+  }
+
+  .button-group {
+    @apply gap-x-4 grid grid-cols-2 items-center justify-center;
+  }
+
+  .black-button {
+    @apply bg-black text-white border rounded-2xl px-12 py-4;
+  }
+
+  .white-button {
+    @apply bg-white border min-w-[180px] rounded-2xl text-pri-black px-12 py-4;
+  }
+  .black-button:hover {
+    @apply bg-pri-black/90;
+  }
+
+  .white-button:hover {
+    @apply bg-pri-black/90 text-white;
+  }
+
+  .product-preview-image-column img:hover {
+    @apply md:transform md:shadow rounded-3xl md:scale-103 md:resize md:duration-300 md:ease-in-out;
+  }
+
+  .quantity-selector {
+    @apply flex items-center justify-center gap-x-2;
+  }
+  .quantity-btn {
+    @apply size-8 flex font-light text-pri-black text-xl text-center items-center justify-center rounded-md hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-pri-black disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .quantity-input {
+    @apply w-12 all-flex-center h-8 font-base text-pri-black text-xl text-center focus:outline-none focus:ring-1 focus:ring-pri-black;
+  }
+
+  .gender-selector {
+    @apply mt-4 text-center;
+  }
+  .gender-label {
+    @apply block text-sm font-medium text-pri-black mb-1;
+  }
+  .gender-select {
+    @apply w-auto min-w-[120px] mx-auto p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-pri-black;
+  }
+
+  .related-product-card {
+    @apply opacity-0 transform translate-y-10 transition-all duration-700 ease-out;
+  }
+
+  .iphone-frame-aspect-ratio {
+    @apply bg-gray-800 rounded-[40px] p-1.5 shadow-xl overflow-hidden relative aspect-[9/19.5];
+  }
+  .iphone-screen {
+    @apply bg-black rounded-[32px] w-full h-full overflow-hidden;
+  }
+
+  /* Variant Color Swatch Hover States */
+  .variant-color-swatch-label {
+    @apply place-self-center size-[90px] items-center justify-center rounded-full cursor-pointer flex flex-col-reverse transition-all duration-300 ease-in-out;
+  }
+
+  .variant-color-swatch-label:hover .color-dot--fjellbla {
+    @apply transform scale-120 transition-all ease-in-out outline-fix outline-offset-1;
+  }
+
+  .variant-color-swatch-label:hover .color-dot--vargnatt {
+    @apply transform scale-120 transition-all ease-in-out outline-1 outline-offset-1;
+  }
+
+  /* Unique hover for Vargnatt-label */
+  .color-label--vargnatt:hover {
+    @apply shadow-[0_0_0_4px_var(--color-orange-50)] ease-in-out duration-300 transition-all; /* Adjusted from shadow-orange-50 */
+  }
+  .color-label--vargnatt .color-swatch-name-label {
+    @apply text-white ease-in-out transition-all;
+  }
+  .color-label--vargnatt:hover .color-swatch-name-label {
+    @apply text-orange-50 ease-in-out duration-300 transition-all;
+  }
+
+  /* Unique hover for Fjellblå-label */
+  .color-label--fjellbla:hover {
+    @apply shadow-[0_0_0_4px_theme(colors.blue.500)]; /* Assuming a blue-500 from Tailwind config, or define as variable */
+  }
+  .color-label--fjellbla .color-swatch-name-label {
+    @apply text-white ease-in-out transition-all;
+  }
+  .color-label--fjellbla:hover .color-swatch-name-label {
+    @apply text-blue-800 ease-in-out transition-all; /* Assuming text-shadow-blue-500 was a typo */
+  }
+
+  /* Styling for dots on hover */
+  .color-dot--vargnatt:hover {
+    @apply scale-120 bg-black border border-orange-50 duration-300 ease-in-out transition-all transform outline-1 outline-offset-1;
+  }
+  .color-label--vargnatt:hover {
+    @apply ease-in-out transition-all scale-120; /* This applies scale to the whole label */
+  }
+
+  .color-dot--fjellbla:hover {
+    @apply scale-120 border border-blue-500 duration-300 ease-in-out transition-all transform outline-fix outline-offset-1;
+  }
+  .color-label--fjellbla:hover {
+    @apply scale-120 transition-all duration-300; /* This applies scale to the whole label */
+  }
+}

@@ -1,0 +1,409 @@
+{% style %}
+  .custom-toggle-section {
+    width: 100%;
+    padding: var(--space-xxl) var(--space-m);
+    background-color: {{ section.settings.background_color }};
+   }
+
+  .custom-toggle-section .container {
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .section-heading {
+    font-size: 3.2rem;
+    font-weight: 700;
+    font-family: var(--font-heading-family);
+    color: {{ section.settings.heading_color }};
+    text-align: left;
+    padding-left: 5rem;
+    margin: 0 0;
+    max-width: 1200px;
+  }
+
+  /* ===== TABS ===== */
+  .tab-bar {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+    padding-top: 2.5rem;
+    padding-bottom: 0rem;
+  }
+
+  .tab-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: {{ section.settings.tab_text }};
+    padding: 0.8rem 1.6rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border: 0.1px transparent;
+    margin-left: -1px;
+    position: relative;
+    z-index: 1;
+
+
+  }
+
+  .tab-button:first-child {
+    border-top-left-radius: var(--radius-m);
+    border-bottom-left-radius: var(--radius-m);
+  }
+
+  .tab-button:last-child {
+    border-top-right-radius: var(--radius-m);
+    border-bottom-right-radius: var(--radius-m);
+  }
+
+  .tab-button.active {
+    background-color: {{ section.settings.tab_active_bg }};
+    color: {{ section.settings.tab_active_text }};
+  }
+
+  /* ===== IMAGES ===== */
+  .image-pair {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xxl);
+    flex-wrap: wrap;
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+
+  .toggle-image-wrapper {
+    position: relative;
+    padding: var(--space-m);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-l);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .toggle-image {
+    display: none;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-m);
+    transition: opacity 0.3s ease;
+    margin: 0 auto;
+  }
+
+  .toggle-image.active {
+    display: block;
+  }
+
+  /* ===== CTA BUTTON ===== */
+  .toggle-cta-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .toggle-cta {
+    background-color: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_text }};
+    padding: var(--space-m) var(--space-xl);
+    text-decoration: none;
+    border-radius: var(--radius-m);
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    font-size: var(--font-button);
+  }
+
+    .toggle-cta:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 749px) {
+    .custom-toggle-section {
+      padding: var(--space-xl) var(--space-s);
+    }
+
+    .section-heading {
+      font-size: 2rem;
+      padding-left: 2rem;
+    }
+
+    .tab-bar {
+     padding-top: 2rem;
+    }
+
+    .image-pair {
+      flex-direction: column;
+      gap: var(--space-l);
+      padding: 3rem 0rem;
+    }
+
+    .toggle-image-wrapper {
+      max-width: 270px;
+      padding: var(--space-s);
+      border-radius: var(--radius-m);
+    }
+
+    .tab-button {
+      font-size: 1.1rem;
+      padding: 0.6rem 0.8rem;
+      font-weight: 600;
+    }
+
+    .tab-button:first-child {
+    border-top-left-radius: 1.2rem;
+    border-bottom-left-radius: 1.2rem;
+  }
+
+  .tab-button:last-child {
+    border-top-right-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
+  }
+
+  .tab-button.active {
+    background-color: {{ section.settings.tab_active_bg }};
+    color: {{ section.settings.tab_active_text }};
+  }
+
+    .toggle-cta {
+      padding: var(--space-s) var(--space-l);
+      font-size: 1.2rem;
+      border-radius: 0.5rem;
+    }
+
+    .hide-mobile {
+      display: none;
+    }
+  }
+
+  @media only screen and (min-width: 750px) and (max-width: 940px) {
+   .toggle-image-wrapper {
+      max-width: 320px;
+    }
+   }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+{% endstyle %}
+
+<section class="custom-toggle-section">
+  <h2 class="section-heading">{{ section.settings.heading }}</h2>
+  <div class="container">
+    <!-- 2. Tabs -->
+    <div class="tab-bar">
+      {% assign tab_labels = 'Forfra,Bakfra,Parkas,Oppsnørt' | split: ',' %}
+      {% for tab in tab_labels %}
+        <button
+          type="button"
+          class="tab-button{% if forloop.first %} active{% endif %}"
+          data-tab="{{ tab | handleize }}"
+        >
+          {{ tab }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <!-- 3 & 4. To produktbilder med toggle -->
+    <div class="image-pair">
+      {% assign first_tab_handle = tab_labels[0] | handleize %}
+      {% for image_index in (1..2) %}
+        <div class="toggle-image-wrapper{% if image_index == 2 and section.settings.hide_second_image_on_mobile %} hide-mobile{% endif %}">
+          {% for tab in tab_labels %}
+            {% assign tab_handle = tab | handleize %}
+            {% assign image_setting = 'image_' | append: image_index | append: '_' | append: tab_handle %}
+            {% assign is_active = false %}
+            {% if tab_handle == first_tab_handle %}
+              {% assign is_active = true %}
+            {% endif %}
+
+            {% if section.settings[image_setting] %}
+              <img
+                src="{{ section.settings[image_setting] | image_url: width: 800 }}"
+                class="toggle-image{% if is_active %} active{% endif %}"
+                data-tab="{{ tab_handle }}"
+                alt="{{ tab }} bilde {{ image_index }}"
+              >
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- 6. Midtstilt knapp -->
+    <div class="toggle-cta-wrapper">
+      <a href="{{ section.settings.button_link }}" class="toggle-cta">
+        {{ section.settings.button_label }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const toggleImages = document.querySelectorAll('.toggle-image');
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selectedTab = button.getAttribute('data-tab');
+
+        // Fjern aktiv klasse fra alle knapper
+        tabButtons.forEach((btn) => btn.classList.remove('active'));
+        // Legg til aktiv på den som ble klikket
+        button.classList.add('active');
+
+        // Vis riktige bilder for valgt tab
+        toggleImages.forEach((image) => {
+          const imageTab = image.getAttribute('data-tab');
+          if (imageTab === selectedTab) {
+            image.classList.add('active');
+          } else {
+            image.classList.remove('active');
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "BildeToggle",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Tilpass din Utekos"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Bakgrunnsfarge",
+      "default": "#b3e4f4"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Overskriftens tekstfarge",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_bg",
+      "label": "Bakgrunnsfarge for aktiv tab",
+      "default": "#FF6A13"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_text",
+      "label": "Tekstfarge for aktiv tab",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_bg",
+      "label": "Tab-bakgrunn (inaktiv)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_text",
+      "label": "Tab-tekst (inaktiv)",
+      "default": "#333333"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_forfra",
+      "label": "Bilde 1 – Forfra"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_bakfra",
+      "label": "Bilde 1 – Bakfra"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_parkas",
+      "label": "Bilde 1 – Parkas"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_oppsnort",
+      "label": "Bilde 1 – Oppsnørt"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2_forfra",
+      "label": "Bilde 2 – Forfra"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2_bakfra",
+      "label": "Bilde 2 – Bakfra"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2_parkas",
+      "label": "Bilde 2 – Parkas"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2_oppsnort",
+      "label": "Bilde 2 – Oppsnørt"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Knappetekst",
+      "default": "Tilpass produkt"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Knapp – tekstfarge",
+      "default": "#ffffff"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Lenke til knapp"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Knapp – bakgrunnsfarge",
+      "default": "#FF6A13"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_second_image_on_mobile",
+      "label": "Skjul bilde 2 på mobil",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "BildeToggle – Produkt"
+    }
+  ]
+}
+{% endschema %}

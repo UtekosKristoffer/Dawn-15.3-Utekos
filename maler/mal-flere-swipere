@@ -1,0 +1,123 @@
+{% comment %}
+   uten å begrense CSS-en, risikerer du at stilen treffer alle .swiper-containere i hele prosjektet. Derfor bør du scop’e CSS-en til seksjonen, f.eks. via section.id, en seksjonsspesifikk klasse, eller en wrapper med unik ID.
+
+  Riktig måte å scope Swiper-styling på:
+  1. Bruk section.id direkte:
+  l<div id="swiper-section-{{ section.id }}" class="custom-swiper-section">
+    ...
+  </div>
+
+  Og i CSS:
+  #swiper-section-{{ section.id }} .swiper {
+    height: 300px;
+    background: #f9f9f9;
+
+  }
+  2. Eller bruk en seksjonsspesifikk klasse i kombinasjon med BEM-lignende struktur:
+  <div class="custom-swiper-section">
+    <div class="custom-swiper-section__slider swiper">...</div>
+  </div>
+
+  CSS:
+  .custom-swiper-section .swiper {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  Dette er trygt, så lenge .custom-swiper-section er eksklusiv for den seksjonen.
+
+  Tips for større prosjekter:
+  Bruk alltid #swiper-section-{{ section.id }} eller en klasse som section--product-slider for å lokalisere styling.
+
+  Gjerne legg alt styling i seksjonen i en {% style %}-blokk:
+  {% style %}
+    #swiper-section-{{ section.id }} .swiper {
+      height: 300px;
+    }
+  {% endstyle %}
+
+  Dette holder CSS lokalt og ryddig – og Shopify anbefaler dette for seksjonsspesifikk styling.
+{% endcomment %}
+
+<div id='swiper-section-{{ section.id }}' class='custom-swiper-section'>
+  <!-- Swiper 1: Standard slider -->
+  <div id='swiper-{{ section.id }}-main' class='swiper'>
+    <div class='swiper-wrapper'>
+      {% for i in (1..3) %}
+        <div class='swiper-slide'>Slide {{ i }} (main)</div>
+      {% endfor %}
+    </div>
+    <div class='swiper-pagination'></div>
+  </div>
+
+  <!-- Swiper 2: Cube-effekt -->
+  <div id='swiper-{{ section.id }}-cube' class='swiper swiper-cube'>
+    <div class='swiper-wrapper'>
+      {% for i in (1..4) %}
+        <div class='swiper-slide'>Slide {{ i }} (cube)</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Initier begge swipere -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const main = document.getElementById('swiper-{{ section.id }}-main');
+    if (main) {
+      new Swiper(main, {
+        loop: true,
+        slidesPerView: 1,
+        pagination: {
+          el: main.querySelector('.swiper-pagination'),
+          clickable: true,
+        },
+      });
+    }
+
+    const cube = document.getElementById('swiper-{{ section.id }}-cube');
+    if (cube) {
+      new Swiper(cube, {
+        effect: 'cube',
+        grabCursor: true,
+        cubeEffect: {
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94,
+        },
+      });
+    }
+  });
+</script>
+
+<!-- Scoped styling -->
+{% style %}
+  #swiper-section-{{ section.id }} {
+    padding: 2rem;
+  }
+  #swiper-section-{{ section.id }} .swiper {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+{% endstyle %}
+
+<!-- Schema -->
+{% schema %}
+{
+  "name": "To Swipere (Scoped og Konfliktfri)",
+  "settings": [],
+  "presets": [
+    {
+      "name": "To Swipere"
+    }
+  ]
+}
+{% endschema %}

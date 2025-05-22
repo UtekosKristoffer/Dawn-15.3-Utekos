@@ -1,0 +1,1469 @@
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+
+{%- assign product_form_id = 'product-form-' | append: section.id -%}
+{%- assign product_to_display = false -%}
+{%- liquid
+  if template.name == 'product' and product != blank
+    assign product_to_display = product
+  elsif section.settings.featured_product != blank
+    assign product_handle_to_fetch = section.settings.featured_product.handle | default: section.settings.featured_product
+    if product_handle_to_fetch != blank
+      assign product_to_display = all_products[product_handle_to_fetch]
+    else
+      assign product_to_display = false
+    endif
+  else
+    assign product_to_display = false
+  endif
+-%}
+
+{% if product_to_display == blank or product_to_display == false %}
+  <div class='container text-center py-8 w-full md:py-24'>
+    <p>Vennligst velg et produkt i temaredigereren.</p>
+  </div>
+{% else %}
+  <section
+    id='section-{{ section.id }}'
+    class='product-preview-section'
+    data-section-id='{{ section.id }}'
+    data-product-json='{{ product_to_display | json | escape }}'
+    data-product-form-id='{{ product_form_id }}'
+    data-money-format='{{ shop.money_format | json | escape }}'
+  >
+    <div class='product-preview-container'>
+      <form
+        method='post'
+        action='/cart/add'
+        id='{{ product_form_id }}'
+        accept-charset='UTF-8'
+        class='shopify-product-form'
+        enctype='multipart/form-data'
+      >
+        <input type='hidden' name='form_type' value='product'>
+        <input type='hidden' name='utf8' value='✓'>
+        <input
+          type='hidden'
+          name='id'
+          value='{{ product_to_display.selected_or_first_available_variant.id }}'
+        >
+
+        <div class='intro py-8 md:py-16 flex flex-col md:pl-20'>
+          <h1 class='product-preview-header'>
+            {{ product_to_display.title | default: 'Produktnavn' }}
+          </h1>
+          <p class='product-preview-subtext'>Designet for eventyr</p>
+        </div>
+
+        <div class='product-preview-main-grid'>
+          <div class='product-preview-image-column'>
+            <div class='swiper-sticky-wrapper md:ml-20 md:pt-20'>
+              <div class='swiper product-details-swiper md:bg-fill-gray flex max-sm:all-flex-center size-full md:w-[600px] md:mb-0 md:h-fit items-start justify-start mb-6'>
+                <div class='swiper-wrapper md:size full'>
+                  {% if product_to_display.images.size > 0 %}
+                    {% for image in product_to_display.images %}
+                      <div class='swiper-slide border-none justify-center place-content-center md:self-start md:size-full flex rounded-3xl w-full h-3/4'>
+                        <img
+                          src='{{ image | image_url }}'
+                          alt='{{ image.alt | escape | default: product_to_display.title }}'
+                          class='size-full justify-self-center rounded-xl border-none md:max-w-[350px] md:max-h-[520px] md:aspect-3/4'
+                          width='{{ image.width }}'
+                          height='{{ image.height }}'
+                          loading='lazy'
+                        >
+                      </div>
+                    {% endfor %}
+                  {% else %}
+                    <div class='swiper-slide flex justify-center items-center rounded-3xl size-full'>
+                      <img
+                        src='{{ 'jente-dun.png' | asset_url }}'
+                        alt='Standard bilde 1'
+                        class='object-cover md:w-full md:h-full'
+                        width='800'
+                        height='600'
+                        loading='lazy'
+                      >
+                    </div>
+                    <div class='swiper-slide bg-gray-200 flex justify-center items-center rounded-3xl size-full'>
+                      <img
+                        src='{{ 'kate-special_edition.png' | asset_url }}'
+                        alt='Standard bilde 2'
+                        class='object-contain md:w-full md:h-full'
+                        width='800'
+                        height='600'
+                        loading='lazy'
+                      >
+                    </div>
+                  {% endif %}
+                </div>
+                <div
+                  class='swiper-button-next py-10 px-10 size-[54px] font-extrabold hover:bg-[#f7e7ce] bg-light-gray rounded-full'
+                ></div>
+                <div
+                  class='swiper-button-prev py-10 px-10 size-[54px] bg-light-gray hover:bg-[#f7e7ce] font-extrabold rounded-full'
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class='options-column-positioner'>
+            <div class='options-column-content'>
+              <div class='product-options-title md:block'>
+                <h3 class='text-left flex flex-row mb-4 md:mb-6'>
+                  <span class='slide-title-main'>Modell.</span>
+                  <span class='slide-title-sub self-center font-alt-family ml-4'>
+                    Velg din størrelse
+                  </span>
+                </h3>
+              </div>
+
+              <div class='flex items-center flex-row gap-x-2'>
+                <a
+                  href='https://www.utekos.no/pages/utekos/storrelsesguide-xpc31mav'
+                  class='size-guide-link cursor-pointer'
+                  data-modal-trigger='sizeGuideModal'
+                  aria-label='Se vår størrelsesguide for mål og temperatursoner'
+                >
+                  <span class='pop-up-link-size prose prose-lg text-link-blue hover:underline hover:scale-103'>
+                    Mål og temperatursoner
+                  </span>
+                </a>
+                <span class='font-normal font-alt-family text-pri-black prose'>(UNISEX)</span>
+              </div>
+              <div class='!gap-y-2 font-alt-family h-fit w-full px-6 md:px-0 mb-8 grid grid-rows-3 justify-center items-center'>
+                {%- assign size_option_name = 'Størrelse' -%}
+                {% assign size_option_object = product_to_display.options_with_values
+                  | where: 'name', size_option_name
+                  | first
+                %}
+                {% if size_option_object %}
+                  <div class='size-button-group size-full flex gap-x-4 flex-row flex-nowrap items-center justify-center'>
+                    {% for size_value_raw in size_option_object.values %}
+                      {%- assign display_size_value = size_value_raw -%}
+                      {%- assign size_value_lowercase = size_value_raw | downcase -%}
+                      {% case size_value_lowercase %}
+                        {% when 's' %}
+                          {%- assign display_size_value = 'Small' -%}
+                        {% when 'm' %}
+                          {%- assign display_size_value = 'Medium' -%}
+                        {% when 'l' %}
+                          {%- assign display_size_value = 'Large' -%}
+                      {% endcase %}
+
+                      <label class='option-button option-{{ size_value_lowercase }}'>
+                        <input
+                          type='radio'
+                          name='options[{{ size_option_object.name | escape }}]'
+                          value='{{ size_value_raw | escape }}'
+                          class='sr-only peer product-option-input'
+                          data-option-index='option{{ size_option_object.position }}'
+                          {% if size_option_object.selected_value == size_value_raw %}
+                            checked
+                          {% endif %}
+                        >
+                        {{ display_size_value }}
+                      </label>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                <div class='pricing-wrapper my-4 text-left'>
+                  <dl class='info-card-pricing '>
+                    <dt class='info-card-term-price tracking-tight'>Nå</dt>
+                    <dd class='info-card-value-price tracking-tight' data-product-price>
+                      {{ product_to_display.selected_or_first_available_variant.price | money }}
+                    </dd>
+                    {%- assign current_variant_for_price = product_to_display.selected_or_first_available_variant -%}
+                    {% if current_variant_for_price.compare_at_price
+                        > current_variant_for_price.price
+                    %}
+                      <dt
+                        class='info-card-term-compare-price tracking-tight no-decoration'
+                        data-compare-price-label
+                      >
+                        <del class='compare-price-label tracking-tight no-underline'>Førpris</del>
+                      </dt>
+                      <dd
+                        class='info-card-value-compare-price tracking-tight line-through'
+                        data-compare-price
+                      >
+                        {{ current_variant_for_price.compare_at_price | money }}
+                      </dd>
+                    {% else %}
+                      <dt
+                        class='info-card-term-compare-price tracking-tight no-decoration hidden'
+                        data-compare-price-label
+                      ></dt>
+                      <dd
+                        class='info-card-value-compare-price tracking-tight line-through hidden'
+                        data-compare-price
+                      ></dd>
+                    {% endif %}
+                  </dl>
+                </div>
+
+                {% assign color_option_object = product_to_display.options_by_name.Farge %}
+                {% if color_option_object %}
+                  <div class='color-selector-container text-center place-content-center place-items-center size-full my-4 md:mt-4 flex flex-row'>
+                    <h4 class='text-3xl text-heading-gray font-base py-4 rounded-lg w-full font-alt-family'>
+                      Finish.
+                    </h4>
+                    <h4 class='text-3xl font-base font-alt-family py-4 w-full text-white bg-orange-50 pl-6 rounded-lg'>
+                      Velg din farge
+                    </h4>
+                  </div>
+                  <div class='size-full items-center'>
+                    {% assign color_map_raw = product_to_display.metafields.custom.color_styles.value %}
+                    {% assign color_styles_from_metafield = color_map_raw | split: '|' %}
+                    <fieldset class='product-form__input product-form__input--custom-color-swatches flex flex-row p-6 gap-x-10 justify-center'>
+                      <legend class='form__label sr-only'>
+                        {{ color_option_object.name }}:
+                        <span data-selected-value>{{ color_option_object.selected_value }}</span>
+                      </legend>
+                      {% for value in color_option_object.values %}
+                        {%- assign bg_color_from_meta = '#transparent' -%}
+                        {%- assign text_color_from_meta = '#000000' -%}
+                        {%- assign current_option_value_clean_for_meta = value | strip -%}
+                        {% for style_definition in color_styles_from_metafield %}
+                          {% assign parts = style_definition | split: ':' %}
+                          {% assign metafield_label_name = parts[0] | strip %}
+                          {% assign metafield_dot_bg = parts[1] | strip %}
+                          {% assign metafield_dot_text = parts[2] | strip | default: '#000000' %}
+                          {% if metafield_label_name == current_option_value_clean_for_meta %}
+                            {% assign bg_color_from_meta = metafield_dot_bg %}
+                            {% assign text_color_from_meta = metafield_dot_text %}
+                            {% break %}
+                          {% endif %}
+                        {% endfor %}
+                        {%- assign label_background_inline_style = 'background-color: #FFFFFF;' -%}
+                        {%- assign current_value_cleaned = value | strip | downcase -%}
+                        {%- assign color_slug = current_value_cleaned | handleize -%}
+                        {%- assign label_unique_class = 'color-label--' | append: color_slug -%}
+                        {%- assign dot_unique_class = 'color-dot--' | append: color_slug -%}
+                        {% if current_value_cleaned == 'vargnatt' %}
+                          {%- assign label_background_inline_style = 'background: radial-gradient(75px 60px ellipse at 50% 54% in oklab,oklch(0.7 0.1996 44.67) 0%, oklch(0.03 0.021 264.05) 125%);' -%}
+                        {% elsif current_value_cleaned == 'fjellblå' %}
+                          {%- assign label_background_inline_style = 'background: radial-gradient(80px 20px ellipse at 47% 72% in oklab, oklch(75% 0.05 230) 1%, oklch(26% 0.12 273) 125%);' -%}
+                        {% endif %}
+                        <label
+                          class='variant-color-swatch-label {{ label_unique_class }}'
+                          style='{{ label_background_inline_style }}'
+                        >
+                          <input
+                            type='radio'
+                            name='options[{{ color_option_object.name | escape }}]'
+                            value='{{ value | escape }}'
+                            class='sr-only peer size-full product-option-input'
+                            data-option-index='option{{ color_option_object.position }}'
+                            {% if color_option_object.selected_value == value %}
+                              checked
+                            {% endif %}
+                          >
+                          <span
+                            class='color-swatch-dot-container {{ dot_unique_class }} place-self-center w-10 h-10 rounded-full transition-all'
+                            style='background: {{ bg_color_from_meta }};'
+                          >
+                            <svg
+                              class='size-full opacity-0 peer-checked:opacity-100 transition-opacity duration-150 m-auto p-2'
+                              style='color: {{ text_color_from_meta }};'
+                              fill='currentColor'
+                              viewBox='0 0 24 24'
+                              aria-hidden='true'
+                              focusable='false'
+                            >
+                              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                          </span>
+                          <span class='color-swatch-name-label size-fit text-center pb-4 font-body-family prose prose-sm text-white'>
+                            {{ value }}
+                          </span>
+                        </label>
+                      {% endfor %}
+                    </fieldset>
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class='quantity-block size-full flex items-center justify-center'>
+                <label
+                  for='quantity-input-{{ section.id }}'
+                  class='quantity-header font-alt-family place-self-start font-base text-pri-black text-2xl'
+                >
+                  Antall
+                </label>
+                <div class='quantity-selector flex text-pri-black '>
+                  <button
+                    type='button'
+                    class='quantity-btn text-pri-black quantity-decrease'
+                    aria-label='Reduser antall'
+                  >
+                    -
+                  </button>
+                  <input
+                    type='number'
+                    name='quantity'
+                    value='1'
+                    min='1'
+                    class='quantity-input text-pri-black'
+                    aria-label='Antall'
+                    id='quantity-input-{{ section.id }}'
+                  >
+                  <button
+                    type='button'
+                    class='quantity-btn text-pri-black quantity-increase'
+                    aria-label='Øk antall'
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class='submit-button-group gap-x-4 flex flex-row no-wrap my-4 max-sm:px-6 pb-2'>
+                <button
+                  type='submit'
+                  name='add'
+                  class='black-button add-to-cart-btn'
+                  {% unless product_to_display.selected_or_first_available_variant.available %}
+                    disabled
+                  {% endunless %}
+                >
+                  {% if product_to_display.selected_or_first_available_variant.available %}
+                    Legg i Handlekurv
+                  {% else %}
+                    Utsolgt
+                  {% endif %}
+                </button>
+                <button type='button' class='white-button'>Kjøp nå</button>
+              </div>
+
+              {%- assign description_metafield = product_to_display.metafields.utekos.product_description -%}
+              {% if description_metafield and description_metafield.value != blank %}
+                {%- assign full_description_object = description_metafield.value -%}
+                {% if full_description_object != blank %}
+                  {%- capture description_html -%}
+                    {{ full_description_object.textcontent | metafield_tag }}
+                  {%- endcapture -%}
+
+                  <div class='product-description-container'>
+                    <div
+                      class='description-content prose prose-2xl text-heading-gray max-w-none'
+                      data-full-text='{{ description_html | escape }}'
+                      data-short-text-length='75'
+                    ></div>
+                    <button
+                      class='description-toggle-button cursor-pointer prose prose-lg text-link-blue'
+                      aria-controls='description-content-{{ section.id }}'
+                      aria-expanded='false'
+                    >
+                      Les mer
+                    </button>
+                  </div>
+                {% endif %}
+              {% endif %}
+
+              {%- assign related_products_list = product_to_display.metafields.custom.relaterte_produkter.value -%}
+              {%- if related_products_list != blank -%}
+                <div class='related-productz size-full tracking-tight pt-6 pb-4 text-pri-black md:pt-4 font-normal font-alt-family'>
+                  <h3>Vi tror også at du kommer til å like:</h3>
+                  <div class='related-productz-grid grid grid-cols-3 font-alt-family gap-x-2 aspect-video size-full pb-2'>
+                    {%- for related_product_item in related_products_list -%}
+                      <div class='related-productz-card'>
+                        <a href='{{ related_product_item.url }}'>
+                          {%- if related_product_item.featured_image -%}
+                            <img
+                              src='{{ related_product_item.featured_image | image_url: width: 115 }}'
+                              alt='{{ related_product_item.title | escape }}'
+                              loading='lazy'
+                              width='115'
+                              height='auto'
+                              style='aspect-ratio: 3/4; display: inline-block; justify-self: center; place-self: center; border-radius: 12px;'
+                            >
+                          {%- else -%}
+                            {{
+                              'product-1'
+                              | placeholder_svg_tag: 'placeholder-svg related-product-placeholder'
+                            }}
+                          {%- endif -%}
+                          <h5 class='related-producz-title text-lg items-center justify-center prose prose-lg font-alt-family text-pri-black font-normal pl-1 pt-1'>
+                            {%- assign product_title = related_product_item.title -%}
+                            {%- if product_title contains 'Utekos Special Edition' -%}
+                              Utekos SE™
+                            {%- else -%}
+                              {{ product_title }}
+                            {%- endif -%}
+                          </h5>
+                          <h5 class='related-productz-price font-alt-family prose prose-lg text-pri-black font-normal pl-2'>
+                            {{ related_product_item.price | money }}
+                          </h5>
+                        </a>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- else -%}
+                <p>Ingen relaterte produkter funnet (eller listen er tom).</p>
+              {%- endif -%}
+            </div>
+          </div>
+
+          <div class='metafield-main-grid'>
+            {%- assign materiale_metafield = product_to_display.metafields.utekos.materiale -%}
+            {% if materiale_metafield and materiale_metafield.value != blank %}
+              <div class='metafield-subgrid expandable-metafield'>
+                <div
+                  class='metafield-header cursor-pointer'
+                  data-metafield-toggle-trigger
+                >
+                  <svg
+                    class='icon icon-chevron icon-tools left-icon'
+                    aria-hidden='true'
+                    focusable='false'
+                  >
+                    <use xlink:href="#icon-tools" />
+                  </svg>
+                  <h4 class='metafield-title'>Materialer</h4>
+                  <button
+                    type='button'
+                    class='metafield-toggle-button icon-chevron-up'
+                    aria-label='Vis eller skjul materialinformasjon'
+                  >
+                    <span class='icon-chevron' aria-hidden='true'>
+                      <svg
+                        aria-hidden='true'
+                        focusable='false'
+                        class='icon-caret'
+                      >
+                        {{ 'icon-caret.svg' | inline_asset_content }}
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+
+                {%- capture all_materiale -%}
+                  {% for materiale_object in materiale_metafield.value %}
+                    {% if materiale_object != blank %}
+                      <ul>
+                        <li>**Type:** {{ materiale_object.type | metafield_text }}</li>
+                        <li>**Sammensetning:** {{ materiale_object.sammensetning | metafield_text }}</li>
+                        {% if materiale_object.tekniske_egenskaper != blank %}
+                          <li>**Tekniske egenskaper:** {{ materiale_object.tekniske_egenskaper | metafield_text }}</li>
+                        {% endif %}
+                        {% if materiale_object.vekt != blank %}
+                          <li>**Vekt:** {{ materiale_object.vekt | metafield_text }}</li>
+                        {% endif %}
+                      </ul>
+                    {% endif %}
+                  {% endfor %}
+                {%- endcapture -%}
+
+                <div
+                  class='metafield-content prose prose-sm max-w-none'
+                  data-full-text='{{  all_materiale | escape }}'
+                  data-short-text-length='20'
+                  style='display: none;'
+                ></div>
+              </div>
+            {% endif %}
+
+            {%- assign usage_metafield = product_to_display.metafields.utekos.areas_of_use -%}
+            {% if usage_metafield and usage_metafield.value != blank %}
+              <div class='metafield-subgrid expandable-metafield'>
+                <div
+                  class='metafield-header cursor-pointer'
+                  data-metafield-toggle-trigger
+                >
+                  <svg
+                    class='icon icon-chevron icon-book-guide left-icon'
+                    aria-hidden='true'
+                    focusable='false'
+                  >
+                    <use xlink:href="#icon-book-guide" />
+                  </svg>
+                  <h4 class='metafield-title'>Bruksområder</h4>
+                  <button
+                    type='button'
+                    class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right'
+                    aria-label='Vis eller skjul bruksområder'
+                  >
+                    <span class='icon-chevron' aria-hidden='true'>
+                      <svg
+                        aria-hidden='true'
+                        focusable='false'
+                        class='icon-caret'
+                      >
+                        {{ 'icon-caret.svg' | inline_asset_content }}
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+
+                {%- capture usage -%}
+                  {% for usage_object in usage_metafield.value %}
+                    {% if usage_object.text_inner != blank %}
+                      {{ usage_object.text_inner | metafield_tag }}
+                   {% endif %}
+                  {% endfor %}
+                {%- endcapture -%}
+
+                <div
+                  class='metafield-content prose prose-sm max-w-none'
+                  data-full-text='{{ usage | escape }}'
+                  data-short-text-length='20'
+                  style='display: none;'
+                ></div>
+              </div>
+            {% endif %}
+
+            {%- assign functions_metafield = product_to_display.metafields.utekos.functions -%}
+            {% if functions_metafield and functions_metafield.value != blank %}
+              <div class='metafield-subgrid expandable-metafield'>
+                <div
+                  class='metafield-header cursor-pointer'
+                  data-metafield-toggle-trigger
+                >
+                  <svg
+                    class='icon icon-chevron icon-useplay left-icon'
+                    aria-hidden='true'
+                    focusable='false'
+                  >
+                    {{- 'icon-play.svg' | inline_asset_content -}}
+                  </svg>
+                  <h4 class='metafield-title'>Funksjoner</h4>
+
+                  <button
+                    type='button'
+                    class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right'
+                    aria-label='Vis eller skjul funksjoner'
+                  >
+                    <span class='icon-chevron' aria-hidden='true'>
+                      <svg
+                        aria-hidden='true'
+                        focusable='false'
+                        class='icon-caret'
+                      >
+                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+
+                {%- capture all_functions -%}
+                    {% for function_object in functions_metafield.value %}
+                      {% if function_object.infolist != blank %}
+                        {{ function_object.infolist | metafield_tag }}
+                     {% endif %}
+                    {% endfor %}
+                  {%- endcapture -%}
+
+                <div
+                  class='metafield-content prose prose-sm max-w-none'
+                  data-full-text='{{ all_functions | escape }}'
+                  data-short-text-length='20'
+                  style='display: none;'
+                ></div>
+              </div>
+            {% endif %}
+
+            <div class='metafield-subgrid expandable-metafield product-care-section'>
+              <div class='metafield-header cursor-pointer' data-metafield-toggle-trigger>
+                <svg
+                  class='icon icon-chevron left-icon'
+                  aria-hidden='true'
+                  focusable='false'
+                >
+                  {{- 'icon-washing.svg' | inline_asset_content -}}
+                </svg>
+
+                <h4 class='metafield-title'>Vaskeanvisning</h4>
+                <button
+                  type='button'
+                  class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right'
+                  aria-label='Vis eller skjul vaskeanvisning'
+                >
+                  <span class='icon-chevron' aria-hidden='true'>
+                    <svg
+                      aria-hidden='true'
+                      focusable='false'
+                      class='icon-caret'
+                    >
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </svg>
+                  </span>
+                </button>
+              </div>
+
+              {%- assign care_metafield = product_to_display.metafields.utekos.product_care -%}
+              {% if care_metafield and care_metafield.value != blank %}
+                {%- capture washing_instructions -%}
+                  {% for care_object in care_metafield.value %}
+                    {% if care_object.instructions != blank %}
+                      {{ care_object.instructions | metafield_tag }}
+                   {% endif %}
+                  {% endfor %}
+                {%- endcapture -%}
+                <div
+                  class='metafield-content prose prose-sm max-w-none'
+                  data-full-text='{{ washing_instructions | escape }}'
+                  style='display: none;'
+                ></div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Modal for size guide -->
+  <div
+    id='sizeGuideModal'
+    class='modal'
+    role='dialog'
+    aria-modal='true'
+    aria-labelledby='sizeGuideModalTitle'
+    tabindex='-1'
+  >
+    <div class='modal-content'>
+      <h2 id='sizeGuideModalTitle' class='sr-only'>Størrelsesguide</h2>
+      <!-- Forbedret tilgjengelighet -->
+      <span class='close-button' role='button' aria-label='Lukk' tabindex='0'></span>
+      <iframe
+        id='sizeGuideIframe'
+        src=''
+        title='Størrelsesguide'
+        style='width:100%; height: calc(100vh - 120px); border:none;'
+      ></iframe>
+    </div>
+  </div>
+
+  {% if request.path == '/pages/hva-er-utekos' or template contains 'new-product-preview' %}
+    {% style %}
+      :root {
+        --swiper-navigation-size: 20px;
+        --swiper-navigation-fontweight: 900;
+        --swiper-naviagtion-color: #717171;
+        --swiper-theme-color: #dbdbdb;
+        --swiper-navigation-sides-offset: 7px;
+      }
+
+      .header__menu-item span,
+      .header__menu-item,
+      .header__active-menu-item .header {
+        color: #1d1d1d !important;
+        font-size: 16px !important;
+        font-family: var(--font-alt-family) !important;
+        font-weight: 500 !important;
+      }
+
+      .header__icon .icon,
+      .header svg,
+      .header__inline-menu--dark .site-logo--black {
+        color: #1d1d1d !important;
+        fill: #1d1d1d !important;
+      }
+
+      .header {
+        background-color: transparent;
+      }
+
+      .swiper-button-next::after,
+      .swiper-button-prev::after {
+        border-radius: 9999px;
+        font-weight: var(--swiper-navigation-fontweight);
+        position: relative;
+        display: flex;
+        place-self: center !important;
+        justify-self: center !important;
+        align-self: center !important;
+        place-items: center !important;
+        font-weight: bold !important;
+        width: 36px;
+        height: 36px;
+        color: var(--swiper-naviagtion-color);
+      }
+
+      .swiper-button-prev.swiper-button-disabled,
+      .swiper-button-next.swiper-button-disabled {
+        border-radius: 9999px;
+        font-weight: var(--swiper-navigation-fontweight);
+        opacity: 0.3;
+        padding: 12px 12px 12px 8px;
+        width: 54px;
+        height: 54px;
+        font-weight: bold !important;
+        color: var(--swiper-naviagtion-color);
+      }
+
+      .swiper-button-prev.swiper-button-disabled::after,
+      .swiper-button-next.swiper-button-disabled::after {
+        border-radius: 9999px;
+        font-weight: var(--swiper-navigation-fontweight);
+        width: 36px;
+        height: 36px;
+        position: relative;
+        display: flex;
+        justify-content: center !important;
+        align-items: center !important;
+        font-weight: bold !important;
+      }
+    {% endstyle %}
+  {% endif %}
+{% endif %}
+
+<script src='{{ 'swiper-bundle.js' | asset_url }}' defer='defer'></script>
+<script src='{{ 'swiper-init.js' | asset_url }}' defer></script>
+<script>
+  class ProductPreviewHandler {
+    constructor(sectionElement) {
+      this.sectionElement = sectionElement;
+      if (!this.sectionElement) return;
+      this.sectionId = this.sectionElement.dataset.sectionId || 'unknown-section';
+      this.productFormId = this.sectionElement.dataset.productFormId;
+      this.uiGeneratedOptions = [];
+
+      try {
+        this.shopMoneyFormat = JSON.parse(this.sectionElement.dataset.moneyFormat || '{}');
+        const rawProductJson = this.sectionElement.dataset.productJson;
+        if (!rawProductJson || rawProductJson.trim() === '') {
+          this.fullProductData = null;
+        } else {
+          this.fullProductData = JSON.parse(rawProductJson);
+        }
+
+        if (
+          !this.fullProductData ||
+          typeof this.fullProductData !== 'object' ||
+          Object.keys(this.fullProductData).length === 0
+        ) {
+          console.warn(
+            `ProductPreviewHandler [${this.sectionId}]: Parsed product data is empty or invalid.`
+          );
+          this.fullProductData = null;
+          return;
+        }
+
+        let optionsSource = null;
+        if (
+          this.fullProductData.options_with_values &&
+          Array.isArray(this.fullProductData.options_with_values)
+        ) {
+          optionsSource = this.fullProductData.options_with_values;
+        } else if (this.fullProductData.options && Array.isArray(this.fullProductData.options)) {
+          if (typeof this.fullProductData.options[0] === 'string') {
+            optionsSource = this.fullProductData.options.map((name, idx) => ({
+              name,
+              position: idx + 1,
+            }));
+          } else {
+            optionsSource = this.fullProductData.options;
+          }
+        }
+
+        if (optionsSource) {
+          this.uiGeneratedOptions = optionsSource.filter((option) => {
+            if (option && typeof option.name === 'string') {
+              const optionNameLower = option.name.toLowerCase();
+              if (optionNameLower === 'unisex') {
+                return false;
+              }
+              return true;
+            }
+            console.warn(
+              `ProductPreviewHandler [${this.sectionId}]: Filtering out an option due to missing or invalid 'name' property:`,
+              option
+            );
+            return false;
+          });
+        } else {
+          console.warn(
+            `ProductPreviewHandler [${this.sectionId}]: Could not find a suitable source for detailed option data.`
+          );
+        }
+      } catch (e) {
+        console.error(
+          `ProductPreviewHandler [${this.sectionId}]: Error during initial data setup.`,
+          e
+        );
+        if (e instanceof SyntaxError) {
+          console.error(
+            `ProductPreviewHandler [${this.sectionId}]: Raw data-product-json that failed parsing:`,
+            this.sectionElement.dataset.productJson
+          );
+        }
+        this.fullProductData = null;
+        return;
+      }
+
+      if (!this.fullProductData || !this.fullProductData.variants) {
+        return;
+      }
+      this.productForm = this.sectionElement.querySelector(`#${this.productFormId}`);
+      if (!this.productForm) {
+        return;
+      }
+      this.variantIdInput = this.productForm.querySelector('input[name="id"]');
+      this.addToCartButton = this.productForm.querySelector('.add-to-cart-btn');
+      this.priceElement = this.sectionElement.querySelector('[data-product-price]');
+      this.comparePriceElement = this.sectionElement.querySelector('[data-compare-price]');
+      this.comparePriceLabelElement = this.sectionElement.querySelector(
+        '[data-compare-price-label]'
+      );
+      this.currentSelectedOptions = {};
+      this.init();
+    }
+
+    escapeCSSSelector(str) {
+      if (typeof str !== 'string') return '';
+      return str.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1');
+    }
+
+    getSelectedOptions() {
+      const selected = {};
+      if (!this.uiGeneratedOptions || this.uiGeneratedOptions.length === 0) return selected;
+      this.uiGeneratedOptions.forEach((optionDef) => {
+        if (
+          !optionDef ||
+          typeof optionDef.name !== 'string' ||
+          typeof optionDef.position !== 'number'
+        )
+          return;
+        const optionKey = `option${optionDef.position}`;
+        const escapedOptionName = this.escapeCSSSelector(optionDef.name);
+        const selector = `.product-option-input[name="options[${escapedOptionName}]"]:checked`;
+        const checkedRadio = this.productForm.querySelector(selector);
+        if (checkedRadio) {
+          selected[optionKey] = checkedRadio.value;
+        } else {
+          const fallbackVariant =
+            this.fullProductData.selected_or_first_available_variant ||
+            (this.fullProductData.variants && this.fullProductData.variants.length > 0
+              ? this.fullProductData.variants[0]
+              : null);
+          if (fallbackVariant && fallbackVariant[optionKey] !== undefined) {
+            selected[optionKey] = fallbackVariant[optionKey];
+          }
+        }
+      });
+      return selected;
+    }
+
+    findVariant(selectedUIOpts) {
+      if (
+        !this.fullProductData ||
+        !this.fullProductData.variants ||
+        this.fullProductData.variants.length === 0
+      )
+        return null;
+      return this.fullProductData.variants.find((variant) => {
+        if (!this.uiGeneratedOptions || this.uiGeneratedOptions.length === 0) return true;
+        return this.uiGeneratedOptions.every((optionDef) => {
+          if (!optionDef || typeof optionDef.position !== 'number') return true;
+          const optionKey = `option${optionDef.position}`;
+          return (
+            selectedUIOpts[optionKey] === undefined ||
+            variant[optionKey] === selectedUIOpts[optionKey]
+          );
+        });
+      });
+    }
+
+    simpleFormatMoney(centsInput, formatStringFromAttribute) {
+      let format;
+      if (
+        typeof formatStringFromAttribute === 'string' &&
+        formatStringFromAttribute.trim() !== '' &&
+        formatStringFromAttribute !== '{}'
+      ) {
+        format = formatStringFromAttribute;
+      } else if (
+        this.shopMoneyFormat &&
+        typeof this.shopMoneyFormat === 'string' &&
+        this.shopMoneyFormat.trim() !== '' &&
+        this.shopMoneyFormat !== '{}'
+      ) {
+        format = this.shopMoneyFormat;
+      } else if (
+        this.shopMoneyFormat &&
+        typeof this.shopMoneyFormat === 'object' &&
+        this.shopMoneyFormat !== null
+      ) {
+        format =
+          this.shopMoneyFormat.amount ||
+          this.shopMoneyFormat.money_format ||
+          this.shopMoneyFormat.money_with_currency_format ||
+          '%amount% kr';
+      } else {
+        format = '%amount% kr';
+      }
+
+      let cents = centsInput;
+      if (typeof cents === 'string') {
+        const cleanedCents = cents.toString().replace(/[^0-9.,-]/g, '');
+        if (cleanedCents.includes(',') && cleanedCents.includes('.')) {
+          if (cleanedCents.lastIndexOf(',') > cleanedCents.lastIndexOf('.')) {
+            cents = parseFloat(cleanedCents.replace(/\./g, '').replace(',', '.')) * 100;
+          } else {
+            cents = parseFloat(cleanedCents.replace(/,/g, '')) * 100;
+          }
+        } else if (cleanedCents.includes(',')) {
+          cents = parseFloat(cleanedCents.replace(',', '.')) * 100;
+        } else {
+          cents = parseFloat(cleanedCents) * 100;
+        }
+      }
+
+      if (typeof cents !== 'number' || isNaN(cents)) {
+        cents = 0;
+      }
+      cents = Math.round(cents);
+
+      let amount = cents / 100.0;
+      let value;
+
+      const placeholderAmount = /\{\{\s*amount\s*\}\}/g;
+      const placeholderAmountNoDecimals = /\{\{\s*amount_no_decimals\s*\}\}/g;
+      const placeholderAmountWithComma = /\{\{\s*amount_with_comma_separator\s*\}\}/g;
+      const placeholderAmountNoDecimalsWithComma =
+        /\{\{\s*amount_no_decimals_with_comma_separator\s*\}\}/g;
+
+      let useNoDecimals = false;
+      if (
+        format.match(placeholderAmountNoDecimals) ||
+        format.match(placeholderAmountNoDecimalsWithComma)
+      ) {
+        useNoDecimals = true;
+      }
+      value = useNoDecimals ? amount.toFixed(0) : amount.toFixed(2);
+
+      let decimalSeparator = '.';
+      let thousandsSeparator = ',';
+
+      const testAmountForSeparators = (12345.67).toLocaleString(undefined, {
+        style: 'currency',
+        currency: 'USD',
+      });
+      if (testAmountForSeparators.includes(',')) {
+        if (testAmountForSeparators.lastIndexOf(',') > testAmountForSeparators.lastIndexOf('.')) {
+          decimalSeparator = ',';
+          thousandsSeparator = '.';
+        }
+      }
+      if (
+        format.includes('with_comma_separator') ||
+        (format.includes(',') && format.lastIndexOf(',') > format.lastIndexOf('.'))
+      ) {
+        decimalSeparator = ',';
+        thousandsSeparator = '.';
+      }
+
+      let parts = value.split('.');
+      parts[0] = parts[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + thousandsSeparator);
+      value = parts.join(decimalSeparator);
+
+      let result = format;
+
+      const replaceInFormat = (fmt, placeholder, val) => {
+        if (fmt.match(placeholder)) {
+          return fmt.replace(placeholder, val);
+        }
+        return fmt;
+      };
+
+      let formattedAmountNoDecimals = amount.toFixed(0);
+      let faNoDecParts = formattedAmountNoDecimals.split('.');
+      faNoDecParts[0] = faNoDecParts[0].replace(
+        /(\d)(?=(\d{3})+(?!\d))/g,
+        '$1' + thousandsSeparator
+      );
+      formattedAmountNoDecimals = faNoDecParts.join(decimalSeparator);
+
+      let formattedAmountWithDecimals = amount.toFixed(2);
+      let faDecParts = formattedAmountWithDecimals.split('.');
+      faDecParts[0] = faDecParts[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + thousandsSeparator);
+      formattedAmountWithDecimals = faDecParts.join(decimalSeparator);
+
+      result = replaceInFormat(
+        result,
+        placeholderAmountNoDecimalsWithComma,
+        formattedAmountNoDecimals
+      );
+      result = replaceInFormat(result, placeholderAmountNoDecimals, amount.toFixed(0));
+      result = replaceInFormat(result, placeholderAmountWithComma, formattedAmountWithDecimals);
+      result = replaceInFormat(
+        result,
+        placeholderAmount,
+        amount.toFixed(2).replace('.', decimalSeparator)
+      );
+
+      if (
+        !format.match(placeholderAmount) &&
+        !format.match(placeholderAmountNoDecimals) &&
+        !format.match(placeholderAmountWithComma) &&
+        !format.match(placeholderAmountNoDecimalsWithComma) &&
+        format.includes('{% raw %}{{{% endraw %}') &&
+        format.includes('{% raw %}}}{% endraw %}')
+      ) {
+        const genericPlaceholderMatch = format.match(/\{\{\s*(\w+)\s*\}\}/);
+        if (genericPlaceholderMatch) {
+          result = format.replace(
+            genericPlaceholderMatch[0],
+            useNoDecimals ? formattedAmountNoDecimals : formattedAmountWithDecimals
+          );
+        }
+      }
+
+      return result;
+    }
+
+    updateUI(variant) {
+      const fallbackInitialVariant =
+        this.fullProductData.selected_or_first_available_variant ||
+        (this.fullProductData.variants && this.fullProductData.variants.length > 0
+          ? this.fullProductData.variants.find((v) => v.available) ||
+            this.fullProductData.variants[0]
+          : null);
+      const targetVariant = variant || fallbackInitialVariant;
+
+      if (targetVariant) {
+        if (this.variantIdInput) this.variantIdInput.value = targetVariant.id;
+        if (this.priceElement)
+          this.priceElement.textContent = this.simpleFormatMoney(
+            targetVariant.price,
+            this.shopMoneyFormat
+          );
+
+        if (this.comparePriceElement && this.comparePriceLabelElement) {
+          if (
+            targetVariant.compare_at_price &&
+            targetVariant.compare_at_price > targetVariant.price
+          ) {
+            this.comparePriceElement.textContent = this.simpleFormatMoney(
+              targetVariant.compare_at_price,
+              this.shopMoneyFormat
+            );
+            this.comparePriceElement.classList.remove('hidden');
+            this.comparePriceLabelElement.classList.remove('hidden');
+          } else {
+            this.comparePriceElement.textContent = '';
+            this.comparePriceElement.classList.add('hidden');
+            this.comparePriceLabelElement.classList.add('hidden');
+          }
+        }
+      } else {
+        if (this.priceElement) this.priceElement.textContent = 'Utilgjengelig';
+        if (this.comparePriceElement) this.comparePriceElement.classList.add('hidden');
+        if (this.comparePriceLabelElement) this.comparePriceLabelElement.classList.add('hidden');
+      }
+
+      if (this.addToCartButton) {
+        if (targetVariant && targetVariant.available) {
+          this.addToCartButton.disabled = false;
+          this.addToCartButton.textContent = 'Legg i Handlekurv';
+        } else if (targetVariant && !targetVariant.available) {
+          this.addToCartButton.disabled = true;
+          this.addToCartButton.textContent = 'Utsolgt';
+        } else {
+          this.addToCartButton.disabled = true;
+          this.addToCartButton.textContent = 'Utilgjengelig';
+        }
+      }
+    }
+
+    onOptionChanged() {
+      if (!this.fullProductData) return;
+      if (!this.uiGeneratedOptions || this.uiGeneratedOptions.length === 0) {
+        const initialVariant =
+          this.fullProductData.selected_or_first_available_variant ||
+          (this.fullProductData.variants && this.fullProductData.variants.length > 0
+            ? this.fullProductData.variants[0]
+            : null);
+        this.updateUI(initialVariant);
+        return;
+      }
+      this.currentSelectedOptions = this.getSelectedOptions();
+      const variant = this.findVariant(this.currentSelectedOptions);
+      this.updateUI(variant);
+      if (variant && history.replaceState) {
+        const newUrl = `${window.location.pathname}?variant=${variant.id}${window.location.hash}`;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+      }
+    }
+
+    initializeOptions() {
+      if (!this.fullProductData) return;
+      if (!this.uiGeneratedOptions || this.uiGeneratedOptions.length === 0) {
+        const initialVariant =
+          this.fullProductData.selected_or_first_available_variant ||
+          (this.fullProductData.variants && this.fullProductData.variants.length > 0
+            ? this.fullProductData.variants.find((v) => v.available) ||
+              this.fullProductData.variants[0]
+            : null);
+        this.updateUI(initialVariant);
+        if (this.variantIdInput && initialVariant) this.variantIdInput.value = initialVariant.id;
+        return;
+      }
+      const urlParams = new URLSearchParams(window.location.search);
+      const variantIdFromUrl = urlParams.get('variant');
+      let initialVariantToSelect = null;
+      if (variantIdFromUrl && this.fullProductData.variants) {
+        initialVariantToSelect = this.fullProductData.variants.find(
+          (v) => String(v.id) === variantIdFromUrl
+        );
+      }
+      initialVariantToSelect =
+        initialVariantToSelect ||
+        this.fullProductData.selected_or_first_available_variant ||
+        (this.fullProductData.variants
+          ? this.fullProductData.variants.find((v) => v.available) ||
+            this.fullProductData.variants[0]
+          : null);
+      if (initialVariantToSelect) {
+        this.uiGeneratedOptions.forEach((uiOptionDef) => {
+          if (
+            !uiOptionDef ||
+            typeof uiOptionDef.name !== 'string' ||
+            typeof uiOptionDef.position !== 'number'
+          )
+            return;
+          const optionKey = `option${uiOptionDef.position}`;
+          const optionValueToSelect = initialVariantToSelect[optionKey];
+          if (optionValueToSelect !== undefined && optionValueToSelect !== null) {
+            const escapedOptionName = this.escapeCSSSelector(uiOptionDef.name);
+            const escapedValueForSelector = this.escapeCSSSelector(
+              String(optionValueToSelect).replace(/"/g, '\\"')
+            );
+            try {
+              const radioSelector = `.product-option-input[name="options[${escapedOptionName}]"][value="${escapedValueForSelector}"]`;
+              const radio = this.productForm.querySelector(radioSelector);
+              if (radio) radio.checked = true;
+            } catch (e) {}
+          }
+        });
+      }
+      this.onOptionChanged();
+    }
+
+    setupExpandableText(containerSelector, contentSelector, buttonSelector, defaultLength) {
+      if (!this.sectionElement) {
+        return;
+      }
+
+      const containers = this.sectionElement.querySelectorAll(containerSelector);
+      if (containers.length === 0) {
+        return;
+      }
+
+      containers.forEach((container, index) => {
+        const headerEl = container.querySelector('[data-metafield-toggle-trigger]');
+        const contentEl = container.querySelector(contentSelector);
+        const buttonEl = container.querySelector(buttonSelector);
+        const caretEl = headerEl ? headerEl.querySelector('.icon-caret') : null;
+
+        if (!headerEl || !contentEl) {
+          return;
+        }
+
+        const fullText = contentEl.dataset.fullText || '';
+
+        if (!fullText.trim()) {
+          if (buttonEl) {
+            buttonEl.style.display = 'none';
+          }
+          contentEl.style.display = 'none';
+          return;
+        }
+
+        let isExpanded = contentEl.style.display === 'block';
+        contentEl.style.display = 'none';
+
+        const update = () => {
+          if (isExpanded) {
+            contentEl.innerHTML = fullText;
+            contentEl.style.display = 'block';
+            headerEl.setAttribute('aria-expanded', 'true');
+            if (buttonEl) {
+              buttonEl.setAttribute('aria-expanded', 'true');
+            }
+            if (caretEl) {
+              caretEl.classList.add('open');
+            }
+          } else {
+            contentEl.style.display = 'none';
+            headerEl.setAttribute('aria-expanded', 'false');
+            if (buttonEl) {
+              buttonEl.setAttribute('aria-expanded', 'false');
+            }
+            if (caretEl) {
+              caretEl.classList.remove('open');
+            }
+          }
+        };
+
+        headerEl.setAttribute('aria-expanded', isExpanded.toString());
+        if (isExpanded && caretEl) {
+          caretEl.classList.add('open');
+        } else if (!isExpanded && caretEl) {
+          caretEl.classList.remove('open');
+        }
+
+        headerEl.addEventListener('click', () => {
+          isExpanded = !isExpanded;
+          update();
+        });
+
+        update();
+      });
+    }
+
+    setupTruncatedText(containerSelector, contentSelector, buttonSelector, defaultLength) {
+      if (!this.sectionElement) {
+        return;
+      }
+
+      const containers = this.sectionElement.querySelectorAll(containerSelector);
+      if (containers.length === 0) {
+        return;
+      }
+
+      const getPlainText = (str) => {
+        if (!str) return '';
+        const doc = new DOMParser().parseFromString(str, 'text/html');
+        return doc.body.textContent || '';
+      };
+
+      containers.forEach((container) => {
+        const contentEl = container.querySelector(contentSelector);
+        const buttonEl = container.querySelector(buttonSelector);
+
+        if (!contentEl || !buttonEl) {
+          console.warn(
+            `setupTruncatedText: Missing content element (${contentSelector}) or button element (${buttonSelector}) in a container.`
+          );
+          return;
+        }
+
+        const fullHtmlEscaped = contentEl.dataset.fullText || '';
+
+        if (!fullHtmlEscaped.trim()) {
+          buttonEl.style.display = 'none';
+          contentEl.style.display = 'none';
+          return;
+        }
+
+        const fullPlainText = getPlainText(fullHtmlEscaped);
+        const isTextShort = fullPlainText.length <= defaultLength;
+
+        if (isTextShort) {
+          contentEl.innerHTML = fullHtmlEscaped;
+          buttonEl.style.display = 'none';
+          contentEl.style.display = '';
+          return;
+        }
+
+        let truncatedTextPlain = fullPlainText.substring(0, defaultLength);
+        const lastSpaceIndex = truncatedTextPlain.lastIndexOf(' ');
+        if (lastSpaceIndex !== -1 && lastSpaceIndex !== 0) {
+          truncatedTextPlain = truncatedTextPlain.substring(0, lastSpaceIndex);
+        }
+        const truncatedTextToDisplay = truncatedTextPlain; // Fjerner '...' her
+
+        contentEl.innerHTML = truncatedTextToDisplay;
+        buttonEl.textContent = 'Les mer';
+
+        let isExpanded = false;
+        buttonEl.setAttribute('aria-expanded', 'false');
+
+        const contentId =
+          contentEl.id || `truncated-content-${Math.random().toString(36).substr(2, 5)}`;
+        contentEl.id = contentId;
+        buttonEl.setAttribute('aria-controls', contentId);
+        contentEl.style.display = '';
+        buttonEl.addEventListener('click', () => {
+          isExpanded = !isExpanded;
+
+          if (isExpanded) {
+            contentEl.innerHTML = fullHtmlEscaped;
+            buttonEl.textContent = 'Les mindre';
+            buttonEl.setAttribute('aria-expanded', 'true');
+          } else {
+            contentEl.innerHTML = truncatedTextToDisplay;
+            buttonEl.textContent = 'Les mer';
+            buttonEl.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
+
+    initQuantitySelectors() {
+      if (!this.sectionElement) return;
+      this.sectionElement.querySelectorAll('.quantity-selector').forEach((container) => {
+        const decBtn = container.querySelector('.quantity-decrease');
+        const incBtn = container.querySelector('.quantity-increase');
+        const input = container.querySelector('.quantity-input');
+        if (!decBtn || !incBtn || !input) return;
+        const min = parseInt(input.min, 10);
+        const minVal = isNaN(min) || min < 1 ? 1 : min;
+        const updateBtns = () => {
+          const currentVal = parseInt(input.value, 10);
+          decBtn.disabled = isNaN(currentVal) || currentVal <= minVal;
+        };
+        decBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          let currentValue = parseInt(input.value, 10);
+          currentValue = isNaN(currentValue) ? minVal : currentValue;
+          if (currentValue > minVal) input.value = currentValue - 1;
+          else input.value = minVal;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+          updateBtns();
+        });
+        incBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          let currentValue = parseInt(input.value, 10);
+          currentValue = isNaN(currentValue) ? minVal - 1 : currentValue;
+          input.value = currentValue + 1;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+          updateBtns();
+        });
+        const validateInput = () => {
+          let val = parseInt(input.value, 10);
+          if (isNaN(val) || val < minVal) input.value = minVal;
+          updateBtns();
+        };
+        input.addEventListener('change', validateInput);
+        input.addEventListener('blur', validateInput);
+        if (isNaN(parseInt(input.value, 10)) || parseInt(input.value, 10) < minVal) {
+          input.value = minVal;
+        }
+        updateBtns();
+      });
+    }
+
+    init() {
+      if (!this.fullProductData || !this.productForm) {
+        return;
+      }
+      const optionInputs = this.productForm.querySelectorAll('.product-option-input');
+      if (
+        optionInputs.length > 0 &&
+        this.uiGeneratedOptions &&
+        this.uiGeneratedOptions.length > 0
+      ) {
+        optionInputs.forEach((input) => {
+          const inputNameAttr = input.getAttribute('name');
+          if (!inputNameAttr) return;
+          const inputOptionNameMatch = inputNameAttr.match(/options\[(.*?)\]/);
+          if (inputOptionNameMatch && inputOptionNameMatch[1]) {
+            const inputOptionName = this.escapeCSSSelector(inputOptionNameMatch[1]);
+            if (
+              this.uiGeneratedOptions.some(
+                (uiOpt) =>
+                  typeof uiOpt.name === 'string' &&
+                  this.escapeCSSSelector(uiOpt.name) === inputOptionName
+              )
+            ) {
+              input.addEventListener('change', () => this.onOptionChanged());
+            }
+          }
+        });
+      }
+      this.initializeOptions();
+      this.setupExpandableText(
+        '.expandable-metafield',
+        '.metafield-content',
+        '.metafield-toggle-button',
+        80
+      );
+      this.setupTruncatedText(
+        '.product-description-container',
+        '.description-content',
+        '.description-toggle-button',
+        75
+      ); // Bruker 75 for produktbeskrivelsen
+      this.initQuantitySelectors();
+    }
+  }
+
+  if (typeof ProductPreviewHandler !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+      const sectionsToInit = document.querySelectorAll('.product-preview-section[data-section-id]');
+      sectionsToInit.forEach((sectionEl) => {
+        if (sectionEl && sectionEl.dataset.productJson) {
+          try {
+            new ProductPreviewHandler(sectionEl);
+          } catch (e) {
+            console.error(
+              'Error initializing ProductPreviewHandler for section:',
+              sectionEl.dataset.sectionId,
+              e
+            );
+          }
+        }
+      });
+
+      // JavaScript for størrelsesguide popup (utenfor ProductPreviewHandler class)
+      const sizeGuideLink = document.querySelector('.size-guide-link[data-modal-trigger]');
+      const sizeGuideModal = document.getElementById('sizeGuideModal');
+      const sizeGuideIframe = document.getElementById('sizeGuideIframe');
+      const closeModalButton = sizeGuideModal
+        ? sizeGuideModal.querySelector('.close-button')
+        : null;
+
+      if (sizeGuideLink && sizeGuideModal && sizeGuideIframe && closeModalButton) {
+        sizeGuideLink.addEventListener('click', (event) => {
+          event.preventDefault(); // Forhindrer standard lenke-oppførsel
+          const url = sizeGuideLink.getAttribute('href');
+
+          sizeGuideIframe.setAttribute('src', url);
+          sizeGuideModal.classList.add('is-open');
+          sizeGuideModal.focus(); // Flytt fokus til modalen for tilgjengelighet
+        });
+
+        const closeModal = () => {
+          sizeGuideModal.classList.remove('is-open');
+          sizeGuideIframe.setAttribute('src', ''); // Tøm src for å stoppe innhold/video
+          sizeGuideLink.focus(); // Returner fokus til den opprinnelige linken
+        };
+
+        closeModalButton.addEventListener('click', closeModal);
+
+        window.addEventListener('click', (event) => {
+          if (event.target === sizeGuideModal) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && sizeGuideModal.classList.contains('is-open')) {
+            closeModal();
+          }
+        });
+      } else {
+        console.warn(
+          'Size guide popup initialization: One or more required elements not found. Link, modal, iframe or close button.'
+        );
+      }
+    });
+  } else {
+    console.error('ProductPreviewHandler class is not defined.');
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Produkt Swiper Detaljer",
+  "tag": "section",
+  "class": "product-swiper-details-section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Produkt",
+      "info": "Velg produktet som skal vises."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Produkt Swiper Detaljer",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,239 @@
+{% schema %}
+{
+  "tag": "section",
+  "name": "Product Details Section",
+  "class": "product-details",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Velg produkt"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Details Section (DPS)"
+    }
+  ]
+}
+{% endschema %}
+
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.product and all_products[section.settings.product] %}
+  {% assign product = all_products[section.settings.product] %}
+  {% assign unique_id = section.id %}
+
+  <section class='relative w-full' id='section-{{ section.id }}'>
+    <div class='flex flex-col md:flex-row gap-4 md:overflow-x-auto md:whitespace-nowrap lg:overflow-visible'>
+      <!-- Produktinfo (swiper) -->
+      <div class='order-1 md:order-2 w-full md:w-1/3'>
+        <div class='swiper vertical-swiper-{{ unique_id }} h-[500px]'>
+          <div class='swiper-wrapper'>
+            <!-- Slide 1 -->
+            <div class='swiper-slide'>
+              <h1 class='text-2xl'>{{ product.title }}</h1>
+              <p>{{ product.vendor }}</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class='swiper-slide'>
+              {% if product.compare_at_price > product.price %}
+                <p class='line-through'>{{ product.compare_at_price | money }}</p>
+              {% endif %}
+              <p class='text-xl'>{{ product.price | money }}</p>
+            </div>
+
+            <!-- Slide 3: Variantvelger og kjøpsknapp -->
+            <div class='swiper-slide'>
+              {% form 'product', product %}
+                {% unless product.has_only_default_variant %}
+                  <div class='space-y-4'>
+                    {% for option in product.options_with_values %}
+                      <label class='block font-semibold'>{{ option.name }}</label>
+                      <select name='options[{{ option.name }}]' class='w-full mt-1'>
+                        {% for value in option.values %}
+                          <option value='{{ value }}'>{{ value }}</option>
+                        {% endfor %}
+                      </select>
+                    {% endfor %}
+                  </div>
+                {% endunless %}
+
+                <input
+                  type='hidden'
+                  name='id'
+                  value='{{ product.selected_or_first_available_variant.id }}'
+                >
+                <button type='submit' class='w-full bg-black text-white py-2 mt-4'>Kjøp</button>
+              {% endform %}
+            </div>
+
+            <!-- Slide 4 -->
+            <div class='swiper-slide'>
+              <div class='text-sm'>{{ product.description }}</div>
+              <p class='mt-2'>Lager: {{ product.available | default: true | json }}</p>
+              <p>Frakt: Gratis over 500 kr</p>
+            </div>
+          </div>
+
+          <div class='swiper-button-prev swiper-button-prev-vertical-{{ unique_id }}'></div>
+          <div class='swiper-button-next swiper-button-next-vertical-{{ unique_id }}'></div>
+          <div class='swiper-pagination swiper-pagination-{{ unique_id }}-vertical'></div>
+        </div>
+      </div>
+
+      <!-- Produktbilder (swiper) -->
+      <div class='order-2 md:order-1 w-full md:w-2/3'>
+        <div class='swiper image-swiper-{{ unique_id }}'>
+          <div class='swiper-wrapper'>
+            {% for image in product.images %}
+              <div class='swiper-slide'>
+                <img
+                  loading='lazy'
+                  src='{{ image | image_url: '800x' }}'
+                  alt='{{ image.alt | default: product.title | escape }}'
+                  class='w-full object-cover'
+                >
+              </div>
+            {% endfor %}
+          </div>
+
+          <div class='swiper-button-prev swiper-button-prev-image-{{ unique_id }}'></div>
+          <div class='swiper-button-next swiper-button-next-image-{{ unique_id }}'></div>
+          <div class='swiper-pagination swiper-pagination-{{ unique_id }}-image'></div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% else %}
+  <p class='text-red-600'>Ingen produkt valgt i seksjonen.</p>
+{% endif %}
+
+<!-- Style -->
+<style>
+  #section-{{ section.id }} .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  #section-{{ section.id }} .vertical-swiper-{{ section.id }} {
+    height: 500px;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
+  #section-{{ section.id }} .image-swiper-{{ section.id }} {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  #section-{{ section.id }} .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: #ffffff;
+  }
+  #section-{{ section.id }} .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  #section-{{ section.id }} .swiper-pagination {
+    position: absolute;
+    z-index: 10;
+  }
+  #section-{{ section.id }} .swiper-pagination-{{ section.id }}-vertical {
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #section-{{ section.id }} .swiper-pagination-{{ section.id }}-image {
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #section-{{ section.id }} .swiper-button-prev,
+  #section-{{ section.id }} .swiper-button-next {
+    color: #000;
+    background: rgba(255, 255, 255, 0.9);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #section-{{ section.id }} .swiper-button-prev:hover,
+  #section-{{ section.id }} .swiper-button-next:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+  }
+  #section-{{ section.id }} .swiper-button-prev-vertical-{{ section.id }},
+  #section-{{ section.id }} .swiper-button-next-vertical-{{ section.id }} {
+    left: auto;
+    right: 0.5rem;
+  }
+  #section-{{ section.id }} .swiper-button-prev-vertical-{{ section.id }} {
+    top: 1rem;
+  }
+  #section-{{ section.id }} .swiper-button-next-vertical-{{ section.id }} {
+    bottom: 1rem;
+  }
+  #section-{{ section.id }} .swiper-button-prev-image-{{ section.id }},
+  #section-{{ section.id }} .swiper-button-next-image-{{ section.id }} {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #section-{{ section.id }} .swiper-button-prev-image-{{ section.id }} {
+    left: 0.5rem;
+  }
+  #section-{{ section.id }} .swiper-button-next-image-{{ section.id }} {
+    right: 0.5rem;
+  }
+</style>
+
+<!-- JS -->
+<script src='{{ 'swiper-bundle.js' | asset_url }}' defer='defer'></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const uid = '{{ unique_id }}';
+
+    const imageSwiperSelector = '.image-swiper-' + uid;
+    const verticalSwiperSelector = '.vertical-swiper-' + uid;
+
+    if (document.querySelector(imageSwiperSelector)) {
+      new Swiper(imageSwiperSelector, {
+        direction: 'horizontal',
+        slidesPerView: 'auto',
+        spaceBetween: 30,
+        pagination: {
+          el: '.swiper-pagination-' + uid + '-image',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next-image-' + uid,
+          prevEl: '.swiper-button-prev-image-' + uid,
+        },
+      });
+    }
+
+    if (document.querySelector(verticalSwiperSelector)) {
+      new Swiper(verticalSwiperSelector, {
+        direction: 'vertical',
+        slidesPerView: 1,
+        spaceBetween: 20,
+        pagination: {
+          el: '.swiper-pagination-' + uid + '-vertical',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next-vertical-' + uid,
+          prevEl: '.swiper-button-prev-vertical-' + uid,
+        },
+      });
+    }
+  });
+</script>

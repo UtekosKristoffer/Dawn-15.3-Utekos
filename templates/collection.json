@@ -1,0 +1,414 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "coverflow_swiper_MbJmQG": {
+      "type": "coverflow-swiper",
+      "blocks": {
+        "product_group_XUKcJd": {
+          "type": "product_group",
+          "settings": {
+            "product_group_id": "1",
+            "product": "comfyrobe"
+          }
+        },
+        "slide_image_pbLEnV": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "1",
+            "image": "shopify://shop_images/Comfy2_5e3faaec-173b-43b0-9097-293a8d8daff1.jpg"
+          }
+        },
+        "slide_image_pHjXBH": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "1",
+            "image": "shopify://shop_images/Jakke_Navy_1.png"
+          }
+        },
+        "slide_image_t6k9B3": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "1"
+          }
+        },
+        "slide_image_jEBxne": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "1"
+          }
+        },
+        "product_group_nnjxYk": {
+          "type": "product_group",
+          "settings": {
+            "product_group_id": "2",
+            "product": "utekos-dun"
+          }
+        },
+        "slide_image_Rn6XYX": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "2",
+            "image": "shopify://shop_images/Jente_Dun.png"
+          }
+        },
+        "slide_image_h7VXt3": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "2",
+            "image": "shopify://shop_images/Soveposejakke_Blue_1.png"
+          }
+        },
+        "slide_image_VFLGTG": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "2"
+          }
+        },
+        "slide_image_ByPjxG": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "2"
+          }
+        },
+        "product_group_eHm4mb": {
+          "type": "product_group",
+          "settings": {
+            "product_group_id": "3",
+            "product": "utekos-mikrofiber™"
+          }
+        },
+        "slide_image_aB6Hr6": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "3",
+            "image": "shopify://shop_images/DSC9399.jpg"
+          }
+        },
+        "slide_image_LJTmW4": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "3",
+            "image": "shopify://shop_images/DSC9248_1.jpg"
+          }
+        },
+        "slide_image_P7We3x": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "3"
+          }
+        },
+        "slide_image_gemxDK": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "3"
+          }
+        },
+        "product_group_JeyBJq": {
+          "type": "product_group",
+          "settings": {
+            "product_group_id": "4",
+            "product": "utekos-special-edition™"
+          }
+        },
+        "slide_image_hh44Bn": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "4",
+            "image": "shopify://shop_images/Kate_Turkis_Special.png"
+          }
+        },
+        "slide_image_c6PUcB": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "4",
+            "image": "shopify://shop_images/Kate_og_Erling_3.png"
+          }
+        },
+        "slide_image_iLnrPK": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "4"
+          }
+        },
+        "slide_image_mpU7j8": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "4"
+          }
+        }
+      },
+      "block_order": [
+        "product_group_XUKcJd",
+        "slide_image_pbLEnV",
+        "slide_image_pHjXBH",
+        "slide_image_t6k9B3",
+        "slide_image_jEBxne",
+        "product_group_nnjxYk",
+        "slide_image_Rn6XYX",
+        "slide_image_h7VXt3",
+        "slide_image_VFLGTG",
+        "slide_image_ByPjxG",
+        "product_group_eHm4mb",
+        "slide_image_aB6Hr6",
+        "slide_image_LJTmW4",
+        "slide_image_P7We3x",
+        "slide_image_gemxDK",
+        "product_group_JeyBJq",
+        "slide_image_hh44Bn",
+        "slide_image_c6PUcB",
+        "slide_image_iLnrPK",
+        "slide_image_mpU7j8"
+      ],
+      "name": "Cowerflow Gallery",
+      "settings": {
+        "page_link_url": "shopify://pages/hva-er-utekos",
+        "quick_buy": true
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "border_radius_section_aXmdRq": {
+      "type": "border-radius-section",
+      "blocks": {
+        "product_UD63wh": {
+          "type": "product",
+          "settings": {
+            "bilde": "shopify://shop_images/AE924270-5C29-4B8B-A876-F54EBBDE77D4.jpg",
+            "navn": "Utekos Dun",
+            "forpris": "NOK 3290",
+            "pris": "NOK 1990",
+            "lenke": "utekos-dun"
+          }
+        },
+        "product_GzmYER": {
+          "type": "product",
+          "settings": {
+            "bilde": "shopify://shop_images/Soveposejakke_Black_1.png",
+            "navn": "Utekos Mikrofiber",
+            "forpris": "NOK 2290",
+            "pris": "NOK 1290",
+            "lenke": "utekos-mikrofiber™"
+          }
+        },
+        "product_4thrzM": {
+          "type": "product",
+          "settings": {
+            "bilde": "shopify://shop_images/Kate_Turkis_Special.png",
+            "navn": "Utekos Special Edition",
+            "forpris": "NOK 1490",
+            "pris": "NOK 750",
+            "lenke": "utekos-special-edition™"
+          }
+        }
+      },
+      "block_order": [
+        "product_UD63wh",
+        "product_GzmYER",
+        "product_4thrzM"
+      ],
+      "name": "Produktkort Seksjon",
+      "settings": {}
+    },
+    "page_QhtdQh": {
+      "type": "page",
+      "disabled": true,
+      "name": "t:sections.page.presets.name",
+      "settings": {}
+    },
+    "swiper_cube_DeYajF": {
+      "type": "swiper-cube",
+      "blocks": {
+        "cube_group_yfVfje": {
+          "type": "cube_group",
+          "settings": {
+            "group_id": "1",
+            "product": "comfyrobe",
+            "show_compare_at_price": true
+          }
+        },
+        "cube_slide_yEeiMC": {
+          "type": "cube_slide",
+          "settings": {
+            "group_id": "1",
+            "image": "shopify://shop_images/Jakke_Navy_3.png"
+          }
+        },
+        "cube_slide_drgrKY": {
+          "type": "cube_slide",
+          "settings": {
+            "group_id": "1",
+            "image": "shopify://shop_images/Jakke_Navy_2.png"
+          }
+        },
+        "cube_slide_ynA9QD": {
+          "type": "cube_slide",
+          "settings": {
+            "group_id": "1",
+            "image": "shopify://shop_images/Jakke_Navy_1.png"
+          }
+        },
+        "cube_slide_pCkxMF": {
+          "type": "cube_slide",
+          "settings": {
+            "group_id": "1",
+            "image": "shopify://shop_images/Comfy2_5e3faaec-173b-43b0-9097-293a8d8daff1.jpg"
+          }
+        },
+        "cube_group_Cd48UV": {
+          "type": "cube_group",
+          "settings": {
+            "group_id": "2",
+            "product": "utekos-mikrofiber™",
+            "show_compare_at_price": true
+          }
+        },
+        "cube_slide_KwjeVg": {
+          "type": "cube_slide",
+          "settings": {
+            "group_id": "2",
+            "image": "shopify://shop_images/Soveposejakke_Black_1.png"
+          }
+        },
+        "cube_slide_UwGprJ": {
+          "type": "cube_slide",
+          "settings": {
+            "group_id": "2",
+            "image": "shopify://shop_images/Soveposejakke_Black_2.png"
+          }
+        },
+        "cube_slide_RL9cKV": {
+          "type": "cube_slide",
+          "settings": {
+            "group_id": "2",
+            "image": "shopify://shop_images/Soveposejakke_Black_3.png"
+          }
+        },
+        "cube_slide_xBVEgA": {
+          "type": "cube_slide",
+          "settings": {
+            "group_id": "2",
+            "image": "shopify://shop_images/Soveposejakke_Black_4.png"
+          }
+        }
+      },
+      "block_order": [
+        "cube_group_yfVfje",
+        "cube_slide_yEeiMC",
+        "cube_slide_drgrKY",
+        "cube_slide_ynA9QD",
+        "cube_slide_pCkxMF",
+        "cube_group_Cd48UV",
+        "cube_slide_KwjeVg",
+        "cube_slide_UwGprJ",
+        "cube_slide_RL9cKV",
+        "cube_slide_xBVEgA"
+      ],
+      "name": "Swiper Cube Grid",
+      "settings": {
+        "heading": "Cube Gallery",
+        "heading_font_size": "32px",
+        "subtext_font_size": "24px",
+        "subtext": "Forklar hva som skjer",
+        "heading_color": "#ffffff",
+        "subtext_color": "#ffffff",
+        "heading_align": "left",
+        "subtext_align": "left",
+        "enable_blur": true,
+        "enable_radius": true,
+        "button_background": "#ffffff",
+        "button_radius": 8,
+        "slide_radius": 12,
+        "slide_blur": 12,
+        "slide_background": "#121212",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "button_label": "Shop Now"
+      }
+    },
+    "original_cube_swiper_aKdkgx": {
+      "type": "original-cube-swiper",
+      "blocks": {
+        "slide_JGPMdi": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Special_Turkis_apen.jpg"
+          }
+        },
+        "slide_kKFmbb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Kate_Special_Editon.png"
+          }
+        },
+        "slide_UVHUMi": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/kx7yjwhm.png"
+          }
+        },
+        "slide_NzLzFW": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/DSC07183.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "slide_JGPMdi",
+        "slide_kKFmbb",
+        "slide_UVHUMi",
+        "slide_NzLzFW"
+      ],
+      "name": "Swiper Cube",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "coverflow_swiper_MbJmQG",
+    "banner",
+    "product-grid",
+    "border_radius_section_aXmdRq",
+    "page_QhtdQh",
+    "swiper_cube_DeYajF",
+    "original_cube_swiper_aKdkgx"
+  ]
+}

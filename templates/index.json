@@ -1,0 +1,274 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "forside_video_bg_WPK7jp": {
+      "type": "forside-video-bg",
+      "name": "Video med diagonalbanner",
+      "settings": {
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/54a10574bf674530947c83b3aaa6864b.mp4",
+        "campaign_heading": "Lagertømming",
+        "campaign_subtext": "Siste sjanse til å sikre deg favoritten. Vi rydder plass til nye varer!",
+        "campaign_link_label": "Gjør et kupp nå",
+        "campaign_link": "shopify://collections/all",
+        "heading_color": "#ffffff",
+        "text_color": "#ffffff",
+        "banner_bg_color": "#ff6a13",
+        "campaign_heading_mobile": "Lagertømming",
+        "campaign_subtext_mobile": ""
+      }
+    },
+    "border_radius_section_XPLHin": {
+      "type": "border-radius-section",
+      "blocks": {
+        "product_hb9ekh": {
+          "type": "product",
+          "settings": {
+            "bilde": "shopify://shop_images/Jente_Dun.png",
+            "navn": "Utekos Dun™",
+            "forpris": "NOK 3290",
+            "pris": "NOK 1990",
+            "lenke": "utekos-dun"
+          }
+        },
+        "product_pUbHfX": {
+          "type": "product",
+          "settings": {
+            "bilde": "shopify://shop_images/UTEKOS_11.jpg",
+            "navn": "Utekos Special Edition™",
+            "forpris": "NOK 1490",
+            "pris": "NOK 750",
+            "lenke": "utekos-special-edition™"
+          }
+        },
+        "product_QprzY4": {
+          "type": "product",
+          "settings": {
+            "bilde": "shopify://shop_images/DSC9394.jpg",
+            "navn": "Utekos Mikrofiber™",
+            "forpris": "NOK 2290",
+            "pris": "NOK1290",
+            "lenke": "utekos-mikrofiber™"
+          }
+        }
+      },
+      "block_order": [
+        "product_hb9ekh",
+        "product_pUbHfX",
+        "product_QprzY4"
+      ],
+      "settings": {
+        "page": "hva-er-utekos"
+      }
+    },
+    "coverflow_swiper_customer_CUNXie": {
+      "type": "coverflow-swiper-customer",
+      "blocks": {
+        "product_group_EJUVNU": {
+          "type": "product_group",
+          "settings": {
+            "product_group_id": "1",
+            "product": "comfyrobe"
+          }
+        },
+        "slide_image_hVHM7c": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "1"
+          }
+        },
+        "slide_image_AAmKE8": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "1"
+          }
+        },
+        "slide_image_QywUGg": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "1"
+          }
+        },
+        "slide_image_eePCBj": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "1"
+          }
+        },
+        "slide_image_mJpJck": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "1"
+          }
+        },
+        "product_group_8FwkPE": {
+          "type": "product_group",
+          "settings": {
+            "product_group_id": "2",
+            "product": "utekos-dun"
+          }
+        },
+        "slide_image_6Kqzhq": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "2"
+          }
+        },
+        "slide_image_jx8tRN": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "2"
+          }
+        },
+        "slide_image_bNL6PY": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "2"
+          }
+        },
+        "slide_image_gmx9QM": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "2"
+          }
+        },
+        "slide_image_kaJWWt": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "2"
+          }
+        },
+        "product_group_tCn4zJ": {
+          "type": "product_group",
+          "settings": {
+            "product_group_id": "3",
+            "product": "utekos-special-edition™"
+          }
+        },
+        "slide_image_BVgyzX": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "3"
+          }
+        },
+        "slide_image_BW8Gxp": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "3"
+          }
+        },
+        "slide_image_77gJbV": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "3"
+          }
+        },
+        "slide_image_D8hHrD": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "3"
+          }
+        },
+        "slide_image_pjhRUk": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "3"
+          }
+        },
+        "product_group_6wFkwN": {
+          "type": "product_group",
+          "settings": {
+            "product_group_id": "4",
+            "product": "utekos-mikrofiber™"
+          }
+        },
+        "slide_image_pdn3h4": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "4"
+          }
+        },
+        "slide_image_p43wmx": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "4"
+          }
+        },
+        "slide_image_met9bn": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "4"
+          }
+        },
+        "slide_image_FQf7Wm": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "4"
+          }
+        },
+        "slide_image_kf8BED": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "4"
+          }
+        }
+      },
+      "block_order": [
+        "product_group_EJUVNU",
+        "slide_image_hVHM7c",
+        "slide_image_AAmKE8",
+        "slide_image_QywUGg",
+        "slide_image_eePCBj",
+        "slide_image_mJpJck",
+        "product_group_8FwkPE",
+        "slide_image_6Kqzhq",
+        "slide_image_jx8tRN",
+        "slide_image_bNL6PY",
+        "slide_image_gmx9QM",
+        "slide_image_kaJWWt",
+        "product_group_tCn4zJ",
+        "slide_image_BVgyzX",
+        "slide_image_BW8Gxp",
+        "slide_image_77gJbV",
+        "slide_image_D8hHrD",
+        "slide_image_pjhRUk",
+        "product_group_6wFkwN",
+        "slide_image_pdn3h4",
+        "slide_image_p43wmx",
+        "slide_image_met9bn",
+        "slide_image_FQf7Wm",
+        "slide_image_kf8BED"
+      ],
+      "name": "Your New Section",
+      "settings": {
+        "color_scheme": "",
+        "quick_buy": true,
+        "show_page_link": "shopify://pages/hva-er-utekos"
+      }
+    },
+    "swiper_product_animation_iDwtbE": {
+      "type": "swiper-product-animation",
+      "name": "Produkt Prosjekt",
+      "settings": {}
+    },
+    "a_material_swiper_nzfay9": {
+      "type": "a-material-swiper",
+      "name": "Material You Slider",
+      "settings": {}
+    }
+  },
+  "order": [
+    "forside_video_bg_WPK7jp",
+    "border_radius_section_XPLHin",
+    "coverflow_swiper_customer_CUNXie",
+    "swiper_product_animation_iDwtbE",
+    "a_material_swiper_nzfay9"
+  ]
+}

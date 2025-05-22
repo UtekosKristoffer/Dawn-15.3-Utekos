@@ -1,0 +1,166 @@
+details.mega-menu {
+  position: relative;
+  z-index: 10;
+}
+
+.header:has(details.mega-menu[open]) {
+  background-color: black;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  position: relative;
+  z-index: 400;
+  opacity: 1;
+}
+
+/* Dropdown-innhold */
+.mega-menu__content {
+  position: absolute;
+  top: 100%;
+  left: -55rem;
+  right: 0;
+  width: 125vw;
+  z-index: 1;
+  background-color: black;
+  color: white;
+  padding: 1.5rem 0rem 0rem;
+  overflow-y: auto;
+  transform: translateY(-1.5rem);
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+  display: flex;
+  align-items: start;
+  align-content: start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-items: flex-start;
+  opacity: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 2rem;
+  border-bottom: 8rem solid oklch(0.25 0.0059 285.89);
+  z-index: 9999;
+}
+
+.mega-menu__content > :first-child {
+  padding-left: 56rem;
+}
+
+.mega-menu[open] > .mega-menu__content {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease;
+}
+
+.shopify-section-header-sticky .mega-menu__content {
+  height: 100%;
+}
+
+.mega-menu__list > li {
+  flex: 0 0 auto;
+}
+
+.mega-menu__list {
+  min-height: 275px;
+  text-align: left;
+  display: flex;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-start;
+  justify-items: flex-start;
+  flex-direction: column;
+  row-gap: 1.2rem;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-top: 1rem;
+  margin: 0;
+}
+
+.mega-menu__link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem 0.5rem 0rem;
+  font-weight: 500;
+  font-family: 'DIN Next LT Pro', sans-serif;
+  font-size: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mega-menu__link:hover {
+  background-color: oklch(0.7 0.1996 44.67);
+  border-radius: 0.4rem;
+  color: white;
+  opacity: 0.8;
+  transition: all 300ms ease;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin-left: -2px;
+}
+
+summary.header__menu-item,
+summary.header__menu-item span {
+  text-decoration: none !important;
+  outline: none;
+  position: relative;
+  padding: 0.5rem 1rem 0rem 1rem;
+}
+
+/* Felles underline-linje */
+.header__underline {
+  position: absolute;
+  bottom: -0.15rem;
+  height: 2px;
+  width: 0;
+  background-color: white;
+  transition:
+    left 600ms ease,
+    width 600ms ease;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 1;
+}
+
+/* --DARK-- */
+.header {
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: fit-content;
+  position: relative;
+  padding: 0px 90px;
+  position: relative;
+  z-index: 400;
+  opacity: 1;
+}
+
+.header__inline-menu--dark .header__menu-item span,
+.header__inline-menu--dark .header__menu-item {
+  color: black;
+}
+
+.header:has(details.mega-menu[open]) .header__menu-item,
+.header:has(details.mega-menu[open]) .header__menu-item span {
+  color: white !important;
+}
+
+/* Default: hvit logo */
+.site-logo--white {
+  display: block;
+}
+.site-logo--black {
+  display: none;
+}
+
+/* Ikke-index: tving sort logo */
+.header__inline-menu--dark .site-logo--white {
+  display: none !important;
+}
+.header__inline-menu--dark .site-logo--black {
+  display: block !important;
+}
+
+/* Index med åpen meny: tving sort logo til å skjules */
+.header__inline-menu--dark:has(details[open]) .site-logo--white {
+  display: block !important;
+}
+.header__inline-menu--dark:has(details[open]) .site-logo--black {
+  display: none !important;
+}

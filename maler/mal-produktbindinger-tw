@@ -1,0 +1,93 @@
+{% assign product = section.settings.product %}
+
+<div class='py-8 px-4 max-w-6xl mx-auto'>
+  {% if product %}
+    <div class='grid grid-cols-1 md:grid-cols-2 gap-8 items-start'>
+      <!-- Produktbilde -->
+      <div class='aspect-square bg-gray-100 rounded-lg overflow-hidden'>
+        <a href='{{ product.url }}'>
+          <img
+            src='{{ product.featured_image | image_url: width: 800 }}'
+            alt='{{ product.title | escape }}'
+            class='w-full h-full object-cover'
+          >
+        </a>
+      </div>
+
+      <!-- Produktdetaljer -->
+      <div class='flex flex-col gap-4'>
+        <!-- Tittel -->
+        <h2 class='text-2xl font-semibold'>{{ product.title }}</h2>
+
+        <!-- Pris -->
+        <div class='flex items-center gap-3'>
+          <span class='text-xl font-bold'>{{ product.price | money }}</span>
+          {% if product.compare_at_price > product.price %}
+            <span class='line-through text-gray-500'>
+              {{ product.compare_at_price | money }}
+            </span>
+            <span class='bg-red-500 text-white px-2 py-1 text-sm rounded'>Salg</span>
+          {% endif %}
+        </div>
+
+        <!-- Lagerstatus -->
+        {% if product.available %}
+          <p class='text-green-600'>På lager</p>
+        {% else %}
+          <p class='text-red-600'>Utsolgt</p>
+        {% endif %}
+
+        <!-- Kort beskrivelse -->
+        <p class='text-gray-700'>{{ product.description | strip_html | truncatewords: 30 }}</p>
+
+        <!-- Variantvelger -->
+        {% if product.variants.size > 1 %}
+          <form method='post' action='/cart/add' class='space-y-4'>
+            <label for='variant-{{ section.id }}' class='block text-sm font-medium'>
+              Velg variant:
+            </label>
+            <select
+              name='id'
+              id='variant-{{ section.id }}'
+              class='border rounded p-2 w-full'
+            >
+              {% for variant in product.variants %}
+                <option value='{{ variant.id }}'>{{ variant.title }}</option>
+              {% endfor %}
+            </select>
+
+            <!-- Kjøpsknapp -->
+            <button
+              type='submit'
+              class='bg-black text-white px-5 py-2 rounded hover:bg-gray-800'
+            >
+              Legg i handlekurv
+            </button>
+          </form>
+        {% else %}
+          <form method='post' action='/cart/add'>
+            <input type='hidden' name='id' value='{{ product.variants.first.id }}'>
+            <button
+              type='submit'
+              class='bg-black text-white px-5 py-2 rounded hover:bg-gray-800'
+            >
+              Legg i handlekurv
+            </button>
+          </form>
+        {% endif %}
+
+        <!-- Lenke til produktside -->
+        <a
+          href='{{ product.url }}'
+          class='underline text-sm text-gray-600 hover:text-black'
+        >
+          Se full produktbeskrivelse
+        </a>
+      </div>
+    </div>
+  {% else %}
+    <p class='text-center text-gray-500'>
+      Velg et produkt i Theme Editor for å vise produktinformasjon.
+    </p>
+  {% endif %}
+</div>

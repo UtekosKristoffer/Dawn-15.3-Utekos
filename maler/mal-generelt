@@ -1,0 +1,66 @@
+{% comment %}
+  {% for i in (1..4) %} osv. -Hva betyr det?
+  Dette er en for-løkke i Liquid som lar deg gjenta noe flere ganger.
+
+  Forklaring:
+  {% for i in (1..4) %}
+    <!-- kode her gjentas 4 ganger -->
+  {% endfor %}
+  Dette betyr:
+
+  "Kjør koden inni denne løkken én gang for hvert tall fra 1 til 4."
+
+  Eksempel:
+  <ul>
+    {% for i in (1..3) %}
+      <li>Slide {{ i }}</li>
+    {% endfor %}
+  </ul>
+  Resultat:
+
+  <ul>
+    <li>Slide 1</li>
+    <li>Slide 2</li>
+    <li>Slide 3</li>
+  </ul>
+
+  Når bruker man dette?
+  For å teste layout (uten data fra produkter eller blocks)
+  For å generere faste antall elementer
+  Når du ikke bruker en loop over reelle objekter (som produkter, blocks eller artikler)
+
+  Alternativer:
+  Hvis du har ekte data, bruk f.eks.:
+
+  {% for block in section.blocks %}
+    {{ block.settings.title }}
+  {% endfor %}
+  Men hvis du bare trenger plassholdere eller testsløyfer, så er:
+
+  {% for i in (1..4) %}
+  en enkel måte å si: “Gjør dette 4 ganger.”
+
+
+  Hvorfor gir ikke Tailwind global CSS-konflikt med .swiper-*-klasser?
+  1. Tailwind styler ikke .swiper-xxx-klassene automatisk
+  Tailwind CSS bruker utility-klasser som flex, overflow-hidden, p-4 osv. og har ingen innebygde styles for klasser som .swiper, .swiper-wrapper, .swiper-slide etc. Disse klassene er definert og stilset utelukkende av Swiper sine egne CSS-filer (swiper-bundle.css).
+
+  Med andre ord: Tailwind ignorerer Swipers egne klassenavn, og påvirker dem bare hvis du eksplisitt legger til Tailwind-klasser i tillegg.
+
+  2. Global CSS-konflikt oppstår først hvis du selv overstyrer Swiper-klasser
+  Hvis du f.eks. skriver i base.css:
+
+  .swiper-slide {
+    height: 400px !important;
+  }
+  – da har du laget en global regel som gjelder alle swiper-slides i hele prosjektet. Da har du en konflikt.
+
+  Men med Tailwind skriver du heller:
+
+  <div class="swiper-slide h-[400px] bg-white">
+  – og da gjelder stilen kun for denne swiper-slide, ikke alle andre.
+
+  Tailwind CSS bruker utility-klasser som flex, overflow-hidden, p-4 osv. og har ingen innebygde styles for klasser som .swiper, .swiper-wrapper, .swiper-slide etc. Disse klassene er definert og stilset utelukkende av Swiper sine egne CSS-filer (swiper-bundle.css).
+
+  Med andre ord: Tailwind ignorerer Swipers egne klassenavn, og påvirker dem bare hvis du eksplisitt legger til Tailwind-klasser i tillegg.
+{% endcomment %}

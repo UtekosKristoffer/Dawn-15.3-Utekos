@@ -1,0 +1,299 @@
+<section class="sticky-product-specs-section">
+  <div class="sticky-specs-inner">
+    <h2 class="sticky-specs-heading">{{ section.settings.heading }}</h2>
+
+    <!-- Tabs -->
+    <div class="specs-tabs">
+      <button class="specs-tab-button active">{{ section.settings.tab_1 }}</button>
+      <button class="specs-tab-button">{{ section.settings.tab_2 }}</button>
+      <button class="specs-tab-button">{{ section.settings.tab_3 }}</button>
+    </div>
+
+    <!-- Produktbilde -->
+    <div class="specs-image-wrapper">
+      {% if section.settings.image_1 %}
+        <img
+          id="productImage"
+          src="{{ section.settings.image_1 | image_url: width: 800 }}"
+          alt="Produktbilde"
+          width="800"
+          height="{{ section.settings.image_1.height | times: 800.0 | divided_by: section.settings.image_1.width | round }}"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- B: Denne skal gli over -->
+  <div class="specs-carousel-wrapper">
+    <div class="specs-carousel">
+      {% for block in section.blocks %}
+        <div class="mobile-specs-block">
+          <h3>{{ block.settings.title }}</h3>
+
+          {% for i in (1..5) %}
+            {% capture subtitle_id %}subtitle_{{ i }}{% endcapture %}
+            {% capture description_id %}description_{{ i }}{% endcapture %}
+
+            {% assign subtitle = block.settings[subtitle_id] %}
+            {% assign description = block.settings[description_id] %}
+
+            {% if subtitle or description %}
+              {% if subtitle %}
+                <h4>{{ subtitle }}</h4>
+              {% endif %}
+              {% if description %}
+                <p>{{ description }}</p>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% style %}
+  section.mobile-sticky-product-specs {
+    overflow: visible !important;
+    position: relative;
+  }
+
+  .sticky-specs-inner {
+    position: sticky !important;
+    top: 0.5rem; /* juster om du har fast header */
+    padding: 1rem 1rem;
+    background: #000;
+    z-index: 1;
+    justify-content: center;
+  }
+
+  .sticky-specs-heading {
+    font-size: 2.5rem;
+    font-family: var(--font-alt-family);
+    font-style: normal;
+    font-weight: normal;
+    padding: 0.5rem 0rem 2rem 0rem;
+    color: #fcfcfc;
+    margin: 0 0;
+    place-self: left;
+  }
+
+  .sticky-product-specs-section {
+    text-align: left;
+    font-size: 2.8rem;
+    margin: 0 0;
+    z-index: 1;
+    overflow: visible !important;
+    position: relative !important;
+    width: 100%;
+    background: #000;
+    display: grid;
+    flex-direction: row;
+    justify-content: center !important;
+    justify-items: center;
+  }
+
+  .specs-image-wrapper {
+    width: 100%;
+    text-align: center;
+  }
+
+  .specs-image-wrapper img {
+    max-width: 30rem !important;
+    height: auto;
+    place-self: center;
+  }
+
+  .specs-tabs {
+    position: relative;
+    gap: 0rem;
+    margin-bottom: 1.6rem;
+    place-self: center !important;
+    border-radius: 1.2rem;
+    background: #000;
+    text-align: center;
+    padding: 0.8rem 1rem;
+    color: white;
+  }
+
+  .specs-tab-button {
+    padding: 0.8rem 1rem;
+    color: white;
+    border-radius: 0px;
+    font-size: 1.2rem;
+    font-family: var(--font-alt-family);
+    font-weight: normal;
+    font-style: normal;
+    background: transparent;
+    border: none;
+  }
+
+  .specs-tab-button.active {
+    background: #f5f3ef;
+    color: #000;
+    border-radius: 1.8rem;
+  }
+  .specs-tab:first-child {
+    border-top-left-radius: 1.8rem;
+    border-bottom-left-radius: 1.8rem;
+  }
+
+  .specs-tab:last-child {
+    border-top-right-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
+  }
+
+  .specs-carousel-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    margin: 0 auto;
+    max-width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fcfcfc;
+    z-index: 15;
+    padding-bottom: 11.5rem;
+  }
+
+  .specs-carousel {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1rem 2rem;
+  }
+
+  .mobile-specs-block {
+    flex: 0 0 90%;
+    scroll-snap-align: start;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    font-family: var(--font-alt-family);
+    font-style: normal;
+    font-weight: normal;
+    color: #fcfcfc;
+  }
+
+  .mobile-specs-block h3 {
+    padding: 2rem 0 0.4rem;
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin: 0 0 0 0;
+    position: relative;
+    border-top: 0.15rem solid #fcfcfc;
+  }
+
+  .mobile-specs-block h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: #fcfcfc;
+    margin: 0 0;
+  }
+
+  .mobile-specs-block p {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0 0;
+    color: #fcfcfc;
+  }
+  @media screen and (min-width: 749px) {
+    .sticky-product-specs-section {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const section = document.querySelector('.sticky-product-specs-section');
+    if (!section) return;
+
+    const productImage = document.getElementById("productImage");
+    const tabButtons = document.querySelectorAll('.specs-tab-button');
+
+    // Bilder med korrekt høydeberegning
+    const images = [
+      "{{ section.settings.image_1 | image_url: width: 800 }}",
+      "{{ section.settings.image_2 | image_url: width: 800 }}",
+      "{{ section.settings.image_3 | image_url: width: 800 }}"
+    ];
+
+    // Funksjon for å bytte bilde
+    function switchImage(index) {
+      if (productImage && images[index]) {
+        productImage.src = images[index];
+
+        // Oppdater også høyden basert på hvilket bilde som vises
+        const heightMap = [
+          {{ section.settings.image_1.height | times: 800.0 | divided_by: section.settings.image_1.width | round }},
+          {{ section.settings.image_2.height | times: 800.0 | divided_by: section.settings.image_2.width | round }},
+          {{ section.settings.image_3.height | times: 800.0 | divided_by: section.settings.image_3.width | round }}
+        ];
+
+        productImage.height = heightMap[index] || '';
+      }
+
+      tabButtons.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+    }
+
+    tabButtons.forEach((btn, idx) => {
+      btn.addEventListener('click', function() {
+        switchImage(idx);
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Mobile Sticky Specs",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Overskrift", "default": "Produktinfo" },
+    { "type": "image_picker", "id": "image_1", "label": "Bilde 1" },
+    { "type": "image_picker", "id": "image_2", "label": "Bilde 2" },
+    { "type": "image_picker", "id": "image_3", "label": "Bilde 3" },
+    { "type": "text", "id": "tab_1", "label": "Tab 1", "default": "Front" },
+    { "type": "text", "id": "tab_2", "label": "Tab 2", "default": "Bakside" },
+    { "type": "text", "id": "tab_3", "label": "Tab 3", "default": "Detaljer" }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Spesifikasjon",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Tittel (seksjonshode – h3)" },
+
+        { "type": "text", "id": "subtitle_1", "label": "Underoverskrift 1 (h4)" },
+        { "type": "richtext", "id": "description_1", "label": "Beskrivelse 1" },
+
+        { "type": "text", "id": "subtitle_2", "label": "Underoverskrift 2 (h4)" },
+        { "type": "richtext", "id": "description_2", "label": "Beskrivelse 2" },
+
+        { "type": "text", "id": "subtitle_3", "label": "Underoverskrift 3 (h4)" },
+        { "type": "richtext", "id": "description_3", "label": "Beskrivelse 3" },
+
+        { "type": "text", "id": "subtitle_4", "label": "Underoverskrift 4 (h4)" },
+        { "type": "richtext", "id": "description_4", "label": "Beskrivelse 4" },
+
+        { "type": "text", "id": "subtitle_5", "label": "Underoverskrift 5 (h4)" },
+        { "type": "richtext", "id": "description_5", "label": "Beskrivelse 5" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mobile Sticky Specs",
+      "category": "Produkt",
+      "blocks": [{ "type": "spec" }, { "type": "spec" }, { "type": "spec" }]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,195 @@
+{% comment %}
+    Dette er en mal for produktbindinger i Shopify.
+
+  Tommelfingerregler for plassering av nye divs / elementer:
+  1. Innenfor if product-blokken
+  Alt som viser produktdata må legges inni:
+
+  {% if product %}
+    <!-- her bygger du alle produkt-relaterte divs -->
+  {% endif %}
+   Ellers vil du få "undefined variable" eller tomme felt.
+
+  2. Skill mellom "image-side" og "content-side"
+  Hvis du allerede har en wrapper som dette:
+
+   <div class="product-container">
+    <div class="product-image">...</div>
+    <div class="product-details">...</div>
+    </div>
+
+    – så bør alle nye elementer som er "visuelle" (badges, overlays, ikoner, swiper-galleri) plasseres i product-image, mens tekst, pris, knapper osv. legges i product-details.
+
+    3. Behold tydelig rekkefølge:
+  Vanlig og ryddig rekkefølge i product-details:
+
+  Tittel
+  Pris(er)
+  Lagerstatus
+  Variantvelger
+  Kjøpsknapp
+  Kort beskrivelse
+  Lenke til produktside
+  Du kan fritt legge til flere som:
+  Materialinfo
+  Symboler/ikoner
+  Leveringstid
+  Video, ikonliste, tab-innhold osv.
+
+  Men legg hvert nytt område i en egen <div> med klar klasse, f.eks.
+  : <div class="product-material">
+    <strong>Materiale:</strong> 100% ull
+  </div>
+
+  4. Bruk helst section.id eller block.id i id- og class-navn
+  Slik unngår du at elementene dine krasjer med andre instanser:
+
+  5. Kommentarer er gull
+  Bruk kommentarer aktivt når du legger til nye blokker:
+  <!-- START: Leveringstid -->
+  <div class="product-delivery">Leveres innen 3–5 dager</div>
+  <!-- END: Leveringstid -->
+
+  Oppsummert:
+  Hold det inni {% if product %}-blokken.
+  Del det logisk inn i "bilde-side" og "tekst-side".
+  Bruk egne <div>-containere for nye innholdselementer.
+  Unngå å blande innholdstyper uten grunn.
+  Navngi ryddig og unikt.
+{% endcomment %}
+
+{% assign section = section.settings %}
+
+{% assign product = section.settings.product %}
+
+<div class='product-section'>
+  {% if product %}
+    <div class='product-container'>
+      <!-- Produktbilde -->
+      <div class='product-image'>
+        <a href='{{ product.url }}'>
+          <img
+            src='{{ product.featured_image | image_url: width: 800 }}'
+            alt='{{ product.title | escape }}'
+          >
+        </a>
+      </div>
+
+      <!-- Produktinfo -->
+      <div class='product-details'>
+        <!-- Tittel -->
+        <h2 class='product-title'>{{ product.title }}</h2>
+
+        <!-- Pris og sammenligningspris -->
+        <div class='product-prices'>
+          <span class='product-price'>{{ product.price | money }}</span>
+          {% if product.compare_at_price > product.price %}
+            <span class='product-compare-price'>{{ product.compare_at_price | money }}</span>
+            <span class='product-sale-badge'>Salg</span>
+          {% endif %}
+        </div>
+
+        <!-- Lagerstatus -->
+        {% if product.available %}
+          <p class='product-stock product-stock--available'>På lager</p>
+        {% else %}
+          <p class='product-stock product-stock--soldout'>Utsolgt</p>
+        {% endif %}
+
+        <!-- Kort beskrivelse -->
+        <p class='product-description'>
+          {{ product.description | strip_html | truncatewords: 30 }}
+        </p>
+
+        <!-- Variantvelger og kjøpsknapp -->
+        {% if product.variants.size > 1 %}
+          <form method='post' action='/cart/add' class='product-form'>
+            <label for='variant-{{ section.id }}'>Velg variant:</label>
+            <select name='id' id='variant-{{ section.id }}'>
+              {% for variant in product.variants %}
+                <option value='{{ variant.id }}'>{{ variant.title }}</option>
+              {% endfor %}
+            </select>
+
+            <button type='submit' class='product-button'>Legg i handlekurv</button>
+          </form>
+        {% else %}
+          <form method='post' action='/cart/add' class='product-form'>
+            <input type='hidden' name='id' value='{{ product.variants.first.id }}'>
+            <button type='submit' class='product-button'>Legg i handlekurv</button>
+          </form>
+        {% endif %}
+
+        <!-- Lenke til produktside -->
+        <a href='{{ product.url }}' class='product-link'>Se full produktbeskrivelse</a>
+      </div>
+    </div>
+  {% else %}
+    <p class='product-placeholder'>Velg et produkt i Theme Editor for å vise produktinformasjon.</p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Produktmodul",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Velg et produkt"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Produktmodul (standard)"
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %}
+    1. Start alltid med assign først
+  Legg dette helt i toppen av seksjonen:
+  {% assign product = section.settings.product %}
+  Dette gir deg tilgang til product som en kort, lesbar variabel resten av seksjonen.
+
+  🥈 2. Deretter: if product-wrapper
+  Så starter du med:
+  {% if product %}
+    <!-- alt produktinnhold her -->
+  {% else %}
+    <p>Velg et produkt i Theme Editor</p>
+  {% endif %}
+  Du sikrer at alt bare kjøres når produkt faktisk er valgt. Ikke legg markup utenfor her.
+
+  🥉 3. Nå bygger du HTML-struktur og divs INNI if product
+  Bruk en ren og tydelig struktur:
+
+  {% if product %}
+    <div class="product-container">
+      <div class="product-image">
+        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title }}">
+      </div>
+      <div class="product-details">
+        <h2>{{ product.title }}</h2>
+        <p>{{ product.price | money }}</p>
+        <!-- osv. -->
+      </div>
+    </div>
+  {% endif %}
+  💡 Hvorfor denne rekkefølgen er best:
+  Trinn	Fordel
+  assign øverst	Gir deg lesbar kode og ryddig variabelbruk
+  if tidlig	Hindrer feil eller at "tom" layout vises
+  Divstruktur inni if	Hindrer at du bygger UI som ikke fungerer
+  Liquid inni markup	Bevarer leseflyt og HTML-struktur
+
+  🚫 Ikke gjør dette:
+  liquid
+  Kopier
+  Rediger
+  <div class="product-details">
+    <h2>{{ section.settings.product.title }}</h2> <!-- kan gi feil hvis ikke valgt -->
+  </div>
+  → Dette bryter failsafe-strukturen, og kan gi feil eller tomme elementer i Theme Editor.
+{% endcomment %}

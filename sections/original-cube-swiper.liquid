@@ -1,0 +1,152 @@
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+
+<section class='swiper-cube-section' id='section-{{ section.id }}'>
+  <div
+    class='swiper-cube-wrapper'
+    style='padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;'
+  >
+    <div class='swiper CubeSwiper'>
+      <div class='swiper-wrapper'>
+        {% for block in section.blocks %}
+          {% if block.settings.image %}
+            <div class='swiper-slide'>
+              <img
+                src='{{ block.settings.image | image_url: width: 700 }}'
+                width='350'
+                height='420'
+                alt='Slide {{ forloop.index }}'
+                loading='lazy'
+              >
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class='cube-swiper-pagination'></div>
+    </div>
+  </div>
+</section>
+
+{% style %}
+     #section-{{ section.id }} .swiper-cube-section {
+       background: #000;
+       position: relative;
+       width: 100%;
+       height: auto;
+       max-height: 100vh;
+       padding: 2rem 2rem;
+     }
+
+  #section-{{ section.id }} .swiper-cube-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 350px;
+    aspect-ratio: 2 / 3;
+    place-self: center;
+  }
+
+  #section-{{ section.id }} .CubeSwiper {
+    width: 100%;
+    height: auto;
+  }
+
+  #section-{{ section.id }} .swiper-slide {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background: oklch(0.577 0.245 27.325);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 10px;
+  }
+
+  #section-{{ section.id }} .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 2 / 3;
+    border-radius: 10px;
+  }
+
+
+     #section-{{ section.id }} .cube-swiper-pagination {
+       display: flex;
+       justify-content: center;
+       padding-top: 1.7rem;
+       margin-bottom: 0rem;
+       padding-bottom: 0rem;
+     }
+
+    #section-{{ section.id }} .swiper-cube-section .swiper-pagination-bullet,
+    #section-{{ section.id }}.swiper-pagination-bullet-active {
+       background: oklch(0.577 0.245 27.325);
+     }
+{% endstyle %}
+
+<script src='{{ 'swiper-bundle.js' | asset_url }}' defer='defer'></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.CubeSwiper', {
+      effect: 'cube',
+      grabCursor: true,
+      cubeEffect: {
+        shadow: true,
+        slideShadows: true,
+        shadowOffset: 20,
+        shadowScale: 0.94,
+      },
+      pagination: {
+        el: '.cube-swiper-pagination',
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Original Swiper Cube",
+  "tag": "section",
+  "class": "swiper-cube-section",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "CubeSlide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Swiper Cube"
+    }
+  ]
+}
+{% endschema %}

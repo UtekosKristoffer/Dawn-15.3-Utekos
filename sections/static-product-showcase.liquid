@@ -1,0 +1,127 @@
+{%- liquid
+  assign limit = section.settings.products_to_show
+  assign heading = section.settings.heading
+  assign desktop_columns_class = section.settings.grid_columns_desktop
+
+  assign product_to_get_related_for = passed_product | default: product
+-%}
+
+<section
+  class='related-products-section-wrapper floating-products py-8 md:py-12'
+  data-section-id='{{ section.id }}'
+  data-section-type='related-products-metafield'
+>
+  {% if heading != blank %}
+    <h2 class='text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12'>{{ heading }}</h2>
+  {% endif %}
+  <div class='related-products-grid container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 {{ desktop_columns_class }} gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-10'>
+    {% for related_product_item in related_products_list limit: limit %}
+      {% if product_to_get_related_for == blank
+        or related_product_item.id != product_to_get_related_for.id
+      %}
+        <div class='related-product-card group opacity-0 transform translate-y-10 transition-all duration-700 ease-out'>
+          <a href='{{ related_product_item.url }}' class='related-product-link block'>
+            <div class='iphone-frame-aspect-ratio'>
+              <div class='iphone-screen'>
+                {% assign image_to_show = related_product_item.featured_media.preview_image
+                  | default: related_product_item.featured_image
+                %}
+                {% if image_to_show %}
+                  <img
+                    src='{{ image_to_show | image_url: width: 300, height: 600, crop: 'center' }}'
+                    alt='{{ image_to_show.alt | escape | default: related_product_item.title }}'
+                    class='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+                    loading='lazy'
+                  >
+                {% else %}
+                  <div class='w-full h-full bg-gray-700 flex items-center justify-center text-white text-xs p-2'>
+                    Bilde mangler
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+            <h3 class='mt-4 text-base font-medium text-pri-black group-hover:text-pri-black/80 truncate'>
+              {{ related_product_item.title }}
+            </h3>
+            <p class='mt-1 text-sm text-gray-600'>{{ related_product_item.price | money }}</p>
+          </a>
+          <div class='related-product-actions flex items-center justify-between mt-3'>
+            <form method='post' action='/cart/add' class='flex-grow mr-2'>
+              <input
+                type='hidden'
+                name='id'
+                value='{{ related_product_item.selected_or_first_available_variant.id }}'
+              >
+              <input type='hidden' name='quantity' value='1'>
+              <button
+                type='submit'
+                class='buy-button-related text-xs bg-pri-black text-white px-3 py-1.5 rounded-md hover:bg-pri-black/80 w-full'
+              >
+                Kjøp
+              </button>
+            </form>
+            <button
+              type='button'
+              class='plus-button-related w-8 h-8 bg-gray-700 text-white rounded-full flex items-center justify-center hover:bg-gray-600 shrink-0'
+              data-product-url='{{ related_product_item.url }}'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke-width='2'
+                stroke='currentColor'
+                class='w-4 h-4'
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<script src='{{ 'static-showcase-handler.js' | asset_url }}' defer></script>
+
+{% schema %}
+{
+  "name": "Relaterte Produkter",
+  "tag": "section",
+  "class": "related-products-metafield-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Du vil kanskje også like"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "label": "Antall produkter å vise",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "grid_columns_desktop",
+      "label": "Antall kolonner (Desktop)",
+      "options": [
+        { "value": "lg:grid-cols-3", "label": "3" },
+        { "value": "lg:grid-cols-4", "label": "4" },
+        { "value": "lg:grid-cols-5", "label": "5" }
+      ],
+      "default": "lg:grid-cols-4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Relaterte Produkter (fra Metafelt)"
+    }
+  ]
+}
+{% endschema %}

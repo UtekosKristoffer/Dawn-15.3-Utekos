@@ -1,0 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "henvendelse-clean",
+      "settings": {
+        "heading": "Kundeservice",
+        "subheading": "<p><strong>Kontakt oss</strong><br/>Har du spørsmål, ønsker eller tilbakemeldinger? Vi hører gjerne fra deg!<br/>Fyll ut skjemaet nedenfor, så kontakter vi deg så snart vi har mulighet – som oftest innen én virkedag. Du er også velkommen til å ta kontakt direkte:<br/><br/>📞 <strong>Telefon:</strong> +47 40 21 63 43<br/>✉️ <strong>E-post:</strong> <a href=\"mailto:info@utekos.no\">info@utekos.no<br/></a></p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

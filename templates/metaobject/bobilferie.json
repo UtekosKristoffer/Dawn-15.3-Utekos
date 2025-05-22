@@ -1,0 +1,84 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "multirow_tYwYiK": {
+      "type": "multirow",
+      "blocks": {
+        "row_Dgw6Rx": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/telt-samling-gode-farger.png",
+            "caption": "Bildetekst{{ metaobject.text.value }}",
+            "heading": "Rad",
+            "text": "<p>Koble tekst med et bilde for å fokusere på valgt produkt, samling eller blogginnlegg. Legg til informasjon om tilgjengelighet, stil eller vis frem en anmeldelse.</p>",
+            "button_label": "Knappetikett",
+            "button_link": "{{ metaobject.system.url }}"
+          }
+        },
+        "row_aNLBM7": {
+          "type": "row",
+          "settings": {
+            "caption": "Bildetekst",
+            "heading": "Rad",
+            "text": "<p>Koble tekst med et bilde for å fokusere på valgt produkt, samling eller blogginnlegg. Legg til informasjon om tilgjengelighet, stil eller vis frem en anmeldelse.</p>",
+            "button_label": "Knappetikett",
+            "button_link": ""
+          }
+        },
+        "row_rBPYHE": {
+          "type": "row",
+          "settings": {
+            "caption": "Bildetekst",
+            "heading": "Rad",
+            "text": "<p>Koble tekst med et bilde for å fokusere på valgt produkt, samling eller blogginnlegg. Legg til informasjon om tilgjengelighet, stil eller vis frem en anmeldelse.</p>",
+            "button_label": "Knappetikett",
+            "button_link": ""
+          }
+        },
+        "row_ULkKLg": {
+          "type": "row",
+          "settings": {
+            "caption": "Bildetekst",
+            "heading": "Rad",
+            "text": "<p>Koble tekst med et bilde for å fokusere på valgt produkt, samling eller blogginnlegg. Legg til informasjon om tilgjengelighet, stil eller vis frem en anmeldelse.</p>",
+            "button_label": "Knappetikett",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_Dgw6Rx",
+        "row_aNLBM7",
+        "row_rBPYHE",
+        "row_ULkKLg"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "multirow_tYwYiK"
+  ]
+}

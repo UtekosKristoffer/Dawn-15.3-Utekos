@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.5",
+    "dotenv": "^16.5.0",
+    "tailwindcss": "^4.1.5"
+  },
+  "devDependencies": {
+    "@shopify/prettier-plugin-liquid": "^1.9.3",
+    "@tailwindcss/typography": "^0.5.16",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11"
+  },
+  "scripts": {
+    "tw": "npx tailwindcss -i ./assets/base-tw-input.css -o ./assets/base-tw-output.css --watch",
+    "push": "shopify theme push --theme 150386344184",
+    "pull": "shopify theme pull --theme 150386344184",
+    "dev": "shopify theme dev"
+  }
+}

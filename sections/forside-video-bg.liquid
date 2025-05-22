@@ -1,0 +1,360 @@
+{% schema %}
+{
+  "name": "Video med banner",
+  "settings": [
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL (MP4)"
+    },
+    {
+      "type": "text",
+      "id": "campaign_heading",
+      "label": "Overskrift (desktop)"
+    },
+    {
+      "type": "text",
+      "id": "campaign_subtext",
+      "label": "Banner subtext",
+      "default": "Siste sjanse til å sikre deg favoritten. Vi rydder plass til nye varer!"
+    },
+    {
+      "type": "text",
+      "id": "campaign_link_label",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "campaign_link",
+      "label": "Link (desktop)"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Overskriftfarge (desktop)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Undertekstfarge (desktop)"
+    },
+    {
+      "type": "color",
+      "id": "banner_bg_color",
+      "label": "Banner bakgrunn (desktop)"
+    },
+
+    {
+      "type": "text",
+      "id": "campaign_heading_mobile",
+      "label": "Overskrift (mobil)"
+    },
+    {
+      "type": "text",
+      "id": "campaign_subtext_mobile",
+      "label": "Undertekst (mobil)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video med diagonalbanner"
+    }
+  ]
+}
+{% endschema %}
+
+{% if template.name == 'index' %}
+  <section class='logo-video-section'>
+    <div class='video-container'>
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        preload='auto'
+        disablePictureInPicture
+        disableRemotePlayback
+      >
+        <source src='{{ section.settings.video_url }}' type='video/mp4'>
+      </video>
+      <div class='video-overlay'></div>
+    </div>
+
+    <!-- BANNER -->
+    <div class='glass-banner'>
+      <div class='glass-banner__text'>
+        <h2 class='banner-heading'>
+          {{ section.settings.campaign_heading }}
+        </h2>
+        <p class='banner-subtext'>
+          {{ section.settings.campaign_subtext }}
+        </p>
+        <a href='{{ section.settings.campaign_link }}' class='banner-button'>
+          {{ section.settings.campaign_link_label }}
+        </a>
+      </div>
+    </div>
+
+    <!-- UNDERLIGGENDE TEKST -->
+    <div class='logo-text-container'>
+      <h1 class='headline'>Utekos™ - banebrytende utendørsbekledning</h1>
+      <p class='subtext'>Oppdag din nye favoritt og gjør deg klar for eventyr</p>
+    </div>
+  </section>
+{% endif %}
+
+{% style %}
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 3.5rem);
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  }
+
+  .logo-video-section {
+    position: relative;
+    width: 100%;
+    height: 950px;
+    overflow: hidden;
+    padding: 0rem 0rem;
+    justify-content: center;
+    display: flex;
+  }
+
+  .video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 900px;
+    pointer-events: none;
+  }
+
+  .video {
+    width: 100%;
+    height: 900px;
+    object-fit: cover;
+  }
+
+  /* === BANNER === */
+  .glass-banner {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    background: rgba(255, 106, 19, 0.6); /* oransje med gjennomsiktighet */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    text-align: center;
+    opacity: 0.92;
+    animation: floatUpDown 4s ease-in-out infinite;
+    padding: 6rem 0rem;
+    margin: 0 auto;
+  }
+
+  .glass-banner__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .banner-heading {
+    font-size: 5rem;
+    font-family: 'DIN Next Rounded LT Pro', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    color: white;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    margin: 0px 0px;
+    position: relative;
+  }
+
+  .banner-subtext {
+    font-size: 2.8rem;
+    font-family: 'DIN Next Rounded LT Pro', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    color: white;
+    line-height: 1.5;
+    margin: 0px 0px;
+    padding: 1.5rem 0rem 1.8rem 0rem;
+    position: relative;
+  }
+
+  /* === KNAPP === */
+  .banner-button {
+    padding: 1rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 106, 19, 0.6);
+    backdrop-filter: blur(1px);
+    border-radius: 6px;
+    color: white;
+    font-weight: 500;
+    font-size: 1.8rem;
+    letter-spacing: 0.08rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-top: 5px;
+    opacity: 0.92;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+    font-family: 'DIN Next LT Pro', sans-serif;
+    position: relative;
+  }
+
+  .banner-button:hover {
+    background-color: white;
+    color: black;
+    border-color: rgba(255, 106, 19, 0.9);
+  }
+
+  /* === TEKST UNDER VIDEO === */
+  .logo-text-container {
+    position: absolute;
+    bottom: 28%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 1;
+    width: 100%;
+    padding: 0 2rem;
+    display: none;
+  }
+
+  .logo-text-container .headline {
+    font-size: 3.6rem;
+    font-family: var(--font-heading-family);
+    font-weight: 500;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .logo-text-container .subtext {
+    font-size: 2.2rem;
+    font-family: var(--font-body-family);
+    color: white;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  /* === ANIMASJONER === */
+  @keyframes floatUpDown {
+    0% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-0.6rem);
+    }
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  @keyframes fadeSlide {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+  /* === RESPONSIVT (mobil) === */
+  @media screen and (max-width: 749px) {
+    .logo-video-section {
+      height: 480px;
+      width: 100% !important;
+    }
+
+    .video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      padding: 0rem 0 rem;
+      margin: 0rem 0rem;
+    }
+
+    .glass-banner__text {
+      max-width: 100%;
+      gap: 0.3rem;
+    }
+
+    .glass-banner {
+      top: 16%;
+      width: 85%;
+      padding: 2rem 1.3rem;
+    }
+
+    .banner-heading {
+      font-size: 2rem;
+    }
+
+    .banner-subtext {
+      font-size: 1.2rem;
+      padding: 1rem 0rem 1.2rem 0rem;
+    }
+
+    .banner-button {
+      font-size: 0.8rem;
+      padding: 0.6rem 1.6rem 0.5rem 1.6rem;
+    }
+
+    .logo-text-container {
+      padding: 0rem 1rem;
+    }
+
+    .logo-text-container .headline {
+      font-size: 1.6rem !important;
+    }
+
+    .logo-text-container .subtext {
+      font-size: 1.3rem !important;
+    }
+  }
+{% endstyle %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const videos = document.querySelectorAll('.video-container video');
+
+    // Prøv å starte avspilling med litt forsinkelse
+    setTimeout(() => {
+      videos.forEach((video) => {
+        video.muted = true;
+        video.playsInline = true;
+
+        // Prøv multiple ganger med forsinkelser
+        const playAttempt = setInterval(() => {
+          video
+            .play()
+            .then(() => clearInterval(playAttempt))
+            .catch((e) => console.log('Autoplay blokkert:', e));
+        }, 300);
+      });
+    }, 500);
+
+    // Fang alle mulige brukerinteraksjoner
+    ['touchstart', 'click', 'scroll'].forEach((event) => {
+      document.addEventListener(
+        event,
+        () => {
+          videos.forEach((v) => v.play());
+        },
+        { once: true }
+      );
+    });
+  });
+</script>

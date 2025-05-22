@@ -1,0 +1,35 @@
+Header: ca 60px høy
+
+
+Tailwind-klasse	rem	Faktisk px (hos deg)
+px-0	0	0px
+px-1	0.25rem	2.5px
+px-2	0.5rem	5px
+px-3	0.75rem	7.5px
+px-4	1rem	10px
+px-5	1.25rem	12.5px
+px-6	1.5rem	15px
+px-8	2rem	20px
+px-10	2.5rem	25px
+px-12	3rem	30px
+px-16	4rem	40px
+px-20	5rem	50px
+px-24	6rem	60px
+px-32	8rem	80px
+px-40	10rem	100px
+px-48	12rem	120px
+px-64	16rem	160px
+
+Klassename	px-verdi	rem-verdi	Typisk bruk
+text-xs	10px	1rem	Captions, små etiketter
+text-sm	12px	1.2rem	Sekundær tekst
+text-base	14px	1.4rem	Brødtekst på mobil
+text-md	16px	1.6rem	Standard tekst på desktop
+text-lg	18px	1.8rem	Liten tittel eller stor brødtekst
+text-xl	20px	2rem	Tittel mobil / underoverskrift
+text-2xl	24px	2.4rem	Seksjonstitler
+text-3xl	30px	3rem	Store overskrifter
+text-4xl	36px	3.6rem	Hero-overskrift
+text-5xl	48px	4.8rem	Hero med maks oppmerksomhet
+text-6xl	60px	6rem	Store kampanjeoverskrifter
+text-7xl	72px	7.2rem	Ekstreme størrelser (mobil hero)

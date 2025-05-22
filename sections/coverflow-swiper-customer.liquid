@@ -1,0 +1,507 @@
+<section
+  class='section color-{{ section.settings.color_scheme }} coverflow-swiper-customer'
+  id='section-{{ section.id }}'
+>
+  {% assign product_groups = section.blocks | where: 'type', 'product_group' %}
+
+  <div class='flow-wrapper'>
+    {% for group_block in product_groups %}
+      {% assign group_id = group_block.settings.product_group_id | append: '' %}
+
+      {% assign group_blocks_string = '' %}
+      {% for block in section.blocks %}
+        {% assign block_gid = block.settings.image_group_id | append: '' %}
+        {% if block.type == 'slide_image' and block_gid == group_id %}
+          {% if group_blocks_string != '' %}
+            {% assign group_blocks_string = group_blocks_string | append: ',' %}
+          {% endif %}
+          {% assign group_blocks_string = group_blocks_string | append: block.id %}
+        {% endif %}
+      {% endfor %}
+      {% assign group_block_ids = group_blocks_string | split: ',' %}
+
+      <div class='swiper-group-container group-{{ group_id }}'>
+        <div class='swiper swiper-group-{{ group_id }}' id='swiper-{{ section.id }}-{{ group_id }}'>
+          <div class='swiper-wrapper'>
+            {% assign slide_index = 0 %}
+            {% for block in section.blocks %}
+              {% if group_block_ids contains block.id %}
+                {% assign slide_index = slide_index | plus: 1 %}
+                <div class='swiper-slide slide-{{ group_id }}-{{ slide_index }}'>
+                  {% if block.settings.image %}
+                    <img
+                      src='{{ block.settings.image | image_url: width: 350 }}'
+                      alt='Produktbilde'
+                      loading='lazy'
+                    >
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Swiper scrollbar -->
+        <div class='swiper-scrollbar scrollbar-group-{{ group_id }}'></div>
+
+        {% if group_block.settings.product %}
+          {% assign product = group_block.settings.product %}
+          <div class='product-info'>
+            <a href='{{ product.url }}'>
+              <h3>{{ product.title }}</h3>
+              {% if product.compare_at_price > product.price %}
+                <p>
+                  <span class='original-price'>{{ product.compare_at_price | money }}</span>
+                  <span class='sale-price'>{{ product.price | money }}</span>
+                </p>
+              {% else %}
+                <p class='price'>{{ product.price | money }}</p>
+              {% endif %}
+            </a>
+
+            {% assign available_variant = null %}
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                {% assign available_variant = variant %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+
+            <div class='button-container'>
+              {% if available_variant %}
+                {% if section.settings.quick_buy %}
+                  <form method='post' action='/cart/add'>
+                    <input type='hidden' name='id' value='{{ available_variant.id }}'>
+                    <button type='submit' class='btn'>Hurtigkjøp</button>
+                  </form>
+                {% endif %}
+
+                {% assign link = section.settings.page_link_url %}
+                {% if link != blank %}
+                  <a href='{{ link | escape }}' class='btn'>Lær mer</a>
+                {% else %}
+                  <button class='btn' disabled>Lær mer</button>
+                {% endif %}
+              {% else %}
+                <p class='product-unavailable'>Utsolgt</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #section-{{ section.id }} {
+    background: radial-gradient(
+      700px 400px ellipse at 50% 50% in oklab,
+      oklch(75% 0.5 230) 0%,
+      5%,
+      oklch(26% 0.12 273) 125% 125%
+    );
+    padding: 5rem 5rem;
+    max-width: 100vw;
+    margin: 0 auto;
+    height: fit-content;
+  }
+
+  #section-{{ section.id }} .flow-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    min-height: 100%;
+    width: 100%;
+    height: fit-content;
+  }
+
+  #section-{{ section.id }} .swiper-group-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    max-height: fit-content;
+  }
+
+  #section-{{ section.id }} .swiper {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #section-{{ section.id }} .swiper-wrapper {
+    display: flex;
+    gap: 0rem;
+    will-change: transform;
+    position: relative;
+  }
+
+  #section-{{ section.id }} .swiper-slide {
+    aspect-ratio: 4/5;
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: oklch(0.577 0.245 27.325);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    will-change: transform;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #section-{{ section.id }} .swiper-slide img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+    border-radius: inherit;
+    will-change: transform;
+  }
+
+  #section-{{ section.id }} .swiper-pagination-bullet-active {
+    background: white;
+    opacity: 1;
+    z-index: 10;
+  }
+
+  #section-{{ section.id }} .swiper-scrollbar {
+    height: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 8px;
+  }
+
+  #section-{{ section.id }} .swiper-scrollbar-drag {
+    background-color: black;
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+    transition: width 0.3s ease;
+  }
+
+  #section-{{ section.id }} .product-info {
+    text-align: left;
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+    padding-bottom: 1rem;
+  }
+
+  #section-{{ section.id }} .product-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    margin-top: 0.5rem;
+    padding-left: 0.2rem;
+  }
+
+  #section-{{ section.id }} .original-price {
+    text-decoration: line-through;
+    opacity: 0.6;
+    color: oklch(0.577 0.245 27.325);
+  }
+
+  #section-{{ section.id }} .sale-price,
+  #section-{{ section.id }} .original-price {
+    font-weight: bold;
+    padding-left: 0.2rem;
+  }
+
+  #section-{{ section.id }} .button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: start;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  #section-{{ section.id }} .btn {
+    background-color: #000;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-weight: normal;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 1.2rem;
+    text-align: center;
+    display: flex;
+    place-self: start !important;
+    align-self: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  #section-{{ section.id }} .btn:hover {
+    background-color: #333;
+  }
+
+  @media (max-width: 749px) {
+    #section-{{ section.id }} {
+      padding: 5rem 2.5rem;
+    }
+
+    #section-{{ section.id }} .flow-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      border-radius: 1rem;
+    }
+
+    #section-{{ section.id }} .swiper-group-container {
+      border-radius: 1rem;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      background: radial-gradient(
+        700px 400px ellipse at 50% 50% in oklab,
+        oklch(75% 0.5 230) 0%,
+        5%,
+        oklch(26% 0.12 273) 125% 125%
+      );
+      column-gap: 0.1rem;
+    }
+
+    #section-{{ section.id }} .product-info h3 {
+      font-size: 1.1rem;
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+    }
+
+    #section-{{ section.id }} .product-info {
+      margin-top: 0.2rem;
+    }
+
+    #section-{{ section.id }} .button-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: start;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    #section-{{ section.id }} form {
+      display: grid;
+      place-items: end;
+    }
+
+    #section-{{ section.id }} .btn {
+      font-size: 0.8rem;
+      border-radius: 0.8rem;
+      padding: 0.5rem 1rem;
+      text-align: center;
+    }
+
+    #section-{{ section.id }} .product-info p {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      column-gap: 0.2rem;
+      margin-top: 0.2rem;
+      font-size: 1rem;
+    }
+  }
+{% endstyle %}
+
+<script src='{{ 'swiper-bundle.js' | asset_url }}' defer='defer'></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const section = document.querySelector('#section-{{ section.id }}');
+    if (!section) return;
+
+    const swipers = section.querySelectorAll('.swiper');
+
+    swipers.forEach((swiperEl) => {
+      const scrollbarEl = swiperEl.parentElement.querySelector('.swiper-scrollbar');
+      const slideCount = swiperEl.querySelectorAll('.swiper-slide').length;
+      if (slideCount === 0) return;
+
+      new Swiper(swiperEl, {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        initialSlide: 0,
+        loop: true,
+        loopAdditionalSlides: 1,
+        spaceBetween: 3,
+        speed: 1000,
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
+          depth: 3300,
+          modifier: 1,
+          slideShadows: true,
+        },
+        preloadImages: false,
+        lazy: {
+          loadPrevNext: true,
+          loadPrevNextAmount: 1,
+          loadOnTransitionStart: false,
+        },
+        scrollbar: {
+          el: scrollbarEl,
+          draggable: true,
+          hide: false,
+          dragSize: 40,
+          speed: 1000,
+        },
+        observer: true,
+        observeParents: true,
+        observeSlideChildren: true,
+        watchSlidesProgress: true,
+        watchSlidesVisibility: true,
+        watchOverflow: true,
+        touchEventsTarget: 'container',
+        simulateTouch: true,
+        followFinger: true,
+        on: {
+          init() {
+            this.update();
+            this.slideToLoop(0, 0, false);
+          },
+          imagesReady() {
+            this.update();
+          },
+        },
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Your Section",
+  "tag": "section",
+  "class": "coverflow-swiper-customer",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "checkbox",
+      "id": "quick_buy",
+      "label": "Enable quick buy button"
+    },
+    {
+      "type": "url",
+      "id": "show_page_link",
+      "label": "Enable page link button"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_group",
+      "name": "Product Group",
+      "settings": [
+        {
+          "type": "select",
+          "id": "product_group_id",
+          "label": "Product group ID",
+          "default": "1",
+          "options": [
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4" },
+            { "value": "5", "label": "5" },
+            { "value": "6", "label": "6" },
+            { "value": "7", "label": "7" },
+            { "value": "8", "label": "8" },
+            { "value": "9", "label": "9" },
+            { "value": "10", "label": "10" }
+          ]
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    },
+    {
+      "type": "slide_image",
+      "name": "Slide Image",
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_group_id",
+          "label": "Product group ID",
+          "default": "1",
+          "options": [
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4" },
+            { "value": "5", "label": "5" },
+            { "value": "6", "label": "6" },
+            { "value": "7", "label": "7" },
+            { "value": "8", "label": "8" },
+            { "value": "9", "label": "9" },
+            { "value": "10", "label": "10" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    {
+      "name": "Your New Section",
+      "category": "Gallery",
+      "blocks": [
+        { "type": "product_group", "settings": { "product_group_id": "1" } },
+        { "type": "slide_image", "settings": { "image_group_id": "1" } },
+        { "type": "slide_image", "settings": { "image_group_id": "1" } },
+        { "type": "slide_image", "settings": { "image_group_id": "1" } },
+        { "type": "slide_image", "settings": { "image_group_id": "1" } },
+        { "type": "slide_image", "settings": { "image_group_id": "1" } },
+
+        { "type": "product_group", "settings": { "product_group_id": "2" } },
+        { "type": "slide_image", "settings": { "image_group_id": "2" } },
+        { "type": "slide_image", "settings": { "image_group_id": "2" } },
+        { "type": "slide_image", "settings": { "image_group_id": "2" } },
+        { "type": "slide_image", "settings": { "image_group_id": "2" } },
+        { "type": "slide_image", "settings": { "image_group_id": "2" } },
+
+        { "type": "product_group", "settings": { "product_group_id": "3" } },
+        { "type": "slide_image", "settings": { "image_group_id": "3" } },
+        { "type": "slide_image", "settings": { "image_group_id": "3" } },
+        { "type": "slide_image", "settings": { "image_group_id": "3" } },
+        { "type": "slide_image", "settings": { "image_group_id": "3" } },
+        { "type": "slide_image", "settings": { "image_group_id": "3" } },
+
+        { "type": "product_group", "settings": { "product_group_id": "4" } },
+        { "type": "slide_image", "settings": { "image_group_id": "4" } },
+        { "type": "slide_image", "settings": { "image_group_id": "4" } },
+        { "type": "slide_image", "settings": { "image_group_id": "4" } },
+        { "type": "slide_image", "settings": { "image_group_id": "4" } },
+        { "type": "slide_image", "settings": { "image_group_id": "4" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
