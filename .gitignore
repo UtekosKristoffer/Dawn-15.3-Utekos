@@ -1,0 +1,49 @@
+# Node
+node_modules/
+*.log
+npm-debug.log*
+
+# macOS system files
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Git system files
+*.swp
+*.swo
+
+# Shopify theme file artifacts
+*.zip
+
+# Theme preview uploads
+*.tmp
+*.bak
+
+# Sass/SCSS cache
+.sass-cache/
+.cache/
+
+# Tailwind CLI output (hvis du bruker Tailwind)
+dist/
+build/
+
+# Shopify CLI theme files
+.shopify/
+
+# Env filer og API-keys
+.env
+.env.local
+.env.production
+
+# Large media files (legg heller i Git LFS hvis nødvendig)
+*.mp4
+*.mov
+*.psd
+*.ai
+*.sketch
+*.zip
+
+# Ekskluder opplastede backup-kopier
+*_backup/
+*kopi/
