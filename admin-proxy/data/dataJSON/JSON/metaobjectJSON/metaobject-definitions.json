@@ -1,0 +1,1675 @@
+[
+  {
+    "name": "Color",
+    "type": "shopify--color-pattern",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Label",
+        "key": "label",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": true,
+        "description": null,
+        "validations": [
+          {
+            "name": "max",
+            "value": "255"
+          }
+        ]
+      },
+      {
+        "name": "Color",
+        "key": "color",
+        "type": {
+          "name": "color"
+        },
+        "required": false,
+        "description": null,
+        "validations": []
+      },
+      {
+        "name": "Image",
+        "key": "image",
+        "type": {
+          "name": "file_reference"
+        },
+        "required": false,
+        "description": null,
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "name": "Base color",
+        "key": "color_taxonomy_reference",
+        "type": {
+          "name": "list.product_taxonomy_value_reference"
+        },
+        "required": true,
+        "description": "Base values map to standards for better search and organization",
+        "validations": [
+          {
+            "name": "product_taxonomy_attribute_handle",
+            "value": "color"
+          },
+          {
+            "name": "list.min",
+            "value": "1"
+          },
+          {
+            "name": "list.max",
+            "value": "4"
+          }
+        ]
+      },
+      {
+        "name": "Base pattern",
+        "key": "pattern_taxonomy_reference",
+        "type": {
+          "name": "product_taxonomy_value_reference"
+        },
+        "required": true,
+        "description": "Base values map to standards for better search and organization",
+        "validations": [
+          {
+            "name": "product_taxonomy_attribute_handle",
+            "value": "pattern"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Størrelsesguide",
+    "type": "storrelsesguide",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Page",
+        "key": "utekos",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": true,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Page",
+    "type": "page",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "På fjellet",
+        "key": "pa_fjellet",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": true,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Bobilferie",
+    "type": "bobilferie",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "media",
+        "key": "media",
+        "type": {
+          "name": "list.file_reference"
+        },
+        "required": true,
+        "description": "",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\",\"Video\"]"
+          }
+        ]
+      },
+      {
+        "name": "mer-inspirasjon",
+        "key": "mer_inspirasjon",
+        "type": {
+          "name": "list.link"
+        },
+        "required": true,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "text",
+        "key": "text",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": true,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Bål og hytteliv",
+    "type": "bal_og_hytteliv",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "bilde",
+        "key": "bilde",
+        "type": {
+          "name": "file_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\",\"Video\"]"
+          }
+        ]
+      },
+      {
+        "name": "produkter",
+        "key": "produkter",
+        "type": {
+          "name": "list.product_reference"
+        },
+        "required": true,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "text",
+        "key": "text",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": true,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "På fjellet",
+    "type": "pa_fjellet",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "image",
+        "key": "image",
+        "type": {
+          "name": "list.file_reference"
+        },
+        "required": true,
+        "description": "",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\",\"Video\"]"
+          }
+        ]
+      },
+      {
+        "name": "produkter",
+        "key": "produkter",
+        "type": {
+          "name": "list.product_reference"
+        },
+        "required": true,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Ulike beskrivelser",
+    "type": "custom_produktbeskrivelse",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Beskrivelse",
+        "key": "comfyrobe_after_activity_robe",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Funksjoner Comfyrobe",
+    "type": "funksjoner_comfyrobe",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Navn",
+        "key": "navn",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Funksjonsbeskrivelse",
+        "key": "funksjonsbeskrivelse",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Size Fit",
+    "type": "passform",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Beskrivelse",
+        "key": "modell_navn",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Product Care",
+    "type": "product_care",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Instructions",
+        "key": "instructions",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Product Description",
+    "type": "product_description",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Textcontent",
+        "key": "textcontent",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Functions",
+    "type": "functions",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Infolist",
+        "key": "infolist",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Areas of Use",
+    "type": "areas_of_use",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Text Inner",
+        "key": "text_inner",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": true,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Color Swatches",
+    "type": "color_swatches",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Title",
+        "key": "title",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Fjellblå",
+        "key": "fjellbla",
+        "type": {
+          "name": "color"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Title",
+        "key": "title_dark",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Vargnatt",
+        "key": "vargnatt",
+        "type": {
+          "name": "color"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Dimensions",
+    "type": "dimensions",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Lengde (til hals)",
+        "key": "top_base",
+        "type": {
+          "name": "dimension"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Senter til ermetupp",
+        "key": "center_wrist",
+        "type": {
+          "name": "dimension"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Flatmål (bunn)",
+        "key": "flat_size",
+        "type": {
+          "name": "dimension"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Properties",
+    "type": "properties",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Characteristics",
+        "key": "characteristics",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Item Variant",
+    "type": "item_variant",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Title",
+        "key": "title",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Identification",
+        "key": "get",
+        "type": {
+          "name": "number_integer"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Photos",
+        "key": "photos",
+        "type": {
+          "name": "list.file_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Images",
+        "key": "images",
+        "type": {
+          "name": "json"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Button color",
+        "key": "button_color",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Target gender",
+    "type": "shopify--target-gender",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Label",
+        "key": "label",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": true,
+        "description": null,
+        "validations": [
+          {
+            "name": "max",
+            "value": "255"
+          }
+        ]
+      },
+      {
+        "name": "Base target gender",
+        "key": "taxonomy_reference",
+        "type": {
+          "name": "product_taxonomy_value_reference"
+        },
+        "required": true,
+        "description": "Base values map to standards for better search and organization",
+        "validations": [
+          {
+            "name": "product_taxonomy_attribute_handle",
+            "value": "target-gender"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Background Color",
+    "type": "bg_color",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Radial Gradient",
+        "key": "radial_gradient",
+        "type": {
+          "name": "json"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Multivariant",
+    "type": "multivariant",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Fjellblå",
+        "key": "fjellbla",
+        "type": {
+          "name": "list.variant_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Vargnatt",
+        "key": "vargnatt",
+        "type": {
+          "name": "list.variant_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Bålglød",
+        "key": "balglod",
+        "type": {
+          "name": "list.variant_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Navy",
+        "key": "navy",
+        "type": {
+          "name": "list.variant_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Fjellhimmel",
+        "key": "fjellhimmel",
+        "type": {
+          "name": "list.variant_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Images",
+    "type": "images",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Vargnatt",
+        "key": "vargnatt",
+        "type": {
+          "name": "list.link"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Fjellblå",
+        "key": "fjellbla",
+        "type": {
+          "name": "list.link"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Bålglød",
+        "key": "balglod",
+        "type": {
+          "name": "list.link"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "TheSource",
+    "type": "mainsource",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Origin",
+        "key": "Origin",
+        "type": {
+          "name": "list.mixed_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": [
+          {
+            "name": "metaobject_definition_ids",
+            "value": "[\"gid://shopify/MetaobjectDefinition/8579711224\",\"gid://shopify/MetaobjectDefinition/8584823032\",\"gid://shopify/MetaobjectDefinition/8613363960\",\"gid://shopify/MetaobjectDefinition/8613593336\",\"gid://shopify/MetaobjectDefinition/8614314232\",\"gid://shopify/MetaobjectDefinition/8617001208\",\"gid://shopify/MetaobjectDefinition/8633712888\",\"gid://shopify/MetaobjectDefinition/8672706808\",\"gid://shopify/MetaobjectDefinition/8749351160\",\"gid://shopify/MetaobjectDefinition/8763408632\",\"gid://shopify/MetaobjectDefinition/8766554360\",\"gid://shopify/MetaobjectDefinition/8770879736\",\"gid://shopify/MetaobjectDefinition/8781693176\",\"gid://shopify/MetaobjectDefinition/8889073912\",\"gid://shopify/MetaobjectDefinition/8891171064\",\"gid://shopify/MetaobjectDefinition/8579416312\"]"
+          }
+        ]
+      },
+      {
+        "name": "EntryID",
+        "key": "EntryID",
+        "type": {
+          "name": "id"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "VaultVariant",
+    "type": "vaultvariant",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Title",
+        "key": "title",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Images",
+        "key": "images",
+        "type": {
+          "name": "list.file_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[]"
+          }
+        ]
+      },
+      {
+        "name": "Mobile Images",
+        "key": "mobile_images",
+        "type": {
+          "name": "list.file_reference"
+        },
+        "required": false,
+        "description": "Mobile images for the VaultVariant",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[]"
+          }
+        ]
+      },
+      {
+        "name": "Color Label",
+        "key": "color_label",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Background Color",
+        "key": "background_color",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Background Color for Other Variants",
+        "key": "background_color_unselected_variants",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Swatch Color For Unselected Variants",
+        "key": "swatch_color_unselected_variants",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "Swatch Color For Unselected Variants",
+        "validations": []
+      },
+      {
+        "name": "Swatch Color For Selected Variant",
+        "key": "swatch_color_variant",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "Swatch Color For Selected Variant",
+        "validations": []
+      },
+      {
+        "name": "Tags",
+        "key": "tags",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Description",
+        "key": "description",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "Description of the present VaultVariant",
+        "validations": []
+      },
+      {
+        "name": "Related Products",
+        "key": "related_products",
+        "type": {
+          "name": "list.product_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Materials",
+        "key": "materials",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Functions",
+        "key": "functions",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Length (to neck)",
+        "key": "length",
+        "type": {
+          "name": "dimension"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Center to Wrist",
+        "key": "center_to_wrist",
+        "type": {
+          "name": "dimension"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Flat Width",
+        "key": "flat_width",
+        "type": {
+          "name": "dimension"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Storage and Maintenance",
+        "key": "storage_and_maintenance",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Size Fit",
+        "key": "size_fit",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Properties",
+        "key": "properties",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Areas of Use",
+        "key": "usage",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Various Descritive Texts",
+        "key": "various_descritive_texts",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Swatch Hexcolor For Selected Variant",
+        "key": "swatch_hexcolor_for_variant",
+        "type": {
+          "name": "color"
+        },
+        "required": false,
+        "description": "Swatch Hexcolor For Selected Variant",
+        "validations": []
+      },
+      {
+        "name": "Swatch Hexcolor For Unselected Variant",
+        "key": "swatch_hexcolor_for_unselected_variant",
+        "type": {
+          "name": "color"
+        },
+        "required": false,
+        "description": "Swatch Hexcolor For Unselected Variant",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Material",
+    "type": "material",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Linning",
+        "key": "linning",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Shell",
+        "key": "shell",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Thread Count",
+        "key": "thread_count",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Denier",
+        "key": "denier",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Fill",
+        "key": "fill",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Weight",
+        "key": "weight",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Zippers",
+        "key": "zippers",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Coating",
+        "key": "coating",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Compression Bag",
+        "key": "compression_bag",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Fabric",
+        "key": "fabric",
+        "type": {
+          "name": "multi_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Fabriclist",
+        "key": "fabriclist",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Fabricdetails",
+        "key": "fabricdetails",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Size",
+    "type": "shopify--size",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Label",
+        "key": "label",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": true,
+        "description": null,
+        "validations": [
+          {
+            "name": "max",
+            "value": "255"
+          }
+        ]
+      },
+      {
+        "name": "Base size",
+        "key": "taxonomy_reference",
+        "type": {
+          "name": "product_taxonomy_value_reference"
+        },
+        "required": true,
+        "description": "Base values map to standards for better search and organization",
+        "validations": [
+          {
+            "name": "product_taxonomy_attribute_handle",
+            "value": "size"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Coating Details",
+    "type": "coating_details",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "PU-coating",
+        "key": "pu_coating",
+        "type": {
+          "name": "rich_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Highlights",
+    "type": "highlights",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Productguide",
+        "key": "produktguide",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Links",
+        "key": "links",
+        "type": {
+          "name": "list.mixed_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": [
+          {
+            "name": "metaobject_definition_ids",
+            "value": "[\"gid://shopify/MetaobjectDefinition/8559263992\",\"gid://shopify/MetaobjectDefinition/8579416312\",\"gid://shopify/MetaobjectDefinition/8579711224\",\"gid://shopify/MetaobjectDefinition/8584823032\",\"gid://shopify/MetaobjectDefinition/8614314232\",\"gid://shopify/MetaobjectDefinition/8633712888\",\"gid://shopify/MetaobjectDefinition/8672706808\",\"gid://shopify/MetaobjectDefinition/8766554360\",\"gid://shopify/MetaobjectDefinition/8889073912\",\"gid://shopify/MetaobjectDefinition/8891171064\",\"gid://shopify/MetaobjectDefinition/8912240888\",\"gid://shopify/MetaobjectDefinition/8930001144\"]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Checkout Title",
+    "type": "checkout_title",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Title",
+        "key": "ready",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Checkout Subtitle",
+    "type": "checkout_subtitle",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Collect Or Ship",
+        "key": "collect_or_ship",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Teknologi og Materialer",
+    "type": "teknologi_og_materialer",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Page",
+        "key": "page",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Productinfo",
+    "type": "productinfo",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Help",
+        "key": "help",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Kundeservice",
+    "type": "kundeservice",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Contact",
+        "key": "contact",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Utekos",
+    "type": "utekos",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Hva er Utekos?",
+        "key": "hva_er_utekos",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Washing and Care",
+    "type": "washing_and_care",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": " Washing and Maintenance",
+        "key": "washing_and_maintenance",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Inspirasjon",
+    "type": "inspirasjon",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Camping",
+        "key": "camping",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Inspiration",
+    "type": "inspiration",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Utekos på bobiltur",
+        "key": "utekos_pa_bobiltur",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Fjellinspirasjon",
+    "type": "fjellinspirasjon",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Guide",
+        "key": "guide",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Hytteliv",
+    "type": "hytteliv",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Bruksområder",
+        "key": "bruksomrader",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Image 1",
+        "key": "image_1",
+        "type": {
+          "name": "file_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Image 2",
+        "key": "image_2",
+        "type": {
+          "name": "file_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\",\"Video\"]"
+          }
+        ]
+      },
+      {
+        "name": "Image 3",
+        "key": "image_3",
+        "type": {
+          "name": "file_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\",\"Video\"]"
+          }
+        ]
+      },
+      {
+        "name": "Image 4",
+        "key": "image_4",
+        "type": {
+          "name": "file_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\",\"Video\"]"
+          }
+        ]
+      },
+      {
+        "name": "Image 5",
+        "key": "image_5",
+        "type": {
+          "name": "file_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\",\"Video\"]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "UtekosImages",
+    "type": "utekosimages",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Picture",
+        "key": "picture",
+        "type": {
+          "name": "file_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\",\"Video\"]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Developer",
+    "type": "developer",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Workspace",
+        "key": "workspace",
+        "type": {
+          "name": "page_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Utekos Fonts",
+    "type": "fonts",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Font Family",
+        "key": "font_family",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "DIN Next Rounded",
+        "validations": []
+      },
+      {
+        "name": "Weight",
+        "key": "weight",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "Weight for de like fontene",
+        "validations": []
+      },
+      {
+        "name": "Style",
+        "key": "style",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "Style for de ulike fontene (f.eks normal, italic osv)",
+        "validations": []
+      },
+      {
+        "name": "Woff2",
+        "key": "woff2",
+        "type": {
+          "name": "file_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Preload",
+        "key": "preload",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "",
+        "validations": []
+      },
+      {
+        "name": "Display",
+        "key": "display",
+        "type": {
+          "name": "single_line_text_field"
+        },
+        "required": false,
+        "description": "Hvordan det skal vises. Fasit = \"swap\".",
+        "validations": []
+      }
+    ]
+  },
+  {
+    "name": "Vault",
+    "type": "vault",
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ"
+    },
+    "fieldDefinitions": [
+      {
+        "name": "Entries",
+        "key": "entries",
+        "type": {
+          "name": "list.mixed_reference"
+        },
+        "required": false,
+        "description": "",
+        "validations": [
+          {
+            "name": "metaobject_definition_ids",
+            "value": "[\"gid://shopify/MetaobjectDefinition/8579711224\",\"gid://shopify/MetaobjectDefinition/8584823032\",\"gid://shopify/MetaobjectDefinition/8613363960\",\"gid://shopify/MetaobjectDefinition/8613593336\",\"gid://shopify/MetaobjectDefinition/8614314232\",\"gid://shopify/MetaobjectDefinition/8617001208\",\"gid://shopify/MetaobjectDefinition/8633712888\",\"gid://shopify/MetaobjectDefinition/8672706808\",\"gid://shopify/MetaobjectDefinition/8766554360\",\"gid://shopify/MetaobjectDefinition/8781693176\",\"gid://shopify/MetaobjectDefinition/8891171064\",\"gid://shopify/MetaobjectDefinition/8912240888\",\"gid://shopify/MetaobjectDefinition/8930001144\",\"gid://shopify/MetaobjectDefinition/9010905336\",\"gid://shopify/MetaobjectDefinition/9011134712\",\"gid://shopify/MetaobjectDefinition/9127395576\",\"gid://shopify/MetaobjectDefinition/9131000056\",\"gid://shopify/MetaobjectDefinition/9143156984\",\"gid://shopify/MetaobjectDefinition/9140961528\"]"
+          }
+        ]
+      }
+    ]
+  }
+]

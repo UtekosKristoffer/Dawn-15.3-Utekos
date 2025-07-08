@@ -204,17 +204,17 @@
   }
 {% endstyle %}
 
-<section class="custom-toggle-section">
-  <h2 class="section-heading">{{ section.settings.heading }}</h2>
-  <div class="container">
+<section class='custom-toggle-section'>
+  <h2 class='section-heading'>{{ section.settings.heading }}</h2>
+  <div class='container'>
     <!-- 2. Tabs -->
-    <div class="tab-bar">
+    <div class='tab-bar'>
       {% assign tab_labels = 'Forfra,Bakfra,Parkas,Oppsnørt' | split: ',' %}
       {% for tab in tab_labels %}
         <button
-          type="button"
-          class="tab-button{% if forloop.first %} active{% endif %}"
-          data-tab="{{ tab | handleize }}"
+          type='button'
+          class='tab-button{% if forloop.first %} active{% endif %}'
+          data-tab='{{ tab | handleize }}'
         >
           {{ tab }}
         </button>
@@ -222,13 +222,17 @@
     </div>
 
     <!-- 3 & 4. To produktbilder med toggle -->
-    <div class="image-pair">
+    <div class='image-pair'>
       {% assign first_tab_handle = tab_labels[0] | handleize %}
       {% for image_index in (1..2) %}
-        <div class="toggle-image-wrapper{% if image_index == 2 and section.settings.hide_second_image_on_mobile %} hide-mobile{% endif %}">
+        <div class='toggle-image-wrapper{% if image_index == 2 and section.settings.hide_second_image_on_mobile %} hide-mobile{% endif %}'>
           {% for tab in tab_labels %}
             {% assign tab_handle = tab | handleize %}
-            {% assign image_setting = 'image_' | append: image_index | append: '_' | append: tab_handle %}
+            {% assign image_setting = 'image_'
+              | append: image_index
+              | append: '_'
+              | append: tab_handle
+            %}
             {% assign is_active = false %}
             {% if tab_handle == first_tab_handle %}
               {% assign is_active = true %}
@@ -236,10 +240,10 @@
 
             {% if section.settings[image_setting] %}
               <img
-                src="{{ section.settings[image_setting] | image_url: width: 800 }}"
-                class="toggle-image{% if is_active %} active{% endif %}"
-                data-tab="{{ tab_handle }}"
-                alt="{{ tab }} bilde {{ image_index }}"
+                src='{{ section.settings[image_setting] | image_url: width: 800 }}'
+                class='toggle-image{% if is_active %} active{% endif %}'
+                data-tab='{{ tab_handle }}'
+                alt='{{ tab }} bilde {{ image_index }}'
               >
             {% endif %}
           {% endfor %}
@@ -248,8 +252,8 @@
     </div>
 
     <!-- 6. Midtstilt knapp -->
-    <div class="toggle-cta-wrapper">
-      <a href="{{ section.settings.button_link }}" class="toggle-cta">
+    <div class='toggle-cta-wrapper'>
+      <a href='{{ section.settings.button_link }}' class='toggle-cta'>
         {{ section.settings.button_label }}
       </a>
     </div>

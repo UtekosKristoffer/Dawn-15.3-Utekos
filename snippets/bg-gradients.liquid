@@ -1,0 +1,31 @@
+{%- comment -%}
+  Snippet: bg-gradients.liquid
+  Bruk: {% render 'bg-gradients', variant: product.selected_or_first_available_variant %}
+  Henter gradienter fra variantens metafields:
+  - utility.radial
+  - utility.linear
+  - component.dot
+  Viser riktig gradient/dot som inline CSS for background.
+{%- endcomment -%}
+
+{%- assign radial_gradient = variant.metafields.utility.radial | json -%}
+{%- assign linear_gradient = variant.metafields.utility.linear | json -%}
+{%- assign dot_color = variant.metafields.component.dot | json -%}
+
+{%- comment -%}
+  Fallback for bakgrunn
+{%- endcomment -%}
+{%- assign fallback_background = '#f0f0f0' -%}
+
+{%- if radial_gradient -%}
+  style="background: radial-gradient({{ radial_gradient.shape | default: 'ellipse' }} at
+  {{ radial_gradient.position | default: 'center' }}, {{ radial_gradient.from }},
+  {{ radial_gradient.to }});"
+{%- elsif linear_gradient -%}
+  style="background: linear-gradient({{ linear_gradient.angle | default: '135deg' }},
+  {{ linear_gradient.from }}, {{ linear_gradient.to }});"
+{%- elsif dot_color -%}
+  style="background: {{ dot_color.color | default: fallback_background }};"
+{%- else -%}
+  style="background: {{ fallback_background }};"
+{%- endif -%}

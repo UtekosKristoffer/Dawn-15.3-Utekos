@@ -1,0 +1,186 @@
+<div class='grid grid-cols-1 md:grid-cols-[50%_50%] gap-x-8 md:p-8 bg-desert-sand size-full rounded-2xl'>
+  <div class='click-collect-container order-2 md:order-1 bg-desert-sand relative w-full flex flex-col flex-start justify-start justify-self-start rounded-2xl gap-y-2 flex-self-start p-4'>
+    <h3 class='click-collect-heading text-left font-base !font-alt-family text-5xl text-heading-gray'>
+      Click & Collect
+    </h3>
+    <div class='click-collect-subheading text-left font-body-family text-xl text-heading-gray'>
+      Fyll ut skjemaet under for å reservere varene.
+    </div>
+
+    <form
+      method='post'
+      action='/contact#form_area'
+      id='form_area'
+      accept-charset='UTF-8'
+      class='form-wrapper mt-6'
+    >
+      <input type='hidden' name='form_type' value='contact'>
+      <input type='hidden' name='utf8' value='✓'>
+      <div class='form-group flex flex-col mb-4'>
+        <label
+          class='text-heading-gray text-xl md:text-2xl font-base tracking-tight pb-2 text-left'
+          for='FormName'
+        >
+          Fullt navn
+        </label>
+        <input
+          class='border-gray-300 border bg-white tracking-wide size-full rounded-lg text-lg md:text-xl px-4 py-3 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+          type='text'
+          id='FormName'
+          name='contact[name]'
+          placeholder='Ola Nordmann'
+          required
+        >
+      </div>
+
+      <div class='form-group flex flex-col mb-4'>
+        <label
+          class='text-heading-gray text-xl md:text-2xl font-base tracking-tight pb-2 text-left'
+          for='FormPhone'
+        >
+          Telefonnummer
+        </label>
+        <input
+          class='border-gray-300 border bg-white tracking-wide rounded-lg text-lg md:text-xl py-3 px-4 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+          type='tel'
+          id='FormPhone'
+          name='contact[phone]'
+          placeholder='+47 000 00 000'
+          required
+        >
+      </div>
+
+      <div class='form-group flex flex-col mb-4'>
+        <label
+          class='text-heading-gray text-xl md:text-2xl font-base tracking-tight pb-2 text-left'
+          for='FormEmail'
+        >
+          E-post
+        </label>
+        <input
+          class='border-gray-300 border bg-white tracking-wide rounded-lg text-lg md:text-xl py-3 px-4 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+          type='email'
+          id='FormEmail'
+          name='contact[email]'
+          placeholder='navn@eksempel.com'
+          required
+        >
+      </div>
+
+      <div class='form-group flex flex-col mb-6'>
+        <label
+          class='text-heading-gray text-xl md:text-2xl font-base tracking-tight pb-2 text-left'
+          for='FormMessage'
+        >
+          Kommentar (valgfritt)
+        </label>
+        <textarea
+          class='border-gray-300 border bg-white tracking-wide rounded-lg h-[100px] text-lg md:text-xl py-3 px-4 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+          rows='4'
+          id='FormMessage'
+          name='contact[body]'
+          placeholder='Evt. tilleggsinformasjon...'
+        ></textarea>
+      </div>
+
+      <button
+        type='submit'
+        class='form-button bg-blue-800 cursor-pointer tracking-normal rounded-lg py-4 px-6 hover:bg-blue-700 text-white w-full md:w-auto font-alt-family text-xl md:text-2xl transition-colors duration-150'
+      >
+        Reserver varer
+      </button>
+    </form>
+  </div>
+
+  <div
+    class='size-full order-1 md:order-2 h-fit pl-4 md:pl-6 py-4 md:py-2 mt-4 mr-2 rounded-2xl bg-white shadow'
+    id='ClickCollectSummaryContainer'
+  >
+    <div class='click-collect-header flex mt-2 pl-6 font-alt-family rounded-2xl bg-white font-base size-fit text-2xl md:text-3xl lg:text-5xl text-heading-gray'>
+      <h3>Handlepose</h3>
+    </div>
+    <div
+      id='ClickCollectList'
+      class='font-body-family text-heading-gray w-full text-lg md:text-xl tracking-tight size-full overflow-y-auto divide-y divide-gray-200'
+    >
+      <p class='text-gray-500 p-4 text-center'>Ingen produkter er valgt for click-collectting.</p>
+    </div>
+  </div>
+</div>
+<!-- MAL FOR ET ENKELT CLICK&COLLECT PRODUKT -->
+<template id='ClickCollectItemTemplate'>
+  <div class='click-collect-item flex w-full py-6 items-start border-b border-gray-300'>
+    <a href='#' class='click-collect-item-image-link block flex-shrink-0 mt-2 mr-4 md:mr-6'>
+      <img
+        src=''
+        alt='Produktbilde'
+        class='click-collect-item-image object-cover aspect-[3/4] w-36 md:w-[125px] rounded'
+      >
+    </a>
+    <div class='click-collect-item-details flex flex-col flex-grow min-w-0'>
+      <a
+        href='#'
+        class='click-collect-item-title font-semibold text-heading-gray text-xl md:text-2xl hover:underline mb-0.5 truncate'
+      >
+        Tittel kommer her
+      </a>
+      <div
+        class='click-collect-item-variants space-y-0 leading-tight'
+      ></div>
+      <p class='click-collect-item-quantity mt-1'></p>
+      <div class='click-collect-item-original-price mt-1'>
+        <span class='click-collect-item-line-price'></span>
+        <s
+          class='click-collect-item-price text-heading-gray text-lg md:text-xl ml-1.5'
+          style='display: none;'
+        ></s>
+      </div>
+      <p
+        class='click-collect-item-line-price md:text-xl text-lg text-heading-gray font-alt-family'
+        style='display: none;'
+      ></p>
+    </div>
+    <button
+      type='button'
+      class='click-collect-item-remove remove-click-collect-item !flex-shrink-0'
+      aria-label='Fjern produkt'
+    >
+      Fjern
+    </button>
+  </div>
+</template>
+<!-- SLUTT PÅ MAL -->
+
+{%- style -%}
+  .click-collect-container a:-webkit-any-link {
+    color: rgb(29, 29, 29);
+  }
+
+  #ClickCollectList .click-collect-item-details {
+    flex-grow: 1;
+    min-width: 0 !important;
+  }
+
+  #ClickCollectList .click-collect-item-title {
+    font-size: 2.5rem;
+    font-family: var(--font-alt-family);
+    color: #1d1d1f;
+  }
+
+  @media (max-width: 768px) {
+    #ClickCollectSummaryContainer {
+      margin-top: 2rem; /* Legg til litt avstand mellom skjema og oppsummering på mobil */
+      margin-bottom: 1rem;
+    }
+    .click-collect-container {
+      padding: 1rem; /* Reduser padding på mindre skjermer */
+    }
+    .click-collect-heading {
+      font-size: 2rem; /* Juster fontstørrelser for mobil */
+      /* margin: 0.5rem 0rem !important; */ /* Unngå !important */
+    }
+    .click-collect-subheading {
+      font-size: 1.25rem;
+    }
+  }
+{%- endstyle -%}

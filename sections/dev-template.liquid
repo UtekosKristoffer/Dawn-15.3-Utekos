@@ -1,0 +1,280 @@
+<section class='development-section w-full h-[5000px] my-0 mx-auto p-12 hidden' id='devstudio'>
+  <div class='dev-container bg-pink w-full h-[500px]'>
+    {%- assign product = section.settings.product_to_display -%}
+    {%- assign variant = product.selected_or_first_available_variant -%}
+    {%- assign chosen_variant = variant.metafields.bridgeFor.Varianthandler.value -%}
+
+    {% if chosen_variant %}
+      <div style='background: {{ chosen_variant.background_color.value }}; width: 90px; border-radius: 50px; margin: 10px;'>
+        <h2>{{ chosen_variant.title }}</h2>
+        <p>{{ chosen_variant.color_label }}</p>
+      </div>
+
+      <div style='background-color: white'>
+        <h2>{{ chosen_variant.title }}</h2>
+        <p>{{ chosen_variant.color_label }}</p>
+      </div>
+
+      <div class='desktop-gallery swiper-slide grid grid-cols-4 space-y-24 overflow-hidden h-[800px]'>
+        {% for image in chosen_variant.images.value %}
+          {{ image | image_url: width: 200 | image_tag }}
+        {% endfor %}
+      </div>
+
+      <div class='mobile-gallery swiper-slide grid-cols-1 overflow-hidden h-[700px]'>
+        {% for image in chosen_variant.mobile_images.value %}
+          {{ image | image_url: width: 200 | image_tag }}
+        {% endfor %}
+      </div>
+
+      {% if chosen_variant.related_products %}
+        <div class='related-products-container grid grid-cols-3 my-18 h-[400px]'>
+          {%- for related_product in chosen_variant.related_products.value -%}
+            <div class='related-product-item'>
+              <h2>{{ related_product.title }}</h2>
+              {% if related_product.featured_image %}
+                {{ related_product.featured_image | image_url: width: 100 | image_tag }}
+              {% endif %}
+            </div>
+          {%- endfor -%}
+        </div>
+      {% endif %}
+
+      <div class='variant-materials  h-[400px]'>
+        {% if chosen_variant.materials %}
+          <ul class='bg-grey-100'>
+            <li>{{ chosen_variant.materials | metafield_tag }}</li>
+          </ul>
+        {% endif %}
+      </div>
+      <div class='variant-materials  h-[400px]'>
+        {% if chosen_variant.functions %}
+          <ul class='bg-grey-100'>
+            <li>{{ chosen_variant.functions | metafield_tag }}</li>
+          </ul>
+        {% endif %}
+      </div>
+      <div class='variant-materials  h-[300px]'>
+        {% if chosen_variant.storage_and_maintenance %}
+          <ul class='bg-grey-100'>
+            <li>{{ chosen_variant.storage_and_maintenance | metafield_tag }}</li>
+          </ul>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% style %}
+  .mobile-gallery {
+    display: none;
+  }
+  .desktop-gallery {
+    display: grid;
+  }
+
+  @media screen and (max-width: 600px) {
+    .mobile-gallery {
+      display: grid;
+    }
+    .desktop-gallery {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "DevStudio",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product_to_display",
+      "label": "Velg produkt"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Fargevalg",
+      "default": "background-1"
+    },
+    {
+      "type": "liquid",
+      "id": "battery_message",
+      "label": "Battery message",
+      "default": "This product can only be shipped by ground.This product can be shipped by ground or air"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Tilpass din Utekos"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Bakgrunnsfarge",
+      "default": "#b3e4f4"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Overskriftens tekstfarge",
+      "default": "#ffffff"
+    },
+    {
+      "type": "metaobject",
+      "id": "my_material_setting",
+      "label": "Material",
+      "metaobject_type": "mainsource"
+    },
+    {
+      "type": "metaobject_list",
+      "id": "materials",
+      "label": "Materials",
+      "metaobject_type": "shopify--mainsource",
+      "limit": 12
+    },
+    {
+      "type": "metaobject_list",
+      "id": "sizefit",
+      "label": "SizeFit",
+      "metaobject_type": "passform",
+      "limit": 12
+    },
+    {
+      "type": "metaobject_list",
+      "id": "dimensions",
+      "label": "Dimensions",
+      "metaobject_type": "mainsource",
+      "limit": 12
+    },
+    {
+      "type": "metaobject",
+      "id": "ProductBridge",
+      "label": "ProductBridge",
+      "metaobject_type": "mainsource"
+    },
+    {
+      "type": "metaobject",
+      "id": "ProductCare",
+      "label": "ProductBridge",
+      "metaobject_type": "product_care"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_text",
+      "label": "Tekstfarge for aktiv tab",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_bg",
+      "label": "Tab-bakgrunn (inaktiv)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "color_background",
+      "id": "background-1",
+      "label": "Background",
+      "default": "linear-gradient(#ffffff, #000000)"
+    },
+    {
+      "type": "color_background",
+      "id": "background-2",
+      "label": "Background",
+      "default": "linear-gradient(#ffffff, #000000)"
+    },
+    {
+      "type": "color_background",
+      "id": "background-3",
+      "label": "Background",
+      "default": "linear-gradient(#ffffff, #000000)"
+    },
+    {
+      "type": "color_background",
+      "id": "background-4",
+      "label": "Background",
+      "default": "linear-gradient(#ffffff, #000000)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_forfra",
+      "label": "Bilde 1 – Forfra"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_bakfra",
+      "label": "Bilde 1 – Bakfra"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_parkas",
+      "label": "Bilde 1 – Parkas"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_oppsnort",
+      "label": "Bilde 1 – Oppsnørt"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2_bakfra",
+      "label": "Bilde 2 – Bakfra"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Knappetekst",
+      "default": "Tilpass produkt"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Knapp – tekstfarge",
+      "default": "#ffffff"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Lenke til knapp"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Knapp – bakgrunnsfarge",
+      "default": "#FF6A13"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_second_image_on_mobile",
+      "label": "Skjul bilde 2 på mobil",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_payment_button",
+      "label": "Show dynamic checkout button",
+      "info": "Each customer will see their preferred payment method [Learn more](https://help.shopify.com/manual/online-store/dynamic-checkout)",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "DevZone"
+    }
+  ]
+}
+{% endschema %}

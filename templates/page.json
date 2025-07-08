@@ -17,272 +17,90 @@
         "padding_bottom": 28
       }
     },
-    "new_product_preview_mMDDXw": {
-      "type": "new-product-preview",
-      "name": "Produkt Swiper Detaljer",
-      "settings": {
-        "featured_product": "utekos-dun"
-      }
-    },
-    "size_temp_exp_9DkcEV": {
-      "type": "size-temp-exp",
-      "name": "Temperaturseksjon",
-      "settings": {
-        "heading": "Modell, mål og temperatursoner",
-        "image_small": "shopify://shop_images/Utekos_Skisse_Str_S_1.svg",
-        "image_medium": "shopify://shop_images/Utekos_Skisse_Str_M_mettet.svg",
-        "image_large": "shopify://shop_images/Utekos_Skisse_Str_L_mettet.svg",
-        "image_down": "shopify://shop_images/Nordic_Dun_Temp_Iphone_Max.svg",
-        "image_synthetic": "shopify://shop_images/Nordic_Mikrofiber_Temp_Iphone_M.svg",
-        "text_comfort": "<p>I komfortsonen vil en gjennomsnittskvinne kunne sove uavbrutt og komfortabelt gjennom natten i en avslappet stilling uten å fryse.</p>",
-        "text_transition": "<p>I overgangssonen vil en gjennomsnittsmann kunne sove i sammentrukket stilling, men kan begynne å fryse.</p>",
-        "text_risk": "<p>I risikosonen opplever en gjennomsnittsperson betydelig kulde og risiko for helseskader som hypotermi.</p>",
-        "subheading_1": "Merk",
-        "text_1": "Advarsel...",
-        "henvisning": "Kildehenvisning"
-      }
-    },
-    "sticky_specs_underlay_mobile_qNh9aK": {
-      "type": "sticky-specs-underlay-mobile",
+    "collapsible_content_eQ4GEa": {
+      "type": "collapsible-content",
       "blocks": {
-        "spec_HhLFGk": {
-          "type": "spec",
+        "collapsible_row_w9t9mj": {
+          "type": "collapsible_row",
           "settings": {
-            "title": "Konstruksjon",
-            "subtitle_1": "Premium 650+ fp dun",
-            "description_1": "<p>▸ 400g med 90% høykvalitets dun (90/10)</p>",
-            "subtitle_2": "Durable Water Repellent-behandlet materiale",
-            "description_2": "<p>▸ DWR-behandling for å hindre vannopptak og bevare pusteevne</p>",
-            "subtitle_3": "Durable Water Repellent-behandlet materiale",
-            "description_3": "",
-            "subtitle_4": "",
-            "description_4": "",
-            "subtitle_5": "",
-            "description_5": ""
+            "heading": "Hollow Fiber",
+            "icon": "shirt",
+            "row_content": "<p><strong>Hollow Fiber-isolasjon</strong> består av syntetiske fibre med et hulrom i kjernen. Dette designet fanger mer luft, noe som gir høy varmeisolasjon uten å øke vekten. Hollow Fiber er lett, pustende og hurtigtørkende – perfekt for utendørs bruk i varierende værforhold. Brukes i Utekos Mikrofiber.</p>",
+            "page": ""
           }
         },
-        "spec_yMYQFK": {
-          "type": "spec",
+        "collapsible_row_4gmKdh": {
+          "type": "collapsible_row",
           "settings": {
-            "title": "Ventilasjon",
-            "subtitle_1": "Omvendt v-form i midtpartiet med YKK-glidelås",
-            "description_1": "<p>▸ For fleksibel ventilasjon og enkel inngang/utgang</p>",
-            "subtitle_2": "",
-            "description_2": "",
-            "subtitle_3": "",
-            "description_3": "",
-            "subtitle_4": "",
-            "description_4": "",
-            "subtitle_5": "",
-            "description_5": ""
+            "heading": "Shell Fabrix 20D 380T",
+            "icon": "leather",
+            "row_content": "<p><strong>Shell Fabrix 20D 380T</strong> er et teknisk yttermateriale laget med 20 denier tråd og en tettvevd 380T-struktur. Dette gir en lett, men slitesterk overflate med myk håndfølelse og høy vindtetthet – ideelt for plagg som skal pakkes kompakt uten å ofre beskyttelse.</p>",
+            "page": ""
           }
         },
-        "spec_mpdGcU": {
-          "type": "spec",
+        "collapsible_row_RmPjda": {
+          "type": "collapsible_row",
           "settings": {
-            "title": "Lommer",
-            "subtitle_1": "Dype frontlommer med YKK-glidelås",
-            "description_1": "<p>▸ Dype frontlommer på hver side av torso med YKK-glidelås og praktisk muffe i mageregion for kalde hender og småting</p>",
-            "subtitle_2": "",
-            "description_2": "",
-            "subtitle_3": "",
-            "description_3": "",
-            "subtitle_4": "",
-            "description_4": "",
-            "subtitle_5": "",
-            "description_5": ""
+            "heading": "Flame Retardant Nylon DWR",
+            "icon": "fire",
+            "row_content": "<p>Dette stoffet kombinerer <strong>flammehemmende nylon</strong> med <strong>DWR (Durable Water Repellent)-behandling</strong>, som gjør det vannavstøtende uten å tette stoffet. Det gir et ekstra sikkerhetsnivå ved nærhet til åpen ild, og passer utmerket for bruk rundt bål og i krevende omgivelser.</p>",
+            "page": ""
           }
         },
-        "spec_RMNfzL": {
-          "type": "spec",
+        "collapsible_row_9At7F7": {
+          "type": "collapsible_row",
           "settings": {
-            "title": "Beskyttelse",
-            "subtitle_1": "DWR-behandlet dun",
-            "description_1": "<p>▸ Gir utmerket varme-til-vekt-forhold, god pusteevne og en myk, luftig følelse. Gir en lett, men isolerende løsning til aktiv bruk.</p>",
-            "subtitle_2": "Hette",
-            "description_2": "<p>▸ Isolerende og romslig hette med justeringsmuligheter</p>",
-            "subtitle_3": "Ytterstoff av 20D 380T nylon",
-            "description_3": "<p>▸ Gir vannavvisende DWR-overflate, har flammehemmende effekt og er slitesterk.</p>",
-            "subtitle_4": "Innerstoff av Tafftea",
-            "description_4": "<p>▸ 400g med høykvalitets 650fp dun gir et svært godt varme-til-vekt-forhold og sørger for effektiv fukttransport.</p>",
-            "subtitle_5": "",
-            "description_5": ""
+            "heading": "Nylon Taffeta",
+            "icon": "heart",
+            "row_content": "<p><strong>Nylon Taffeta</strong> er et glatt, lett og slitesterkt materiale med tettvevd overflate. Det brukes ofte som innerstoff i tekniske plagg fordi det føles komfortabelt mot huden, glir lett over andre lag og bidrar til lav friksjon ved bevegelse og pakking. Brukes i både Utekos Mikrofiber og Utekos Dun.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_46FzKy": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "GSM 140 g/m²",
+            "icon": "ruler",
+            "row_content": "<p><strong>140 g/m²</strong> beskriver Utekos Mikrofiber sin vekt (\"grams per square meter\") og sier mye om balansen mellom varme og vekt. Ved 140 GSM får du en god kombinasjon av isolasjon og bevegelighet – nok varme til utendørs bruk, uten at plagget føles tungt eller klumpete. </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_QC6qeC": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Fillpower 650",
+            "icon": "leaf",
+            "row_content": "<p><strong>Fillpower 650</strong> angir kvaliteten og isolasjonsevnen til dun eller syntetisk fyll. Et fyll med <strong>650 fillpower</strong> betyr at én unse (ca. 28 gram) fyller 650 kubikktommer når det er fullt ekspandert. Dette gir en <strong>god balanse mellom varme, komprimerbarhet og lav vekt</strong>. Fillpower 650 regnes som <strong>premium isolasjon</strong> som passer utmerket til aktivt friluftsliv, hvor både pakkvolum og komfort er viktig. Utekos Dun opererer med fillpower på nettopp 650.</p>",
+            "page": ""
           }
         }
       },
       "block_order": [
-        "spec_HhLFGk",
-        "spec_yMYQFK",
-        "spec_mpdGcU",
-        "spec_RMNfzL"
+        "collapsible_row_w9t9mj",
+        "collapsible_row_4gmKdh",
+        "collapsible_row_RmPjda",
+        "collapsible_row_9At7F7",
+        "collapsible_row_46FzKy",
+        "collapsible_row_QC6qeC"
       ],
-      "name": "Sticky Produktseksjon",
+      "custom_css": [],
+      "name": "t:sections.collapsible_content.presets.name",
       "settings": {
-        "heading": "Produktinfo",
-        "image_1": "shopify://shop_images/Soveposejakke_Blue_1.png",
-        "image_2": "shopify://shop_images/Soveposejakke_Blue_3.png",
-        "image_3": "shopify://shop_images/Soveposejakke_Blue_2.png",
-        "tab_1": "Front",
-        "tab_2": "Bakside",
-        "tab_3": "Detaljer"
+        "caption": "",
+        "heading": "Les om teknologiene og materialene vi bruker.",
+        "heading_size": "h0",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image": "shopify://shop_images/sewing-tools-knolling.jpg",
+        "image_ratio": "adapt",
+        "desktop_layout": "image_first",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
-    },
-    "sticky_spec_overlay_mobil_YjU6jK": {
-      "type": "sticky-spec-overlay-mobil",
-      "blocks": {
-        "spec_RDny93": {
-          "type": "spec",
-          "settings": {
-            "title": "Konstruksjon",
-            "subtitle_1": "Premium 650+ fp dun",
-            "description_1": "<p>▸ 400g med 90% høykvalitets dun (90/10)</p>",
-            "subtitle_2": "▸ DWR-behandling for å hindre vannopptak og bevare pusteevne",
-            "description_2": "<p>Durable Water Repellent-behandlet materiale</p>",
-            "subtitle_3": "",
-            "description_3": "",
-            "subtitle_4": "",
-            "description_4": "",
-            "subtitle_5": "",
-            "description_5": ""
-          }
-        },
-        "spec_myEfCi": {
-          "type": "spec",
-          "settings": {
-            "title": "Ventilasjon",
-            "subtitle_1": "Omvendt v-form i midtpartiet med YKK-glidelås",
-            "description_1": "<p>▸ For fleksibel ventilasjon og enkel inngang/utgang</p>",
-            "subtitle_2": "",
-            "description_2": "",
-            "subtitle_3": "",
-            "description_3": "",
-            "subtitle_4": "",
-            "description_4": "",
-            "subtitle_5": "",
-            "description_5": ""
-          }
-        },
-        "spec_VELVJU": {
-          "type": "spec",
-          "settings": {
-            "title": "Lommer",
-            "subtitle_1": "Dype frontlommer med YKK-glidelås",
-            "description_1": "<p>▸ Dype frontlommer på hver side av torso med YKK-glidelås og praktisk muffe i mageregion for kalde hender og småting</p>",
-            "subtitle_2": "",
-            "description_2": "",
-            "subtitle_3": "",
-            "description_3": "",
-            "subtitle_4": "",
-            "description_4": "",
-            "subtitle_5": "",
-            "description_5": ""
-          }
-        },
-        "spec_fYkbea": {
-          "type": "spec",
-          "settings": {
-            "title": "Beskyttelse",
-            "subtitle_1": "DWR-behandlet dun",
-            "description_1": "<p>▸ Gir utmerket varme-til-vekt-forhold, god pusteevne og en myk, luftig følelse. Gir en lett, men isolerende løsning til aktiv bruk.</p>",
-            "subtitle_2": "Hette",
-            "description_2": "<p>▸ Isolerende og romslig hette med justeringsmuligheter</p>",
-            "subtitle_3": "Ytterstoff av 20D 380T nylon",
-            "description_3": "<p>▸ Gir vannavvisende DWR-overflate, har flammehemmende effekt og er slitesterk.</p>",
-            "subtitle_4": "Innerstoff av Tafftea",
-            "description_4": "<p>▸ 400g med høykvalitets 650fp dun gir et svært godt varme-til-vekt-forhold og sørger for effektiv fukttransport.</p>",
-            "subtitle_5": "",
-            "description_5": ""
-          }
-        }
-      },
-      "block_order": [
-        "spec_RDny93",
-        "spec_myEfCi",
-        "spec_VELVJU",
-        "spec_fYkbea"
-      ],
-      "name": "Mobile Sticky Specs",
-      "settings": {
-        "heading": "Produktinfo",
-        "image_1": "shopify://shop_images/Soveposejakke_Blue_1.png",
-        "image_2": "shopify://shop_images/Soveposejakke_Blue_3.png",
-        "image_3": "shopify://shop_images/Soveposejakke_Blue_2.png",
-        "tab_1": "Front",
-        "tab_2": "Parkas",
-        "tab_3": "Bakside"
-      }
-    },
-    "size_toggle_mobile_CjKwp4": {
-      "type": "size-toggle-mobile",
-      "name": "Mobile Toggle",
-      "settings": {
-        "heading": "Specs etter size",
-        "tab_1": "Small",
-        "tab_2": "Medium",
-        "tab_3": "Large",
-        "image_1": "shopify://shop_images/Utekos_Skisse_Str_S_1.svg",
-        "image_2": "shopify://shop_images/Utekos_Skisse_Str_M_mettet.svg",
-        "image_3": "shopify://shop_images/Utekos_Skisse_Str_L_mettet.svg"
-      }
-    },
-    "border_radius_section_XPLHin": {
-      "type": "border-radius-section",
-      "blocks": {
-        "product_378FYt": {
-          "type": "product",
-          "settings": {
-            "bilde": "shopify://shop_images/Jakke_Navy_3.png",
-            "navn": "Comfyrobe™",
-            "forpris": "",
-            "pris": "NOK 990",
-            "lenke": ""
-          }
-        },
-        "product_9GDrr6": {
-          "type": "product",
-          "settings": {
-            "bilde": "shopify://shop_images/Kate_Special_Editon.png",
-            "navn": "Utekos Special Edition™",
-            "forpris": "",
-            "pris": "NOK 750",
-            "lenke": ""
-          }
-        },
-        "product_Hhriw4": {
-          "type": "product",
-          "settings": {
-            "bilde": "shopify://shop_images/Soveposejakke_Blue_3.png",
-            "navn": "Utekos Dun™",
-            "forpris": "",
-            "pris": "NOK 1990",
-            "lenke": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_378FYt",
-        "product_9GDrr6",
-        "product_Hhriw4"
-      ],
-      "name": "Cartoon Box Section",
-      "settings": {
-        "page": ""
-      }
-    },
-    "a_material_swiper_NRj3XG": {
-      "type": "a-material-swiper",
-      "name": "Material You Slider",
-      "settings": {}
     }
   },
-  "order": [
-    "main",
-    "new_product_preview_mMDDXw",
-    "size_temp_exp_9DkcEV",
-    "sticky_specs_underlay_mobile_qNh9aK",
-    "sticky_spec_overlay_mobil_YjU6jK",
-    "size_toggle_mobile_CjKwp4",
-    "border_radius_section_XPLHin",
-    "a_material_swiper_NRj3XG"
-  ]
+  "order": ["main", "collapsible_content_eQ4GEa"]
 }

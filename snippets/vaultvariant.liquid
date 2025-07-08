@@ -1,0 +1,20 @@
+{% assign vault_variant = metaobjects.vaultvariant.variantvaultvargnattdawn %}
+<div class='workplace'>
+  {% if vault_variant %}
+    <div style='background: {{ vault_variant.background_color }}; width: 90px; border-radius: 50px; margin: 10px;'>
+      <h2>{{ vault_variant.title }}</h2>
+      <p>{{ vault_variant.color_label }}</p>
+    </div>
+    <div style='background-color: white'>
+      <h2>{{ vault_variant.title }}</h2>
+      <p>{{ vault_variant.color_label }}</p>
+    </div>
+    <div class='grid grid-cols-4 space-y-24 overflow-hidden'>
+      {% for images in vault_variant.images.value %}
+        {{ images | image_url: width: 200 | image_tag }}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>VaultVariant ikke funnet.</p>
+  {% endif %}
+</div>

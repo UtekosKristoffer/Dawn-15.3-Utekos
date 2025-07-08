@@ -1,2 +1,60 @@
-#  Ignorer selvskapte maler:
-maler/*
+package.json
+jsconfig.json
+package-lock.json
+frontend/
+vite.config.js
+tailwind.config.cjs
+postcss.config.cjs
+.gitignore
+.prettierignore
+.prettierrc.json
+.theme-check.yml
+.vscode/
+\*.md
+translation.yml
+node_modules
+.git/
+.github/
+assets/.vite
+
+# Egendefinerte maler
+
+maler/\*
+
+# Kilde, bygg og dev
+
+frontend/_
+admin-proxi/_
+node_modules/_
+/logs/_
+coverage/_
+/scripts/_
+/gpt-env/_
+/env/_
+/web/database.sqlite
+
+# Konfig-filer
+
+vite.config.js
+rollup.config.js
+webpack.config.js
+package\*.json
+pnpm-lock.yaml
+.DS_Store
+
+# Enkeltscripts
+
+test.js
+scriptindex.js
+
+# Extensions build
+
+extensions/\*/build
+
+# Miljøfiler
+
+.env
+
+# Shopify Apps/Extensions build
+
+extensions/\*/build

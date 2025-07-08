@@ -18,37 +18,42 @@
 {%- endstyle -%}
 
 <div
-  class="gradient color-{{ section.settings.color_scheme }}{% if cart == empty %} is-empty{% endif %}"
-  id="main-cart-footer"
-  data-id="{{ section.id }}"
+  class='gradient color-{{ section.settings.color_scheme }}{% if cart == empty %} is-empty{% endif %}'
+  id='main-cart-footer'
+  data-id='{{ section.id }}'
 >
-  <div class="page-width">
-    <div class="cart__footer isolate section-{{ section.id }}-padding">
+  <div class='page-width'>
+    <div class='cart__footer isolate section-{{ section.id }}-padding'>
       {%- if settings.show_cart_note -%}
-        <cart-note class="cart__note field">
-          <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
+        <cart-note class='cart__note field'>
+          <label for='Cart-note'>{{ 'sections.cart.note' | t }}</label>
           <textarea
-            class="text-area field__input"
-            name="note"
-            form="cart"
-            id="Cart-note"
-            placeholder="{{ 'sections.cart.note' | t }}"
+            type='text'
+            class='text-area field__input'
+            name='note'
+            form='cart'
+            id='Cart-note'
+            placeholder='Skriv din instruks her...{{ 'sections.cart.note' | t }}'
           >{{ cart.note }}</textarea>
         </cart-note>
       {%- endif -%}
 
-      <div class="cart__blocks">
+      <div class='cart__blocks'>
         {% for block in section.blocks %}
           {%- case block.type -%}
             {%- when '@app' -%}
               {% render block %}
             {%- when 'subtotal' -%}
-              <div class="js-contents" {{ block.shopify_attributes }}>
+              <div class='js-contents' {{ block.shopify_attributes }}>
                 <div>
                   {%- if cart.cart_level_discount_applications.size > 0 -%}
-                    <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                    <ul
+                      class='discounts list-unstyled'
+                      role='list'
+                      aria-label='{{ 'customer.order.discount' | t }}'
+                    >
                       {%- for discount in cart.cart_level_discount_applications -%}
-                        <li class="discounts__discount discounts__discount--position">
+                        <li class='discounts__discount discounts__discount--position'>
                           {{- 'icon-discount.svg' | inline_asset_content -}}
                           {{ discount.title | escape }}
                           (-{{ discount.total_allocated_amount | money }})
@@ -57,16 +62,56 @@
                     </ul>
                   {%- endif -%}
                 </div>
+                <div class='total__summary size-full flex justify-between text-heading-gray flex-col gap-y-4'>
+                  <div class='subtotal flex flex-row justify-between'>
+                    <label class='subtotal__label justify-between text-heading-gray tracking-tight'>
+                      Delsum
+                    </label>
+                    <span class='subtotal__value self-end flex-nowrap text-heading-gray tracking-tight'>
+                      {{ cart.total_price | money_with_currency }}
+                    </span>
+                  </div>
 
-                <div class="totals">
-                  <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-                  <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+                  <div class='shipping flex flex-row w-full justify-between'>
+                    <label class='shipping__label self-start tracking-tight text-heading-gray'>
+                      Frakt
+                    </label>
+                    {% if cart.total_price > 99900 %}
+                      <span class='shipping__discount-info self-end tracking-tight flex-nowrap text-heading-gray'>
+                        GRATIS
+                      </span>
+                    {% else %}
+                      <span class='shipping__rates__info self-end tracking-tight flex-nowrap text-heading-gray'>
+                        99,00 NOK
+                      </span>
+                    {% endif %}
+                  </div>
+
+                  <div class='discount flex flex-row justify-between text-heading-gray'>
+                    <span class='discount__code-info text-heading-gray'>
+                      <ul>
+                        <li class='text-md'>
+                          Avgifter inkludert. Rabattkode kan benyttes i kassen.
+                        </li>
+                      </ul>
+                    </span>
+                  </div>
+
+                  <div class='estimated__total w-full flex flex-row items-end justify-between text-heading-gray font-bold'>
+                    <h2 class='totals__total-value'>Sum å betale</h2>
+                    <h2 class='totals__total-value flex-nowrap'>
+                      {{ cart.total_price | money_with_currency }}
+                    </h2>
+                  </div>
                 </div>
 
-                <small class="tax-note caption-large rte">
+                <small class='tax-note caption-large rte hidden'>
                   {%- if cart.duties_included and cart.taxes_included -%}
                     {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
+                      {{
+                        'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy'
+                        | t
+                      }}
                     {%- else -%}
                       {{
                         'sections.cart.duties_and_taxes_included_shipping_at_checkout_with_policy_html'
@@ -84,7 +129,10 @@
                     {%- endif -%}
                   {%- elsif cart.duties_included and cart.taxes_included == false -%}
                     {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                      {{
+                        'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy'
+                        | t
+                      }}
                     {%- else -%}
                       {{
                         'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html'
@@ -93,7 +141,10 @@
                     {%- endif -%}
                   {%- elsif cart.duties_included == false and cart.taxes_included == false -%}
                     {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                      {{
+                        'sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy'
+                        | t
+                      }}
                     {%- else -%}
                       {{
                         'sections.cart.taxes_at_checkout_shipping_at_checkout_with_policy_html'
@@ -104,30 +155,30 @@
                 </small>
               </div>
             {%- else -%}
-              <div class="cart__ctas" {{ block.shopify_attributes }}>
+              <div class='cart__ctas' {{ block.shopify_attributes }}>
                 <button
-                  type="submit"
-                  id="checkout"
-                  class="cart__checkout-button button"
-                  name="checkout"
+                  type='submit'
+                  id='checkout'
+                  class='cart__checkout-button button'
+                  name='checkout'
                   {% if cart == empty %}
                     disabled
                   {% endif %}
-                  form="cart"
+                  form='cart'
                 >
                   {{ 'sections.cart.checkout' | t }}
                 </button>
               </div>
 
               {%- if additional_checkout_buttons -%}
-                <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                <div class='cart__dynamic-checkout-buttons additional-checkout-buttons'>
                   {{ content_for_additional_checkout_buttons }}
                 </div>
               {%- endif -%}
           {%- endcase -%}
         {% endfor %}
 
-        <div id="cart-errors"></div>
+        <div id='cart-errors'></div>
       </div>
     </div>
   </div>
@@ -147,7 +198,7 @@
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
-    },    
+    },
     {
       "type": "range",
       "id": "padding_top",

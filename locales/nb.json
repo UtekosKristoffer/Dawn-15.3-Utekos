@@ -49,9 +49,9 @@
       "reset": "Fjern søket"
     },
     "cart": {
-      "view": "Vis handlekurv ({{ count }})",
-      "item_added": "Vare lagt i handlekurven",
-      "view_empty_cart": "Vis handlekurv"
+      "view": "Vis handlepose ({{ count }})",
+      "item_added": "Vare lagt i handlepose",
+      "view_empty_cart": "Vis handlepose"
     },
     "share": {
       "copy_to_clipboard": "Kopier kobling",
@@ -91,11 +91,13 @@
   },
   "blogs": {
     "article": {
-      "blog": "Blogg",
-      "read_more_title": "Les mer: {{ title }}",
+      "blog": "Blog",
+      "read_more_title": "Read more: {{ title }}",
+      "read_less": "Les mindre",
+      "read_more": "Les mer",
       "comments": {
-        "one": "{{ count }} kommentar",
-        "other": "{{ count }} kommentarer"
+        "one": "{{ count }} comment",
+        "other": "{{ count }} comments"
       },
       "moderated": "Merk at kommentarer må godkjennes før de publiseres.",
       "comment_form_title": "Legg igjen en kommentar",
@@ -115,7 +117,31 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "Legg i handlekurv",
+      "description_heading": "Produktbeskrivelse",
+      "click_and_collect": {
+        "availability_html": "Click & collect – klar til henting innen 1 time",
+        "button_label": "Click & Collect",
+        "popup_title": "Reserver i butikk"
+      },
+      "shipping": {
+        "availability_html": "Click & collect – klar til henting innen 1 time",
+        "button_label": "Click & Collect",
+        "popup_title": "Reserver i butikk"
+      },
+      "related_products": {
+        "heading": "Flere som er klare for eventyr...",
+        "view_product_label": "Click & Collect",
+        "popup_title": "Reserver i butikk"
+      },
+      "size_guide_link": "Mål og temperatursoner",
+      "size_guide_label": "Usikker på størrelsen?",
+      "size_guide_sub_heading": "Se dimensjonene på Utekos-modellene her",
+      "designet_for_eventyr": "Designet for eventyr",
+      "color_selector_label": "Farge. ",
+      "color_selector_subtitle": "Hvilken passer stilen – og stedet?",
+      "checkout_label": "Din nye Utekos er klar. ",
+      "checkout_subtitle": "Velg antall, og hvordan du vil få dem hjem",
+      "add_to_cart": "Legg i handlepose",
       "description": "Beskrivelse",
       "on_sale": "Salg",
       "quantity": {
@@ -126,16 +152,18 @@
         "minimum_of": "Minimum på {{ quantity }}",
         "maximum_of": "Maksimum på {{ quantity }}",
         "multiples_of": "Økninger på {{ quantity }}",
-        "in_cart_html": "<span class=\"quantity-cart\">{{ quantity }}</span> i handlekurven",
+        "in_cart_html": "<span class=\"quantity-cart\">{{ quantity }}</span> i handleposen",
         "note": "Vis antallsregler",
         "min_of": "Minimum {{ quantity }}",
         "max_of": "Maksimum {{ quantity }}"
       },
       "price": {
-        "from_price_html": "Fra {{ price }}",
-        "regular_price": "Vanlig pris",
-        "sale_price": "Salgspris",
-        "unit_price": "Enhetspris"
+        "regular_price_label": "Before",
+        "sale_price_label": "Nå",
+        "from_price_html": "From {{ price }}",
+        "regular_price": "Førpris",
+        "sale_price": "Sale price",
+        "unit_price": "Unit price"
       },
       "share": "Del dette produktet",
       "sold_out": "Utsolgt",
@@ -161,13 +189,14 @@
         "load_image": "Last inn bilde {{ index }} i gallerivisning",
         "load_model": "Last inn 3D-modell {{ index }} i gallerivisning",
         "load_video": "Spill av video {{ index }} i gallerivisning",
-        "image_available": "Bilde {{ index }} er nå tilgjengelig i gallerivisning"
+        "image_available": "Bilde {{ index }} er nå tilgjengelig i gallerivisning",
+        "images_label": "Play video"
       },
       "view_full_details": "Vis alle detaljer",
       "shipping_policy_html": "<a href=\"{{ link }}\">Frakt</a> beregnes ved kassen.",
       "choose_options": "Velg alternativer",
       "choose_product_options": "Velg alternativer for {{ product_name }}",
-      "value_unavailable": "{{ option_value }} – utilgjengelig",
+      "value_unavailable": "{{ option_value }} utilgjengelig",
       "variant_sold_out_or_unavailable": "Varianten er utsolgt eller utilgjengelig",
       "inventory_in_stock": "På lager",
       "inventory_in_stock_show_count": "{{ quantity }} på lager",
@@ -254,7 +283,7 @@
       "pages": "Sider"
     },
     "cart": {
-      "cart": "Handlekurv"
+      "cart": "Handlepose"
     },
     "contact": {
       "form": {
@@ -283,14 +312,15 @@
       }
     },
     "cart": {
-      "title": "Handlekurven din",
-      "caption": "Varer i handlekurven",
+      "title": "Handleposen din",
+      "caption": "Varer i handleposen",
+      "intro_caption": "Handleposen din er på totalt",
       "remove_title": "Fjern {{ title }}",
       "note": "Spesielle instruksjoner for bestillingen",
       "checkout": "Kasse",
-      "empty": "Handlekurven din er tom",
-      "cart_error": "Det oppstod en feil under oppdateringen av handlekurven din. Prøv på nytt.",
-      "cart_quantity_error_html": "Du kan bare legge {{ quantity }} av denne varen i handlekurven.",
+      "empty": "Handleposen din er tom",
+      "cart_error": "Det oppstod en feil under oppdateringen av handleposen din. Prøv på nytt.",
+      "cart_quantity_error_html": "Du kan bare legge {{ quantity }} av denne varen i handleposen.",
       "headings": {
         "product": "Produkt",
         "price": "Pris",
@@ -303,16 +333,18 @@
         "title": "Har du en konto?",
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Logg på</a> for å betale raskere."
       },
-      "estimated_total": "Estimert totalsum",
-      "new_estimated_total": "Ny estimert totalsum",
+      "estimated_total": "Beløp å betale",
+      "new_estimated_total": "Ny totalsum",
       "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Inkludert tollplikter og avgifter. Rabatter og <a href=\"{{ link }}\">frakt</a> beregnes i kassen.",
       "duties_and_taxes_included_shipping_at_checkout_without_policy": "Inkludert tollplikter og avgifter. Rabatter og frakt beregnes i kassen.",
-      "taxes_included_shipping_at_checkout_with_policy_html": "Inkludert avgifter. Rabatter og <a href=\"{{ link }}\">frakt</a> beregnes i kassen.",
-      "taxes_included_shipping_at_checkout_without_policy": "Inkludert avgifter. Rabatter og frakt beregnes i kassen.",
+      "taxes_included_shipping_at_checkout_with_policy_html": "Rabatter og <a href=\"{{ link }}\">frakt</a> beregnes i kassen.",
+      "taxes_included_shipping_at_checkout_without_policy": "Rabatter og frakt beregnes i kassen.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Inkluder tollplikter. Avgifter, rabatter og <a href=\"{{ link }}\">frakt</a> beregnes i kassen.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Inkluder tollplikter. Avgifter, rabatter og frakt beregnes i kassen.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Avgifter, rabatter og <a href=\"{{ link }}\">frakt</a> beregnes i kassen.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Avgifter, rabatter og frakt beregnes i kassen."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Avgifter, rabatter og frakt beregnes i kassen.",
+      "discount_code_explainer": "Rabattkode kan benyttes i kassen",
+      "free_shipping_label": "Gratis frakt"
     },
     "footer": {
       "payment": "Betalingsmåter"
@@ -358,7 +390,7 @@
     },
     "quick_order_list": {
       "product_total": "Produktets delsum",
-      "view_cart": "Vis handlekurv",
+      "view_cart": "Vis handlepose",
       "each": "{{ money }}/stk.",
       "product": "Produkt",
       "variant": "Variant",
@@ -373,10 +405,10 @@
       },
       "product_variants": "Produktvarianter",
       "total_items": "Totalt antall varer",
-      "remove_all_items_confirmation": "Vil du fjerne alle {{ quantity }} varer fra handlekurven?",
+      "remove_all_items_confirmation": "Vil du fjerne alle {{ quantity }} varer fra handleposen?",
       "remove_all": "Fjern alle",
       "cancel": "Avbryt",
-      "remove_all_single_item_confirmation": "Vil du fjerne én vare fra handlekurven?",
+      "remove_all_single_item_confirmation": "Vil du fjerne én vare fra handleposen?",
       "min_error": "Denne varen har et minimumsantall på {{ min }}",
       "max_error": "Denne varen har et maksimumsantall på {{ max }}",
       "step_error": "Du kan bare legge til denne varen i multipler av {{ step }}"
@@ -532,6 +564,50 @@
       "send_on_label": "Send (valgfritt)",
       "expanded": "Utvidet skjema for gavekortmottaker",
       "collapsed": "Lukket skjema for gavekortmottaker"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "general": {
+        "cart": "Handlepose",
+        "back_to_cart": "Tilbake til handlepose"
+      },
+      "stock": {
+        "removed_from_cart_notice": "Fjernet fra handleposen",
+        "remove_from_cart_button_label": "Fjern fra handleposen",
+        "go_back_to_cart_button_label": "Tilbake til handleposen min",
+        "empty_cart_label": "Handleposen er tom"
+      },
+      "order_summary": {
+        "shopping_cart_label": "Handlepose"
+      },
+      "failed_payment": {
+        "return_to_cart_button_label": "Tilbake til handlepose"
+      },
+      "throttle": {
+        "cart_summary_heading": "Handlepose",
+        "inventory": {
+          "sold_out": {
+            "heading": "Produkter i handleposen din er dessverre utsolgt"
+          }
+        }
+      },
+      "merchandise_unavailable_in_buyer_location": {
+        "cart_updated": "Handleposen din er oppdatert",
+        "empty_cart_action": "Tøm handlepose og gå tilbake til butikken"
+      },
+      "notice_banner": {
+        "return_to_cart_link_text": "Tilbake til handleposen"
+      }
+    },
+    "notices": {
+      "cart": {
+        "changed": "Handleposen er endret",
+        "cart_too_large": "Handleposen er for stor"
+      }
+    },
+    "page_titles": {
+      "shopping_cart": "Handlepose"
     }
   }
 }

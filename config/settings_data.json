@@ -10,6 +10,7 @@
 {
   "current": {
     "logo_width": 90,
+    "favicon": "shopify://shop_images/logo-pic.svg",
     "type_header_font": "din_next_n7",
     "heading_scale": 100,
     "type_body_font": "din_next_n4",
@@ -19,10 +20,10 @@
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,
     "animations_reveal_on_scroll": true,
-    "animations_hover_elements": "none",
-    "buttons_border_thickness": 1,
+    "animations_hover_elements": "3d-lift",
+    "buttons_border_thickness": 0,
     "buttons_border_opacity": 100,
-    "buttons_radius": 0,
+    "buttons_radius": 12,
     "buttons_shadow_opacity": 0,
     "buttons_shadow_horizontal_offset": 0,
     "buttons_shadow_vertical_offset": 4,
@@ -119,7 +120,7 @@
     "social_vimeo_link": "",
     "predictive_search_enabled": true,
     "predictive_search_show_vendor": false,
-    "predictive_search_show_price": false,
+    "predictive_search_show_price": true,
     "currency_code_enabled": true,
     "cart_type": "drawer",
     "show_vendor": false,
@@ -194,6 +195,17 @@
           "button": "#ffffff",
           "button_label": "#334fb4",
           "secondary_button_label": "#ffffff",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-c3cccbb8-cdde-496f-9563-cbdd26eb8d18": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "radial-gradient(rgba(254, 106, 6, 1) 1%, rgba(254, 106, 6, 1) 1%, rgba(21, 23, 92, 1) 31%, rgba(28, 29, 151, 1) 59%, rgba(21, 23, 92, 1) 82%, rgba(60, 31, 92, 1) 100%, rgba(21, 23, 92, 1) 100%, rgba(10, 10, 40, 1) 125%)",
+          "text": "#121212",
+          "button": "#121212",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#121212",
           "shadow": "#121212"
         }
       }

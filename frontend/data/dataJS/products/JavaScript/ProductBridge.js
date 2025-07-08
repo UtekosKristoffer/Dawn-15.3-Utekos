@@ -1,0 +1,1523 @@
+const dataProductPridge = 
+[
+{
+  "data": {
+    "products": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/Product/7710040391928",
+            "title": "Utekos Dun™",
+            "handle": "utekos-dun",
+            "metafield": {
+              "id": "gid://shopify/Metafield/33554072568056",
+              "namespace": "Origin",
+              "key": "ProductBridge",
+              "type": "list.metaobject_reference",
+              "references": {
+                "nodes": [
+                  {
+                    "__typename": "Metaobject",
+                    "id": "gid://shopify/Metaobject/120596005112",
+                    "handle": "vaultdawnmaterial",
+                    "type": "mainsource",
+                    "field": {
+                      "type": "list.mixed_reference",
+                      "key": "Origin",
+                      "references": {
+                        "nodes": [
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120152588536",
+                            "type": "materiale",
+                            "handle": "tech_spec_dawn",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Durable Water Repellent (inkl. flammehemming)\\nVarme-til-vekt: 650FP (Fillpower)\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          },
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120152162552",
+                            "type": "materiale",
+                            "handle": "compression_bag",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Kompresjonspose: Kompresjonspose i robust nylon\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          },
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120152097016",
+                            "type": "materiale",
+                            "handle": "fill_dawn",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Fyll: 400 g (størrelse large)\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          },
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120151900408",
+                            "type": "materiale",
+                            "handle": "zipper",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Glidelåser: YKK toveis glidelås\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          },
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120151867640",
+                            "type": "materiale",
+                            "handle": "denier_dawn",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Trådtykkelse: 20DF\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          },
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120151834872",
+                            "type": "materiale",
+                            "handle": "thread_count_dawn",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Trådtetthet: 380T\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          },
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120151507192",
+                            "type": "materiale",
+                            "handle": "shell_dawn",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Skallstoff: downproof nylon taft DWR\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          },
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120151441656",
+                            "type": "materiale",
+                            "handle": "linning_dun",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Fôrstoff: Premium 90% Tafftea Dun\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          },
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/117100839160",
+                            "type": "materiale",
+                            "handle": "materiale-specs-dun",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Durable Water Repellent (inkl. flammehemming)\\n650FP [FillPower]\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Fôrstoff:  Premium 90% Taffeta Dun\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Skallstoff: downproof nylon taft DWR\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Fyll: 400 g (strørrelse large)\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Trådtetthet: 380T\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Trådtykkelse: 20D\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glidelåser: YKK toveis glidelås\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Varme-til-vekt: 650FP (Fillpower)\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Kompresjonspose: Kompresjonspose i robust nylon\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          },
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/116031127800",
+                            "type": "materiale",
+                            "handle": "specs_utekos_dun",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Durable Water Repellent (inkl. flammehemming)\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• 650FP [FillPower]\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          },
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120151245048",
+                            "type": "materiale",
+                            "handle": "weight_dun",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": "GSM: 400",
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "__typename": "Metaobject",
+                    "id": "gid://shopify/Metaobject/120597774584",
+                    "handle": "vault_productcare_dawn",
+                    "type": "mainsource",
+                    "field": {
+                      "type": "list.mixed_reference",
+                      "key": "Origin",
+                      "references": {
+                        "nodes": [
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/116368605432",
+                            "type": "product_care",
+                            "handle": "case_dun",
+                            "fields": [
+                              {
+                                "key": "instructions",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Maskinvask på maks 30°C \",\"bold\":true},{\"type\":\"text\",\"value\":\"Bruk mild såpe, gjerne spesialsåpe for dunprodukter (sjekk produktets etikett for nøyaktig anbefaling).\\n\"},{\"type\":\"text\",\"value\":\"Må ikke blekes\\nMå ikke tørkes i tørketrommel \",\"bold\":true},{\"type\":\"text\",\"value\":\"Dun krever spesiell tørking, ofte med tørkeballer, for å gjenopprette spenst og luftighet. Følg nøye instruksjoner for tørking av dunprodukter.\\n\"},{\"type\":\"text\",\"value\":\"Må ikke renses\\nMå ikke strykes\\nViktig:\",\"bold\":true},{\"type\":\"text\",\"value\":\"Oppbevares tørt og ikke komprimert over lengre tid. Langvarig kompresjon kan redusere dunets spenst. Ideelt sett lagres den i en stor, luftig pose. Vask kun når nødvendig for å bevare dunets kvalitet. Tørk alltid fullstendig etter bruk i fuktige omgivelser\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "instructions_v2",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              }
+                            ]
+                          } 
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "__typename": "Metaobject",
+                    "id": "gid://shopify/Metaobject/120836456696",
+                    "handle": "origindawnweight",
+                    "type": "mainsource",
+                    "field": {
+                      "type": "list.mixed_reference",
+                      "key": "Origin",
+                      "references": {
+                        "nodes": [
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120151245048",
+                            "type": "materiale",
+                            "handle": "weight_dun",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": "GSM: 400",
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "__typename": "Metaobject",
+                    "id": "gid://shopify/Metaobject/120836391160",
+                    "handle": "origindawndenier",
+                    "type": "mainsource",
+                    "field": {
+                      "type": "list.mixed_reference",
+                      "key": "Origin",
+                      "references": {
+                        "nodes": [
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120151867640",
+                            "type": "materiale",
+                            "handle": "denier_dawn",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Trådtykkelse: 20DF\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "__typename": "Metaobject",
+                    "id": "gid://shopify/Metaobject/120811290872",
+                    "handle": "origindawnshell",
+                    "type": "mainsource",
+                    "field": {
+                      "type": "list.mixed_reference",
+                      "key": "Origin",
+                      "references": {
+                        "nodes": [
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120151507192",
+                            "type": "materiale",
+                            "handle": "shell_dawn",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Skallstoff: downproof nylon taft DWR\"}]}]}",
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": null,
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "__typename": "Metaobject",
+                    "id": "gid://shopify/Metaobject/120811127032",
+                    "handle": "origindawnlinning",
+                    "type": "mainsource",
+                    "field": {
+                      "type": "list.mixed_reference",
+                      "key": "Origin",
+                      "references": {
+                        "nodes": [
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/120806932728",
+                            "type": "materiale",
+                            "handle": "dawnlinning",
+                            "fields": [
+                              {
+                                "key": "tekniske_egenskaper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "linning",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "shell",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fill",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "thread_count",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "denier",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "zipper",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "fillpower",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "compression_bag",
+                                "value": null,
+                                "type": "rich_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "weight",
+                                "value": null,
+                                "type": "single_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "list",
+                                "value": "Fôrstoff: Premium 90% Tafftea Dun",
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              },
+                              {
+                                "key": "Material_ID",
+                                "value": null,
+                                "type": "id",
+                                "reference": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "__typename": "Metaobject",
+                    "id": "gid://shopify/Metaobject/120600002808",
+                    "handle": "vault_usage_dawn",
+                    "type": "mainsource",
+                    "field": {
+                      "type": "list.mixed_reference",
+                      "key": "Origin",
+                      "references": {
+                        "nodes": [
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/116372373752",
+                            "type": "areas_of_use",
+                            "handle": "usage_utekos_dun",
+                            "fields": [
+                              {
+                                "key": "text_inner",
+                                "value": "• Campingtur\n• Telttur\n• I hengekøye\n• På båttur\n• Som sovepose\n• Generelt friluftsbruk\n• Jakt\n• Fisking\n• Isfiske\n• Fjellsport\n• Bobilferie\n• Fotooppdrag i kulden\n• Som din nye \"kosejakke\" på terrassen eller hytten\n• Seiling\n• Skitur\n• Pauser og bålkos\n• Som tilskuer på kalde tribuner",
+                                "type": "multi_line_text_field",
+                                "reference": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "__typename": "Metaobject",
+                    "id": "gid://shopify/Metaobject/120599576824",
+                    "handle": "vault_dimensions_utekos_medium",
+                    "type": "mainsource",
+                    "field": {
+                      "type": "list.mixed_reference",
+                      "key": "Origin",
+                      "references": {
+                        "nodes": [
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/116479754488",
+                            "type": "dimensions",
+                            "handle": "cm_medium",
+                            "fields": [
+                              {
+                                "key": "top_base",
+                                "value": "{\"value\":170.0,\"unit\":\"CENTIMETERS\"}",
+                                "type": "dimension",
+                                "reference": null
+                              },
+                              {
+                                "key": "center_wrist",
+                                "value": "{\"value\":85.0,\"unit\":\"CENTIMETERS\"}",
+                                "type": "dimension",
+                                "reference": null
+                              },
+                              {
+                                "key": "flat_size",
+                                "value": "{\"value\":66.0,\"unit\":\"CENTIMETERS\"}",
+                                "type": "dimension",
+                                "reference": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "__typename": "Metaobject",
+                    "id": "gid://shopify/Metaobject/120599412984",
+                    "handle": "vault_dimensions_utekos_small",
+                    "type": "mainsource",
+                    "field": {
+                      "type": "list.mixed_reference",
+                      "key": "Origin",
+                      "references": {
+                        "nodes": [
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/116482408696",
+                            "type": "dimensions",
+                            "handle": "cm_small",
+                            "fields": [
+                              {
+                                "key": "top_base",
+                                "value": "{\"value\":165.0,\"unit\":\"CENTIMETERS\"}",
+                                "type": "dimension",
+                                "reference": null
+                              },
+                              {
+                                "key": "center_wrist",
+                                "value": "{\"value\":80.0,\"unit\":\"CENTIMETERS\"}",
+                                "type": "dimension",
+                                "reference": null
+                              },
+                              {
+                                "key": "flat_size",
+                                "value": "{\"value\":58.0,\"unit\":\"CENTIMETERS\"}",
+                                "type": "dimension",
+                                "reference": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "__typename": "Metaobject",
+                    "id": "gid://shopify/Metaobject/120599347448",
+                    "handle": "vault_dimensions_utekos_large",
+                    "type": "mainsource",
+                    "field": {
+                      "type": "list.mixed_reference",
+                      "key": "Origin",
+                      "references": {
+                        "nodes": [
+                          {
+                            "__typename": "Metaobject",
+                            "id": "gid://shopify/Metaobject/116482932984",
+                            "type": "dimensions",
+                            "handle": "cm_large",
+                            "fields": [
+                              {
+                                "key": "top_base",
+                                "value": "{\"value\":200.0,\"unit\":\"CENTIMETERS\"}",
+                                "type": "dimension",
+                                "reference": null
+                              },
+                              {
+                                "key": "center_wrist",
+                                "value": "{\"value\":100.0,\"unit\":\"CENTIMETERS\"}",
+                                "type": "dimension",
+                                "reference": null
+                              },
+                              {
+                                "key": "flat_size",
+                                "value": "{\"value\":75.0,\"unit\":\"CENTIMETERS\"}",
+                                "type": "dimension",
+                                "reference": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/7710040752376",
+            "title": "Utekos Mikrofiber™",
+            "handle": "utekos-mikrofiber™",
+            "metafield": null
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/7710043439352",
+            "title": "Utekos Special Edition™",
+            "handle": "utekos-special-edition™",
+            "metafield": null
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/7710325899512",
+            "title": "Kompresjonsbag",
+            "handle": "ekstra-utekosbag™",
+            "metafield": null
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/8036341448952",
+            "title": "Comfyrobe™",
+            "handle": "comfyrobe",
+            "metafield": null
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "cost": {
+      "requestedQueryCost": 730,
+      "actualQueryCost": 29,
+      "throttleStatus": {
+        "maximumAvailable": 2000,
+        "currentlyAvailable": 1971,
+        "restoreRate": 100
+      }
+    }
+  }
+}
+]

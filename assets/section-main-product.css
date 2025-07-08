@@ -97,7 +97,8 @@ product-info {
 /* Dynamic checkout */
 
 .shopify-payment-button__button {
-  font-family: inherit;
+  font-family:
+    var(--font-body-family), '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif';
   min-height: 4.6rem;
 }
 
@@ -256,14 +257,16 @@ a.product__text {
 }
 
 .product__text.caption-with-letter-spacing {
-  text-transform: uppercase;
+  color: var(--color-heading-gray);
+  font-family: var(--font-body-family);
 }
 
 .product__title {
   word-break: break-word;
   margin-bottom: 1.5rem;
   font-size: 2.4rem;
-  color: black;
+  color: var(--color-heading-gray);
+  font-family: var(--font-body-family);
   font-weight: 500;
 }
 
@@ -281,6 +284,8 @@ a.product__text {
 
 .product__text.caption-with-letter-spacing + .product__title {
   margin-top: 0;
+  color: var(--color-heading-gray);
+  font-family: var(--font-body-family);
 }
 
 .product__accordion .accordion__content {

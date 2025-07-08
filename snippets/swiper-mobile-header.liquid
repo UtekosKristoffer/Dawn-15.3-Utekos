@@ -1,23 +1,23 @@
-<div class="swiper-menu-layer">
-  <div class="swiper MenuSwiper">
-    <div class="swiper-wrapper">
+<div class='swiper-menu-layer'>
+  <div class='swiper MenuSwiper'>
+    <div class='swiper-wrapper'>
       <!-- Meny-slide -->
-      <div class="swiper-slide menu">
-        <ul class="mobile-menu">
+      <div class='swiper-slide menu'>
+        <ul class='mobile-menu'>
           {% for link in linklists['main-menu'].links %}
             <li>
-              <a href="{{ link.url }}">{{ link.title }}</a>
+              <a href='{{ link.url }}'>{{ link.title }}</a>
             </li>
           {% endfor %}
         </ul>
       </div>
 
       <!-- Content-slide (burger-ikon) -->
-      <div class="swiper-slide content">
-        <div class="menu-button">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
+      <div class='swiper-slide content'>
+        <div class='menu-button'>
+          <div class='bar'></div>
+          <div class='bar'></div>
+          <div class='bar'></div>
         </div>
       </div>
     </div>

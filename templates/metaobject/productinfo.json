@@ -1,0 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collapsible_content_Xdbg4L": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_Gfif8j": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Hollow Fiber",
+            "icon": "shirt",
+            "row_content": "<p><strong>Hollow Fiber-isolasjon</strong> er utviklet for å levere maksimal varme med minimal vekt. Hver fiber har et hult kjernekammer som effektivt fanger og holder på stillestående luft – naturens egen isolasjonsteknologi. Resultatet er et lett, luftig isolasjonsmateriale som gir imponerende varmeeffekt uten å tynge ned plagget. Hollow Fiber er i tillegg pustende, hurtigtørkende og svært komprimerbart, noe som gjør det til et ideelt valg for deg som trenger pålitelig varme i skiftende vær – enten det er under åpen himmel, på fjelltur eller i le for vinden etter en dag i aktivitet.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_G9bBap": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Shell Fabrix 20D 380T",
+            "icon": "leather",
+            "row_content": "<p><strong>Shell Fabrix 20D 380T</strong> er et avansert yttermateriale utviklet for deg som krever maksimal ytelse uten kompromiss. Med 20 denier tråd og en tettvevd 380T-konstruksjon balanserer det lav vekt, høy slitestyrke og en overflate som føles like myk som den er robust. Materialet har naturlig høy vindtetthet, noe som gjør det perfekt for skiftende forhold – enten du er på fjellet, rundt bålet eller i bevegelse gjennom byen. Takket være den ultrakompakte konstruksjonen kan plagget pakkes ned til minimal størrelse uten å miste form eller beskyttelse, og gir deg et pålitelig skall når det virkelig gjelder.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_xwc44H": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Flame Retardant Nylon DWR",
+            "icon": "fire",
+            "row_content": "<p><strong>Flame Retardant Nylon DWR</strong> kombinerer funksjon og sikkerhet i én slitesterk overflate. Stoffet er laget av flammehemmende nylon og behandlet med en <strong>DWR-finish (Durable Water Repellent)</strong> som gjør det vannavstøtende – uten å stenge for pusteevnen. Dette gir en beskyttende barriere mot både fukt og varme, uten å gå på kompromiss med komfort eller bevegelighet. Perfekt for aktiviteter der du er i nærheten av åpen ild, som ved bålet, på tur med stormkjøkken eller i utfordrende feltforhold der ekstra sikkerhet betyr noe. Når trygghet, ytelse og værbeskyttelse må fungere sammen – er dette stoffet laget for jobben.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_AcdzJ7": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Nylon Taffeta",
+            "icon": "leaf",
+            "row_content": "<p><strong>Nylon Taffeta</strong> er et ultralett, glatt og slitesterkt innerstoff som utmerker seg i tekniske dunplagg. Den tettvevde strukturen gir en myk og behagelig følelse mot huden, samtidig som den glir friksjonsfritt over andre lag – enten du er i bevegelse eller pakker plagget kompakt. Stoffet reduserer både støy og slitasje, og bidrar til optimal dunfordeling og bevarte isolasjonsegenskaper over tid.</p><p>Vi kombinerer dette innerstoffet med <strong>90 % førsteklasses dun</strong>, noe som gir enestående varme-til-vekt-forhold, mykhet og komprimerbarhet. Resultatet er et plagg som kjennes luksuriøst, fungerer i krevende forhold – og leverer der det virkelig gjelder.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Tijcri": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "GSM 130 g/m²",
+            "icon": "ruler",
+            "row_content": "<p><strong>130 GSM</strong> representerer en <strong>lett og allsidig materialvekt</strong> – perfekt for plagg som skal brukes i bevegelse, pakkes lett og fungere i lag-på-lag-system. Det gir god pusteevne og <strong>tilstrekkelig varme til mellomsesongene</strong>, samtidig som det holder vekten og pakkvolumet lavt. Et godt valg for <strong>aktive brukere i variert terreng og vær</strong></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_MCyEj4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "GSM 140 g/m²",
+            "icon": "ruler",
+            "row_content": "<p><strong>GSM 140 g/m²</strong> refererer til stoffets vekt – <em>grams per square meter</em> – og gir en viktig indikasjon på balansen mellom isolasjon, pusteevne og bevegelighet. Med en vekt på <strong>140 g/m²</strong> treffer materialet et optimalt punkt der varme og komfort møter lav vekt og fleksibilitet. Det gir tilstrekkelig isolasjon for utendørs bruk i varierende klima, samtidig som plagget bevarer en lett og ukomplisert følelse – ideelt for lag-på-lag-systemer eller som et frittstående isolasjonsplagg som ikke tynger deg ned.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_bDKXzi": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "GSM 250 g/m²",
+            "icon": "ruler",
+            "row_content": "<p><strong>250 GSM</strong> er en høyere materialvekt som gir <strong>tykkere, varmere og mer beskyttende plagg</strong>. Den ekstra massen gir kraftig isolasjon, samtidig som materialet fortsatt kan være fleksibelt og pustende når det er riktig konstruert. Perfekt for kaldere forhold eller stasjonære aktiviteter der <strong>varme og komfort prioriteres over lav vekt</strong>. Ideelt til ytterlag eller som hovedisolasjon i vinterplagg og varme overtrekksplagg.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_wqVWTx": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Fillpower 650",
+            "icon": "heart",
+            "row_content": "<p><strong>Fillpower 650</strong> angir dunets evne til å ekspandere og fange luft – noe som direkte påvirker hvor godt det isolerer. En fillpower på <strong>650</strong> betyr at én unse dun (ca. 28 gram) fyller <strong>650 kubikktommer</strong> når det er i sin naturlige, luftige tilstand. Dette gir et solid nivå av varme i forhold til vekt og volum, og regnes som <strong>premium isolasjon</strong> med høy komprimerbarhet og god holdbarhet over tid. Fillpower 650 er et ideelt valg for aktive friluftsbrukere som trenger pålitelig varme, lav vekt og lite pakkvolum – uten å ofre komfort i felt.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_7J9dPj": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Pustende PU-belegg",
+            "icon": "lightning_bolt",
+            "row_content": "<p><strong>Pustende PU-belegg</strong> (polyuretan) gir en balansert kombinasjon av værbeskyttelse og komfort. Belegget påføres innsiden av stoffet som en tynn, fleksibel film som <strong>hindrer vann i å trenge inn</strong>, samtidig som det slipper ut fukt og damp fra innsiden. Dette gir et plagg som holder deg <strong>tørr på utsiden – og komfortabel på innsiden</strong>, selv ved høy aktivitet. Sammenlignet med tradisjonelle membraner er PU-belegg ofte <strong>lettere, mer smidig og lydløst</strong>, noe som gjør det perfekt til tekniske plagg som skal bevege seg med deg – ikke mot deg.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_crnrTi": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Sherpa Fleece-fôr",
+            "icon": "snowflake",
+            "row_content": "<p><strong>Mykt og luftig Sherpa Fleece-fôr</strong> gir umiddelbar komfort og varme – med en tekstur som minner om ekte ull, men med moderne fordeler. Den dype, børstede overflaten fanger opp luft og holder på kroppsvarmen, samtidig som materialet puster og tørker raskt. Resultatet er et <strong>fôr som føles lunt og luksuriøst</strong>, uten å bli tungt eller klamt ved bruk. Sherpa Fleece passer perfekt som innerlag i plagg der <strong>komfort, isolasjon og mykhet mot huden</strong> er like viktig som ytelse i felt.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Rj3zGr": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Antipeeling",
+            "icon": "clipboard",
+            "row_content": "<p><strong>Antipeeling-behandlet</strong> materiale er utviklet for å bevare plaggets utseende og funksjon over tid. Behandlingen motvirker små nuppe-dannelser (peeling) som ofte oppstår ved friksjon og vask, og gjør at stoffet holder seg <strong>glatt, rent og teknisk stabilt</strong> – selv ved hyppig bruk. Dette gir et plagg som både ser bedre ut og varer lenger, og er spesielt viktig for isolasjonslag og innerstoffer som er i direkte kontakt med andre materialer.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_wyc3ka": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Pustende membran",
+            "icon": "check_mark",
+            "row_content": "<p><strong>Pustende membran (~3000 g/m²/24 t)</strong> sørger for at fukt slipper ut – ikke inn. Med en dampgjennomgang på omtrent <strong>3000 gram per kvadratmeter over 24 timer</strong>, gir denne membranen <strong>balansert pusteevne</strong> for moderat til aktiv bruk. Den lar overskuddsvarme og svette fordampe fra innsiden av plagget, samtidig som den holder regn, snø og vind ute. Resultatet er <strong>et mer komfortabelt mikroklima</strong> – selv når tempoet øker. Perfekt for turer, reise og daglig bruk i skiftende vær.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_FcXW3z": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Toveis YKK-glidelås",
+            "icon": "price_tag",
+            "row_content": "<p><strong>Toveis YKK-glidelås</strong> gir maksimal fleksibilitet og enkel håndtering – enten du åpner plagget <strong>nedenfra for ventilasjon</strong>, eller <strong>ovenfra for rask av- og påkledning</strong>. Glidelåsen kan betjenes både <strong>innenfra og utenfra</strong>, og gir deg full kontroll i situasjoner der bevegelighet og tilgjengelighet er viktig. Som verdensledende produsent leverer <strong>YKK</strong> kompromissløs kvalitet med jevn, pålitelig lukking – selv under krevende forhold.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_9BHDpK": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Oversized unisex-snitt",
+            "icon": "box",
+            "row_content": "<p><strong>Oversized unisex-snitt</strong> gir en romslig, komfortabel passform som passer like godt til alle kjønn. Det gir plass til lag-på-lag-kombinasjoner, bevarer bevegelighet og gir plagget et moderne, avslappet uttrykk. Enten du bruker det på fjellet, i byen eller rundt bålet, sikrer denne passformen <strong>komfort uten kompromiss – uansett kroppstype eller aktivitet</strong></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_P63K7w": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Vannsøyle på minimum 8000 mm",
+            "icon": "lock",
+            "row_content": "<p><strong>Vanntett ytterstoff</strong> med en <strong>vannsøyle på minimum 8000 mm</strong> gir solid beskyttelse mot regn, snø og gjennomtrengende fukt. Dette nivået betyr at stoffet tåler kraftig nedbør over tid uten å slippe vann gjennom – ideelt for <strong>aktive turer i vått terreng, uforutsigbart vær og lange dager ute</strong>. Kombinert med teipede sømmer og pustende konstruksjon, holder det deg <strong>tørr – uten å gå på kompromiss med komfort eller bevegelighet</strong>. Merk:Gjelder Comfyrobe.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_Gfif8j",
+        "collapsible_row_G9bBap",
+        "collapsible_row_xwc44H",
+        "collapsible_row_AcdzJ7",
+        "collapsible_row_Tijcri",
+        "collapsible_row_MCyEj4",
+        "collapsible_row_bDKXzi",
+        "collapsible_row_wqVWTx",
+        "collapsible_row_7J9dPj",
+        "collapsible_row_crnrTi",
+        "collapsible_row_Rj3zGr",
+        "collapsible_row_wyc3ka",
+        "collapsible_row_FcXW3z",
+        "collapsible_row_9BHDpK",
+        "collapsible_row_P63K7w"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "Teknologi du kan kle deg i – materialer utviklet for krevende forhold",
+        "heading": "Hvert fiber har en funksjon. Hver detalj er valgt med vilje.",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image": "shopify://shop_images/nylon_ripstop.webp",
+        "image_ratio": "adapt",
+        "desktop_layout": "image_first",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": ["collapsible_content_Xdbg4L"]
+}

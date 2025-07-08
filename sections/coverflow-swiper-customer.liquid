@@ -27,13 +27,19 @@
             {% for block in section.blocks %}
               {% if group_block_ids contains block.id %}
                 {% assign slide_index = slide_index | plus: 1 %}
-                <div class='swiper-slide slide-{{ group_id }}-{{ slide_index }}'>
+                <div
+                  class='swiper-slide slide-{{ group_id }}-{{ slide_index }}'
+                  style='
+                    background: radial-gradient(
+                      700px 900px ellipse at 50% 45% in oklab,
+                      oklch(0.362 0.1447 260.47) 20%,
+                      50%,
+                      oklch(0.5824 0.2002 256.24) 125% 125%
+                    );
+                  '
+                >
                   {% if block.settings.image %}
-                    <img
-                      src='{{ block.settings.image | image_url: width: 350 }}'
-                      alt='Produktbilde'
-                      loading='lazy'
-                    >
+                    {{ block.settings.image | image_url: width: 350 | image_tag }}
                   {% endif %}
                 </div>
               {% endif %}
@@ -74,13 +80,7 @@
                     <input type='hidden' name='id' value='{{ available_variant.id }}'>
                     <button type='submit' class='btn'>Hurtigkjøp</button>
                   </form>
-                {% endif %}
-
-                {% assign link = section.settings.page_link_url %}
-                {% if link != blank %}
-                  <a href='{{ link | escape }}' class='btn'>Lær mer</a>
-                {% else %}
-                  <button class='btn' disabled>Lær mer</button>
+                  <a href='{{ product.url | escape }}' class='btn'>Lær mer</a>
                 {% endif %}
               {% else %}
                 <p class='product-unavailable'>Utsolgt</p>
@@ -144,28 +144,22 @@
   }
 
   #section-{{ section.id }} .swiper-slide {
-    aspect-ratio: 4/5;
+    aspect-ratio: 2/3;
     border-radius: 1rem;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: oklch(0.577 0.245 27.325);
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: auto;
     will-change: transform;
     flex-direction: column;
-    align-items: flex-start;
   }
 
   #section-{{ section.id }} .swiper-slide img {
-    width: 100%;
+    width: 90%;
     height: auto;
-    aspect-ratio: 4/5;
-    object-fit: cover;
-    display: block;
+    aspect-ratio: 2/3;
+    display: flex;
+    justify-self: center;
     border-radius: inherit;
     will-change: transform;
   }

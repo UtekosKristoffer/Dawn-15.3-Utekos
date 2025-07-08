@@ -1,0 +1,493 @@
+{
+  "data": {
+    "product": {
+      "title": "Utekos Dun™",
+      "agentProducthandler": {
+        "key": "producthandler",
+        "type": "list.mixed_reference",
+        "reference": null
+      },
+      "dockProductbridge": {
+        "key": "productbridge",
+        "type": "list.metaobject_reference",
+        "references": {
+          "edges": [
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120882004216",
+                "type": "mainsource",
+                "handle": "originfunctions",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116372209912\",\"gid://shopify/Metaobject/116372046072\",\"gid://shopify/Metaobject/116371226872\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120880234744",
+                "type": "mainsource",
+                "handle": "originusage",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116373389560\",\"gid://shopify/Metaobject/116372668664\",\"gid://shopify/Metaobject/116372373752\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120880070904",
+                "type": "mainsource",
+                "handle": "origindescriptions",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116370211064\",\"gid://shopify/Metaobject/116370014456\",\"gid://shopify/Metaobject/116369948920\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120879612152",
+                "type": "mainsource",
+                "handle": "originproductcare",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116368146680\",\"gid://shopify/Metaobject/116369195256\",\"gid://shopify/Metaobject/116368605432\",\"gid://shopify/Metaobject/116122550520\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120882364664",
+                "type": "mainsource",
+                "handle": "mainsourceall",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/120882004216\",\"gid://shopify/Metaobject/120880234744\",\"gid://shopify/Metaobject/120880070904\",\"gid://shopify/Metaobject/120879612152\",\"gid://shopify/Metaobject/120599773432\",\"gid://shopify/Metaobject/120596988152\",\"gid://shopify/Metaobject/120596005112\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120596005112",
+                "type": "mainsource",
+                "handle": "origindawnmaterial",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/120152588536\",\"gid://shopify/Metaobject/120152162552\",\"gid://shopify/Metaobject/120152097016\",\"gid://shopify/Metaobject/120151900408\",\"gid://shopify/Metaobject/120151867640\",\"gid://shopify/Metaobject/120151834872\",\"gid://shopify/Metaobject/120151507192\",\"gid://shopify/Metaobject/120151441656\",\"gid://shopify/Metaobject/117100839160\",\"gid://shopify/Metaobject/116031127800\",\"gid://shopify/Metaobject/120151245048\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120596037880",
+                "type": "mainsource",
+                "handle": "originareasofusedawn",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116372373752\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120596398328",
+                "type": "mainsource",
+                "handle": "vault_sizefit_dawn",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116374077688\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120596988152",
+                "type": "mainsource",
+                "handle": "origindimensions",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116482932984\",\"gid://shopify/Metaobject/116482408696\",\"gid://shopify/Metaobject/116479754488\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120597381368",
+                "type": "mainsource",
+                "handle": "vault_functions_dawn",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116371226872\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120597774584",
+                "type": "mainsource",
+                "handle": "vault_productcare_dawn",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116368605432\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120836391160",
+                "type": "mainsource",
+                "handle": "origindawndenier",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/120151867640\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120836456696",
+                "type": "mainsource",
+                "handle": "origindawnweight",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/120151245048\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120811290872",
+                "type": "mainsource",
+                "handle": "origindawnshell",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/120151507192\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120811127032",
+                "type": "mainsource",
+                "handle": "origindawnlinning",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/120806932728\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120600002808",
+                "type": "mainsource",
+                "handle": "vault_usage_dawn",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116372373752\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120599773432",
+                "type": "mainsource",
+                "handle": "originsizefits",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116374307064\",\"gid://shopify/Metaobject/116374077688\",\"gid://shopify/Metaobject/116042334456\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120599576824",
+                "type": "mainsource",
+                "handle": "vault_dimensions_utekos_medium",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116479754488\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120599412984",
+                "type": "mainsource",
+                "handle": "vault_dimensions_utekos_small",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116482408696\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120599347448",
+                "type": "mainsource",
+                "handle": "vault_dimensions_utekos_large",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/116482932984\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            },
+            {
+              "node": {
+                "__typename": "Metaobject",
+                "id": "gid://shopify/Metaobject/120598855928",
+                "type": "mainsource",
+                "handle": "vault_properties_dawn",
+                "bridgeFields1": [
+                  {
+                    "key": "Origin",
+                    "type": "list.mixed_reference",
+                    "value": "[\"gid://shopify/Metaobject/117108801784\"]",
+                    "reference": null
+                  },
+                  {
+                    "key": "EntryID",
+                    "type": "id",
+                    "value": null,
+                    "reference": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "extensions": {
+    "cost": {
+      "requestedQueryCost": 53,
+      "actualQueryCost": 24,
+      "throttleStatus": {
+        "maximumAvailable": 2000,
+        "currentlyAvailable": 1976,
+        "restoreRate": 100
+      }
+    }
+  }
+}

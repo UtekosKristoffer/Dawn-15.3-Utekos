@@ -11,9 +11,10 @@
   "sections": {
     "forside_video_bg_WPK7jp": {
       "type": "forside-video-bg",
+      "disabled": true,
       "name": "Video med diagonalbanner",
       "settings": {
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/54a10574bf674530947c83b3aaa6864b.mp4",
+        "video_url": "",
         "campaign_heading": "Lagertømming",
         "campaign_subtext": "Siste sjanse til å sikre deg favoritten. Vi rydder plass til nye varer!",
         "campaign_link_label": "Gjør et kupp nå",
@@ -31,7 +32,7 @@
         "product_hb9ekh": {
           "type": "product",
           "settings": {
-            "bilde": "shopify://shop_images/Jente_Dun.png",
+            "bilde": "shopify://shop_images/blue_front90.webp",
             "navn": "Utekos Dun™",
             "forpris": "NOK 3290",
             "pris": "NOK 1990",
@@ -41,17 +42,17 @@
         "product_pUbHfX": {
           "type": "product",
           "settings": {
-            "bilde": "shopify://shop_images/UTEKOS_11.jpg",
-            "navn": "Utekos Special Edition™",
-            "forpris": "NOK 1490",
-            "pris": "NOK 750",
-            "lenke": "utekos-special-edition™"
+            "bilde": "shopify://shop_images/comfyrobe_behind.webp",
+            "navn": "Comfyrobe™",
+            "forpris": "NOK 1690",
+            "pris": "NOK 990",
+            "lenke": "comfyrobe"
           }
         },
         "product_QprzY4": {
           "type": "product",
           "settings": {
-            "bilde": "shopify://shop_images/DSC9394.jpg",
+            "bilde": "shopify://shop_images/dark_front90.webp",
             "navn": "Utekos Mikrofiber™",
             "forpris": "NOK 2290",
             "pris": "NOK1290",
@@ -59,13 +60,27 @@
           }
         }
       },
-      "block_order": [
-        "product_hb9ekh",
-        "product_pUbHfX",
-        "product_QprzY4"
-      ],
+      "block_order": ["product_hb9ekh", "product_pUbHfX", "product_QprzY4"],
       "settings": {
-        "page": "hva-er-utekos"
+        "page": "hva-er-utekos",
+        "picture": "shopify://shop_images/caitlinn_2048.webp",
+        "sketch_picture": "shopify://shop_images/Utekos_Skisse_Str_L_mettet.svg"
+      }
+    },
+    "utekos_cards_A3Gdxr": {
+      "type": "utekos-cards",
+      "name": "Dynamic Cards",
+      "settings": {
+        "heading": "Lagoppstilling",
+        "comfyrobe_image": "shopify://shop_images/mob_comfyfull.webp",
+        "comfyrobe_image_bg": "shopify://shop_images/fargerike_bla_svart_redigert.png",
+        "dun_image": "shopify://shop_images/UTEKOS_redigert_kr7dit.png",
+        "dun_image_bg": "shopify://shop_images/Fargekolonner_fargesterk_mobil_kfraxz.png",
+        "mikrofiber_image": "shopify://shop_images/dark_front90.webp",
+        "special_image": "shopify://shop_images/kate_widthout.png",
+        "special_image_bg": "shopify://shop_images/liggende_blad_cartoonlysebla_klar_lguvk4.png",
+        "background_color": "#b3e4f4",
+        "hide_second_image_on_mobile": false
       }
     },
     "coverflow_swiper_customer_CUNXie": {
@@ -81,31 +96,36 @@
         "slide_image_hVHM7c": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "1"
+            "image_group_id": "1",
+            "image": "shopify://shop_images/comfy_full_85.webp"
           }
         },
         "slide_image_AAmKE8": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "1"
+            "image_group_id": "1",
+            "image": "shopify://shop_images/mob_comfyopen.webp"
           }
         },
         "slide_image_QywUGg": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "1"
+            "image_group_id": "1",
+            "image": "shopify://shop_images/mb_comfyrobe_behind.webp"
           }
         },
         "slide_image_eePCBj": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "1"
+            "image_group_id": "1",
+            "image": "shopify://shop_images/comfyrobe_design.webp"
           }
         },
         "slide_image_mJpJck": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "1"
+            "image_group_id": "1",
+            "image": "shopify://shop_images/comfyrobe_design.webp"
           }
         },
         "product_group_8FwkPE": {
@@ -118,31 +138,43 @@
         "slide_image_6Kqzhq": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "2"
+            "image_group_id": "2",
+            "image": "shopify://shop_images/blue_front90.webp"
           }
         },
         "slide_image_jx8tRN": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "2"
+            "image_group_id": "2",
+            "image": "shopify://shop_images/blue_parkas87.webp"
           }
         },
         "slide_image_bNL6PY": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "2"
+            "image_group_id": "2",
+            "image": "shopify://shop_images/blue_back90.webp"
           }
         },
         "slide_image_gmx9QM": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "2"
+            "image_group_id": "2",
+            "image": "shopify://shop_images/dark_front90.webp"
+          }
+        },
+        "slide_image_XFUXCm": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "2",
+            "image": "shopify://shop_images/blue_dawn_half_85.webp"
           }
         },
         "slide_image_kaJWWt": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "2"
+            "image_group_id": "2",
+            "image": "shopify://shop_images/blue_flat.png"
           }
         },
         "product_group_tCn4zJ": {
@@ -155,31 +187,29 @@
         "slide_image_BVgyzX": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "3"
+            "image_group_id": "3",
+            "image": "shopify://shop_images/special_turkis_doll_widthout.webp"
           }
         },
         "slide_image_BW8Gxp": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "3"
+            "image_group_id": "3",
+            "image": "shopify://shop_images/khh_smiling.webp"
           }
         },
         "slide_image_77gJbV": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "3"
+            "image_group_id": "3",
+            "image": "shopify://shop_images/Kate_Special_Editon_800.webp"
           }
         },
         "slide_image_D8hHrD": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "3"
-          }
-        },
-        "slide_image_pjhRUk": {
-          "type": "slide_image",
-          "settings": {
-            "image_group_id": "3"
+            "image_group_id": "3",
+            "image": "shopify://shop_images/special_bag.webp"
           }
         },
         "product_group_6wFkwN": {
@@ -192,31 +222,43 @@
         "slide_image_pdn3h4": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "4"
+            "image_group_id": "4",
+            "image": "shopify://shop_images/dark_front90.webp"
           }
         },
         "slide_image_p43wmx": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "4"
+            "image_group_id": "4",
+            "image": "shopify://shop_images/dark_parkas85.webp"
           }
         },
         "slide_image_met9bn": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "4"
+            "image_group_id": "4",
+            "image": "shopify://shop_images/black_back_without95.webp"
           }
         },
         "slide_image_FQf7Wm": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "4"
+            "image_group_id": "4",
+            "image": "shopify://shop_images/black_flat_without.webp"
+          }
+        },
+        "slide_image_whCRiA": {
+          "type": "slide_image",
+          "settings": {
+            "image_group_id": "4",
+            "image": "shopify://shop_images/black_half_w90.webp"
           }
         },
         "slide_image_kf8BED": {
           "type": "slide_image",
           "settings": {
-            "image_group_id": "4"
+            "image_group_id": "4",
+            "image": "shopify://shop_images/black_bag.webp"
           }
         }
       },
@@ -232,18 +274,19 @@
         "slide_image_jx8tRN",
         "slide_image_bNL6PY",
         "slide_image_gmx9QM",
+        "slide_image_XFUXCm",
         "slide_image_kaJWWt",
         "product_group_tCn4zJ",
         "slide_image_BVgyzX",
         "slide_image_BW8Gxp",
         "slide_image_77gJbV",
         "slide_image_D8hHrD",
-        "slide_image_pjhRUk",
         "product_group_6wFkwN",
         "slide_image_pdn3h4",
         "slide_image_p43wmx",
         "slide_image_met9bn",
         "slide_image_FQf7Wm",
+        "slide_image_whCRiA",
         "slide_image_kf8BED"
       ],
       "name": "Your New Section",
@@ -253,22 +296,78 @@
         "show_page_link": "shopify://pages/hva-er-utekos"
       }
     },
-    "swiper_product_animation_iDwtbE": {
-      "type": "swiper-product-animation",
-      "name": "Produkt Prosjekt",
-      "settings": {}
+    "custom_liquid_pT6MBN": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     },
-    "a_material_swiper_nzfay9": {
-      "type": "a-material-swiper",
-      "name": "Material You Slider",
-      "settings": {}
+    "dev_template_ETEnyM": {
+      "type": "dev-template",
+      "disabled": true,
+      "name": "DevZone",
+      "settings": {
+        "product_to_display": "utekos-dun",
+        "color_scheme": "",
+        "battery_message": "This product can only be shipped by ground.This product can be shipped by ground or air",
+        "heading": "Tilpass din Utekos",
+        "background_color": "#b3e4f4",
+        "heading_color": "#ffffff",
+        "my_material_setting": "",
+        "materials": [],
+        "sizefit": [],
+        "dimensions": [],
+        "ProductBridge": "",
+        "ProductCare": "",
+        "tab_active_text": "#ffffff",
+        "tab_bg": "#ffffff",
+        "heading_font": "helvetica_n4",
+        "background-1": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(0, 0, 0, 1) 100%)",
+        "background-2": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(0, 0, 0, 1) 100%)",
+        "background-3": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(0, 0, 0, 1) 100%)",
+        "background-4": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(0, 0, 0, 1) 100%)",
+        "show_announcement": true,
+        "button_label": "Tilpass produkt",
+        "button_text": "#ffffff",
+        "button_link": "",
+        "button_bg": "#ff6a13",
+        "hide_second_image_on_mobile": false,
+        "enable_payment_button": false
+      }
+    },
+    "main_cart_items_K88NXn": {
+      "type": "main-cart-items",
+      "blocks": {
+        "buy_buttons_Rcxb6Q": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": ["buy_buttons_Rcxb6Q"],
+      "disabled": true,
+      "name": "Cart Items",
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "forside_video_bg_WPK7jp",
     "border_radius_section_XPLHin",
+    "utekos_cards_A3Gdxr",
     "coverflow_swiper_customer_CUNXie",
-    "swiper_product_animation_iDwtbE",
-    "a_material_swiper_nzfay9"
+    "custom_liquid_pT6MBN",
+    "dev_template_ETEnyM",
+    "main_cart_items_K88NXn"
   ]
 }

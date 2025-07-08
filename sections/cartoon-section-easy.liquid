@@ -1,99 +1,97 @@
 <style>
-
-cartoon-section-easy {
-  background-color: var(--color-utekos-dark-blue);
-  padding: 5rem 5rem;
-  position: relative;
-  justify-content: center;
-  display: flex;
-}
-
-.cartoon-title-wrapper {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: white;
-  font-family: "DIN Next Rounded LT Pro", sans-serif;
-  margin-bottom: 2rem;
-  text-align: center;
-  width: 100%;
+  cartoon-section-easy {
+    background-color: var(--color-utekos-dark-blue);
+    padding: 5rem 5rem;
+    position: relative;
+    justify-content: center;
+    display: flex;
   }
 
-.cartoon-main-wrapper {
-  display: flex;
-  justify-content: center;
+  .cartoon-title-wrapper {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    font-family: var(--font-body-family), '-apple-system','BlinkMacSystemFont', 'Segoe UI','sans-serif';
+    margin-bottom: 2rem;
+    text-align: center;
+    width: 100%;
+    }
 
-}
+  .cartoon-main-wrapper {
+    display: flex;
+    justify-content: center;
 
-.cartoon-content-container {
-  width: 100%;
-  max-width: 1200px;
-}
+  }
 
-.cartoon-image-section {
-  background-image: url({{ 'blue-leaf.png' | asset_url }});
-  background-size: cover;
-  background-position: center;
-  border-radius: 2rem;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-}
+  .cartoon-content-container {
+    width: 100%;
+    max-width: 1200px;
+  }
 
-.cartoon-rect-box {
-  width: 90%;
-  aspect-ratio: 2 / 1;
-  background-color: var(--color-cartoon-blue-rec);
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(12px);
-}
+  .cartoon-image-section {
+    background-image: url({{ 'blue-leaf.png' | asset_url }});
+    background-size: cover;
+    background-position: center;
+    border-radius: 2rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
 
-.cartoon-grid-boxes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  width: 90%;
-}
+  .cartoon-rect-box {
+    width: 90%;
+    aspect-ratio: 2 / 1;
+    background-color: var(--color-cartoon-blue-rec);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+  }
 
-.grid-boks {
-  aspect-ratio: 9 / 16;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(12px);
-  width: 100%;
-  min-height: 200px;
-}
+  .cartoon-grid-boxes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 90%;
+  }
 
-.cartoon-l {
-  background-color: var(--color-cartoon-blue-l);
-}
+  .grid-boks {
+    aspect-ratio: 9 / 16;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    width: 100%;
+    min-height: 200px;
+  }
 
-.cartoon-m {
-  background-color: var(--color-cartoon-blue-m);
-}
+  .cartoon-l {
+    background-color: var(--color-cartoon-blue-l);
+  }
 
-.cartoon-r {
-  background-color: var(--color-cartoon-blue-r);
-}
+  .cartoon-m {
+    background-color: var(--color-cartoon-blue-m);
+  }
 
+  .cartoon-r {
+    background-color: var(--color-cartoon-blue-r);
+  }
 </style>
 
-<section class="cartoon-section-easy">
-  <div class="cartoon-title-wrapper">
+<section class='cartoon-section-easy'>
+  <div class='cartoon-title-wrapper'>
     <h1>Overskrift</h1>
   </div>
 
-  <div class="cartoon-main-wrapper">
-    <div class="cartoon-content-container">
-      <div class="cartoon-image-section">
-        <div class="cartoon-rect-box"></div>
+  <div class='cartoon-main-wrapper'>
+    <div class='cartoon-content-container'>
+      <div class='cartoon-image-section'>
+        <div class='cartoon-rect-box'></div>
 
-        <div class="cartoon-grid-boxes">
-          <div class="grid-boks cartoon-l"></div>
-          <div class="grid-boks cartoon-m"></div>
-          <div class="grid-bos cartoon-r"></div>
+        <div class='cartoon-grid-boxes'>
+          <div class='grid-boks cartoon-l'></div>
+          <div class='grid-boks cartoon-m'></div>
+          <div class='grid-bos cartoon-r'></div>
         </div>
       </div>
     </div>

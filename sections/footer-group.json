@@ -13,23 +13,50 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "navigation_GmxVEr": {
+          "type": "navigation",
+          "settings": {
+            "linklist": "footer-1"
+          }
+        },
+        "navigation_hnQzay": {
+          "type": "navigation",
+          "settings": {
+            "linklist": "kj-pshjelp"
+          }
+        },
+        "navigation_paGiX7": {
+          "type": "navigation",
+          "settings": {
+            "linklist": "kundeservice"
+          }
+        },
+        "navigation_b9TJp6": {
+          "type": "navigation",
+          "settings": {
+            "linklist": "footer"
+          }
+        },
+        "text_8AVH7X": {
+          "type": "text",
+          "settings": {
+            "heading": "<p><strong>Vår visjon</strong></p>",
+            "text": "<p>Utekos utvikler allsidige plagg som gjør utendørslivet enklere, varmere og mer komfortabelt – uansett vær, årstid eller aktivitet</p>"
+          }
+        }
+      },
+      "block_order": [
+        "navigation_GmxVEr",
+        "navigation_hnQzay",
+        "navigation_paGiX7",
+        "navigation_b9TJp6",
+        "text_8AVH7X"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "copyright": "Copyright © 2025 Utekos AS. Alle rettigheter forbeholdes."
       }
     }
   },
-  "order": [
-    "footer"
-  ]
+  "order": ["footer"]
 }

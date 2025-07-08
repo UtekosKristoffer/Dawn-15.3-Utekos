@@ -237,20 +237,11 @@
           }
         }
       },
-      "block_order": [
-        "product_UD63wh",
-        "product_GzmYER",
-        "product_4thrzM"
-      ],
+      "block_order": ["product_UD63wh", "product_GzmYER", "product_4thrzM"],
       "name": "Produktkort Seksjon",
       "settings": {}
     },
-    "page_QhtdQh": {
-      "type": "page",
-      "disabled": true,
-      "name": "t:sections.page.presets.name",
-      "settings": {}
-    },
+
     "swiper_cube_DeYajF": {
       "type": "swiper-cube",
       "blocks": {
@@ -389,12 +380,7 @@
           }
         }
       },
-      "block_order": [
-        "slide_JGPMdi",
-        "slide_kKFmbb",
-        "slide_UVHUMi",
-        "slide_NzLzFW"
-      ],
+      "block_order": ["slide_JGPMdi", "slide_kKFmbb", "slide_UVHUMi", "slide_NzLzFW"],
       "name": "Swiper Cube",
       "settings": {
         "padding_top": 40,
@@ -407,7 +393,6 @@
     "banner",
     "product-grid",
     "border_radius_section_aXmdRq",
-    "page_QhtdQh",
     "swiper_cube_DeYajF",
     "original_cube_swiper_aKdkgx"
   ]

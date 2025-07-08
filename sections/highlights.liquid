@@ -1,0 +1,68 @@
+{% schema %}
+{
+  "name": "Highlights",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Generell produktinformasjon"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Undertekst"
+    },
+    {
+      "type": "metaobject_list",
+      "id": "mainsource",
+      "metaobject_type": "mainsource",
+      "label": "theSource"
+    },
+    {
+      "type": "metaobject_list",
+      "id": "vaultvariant",
+      "metaobject_type": "vaultvariant",
+      "label": "VaultVariant"
+    },
+    {
+      "type": "metaobject_list",
+      "id": "sizefit",
+      "metaobject_type": "passform",
+      "label": "Passform"
+    },
+    {
+      "type": "metaobject_list",
+      "id": "Origin",
+      "metaobject_type": "Origin",
+      "label": "Origin"
+    },
+    {
+      "type": "metaobject_list",
+      "id": "dimensions",
+      "metaobject_type": "dimensions",
+      "label": "Dimensions"
+    }
+  ]
+}
+{% endschema %}
+
+<section class='highlights'>
+  <div class='highlights-container'>
+    {% if section.settings.heading != blank %}
+      <h2 class='highlights-heading'>{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <div class='highlights-subheading'>{{ section.settings.subheading }}</div>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <div class='highlights-vaultvariant'>{{ section.settings.vaultvariant }}</div>
+    {% endif %}
+    {% if section.settings.Origin != blank %}
+      <div class='highlights-Origin'>{{ section.settings.Origin }}</div>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <div class='highlights-dimensions'>{{ section.settings.dimensions }}</div>
+    {% endif %}
+  </div>
+</section>

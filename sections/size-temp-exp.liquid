@@ -1,30 +1,33 @@
-<section class="temp-spec-section">
-  <div class="temp-spec-header">
+<section class='temp-spec-section'>
+  <div class='temp-spec-header'>
     <h2>{{ section.settings.heading }}</h2>
   </div>
-  <div class="temp-content">
+  <div class='temp-content'>
     <!-- VENSTRE: Produktbilde + tabs -->
-    <div class="temp-sketch">
-      <div class="size-tabs">
+    <div class='temp-sketch'>
+      <div class='size-tabs'>
         {% assign sizes = 'small,medium,large' | split: ',' %}
         {% for size in sizes %}
-          <button class="size-tab{% if size == 'small' %} active{% endif %}" data-image="{{ size | downcase }}">
+          <button
+            class='size-tab{% if size == 'small' %} active{% endif %}'
+            data-image='{{ size | downcase }}'
+          >
             {{ size | capitalize }}
           </button>
         {% endfor %}
       </div>
 
-      <div class="size-image">
+      <div class='size-image'>
         {% for size in sizes %}
           {% assign image_key = 'image_' | append: size %}
           {% if section.settings[image_key] %}
             <img
-              src="{{ section.settings[image_key] | image_url: width: 370 }}"
-              alt="{{ size | capitalize }} skisse"
-              class="tab-image{% unless size == 'small' %} hidden{% endunless %}"
-              data-size="{{ size }}"
-              width="370"
-              height="{{ section.settings[image_key].height | times: 370.0 | divided_by: section.settings[image_key].width | round }}"
+              src='{{ section.settings[image_key] | image_url: width: 370 }}'
+              alt='{{ size | capitalize }} skisse'
+              class='tab-image{% unless size == 'small' %} hidden{% endunless %}'
+              data-size='{{ size }}'
+              width='370'
+              height='{{ section.settings[image_key].height | times: 370.0 | divided_by: section.settings[image_key].width | round }}'
             >
           {% endif %}
         {% endfor %}
@@ -32,11 +35,11 @@
     </div>
 
     <!-- MIDT: -->
-    <div class="temp-visual">
-      <div class="insulation-tabs">
+    <div class='temp-visual'>
+      <div class='insulation-tabs'>
         {% assign types = 'down,synthetic' | split: ',' %}
         {% for type in types %}
-          <button class="insul-tab{% if type == 'down' %} active{% endif %}" data-type="{{ type }}">
+          <button class='insul-tab{% if type == 'down' %} active{% endif %}' data-type='{{ type }}'>
             {% if type == 'down' %}
               Dun
             {% else %}
@@ -47,45 +50,45 @@
       </div>
 
       <!-- Temperaturbilde som byttes med tab -->
-      <div class="insulation-image">
+      <div class='insulation-image'>
         {% if section.settings.image_down %}
           <img
-            src="{{ section.settings.image_down | image_url: width: 370 }}"
-            alt="Temperatur – Dun"
-            class="insul-img"
-            data-type="down"
-            width="370"
-            height="{{ section.settings.image_down.height | times: 370.0 | divided_by: section.settings.image_down.width | round }}"
+            src='{{ section.settings.image_down | image_url: width: 370 }}'
+            alt='Temperatur – Dun'
+            class='insul-img'
+            data-type='down'
+            width='370'
+            height='{{ section.settings.image_down.height | times: 370.0 | divided_by: section.settings.image_down.width | round }}'
           >
         {% endif %}
 
         {% if section.settings.image_synthetic %}
           <img
-            src="{{ section.settings.image_synthetic | image_url: width: 370 }}"
-            alt="Temperatur – Mikrofiber"
-            class="insul-img hidden"
-            data-type="synthetic"
-            width="370"
-            height="{{ section.settings.image_synthetic.height | times: 370.0 | divided_by: section.settings.image_synthetic.width | round }}"
+            src='{{ section.settings.image_synthetic | image_url: width: 370 }}'
+            alt='Temperatur – Mikrofiber'
+            class='insul-img hidden'
+            data-type='synthetic'
+            width='370'
+            height='{{ section.settings.image_synthetic.height | times: 370.0 | divided_by: section.settings.image_synthetic.width | round }}'
           >
         {% endif %}
       </div>
     </div>
 
     <!-- HØYRE: Tekstforklaring -->
-    <div class="temp-explainer">
-      <div class="explanation">
+    <div class='temp-explainer'>
+      <div class='explanation'>
         {% assign texts = 'Comfort,Transition,Risk' | split: ',' %}
         {% for text in texts %}
           <h4>{{ text }}</h4>
           {% assign text_key = 'text_' | append: text | downcase %}
           {{ section.settings[text_key] }}
         {% endfor %}
-        <div class="advarsel">
+        <div class='advarsel'>
           <h5>{{ section.settings.subheading_1 }}</h5>
           <a>{{ section.settings.text_1 }}</a>
         </div>
-        <div class="henvisning">
+        <div class='henvisning'>
           <x>{{ section.settings.henvisning }}</x>
         </div>
       </div>
@@ -99,6 +102,8 @@
      font-family: var(--font-body-family), sans-serif);
      background: #F5F3EF;
      width: 100%;
+     border-radius: 40px;
+     margin-top: -100px;
    }
 
    .temp-spec-section h2 {
@@ -156,7 +161,6 @@
      background: transparent;
      place-self: center;
      padding-top: 3.3rem;
-     font-family: var(--font-alt-family);
      font-style: normal;
      font-weight: normal;
    }
@@ -169,7 +173,6 @@
      cursor: pointer;
      font-size: 1.6rem;
      background: transparent;
-     font-family: var(--font-alt-family);
      font-style: normal;
      font-weight: normal;
    }
@@ -179,7 +182,6 @@
      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
      background-color: #eaeaea;
      border-radius: 2rem;
-     font-family: var(--font-alt-family);
      font-style: normal;
    }
    /* TEKSTBLOKK HØYRE */
@@ -193,7 +195,7 @@
 
      .explanation {
        padding: 0 0;
-       font-family: var(--font-alt-family);
+
        font-style: normal;
        font-weight: normal;
        height: 100%;
@@ -204,7 +206,6 @@
      margin: 1rem 0 0.3rem;
      color: #1D1D1D;
      font-weight: 600;
-     font-family: var(--font-alt-family);
      font-style: normal;
      font-weight: normal;
    }
@@ -214,7 +215,6 @@
      margin-top: 0rem !important;
      font-size: 1.4rem;
      color: #1D1D1D;
-     font-family: var(--font-alt-family);
      font-style: normal;
      font-weight: normal;
    }
@@ -222,8 +222,6 @@
    .explanation h5 {
     color: rgb(220, 38, 38);
     font-size: 1.1rem;
-    font-family: var(--font-alt-family);
-    font-style: normal;
     font-weight: 500;
     margin-bottom: 0.3rem;
     margin-top: 2rem;
@@ -264,7 +262,6 @@
      background: transparent;
      padding-top: 3rem;
      padding-left: 1rem;
-     font-family: var(--font-alt-family);
      font-style: normal;
      font-weight: normal;
    }
@@ -277,7 +274,6 @@
      cursor: pointer;
      font-size: 1.6rem;
      background: transparent;
-     font-family: var(--font-alt-family);
      font-style: normal;
      font-weight: normal;
    }
@@ -287,7 +283,6 @@
      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
      background-color: #eaeaea;
      border-radius: 2rem;
-     font-family: var(--font-alt-family);
      font-style: normal;
    }
 

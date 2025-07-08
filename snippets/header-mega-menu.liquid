@@ -6,14 +6,14 @@
 {% endcomment %}
 
 <nav
-  class='header__inline-menu{% unless request.page_type == 'index' %} header__inline-menu--dark{% endunless %}'
+  class='header__inline-menu {% unless request.page_type == 'index' %} header__inline-menu--dark accent-amber-100{% endunless %}'
 >
   <ul class='list-menu list-menu--inline' role='list'>
     {%- for link in section.settings.menu.links -%}
       <li>
         {%- if link.links != blank -%}
           <header-menu>
-            <details id='Details-HeaderMenu-{{ forloop.index }}' class='mega-menu'>
+            <details id='Details-HeaderMenu-{{ forloop.index }}' class='mega-menu md:flex !hidden'>
               <summary
                 id='HeaderMenu-{{ link.handle }}'
                 class='header__menu-item list-menu__item link focus-inset'

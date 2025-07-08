@@ -1,0 +1,172 @@
+{%- assign swatch_option_name = 'Farge' -%}
+{%- assign swatch_option_object = product.options_with_values
+  | where: 'name', swatch_option_name
+  | first
+-%}
+
+{% if swatch_option_object %}
+  <fieldset
+    class='color-options-container flex flex-row flex-wrap gap-4 py-4'
+    role='radiogroup'
+    aria-labelledby='color-selection-heading-{{ section.id }}'
+  >
+    <legend class='sr-only' id='color-selection-heading-{{ section.id }}'>Velg farge</legend>
+
+    {% for variant in product.variants %}
+      {% assign vault = variant.metafields.bridgeFor.Varianthandler.value %}
+      {% assign swatch_name = vault.swatch_name.value %}
+      {% assign swatch_handle = vault.swatch_handle.value | handle %}
+      {% assign swatch_color = vault.background_color.value %}
+      {%- assign swatch_index = swatch_option_object.position | minus: 1 -%}
+
+      {% assign input_id = 'option-color-'
+        | append: forloop.index
+        | append: '-'
+        | append: section.id
+      %}
+
+      <label
+        for='{{ input_id }}'
+        class='color-label--{{ swatch_handle }} flex flex-col items-center gap-y-2 cursor-pointer group'
+      >
+        <input
+          type='radio'
+          name='options[{{ swatch_option_object.name | escape }}]'
+          id='{{ input_id }}'
+          value='{{ variant.options[swatch_index] }}'
+          class='sr-only peer product-option-input'
+          data-option-index='option{{ swatch_option_object.position }}'
+          {% if swatch_option_object.selected_value == variant.options[swatch_index] %}
+            checked
+          {% endif %}
+        >
+        <span
+          class='color-swatch-dot w-10 h-10 rounded-full border border-gray-300 peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-black transition-all'
+          style='background-color: {{ swatch_color }};'
+          aria-label='{{ swatch_name }}'
+        ></span>
+        <span class='color-swatch-name-label text-sm text-center'>
+          {{ swatch_name }}
+        </span>
+      </label>
+    {% endfor %}
+  </fieldset>
+{% endif %}
+{ "data": { "metaobject": { "id": "gid://shopify/Metaobject/120629723384", "type": "vaultvariant",
+"displayName": "Utekos™ Vargnatt Mikrofiber Størrelse M", "handle": "vaultvariantvargnattmicro",
+"fields": [ { "key": "vault_variant_id", "type": "id", "value": "42903231004920", "reference": null
+}, { "key": "filter_key", "type": "id", "value": "vargnatt_micro_m", "reference": null }, { "key":
+"linked_product_id", "type": "id", "value": null, "reference": null }, { "key": "title", "type":
+"single_line_text_field", "value": "Utekos™ Vargnatt Mikrofiber Størrelse M", "reference": null },
+{ "key": "images", "type": "list.file_reference", "value":
+"[\"gid://shopify/MediaImage/36996672159992\",\"gid://shopify/MediaImage/36996671701240\",\"gid://shopify/MediaImage/36996673569016\",\"gid://shopify/MediaImage/36996674060536\",\"gid://shopify/MediaImage/36996674126072\",\"gid://shopify/MediaImage/36996673503480\",\"gid://shopify/MediaImage/36996674093304\",\"gid://shopify/MediaImage/36996672946424\",\"gid://shopify/MediaImage/36996671734008\"]",
+"reference": null }, { "key": "mobile_images", "type": "list.file_reference", "value":
+"[\"gid://shopify/MediaImage/36996674715896\",\"gid://shopify/MediaImage/36996674617592\",\"gid://shopify/MediaImage/36996674650360\",\"gid://shopify/MediaImage/36996674683128\",\"gid://shopify/MediaImage/36996674552056\",\"gid://shopify/MediaImage/36996674781432\",\"gid://shopify/MediaImage/36996674093304\",\"gid://shopify/MediaImage/36996674748664\",\"gid://shopify/MediaImage/36996679270648\"]",
+"reference": null }, { "key": "color_label", "type": "single_line_text_field", "value": "Vargnatt",
+"reference": null }, { "key": "background_color", "type": "multi_line_text_field", "value":
+"radial-gradient(50px 15px ellipse at 50% 54% in oklab,oklch(0.7 0.1996 44.67) 0%, oklch(0.03 0.021
+264.05) 125%);", "reference": null }, { "key": "background_color_unselected_variants", "type":
+"multi_line_text_field", "value": "radial-gradient(40px 200px ellipse at 50% 105% in oklab,
+oklch(0.7 0.1996 44.67) 1%, oklch(26% 0.12 273) 50%);", "reference": null }, { "key":
+"swatch_color_unselected_variants", "type": "multi_line_text_field", "value": "oklch(0.1807 0.117
+266.28);", "reference": null }, { "key": "swatch_color_variant", "type": "multi_line_text_field",
+"value": "oklch(0.0304 0.021 264.05);", "reference": null }, { "key": "tags", "type":
+"multi_line_text_field", "value":
+"unisex\nutekos\nfriluftsliv\ncamping\nbobil\nutendørsbekledning\nvinter\nkvalitet\nnyhet\nfjell\nmørk\nmikrofiber
+\ndyrefri \ndunfri \nvegansk \nsyntetisk \npakkbar \ndunalternativ \nvarmeplagg \nkomfortplagg
+\nutendørskåpe \nmultiplagg \nvinterkåpe \nisolasjonsplagg \nallvær \nvannavvisende \nhytteplagg
+\ntribunekåpe \ntermokåpe \nbålkåpe \nturkomfort \nvinterkos \nbobilvennlig \nuteliv
+\nsoveposeplagg\n", "reference": null }, { "key": "description", "type": "rich_text_field", "value":
+"{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Lettvekt
+møter varme i Utekos Mikrofiber™ – det perfekte alternativet for deg som ønsker allsidigheten til
+Utekos-serien uten dun. Denne modellen leverer \"},{\"type\":\"text\",\"value\":\"funksjonalitet og
+komfort uten kompromisser\",\"bold\":true},{\"type\":\"text\",\"value\":\". Med en smart syntetisk
+fylling av hulfiber imiterer Utekos Mikrofiber følelsen av dun, samtidig som den har sine egne
+fordeler: Den beholder isolasjonsevnen selv om den blir fuktig, tørker raskt etter bruk, og er et
+godt valg for allergikere eller de som foretrekker veganske materialer. Plagget føles robust, men er
+overraskende lett – en innovativ konstruksjon som gir deg stor bevegelsesfrihet på
+tur.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Akkurat som sin
+dunfylte søskenmodell, er Utekos Mikrofiber et
+\"},{\"type\":\"text\",\"value\":\"flerbrukstalent\",\"bold\":true},{\"type\":\"text\",\"value\":\".
+Du kan gå fra å vandre i skogen til å sove under åpen himmel uten å bytte utstyr – denne jakken
+forvandles nemlig til en sovepose på sekunder. Det vannavvisende og flammehemmende yttermaterialet
+beskytter deg mot både yr og gnister fra bålet, mens den lune hulfiberpolstringen holder deg varm
+hele veien. Samtidig slipper du å bekymre deg for dun som klapper sammen i fuktig vær; Utekos
+Mikrofiber takler skiftende forhold med
+glans.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Velg Utekos
+Mikrofiber når du skal ut på eventyr og trenger et pålitelig, moderne isolasjonsplagg. Enten det er
+en våt høstkveld på jaktpost, en råkald morgen i hengekøya eller bare en tur ut for å nyte
+nordlyset, vil denne lettvekteren sørge for at du holder varmen. Den pakkes enkelt ned i sekken og
+tar minimal plass. Med sin behagelige passform og smarte materialvalg leverer Utekos Mikrofiber
+robusthet og allsidighet for alle dine
+utendørsaktiviteter.\"}]},{\"type\":\"heading\",\"level\":3,\"children\":[{\"type\":\"text\",\"value\":\"\"}]}]}",
+"reference": null }, { "key": "related_products", "type": "list.product_reference", "value":
+"[\"gid://shopify/Product/8036341448952\",\"gid://shopify/Product/7710040391928\",\"gid://shopify/Product/7710043439352\"]",
+"reference": null }, { "key": "materials", "type": "rich_text_field", "value":
+"{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Fôrstoff:
+\",\"bold\":true},{\"type\":\"text\",\"value\":\"Premium 90% Tafftea Dun
+\\n\"},{\"type\":\"text\",\"value\":\"Skallstoff\",\"bold\":true},{\"type\":\"text\",\"value\":\":
+downproof nylon taft
+DWR\\n\"},{\"type\":\"text\",\"value\":\"Belegg:\",\"bold\":true},{\"type\":\"text\",\"value\":\"
+Durable Water Repellent (inkl. flammehemming)
+\\n\"},{\"type\":\"text\",\"value\":\"Skallstoff:\",\"bold\":true},{\"type\":\"text\",\"value\":\"
+downproof nylon taft DWR \\n\"},{\"type\":\"text\",\"value\":\"Trådtetthet:
+\",\"bold\":true},{\"type\":\"text\",\"value\":\"380T
+\\n\"},{\"type\":\"text\",\"value\":\"Trådtykkelse:\",\"bold\":true},{\"type\":\"text\",\"value\":\"
+20D \\n\"},{\"type\":\"text\",\"value\":\"Fyll:\",\"bold\":true},{\"type\":\"text\",\"value\":\" 400
+g (strørrelse
+large)\\n\"},{\"type\":\"text\",\"value\":\"Vekt:\",\"bold\":true},{\"type\":\"text\",\"value\":\"
+ca. 800g\\n\"},{\"type\":\"text\",\"value\":\"Belegg:
+\",\"bold\":true},{\"type\":\"text\",\"value\":\"Durable Water Repellent (inkl.
+flammehemming)\\n\"},{\"type\":\"text\",\"value\":\"Glidelåser:\",\"bold\":true},{\"type\":\"text\",\"value\":\"
+YKK toveis
+glidelås\\n\"},{\"type\":\"text\",\"value\":\"Kompresjonspose:\",\"bold\":true},{\"type\":\"text\",\"value\":\"
+Kompresjonspose i robust nylon\"}]}]}", "reference": null }, { "key": "functions", "type":
+"rich_text_field", "value":
+"{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"•
+3-i-1-design (parkas / sovepose / heldrakt) \\n• Premium 90 % dun (650 FP) \\n• Beskyttet av et
+flammehemmende ytre i DWR-behandlet \\\"20D 380T Nylon Tafftea\\\"\\n• Toveis YKK-glidelås på
+brystet for ventilasjon eller å gå inn/ut \\n• Justerbar hette med isolasjon\\n• Snorstramming i liv
+for å tilpasse passform og stenge kulden ute\\n• Dype fleeceforede frontlommer \\n• Elastiske
+mansjetter på håndledd med snøstopper \\n• Medfølgende kompresjonspose minimerer volumet og plass i
+sekken\\n• Trådtetthet på 380D for optimal balanse mellom vekt, komfort og vind- og
+vannmostand\"}]}]}", "reference": null }, { "key": "length", "type": "dimension", "value":
+"{\"value\":170.0,\"unit\":\"MILLIMETERS\"}", "reference": null }, { "key": "center_to_wrist",
+"type": "dimension", "value": "{\"value\":85.0,\"unit\":\"MILLIMETERS\"}", "reference": null }, {
+"key": "flat_width", "type": "dimension", "value": "{\"value\":66.0,\"unit\":\"MILLIMETERS\"}",
+"reference": null }, { "key": "storage_and_maintenance", "type": "rich_text_field", "value":
+"{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Maskinvask
+på maks 30°C: \",\"bold\":true},{\"type\":\"text\",\"value\":\"Bruk mild
+såpe.\\n\"},{\"type\":\"text\",\"value\":\"Må ikke blekes.\\nMå ikke tørkes i tørketrommel:
+\",\"bold\":true},{\"type\":\"text\",\"value\":\"La den heller lufttørke (noe den gjør
+raskt).\\n\"},{\"type\":\"text\",\"value\":\"Må ikke renses.\\nMå ikke
+strykes.\\nViktig:\",\"bold\":true},{\"type\":\"text\",\"value\":\" Oppbevares tørt. Materialet vil
+absorbere fuktighet under normal bruk, så sørg for at den tørkes godt etter bruk i fuktige
+omgivelser. For lengre lagring anbefales det å oppbevare plagget ukomprimert (hengende eller løst
+foldet) for å bevare loft og form. Vask kun når nødvendig.\"}]}]}", "reference": null }, { "key":
+"size_fit", "type": "rich_text_field", "value":
+"{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Som
+Utekos Dun™, har Mikrofiber-versjonen en\"},{\"type\":\"text\",\"value\":\"romslig, unisex og
+tilpasningsdyktig passform\",\"bold\":true},{\"type\":\"text\",\"value\":\". Designet for å være
+lett å trekke over andre klær og gi god bevegelsesfrihet. Snorstrammingene lar deg justere
+passformen for komfort, uansett hvordan du velger å bruke plagget. Les mer om nøyaktige dimensjoner
+på...\"}]}]}", "reference": null }, { "key": "properties", "type": "rich_text_field", "value": null,
+"reference": null }, { "key": "usage", "type": "rich_text_field", "value":
+"{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"•
+Campingtur\\n• Aktiv vandring\\n• Isbading\\n• I hengekøye\\n• På båttur\\n• Som sovepose\\n•
+Generelt friluftsbruk\\n• Jakt\\n• Fisking\\n• Isfiske\\n• Topptur på ski\\n• Fjellsport\\n•
+Isklatring\\n• Bobilferie\\n• Telttur\\n• Fotooppdrag i kulden\\n• Som din nye \\\"kosejakke\\\" på
+terrassen eller hytten\\n• Seiling\\n• Skitur\\n• Pauser og bålkos\\n• Som tilskuer på kalde
+tribuner\"}]}]}", "reference": null }, { "key": "various_descritive_texts", "type":
+"rich_text_field", "value":
+"{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Din
+egen fantasi setter begrensningene. Ideel når rask tørketid og lav vekt er viktig. Bruk den på våte
+fotturer, padleturer, i kystnære strøk med mye fuktighet, eller når du vet at plagget kan bli utsatt
+for regn eller fuktighet. Den er også perfekt for reiser der du trenger en allsidig jakke som tørker
+raskt over natten. Super for festivaler og utendørs arrangementer, der du kan holde deg varm utover
+kvelden. Like fin å krype inn i på hytteterrassen en kjølig kveld som å ha rundt kroppen ved
+morgengry når du tar kaffekoppen ute.\"}]}]}", "reference": null }, { "key":
+"swatch_hexcolor_for_variant", "type": "color", "value": "#000001", "reference": null }, { "key":
+"swatch_hexcolor_for_unselected_variant", "type": "color", "value": "#020244", "reference": null } ]
+} }, "extensions": { "cost": { "requestedQueryCost": 3, "actualQueryCost": 3, "throttleStatus": {
+"maximumAvailable": 2000, "currentlyAvailable": 1997, "restoreRate": 100 } } } }

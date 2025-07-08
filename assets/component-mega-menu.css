@@ -9,15 +9,16 @@ details.mega-menu {
   position: relative;
   z-index: 400;
   opacity: 1;
+  width: 100vw;
 }
 
 /* Dropdown-innhold */
 .mega-menu__content {
   position: absolute;
-  top: 100%;
-  left: -55rem;
-  right: 0;
-  width: 125vw;
+  top: 81%;
+  left: -100rem;
+  right: -100rem;
+  width: 300rem;
   z-index: 1;
   background-color: black;
   color: white;
@@ -41,7 +42,7 @@ details.mega-menu {
 }
 
 .mega-menu__content > :first-child {
-  padding-left: 56rem;
+  padding-left: 101.8rem;
 }
 
 .mega-menu[open] > .mega-menu__content {
@@ -119,16 +120,19 @@ summary.header__menu-item span {
 }
 
 /* --DARK-- */
-.header {
+.header .dark {
   top: 0;
   left: 0;
-  width: 100vh;
+  width: 100%;
   height: fit-content;
   position: relative;
-  padding: 0px 90px;
+  padding: 0rem;
   position: relative;
   z-index: 400;
   opacity: 1;
+  justify-self: center;
+  place-self: center;
+  margin: 0rem 0rem;
 }
 
 .header__inline-menu--dark .header__menu-item span,
@@ -138,7 +142,7 @@ summary.header__menu-item span {
 
 .header:has(details.mega-menu[open]) .header__menu-item,
 .header:has(details.mega-menu[open]) .header__menu-item span {
-  color: white !important;
+  color: white;
 }
 
 /* Default: hvit logo */

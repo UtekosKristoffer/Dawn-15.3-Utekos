@@ -14,51 +14,69 @@
       "label": "Undertekst",
       "default": "<p><strong>Kontakt oss</strong><br><br>Har du spørsmål, ønsker eller tilbakemeldinger? Vi hører gjerne fra deg!<br><br>Fyll ut skjemaet nedenfor, så kontakter vi deg så snart vi har mulighet – som oftest innen én virkedag.<br><br>Du er også velkommen til å ta kontakt direkte:<br>📞 <strong>Telefon:</strong> +47 40 21 63 43<br>✉️ <strong>E-post:</strong> <a href=\"mailto:info@utekos.no\">info@utekos.no</a></p>"
     }
+  ],
+  "presets": [
+    {
+      "name": "Kontaktskjema",
+      "category": "Produktinformasjon"
+    }
   ]
 }
 {% endschema %}
 
-<section class="hen-clean-section">
-  <div class="hen-container">
+<section class='hen-clean-section'>
+  <div class='hen-container'>
     {% if section.settings.heading != blank %}
-      <h2 class="hen-heading">{{ section.settings.heading }}</h2>
+      <h2 class='hen-heading'>{{ section.settings.heading }}</h2>
     {% endif %}
 
     {% if section.settings.subheading != blank %}
-      <div class="hen-subheading">{{ section.settings.subheading }}</div>
+      <div class='hen-subheading'>{{ section.settings.subheading }}</div>
     {% endif %}
 
-    <form method="post" action="/contact#form_area" id="form_area" accept-charset="UTF-8" class="form-wrapper">
-      <input type="hidden" name="form_type" value="contact">
-      <input type="hidden" name="utf8" value="✓">
+    <form
+      method='post'
+      action='/contact#form_area'
+      id='form_area'
+      accept-charset='UTF-8'
+      class='form-wrapper'
+    >
+      <input type='hidden' name='form_type' value='contact'>
+      <input type='hidden' name='utf8' value='✓'>
 
-      <div class="form-group">
-        <label for="FormName">Navn</label>
-        <input type="text" id="FormName" name="contact[name]" placeholder="Fullt navn" required>
+      <div class='form-group'>
+        <label for='FormName'>Navn</label>
+        <input type='text' id='FormName' name='contact[name]' placeholder='Fullt navn' required>
       </div>
 
-      <div class="form-group">
-        <label for="FormPhone">Telefonnummer</label>
-        <input type="tel" id="FormPhone" name="contact[phone]" placeholder="+47 000 00 000">
+      <div class='form-group'>
+        <label for='FormPhone'>Telefonnummer</label>
+        <input type='tel' id='FormPhone' name='contact[phone]' placeholder='+47 000 00 000'>
       </div>
 
-      <div class="form-group">
-        <label for="FormEmail">E-post</label>
-        <input type="email" id="FormEmail" name="contact[email]" placeholder="navn@eksempel.com" required>
+      <div class='form-group'>
+        <label for='FormEmail'>E-post</label>
+        <input
+          type='email'
+          id='FormEmail'
+          name='contact[email]'
+          placeholder='navn@eksempel.com'
+          required
+        >
       </div>
 
-      <div class="form-group">
-        <label for="FormMessage">Kommentar</label>
+      <div class='form-group'>
+        <label for='FormMessage'>Kommentar</label>
         <textarea
-          rows="5"
-          id="FormMessage"
-          name="contact[body]"
-          placeholder="Skriv din melding her..."
+          rows='5'
+          id='FormMessage'
+          name='contact[body]'
+          placeholder='Skriv din melding her...'
           required
         ></textarea>
       </div>
 
-      <button type="submit" class="form-button">Send inn</button>
+      <button type='submit' class='form-button'>Send inn</button>
     </form>
   </div>
 </section>
@@ -106,13 +124,11 @@
     margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
-    font-family: var(--font-alt-family) !important;
   }
 
   .form-wrapper label {
     margin-bottom: 0.5rem;
     color: rgb(29, 29, 29);
-    font-family: var(--font-alt-family) !important;
     font-weight: normal !important;
     font-style: normal;
     font-size: 1.2rem !important;
@@ -124,7 +140,6 @@
     border: 1px solid rgb(29, 29, 29);
     border-radius: 0.6rem;
     font-size: 1.5rem;
-    font-family: var(--font-alt-family) !important;
     font-weight: normal !important;
     font-style: normal;
   }
@@ -143,9 +158,7 @@
     border-radius: 0.6rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-family: var(--font-alt-family) !important;
-    font-weight: normal !important;
-    font-style: normal;
+    font-weight: normal;
   }
 
   .form-button:hover {

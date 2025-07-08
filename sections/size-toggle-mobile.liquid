@@ -1,16 +1,20 @@
-<div class="size-chooser-wrapper">
-  <section id="mobile-toggle-section" class="size-chooser">
-    <h2 class="size-heading">{{ section.settings.heading }}</h2>
+<div class='size-chooser-wrapper'>
+  <section id='mobile-toggle-section' class='size-chooser'>
+    <h2 class='size-heading'>{{ section.settings.heading }}</h2>
 
-    <div class="mobile-toggle-tabs">
-      <button onclick="switchImage(1)" class="size-tab active">{{ section.settings.tab_1 }}</button>
-      <button onclick="switchImage(2)" class="size-tab">{{ section.settings.tab_2 }}</button>
-      <button onclick="switchImage(3)" class="size-tab">{{ section.settings.tab_3 }}</button>
+    <div class='mobile-toggle-tabs'>
+      <button onclick='switchImage(1)' class='size-tab active'>{{ section.settings.tab_1 }}</button>
+      <button onclick='switchImage(2)' class='size-tab'>{{ section.settings.tab_2 }}</button>
+      <button onclick='switchImage(3)' class='size-tab'>{{ section.settings.tab_3 }}</button>
     </div>
 
-    <div class="size-image-wrapper">
+    <div class='size-image-wrapper'>
       {% if section.settings.image_1 %}
-        <img id="productImage" src="{{ section.settings.image_1 | img_url: 'master' }}" alt="Skisse">
+        <img
+          id='productImage'
+          src='{{ section.settings.image_1 | img_url: 'master' }}'
+          alt='Skisse'
+        >
       {% endif %}
     </div>
   </section>
@@ -77,8 +81,8 @@
     max-width: 100%;
     height: auto;
   }
-.size-chooser-wrapper{
-  display: none;
+  .size-chooser-wrapper {
+    display: none;
   }
 {% endstyle %}
 

@@ -1,16 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-  if (document.querySelector('.CubeSwiper')) {
-    window.initCubeSwiper();
-  }
-
-  if (document.querySelector('.CoverflowSwiper')) {
-    window.initCoverflowSwiper();
-  }
-
-  if (document.querySelector('.product-slider')) {
-    window.initProductSlider();
-  }
-});
+//@ts-nocheck
 
 function getFocusableElements(container) {
   return Array.from(
@@ -1401,5 +1389,6 @@ class CartPerformance {
     const endMarker = performance.mark(`${metricName}:end`);
 
     performance.measure(benchmarkName, `${metricName}:start`, `${metricName}:end`);
+    document.addEventListener('DOMContentLoaded', loadPurchaseHandler);
   }
 }

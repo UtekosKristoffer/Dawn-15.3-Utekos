@@ -1,0 +1,661 @@
+<header class='intro w-full mt-20 max-sm:mx-4 md:mt-32 grid grid-cols-2'>
+  <div class='product-preview-header' id='product-title-{{ section.id }}'>
+    <h1>{{ product.title | default: 'Utekos' }}</h1>
+    <h2 class='product-preview-subtext md:mb-12 text-2xl'>Designet for eventyr</h2>
+  </div>
+  <div
+    id='Price-Per-Item'
+    data-section-id='{{ section.id }}'
+    data-variant-id='{{ product.id }}'
+    class='product-preview__price-per-item justify-self-end max-sm:mr-6 w-[75%] md:w-[33%]'
+  >
+    <div class='info-card-pricing grid grid-rows-2 gap-y-3' id='InfoCardPricing'>
+      <dl
+        class='price-card grid grid-cols-2 py-2 px-4 bg-finance-white rounded-2xl'
+        id='PriceCard'
+      >
+        <dt class='info-card-term-price flex flex-row' data-product-price-label>Pris</dt>
+        <dd
+          class='price-per-item'
+          {% if variant_price %}
+            {{ variant_price | money_with_currency }}
+          {% else %}
+            {{ product.price | money_with_currency }}
+          {% endif %}
+          data-product-price
+        ></dd>
+      </dl>
+    </div>
+    <div class='grid grid-cols-2 py-2 px-4 bg-finance-white rounded-2xl '>
+      <dl
+        class='info-card-term-compare-price'
+        data-compare-price-label
+      ></dl>
+      Førpris
+      <dt
+        class='info-card-value-compare-price line-through'
+        data-compare-price
+        id='product-preview-compare-price'
+        {%- if variant_price_compare -%}
+          {{ variant_price_compare | money_with_currency }}
+        {%- else -%}
+          {{ product.compare_at_price | money_with_currency }}
+        {% endif %}
+      ></dt>
+    </div>
+  </div>
+</header>
+<div class='product-preview__main-grid md:justify-between space-x-12 grid grid-cols-1 md:grid-cols-[70%_30%]'>
+  <div
+    class='product-preview__image-column h-auto'
+  >
+    <div
+      class='swiper-sticky-wrapper bg-finance-white md:h-[500px] md:!sticky max-w-[80%] md:top-[100px] mx-auto flex md:rounded-3xl'
+      role='region'
+      aria-label='Produktbilder'
+    >
+      <div
+        class='swiper product-details-swiper bg-opacity-0 bg-transparent'
+        id='mainSwiper'
+      >
+        <div
+          class='swiper-wrapper bg-opacity-0 bg-transparent'
+          id='mainSwiperWrapper'
+          data-swiper-wrapper
+        ></div>
+        <div
+          class='swiper-button-next hover:bg-[#f7e7ce]'
+          aria-label='{{ 'general.slider.next_slide' | t }}'
+          role='button'
+          type='button'
+        ></div>
+      </div>
+      <div
+        class='swiper-button-prev hover:bg-[#f7e7ce]'
+        aria-label='{{ 'general.slider.next_slide' | t }}'
+        role='button'
+        type='button'
+      ></div>
+    </div>
+  </div>
+  <div class='product-preview__options-column-positioner flex flex-col mx-auto md:w-[87%] md:justify-self-end w-full mt-42 md:basis-auto'>
+    <div class='product-preview__options-column-content w-full flex flex-col md:justify-self-end justify-items-stretch md:justify-end'>
+      <div class='product-preview__options-grid-container flex flex-col justify-items-stretch'>
+        {%- for option in product.options_with_values -%}
+          {%- case option.name -%}
+            {% when 'Størrelse' %}
+              <fieldset
+                class='product-preview__options-container'
+                role='radiogroup'
+                aria-labelledby='size-selection-fieldset-{{ section.id }}'
+              >
+                <legend
+                  id='OptionContainerTitle'
+                  class='product-preview__size-options-legend mb-2'
+                  aria-label='{{ option.name }}'
+                  tabindex='-1'
+                >
+                  <label
+                    for='product-option-input'
+                    class='product-preview__option-buttons'
+                  >
+                    {{ option.name }}
+                  </label>
+                </legend>
+                <span class='as-subheading'>Hvilken passer deg best?</span>
+                {%- for option_value in option.values -%}
+                  <input
+                    type='radio'
+                    id='size-choices-radio'
+                    class='product-option-input sr-only'
+                    name='product-option-input'
+                    value='{{ option_value | escape }}'
+                    aria-label='{{ option_value }}'
+                    {% if option_value.selected %}
+                      checked
+                    {% endif %}
+                    {% unless option_value.available %}
+                      disabled
+                    {% endunless %}
+                  >
+                  <label
+                    for='{{ option.name }}'
+                    class='product-preview__option-buttons size-option-entry'
+                    type='button'
+                  >
+                    {{ option_value }}
+
+                    {% if vault_variant.length != blank %}
+                      <ul class='product-preview__measurement-details tracking-tight text-xl text-right text-heading-gray pr-4'>
+                        <li>Lengde til hals: {{ vault_variant.length | metafield_tag }}</li>
+                        <li>
+                          Senter til ermetupp:
+                          {{ vault_variant.center_to_wrist | metafield_tag }}
+                        </li>
+                        <li>Flatmål (bunn): {{ vault_variant.flat_width | metafield_tag }}</li>
+                      </ul>
+                    {% endif %}
+                  </label>
+                {% endfor %}
+              </fieldset>
+              <details>
+                <a
+                  href='https://www.utekos.no/pages/utekos/storrelsesguide-xpc31mav'
+                  target='_blank'
+                  rel='noopener'
+                  aria-label='Åpne størrelsesguide i ny fane'
+                  class='group p-4 bg-finance-white rounded-2xl mt-5 w-full justify-between flex flex-row gap-x-2 transition'
+                >
+                  <h2
+                    id='size-guide'
+                    class='info-title md:text-xl text-heading-gray tracking-normal size-full py-8 font-body-family font-base cursor-pointer text-lg'
+                  >
+                    <span class='text-link-blue'>
+                      {{ 'products.product.size_guide_label' | t }}
+                    </span>
+                  </h2>
+                  <div class='rounded-full size-6 border flex items-center justify-center group-hover:bg-black mr-2 transition'>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentcolor'
+                      class='w-6 h-6 p-1 group-hover:stroke-white '
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M12 4v16m8-8H4" />
+                    </svg>
+                  </div>
+                </a>
+              </details>
+            {% when 'Farge' %}
+              {%- for option_value in option.values -%}
+                {% assign color_slug = option_value | strip | downcase | handleize %}
+                {% assign label_class = 'color-label--' | append: color_slug %}
+                {% assign dot_class = 'color-dot--' | append: color_slug %}
+              {% endfor %}
+              <fieldset class='product-preview__color-selector-container text-left items-center size-full md:mt-64'>
+                <h1
+                  class='product-preview__color-options-intro w-full text-subtext-gray mb-4 md:mb-8 font-base text-3xl tracking-normal'
+                  tabindex='-1'
+                  aria-labelledby='color-selection-heading'
+                  id='ColorSelectorTitle'
+                >
+                  <legend class='sr-only' id='color-selection-heading'>
+                    {{ option.name | escape }}:
+                    <span data-selected-value>{{ option.name }}</span>
+                  </legend>
+                </h1>
+                <h2 class='product-preview__color-selector-intro-main text-heading-gray size-fit'>
+                  Hvilken passer stilen – og stedet?
+                </h2>
+
+                {%- for option_value in option.values -%}
+                  <div
+                    class='product-preview__color-option-item flex items-center justify-between px-6 rounded-3xl border border-heading-gray/60 p-4'
+                    class='product-form__input flex-col rounded-3xl size-full w-full flex gap-y-3 md:gap-y-6'
+                    role='radiogroup'
+                    aria-labelledby='color-selection-heading'
+                  >
+                    <legend
+                      class='color-option-name size-fit font-body-family text-heading-gray font-base md:text-3xl text-2xl mr-4'
+                    >
+                      {{ option_value }}
+                    </legend>
+                    <label
+                      for='{{ option_value }}'
+                      class='color-swatch-background variant-color-swatch-label {{ label_class }}'
+                    >
+                      <span
+                        class='color-option-dot color-swatch-dot-container color-dot--{{ dot_class }}'
+                        aria-hidden='true'
+                      >
+                        <input
+                          type='radio'
+                          id='{{ option_value }}'
+                          value='{{ option_value | escape }}'
+                          name='color-choice-radios'
+                          class='color-choice-radios sr-only peer product-option-input'
+                          {% if option_value.selected %}
+                            checked
+                          {% endif %}
+                        >
+                      </span>
+                    </label>
+                  </div>
+                {%- endfor -%}
+              </fieldset>
+          {%- endcase -%}
+        {%- endfor -%}
+        <div
+          id='Quantity-Form-{{ section.id }}'
+          class='product-form__input product-form__quantity justify-items-center items-center md:mt-64 mb-6 grid grid-rows-auto gap-y-4'
+        >
+          {%- assign cart_qty = cart | item_count_for_variant: currently_selected_product.id -%}
+          <label
+            class='quantity__label form__label'
+            for='Quantity-{{ section.id }}'
+            {{ 'products.product.quantity.label' | t }}
+            id='checkoutsection'
+            class='checkout-title max-sm:place-self-start text-subtext-gray tracking-normal size-full py-8 font-body-family font-base text-3xl'
+            {{ 'products.product.quantity.label' | t }}
+          >
+            {%- render 'loading-spinner' -%}
+            <label for='product-preview__quantity-block' class='text-heading-gray'>
+              {{ 'products.product.checkout_label' | t }}
+            </label>
+            <br>
+            <p>{{ 'products.product.checkout_subtitle' | t }}</p>
+          </label>
+          <div class='product-preview__quantity-block !w-full md:w-[85%] pl-2 flex flex-row justify-between items-center rounded-xl bg-finance-white'>
+            <div class='product-preview__quantity-selector w-fit '>
+              <label
+                for='quantity-input-{{ section.id }}'
+                class='quantity-header font-body-family text-left ml-2 w-full md:size-fit font-base md:text-2xl text-heading-gray'
+              >
+                {{ 'products.product.quantity.label' | t }}
+              </label>
+            </div>
+            <quantity-input
+              class='quantity product-preview__quantity quantity cart-quantity flex flex-row justify-center items-center mx-auto'
+              data-url='{{ product.url }}'
+              data-section='{{ section.id }}'
+            >
+              <button
+                class='quantity__button'
+                name='minus'
+                type='button'
+                aria-label='Reduser antall'
+              >
+                <span class='visually-hidden'>
+                  {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+                </span>
+                <span class='svg-wrapper'>
+                  {{- 'icon-minus.svg' | inline_asset_content -}}
+                </span>
+              </button>
+              <input
+                class='quantity__input w-8 pr-1 pl-3 flex items-center justify-center text-heading-gray'
+                type='number'
+                name='quantity'
+                aria-label='Antall'
+                id='Quantity-{{ section.id }}'
+                data-cart-quantity='{{ cart_qty }}'
+                data-min='{{ currently_selected_product.quantity_rule.min }}'
+                min='{{ currently_selected_product.quantity_rule }}'
+                {% if currently_selected_product.quantity_rule.max != null %}
+                  data-max='{{ currently_selected_product.quantity_rule.max }}'
+                  max='{{ currently_selected_product.quantity_rule.max }}'
+                {% endif %}
+                step='{{ currently_selected_product.quantity_rule.increment }}'
+                value='{{ currently_selected_product.quantity_rule.min }}'
+                form='{{ product_form_id }}'
+              >
+              <button
+                class='quantity__button'
+                name='plus'
+                type='button'
+                aria-label='Øk antall'
+              >
+                <span class='visually-hidden'>
+                  {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+                </span>
+                <span class='svg-wrapper'>
+                  {{- 'icon-plus.svg' | inline_asset_content -}}
+                </span>
+              </button>
+            </quantity-input>
+            <div
+              class='quanity-label-and-status product__inventory space-y-4 justify-self-end bg-link-blue py-3 text-white rounded-xl tracking-normal text-[12px] font-normal font-body-family {% if product.inventory_management != 'shopify' %} visibility-hidden{% endif %}'
+              id='Inventory-{{ section.id }}'
+              role='status'
+            >
+              {% if product.inventory_quantity > 0 and product.inventory_quantity < 20 %}
+                <span class='svg-wrapper' style='color: rgb(238, 148, 65)'>
+                  {{- 'icon-inventory-status.svg' | inline_asset_content -}}
+                </span>
+                <p>
+                  {{-
+                    'products.product.inventory_in_stock_show_count'
+                    | t: quantity: product.inventory_quantity
+                  -}}
+                </p>
+              {% else %}
+                <span class='svg-wrapper' style='color: rgb(238, 148, 65)'>
+                  {{- 'icon-inventory-status.svg' | inline_asset_content -}}
+                </span>
+                <p>
+                  {{-
+                    'products.product.inventory_low_stock_show_count'
+                    | t: quantity: product.inventory_quantity
+                  -}}
+                </p>
+              {% endif %}
+            </div>
+          </div>
+          <div>
+            <div class='delivery-choices size-full border border-black'>
+              <label for='option-shipping_label border border-black'>
+                <input
+                  type='radio'
+                  id='option-shipping'
+                  name='delivery-method'
+                  value='send'
+                  class='delivery-choices'
+                  data='{{ product.id }}'
+                  aria-label='Få tilsendt'
+                >
+                <span class='svg-wrapper-small ml-1 w-6 h-6'>
+                  {{- 'icon-shipping-truck.svg' | inline_asset_content -}}
+                </span>
+              </label>
+            </div>
+            <div class='delivery-choices'>
+              <label
+                for='option-click-collect border border-black'
+              ></label>
+              <input
+                type='radio'
+                name='delivery_method'
+                id='option-click-collect'
+                value='option-click-collect'
+                class='option-shipping'
+                aria-label='Klikk og hent'
+                data='{{- product.id -}}'
+              >
+              <span class='svg-wrapper-small ml-1 w-6 h-6'>
+                {{ 'icon-blue-bag.svg' | inline_asset_content }}
+              </span>
+            </div>
+          </div>
+          <fieldset class='product-preview__submit-button max-sm:my-4 w-full md:w-[85%]'>
+            <div
+              class='product-form'
+              data-section-id='{{ section.id }}'
+            >
+              <div class='product-form__error-message-wrapper' role='alert' hidden>
+                <span class='svg-wrapper'>
+                  {{- 'icon-error.svg' | inline_asset_content -}}
+                </span>
+                <span class='product-form__error-message'></span>
+              </div>
+              <div class='product-form__buttons'>
+                {%- assign product_form_checkout_id = 'product-form-installment-'
+                  | append: section.id
+                -%}
+                {%- form 'product',
+                  product,
+                  id: product_form_checkout_id,
+                  class: 'form',
+                  novalidate: 'novalidate',
+                  data-type: 'add-to-cart-form'
+                -%}
+                  <button
+                    id='ProductPreviewSubmitButton-{{ section.id }}'
+                    type='submit'
+                    name='add'
+                    aria-live='polite'
+                    aria-atomic='true'
+                    class='product-form__submit'
+                    aria-label='Legg i handlepose'
+                    {% if currently_selected_product.available == false
+                      or currently_selected_product == null
+                    %}
+                      disabled
+                    {% endif %}
+                  >
+                    <input
+                      type='hidden'
+                      name='id'
+                      class='product-variant-id'
+                      value='{{ currently_selected_product.id }}'
+                      {% if currently_selected_product.available == false
+                        or currently_selected_product.inventory_quantity < 0
+                      %}
+                        disabled
+                      {% endif %}
+                    >
+                    <span class='btn-text'>
+                      {%- if currently_selected_product.available == false -%}
+                        {{ 'products.product.unavailable' | t }}
+                      {%- elsif currently_selected_product.inventory_quantity < 0 -%}
+                        {{ 'products.product.sold_out' | t }}
+                      {%- else -%}
+                        {{ 'products.product.add_to_cart' | t }}
+                      {%- endif -%}
+                    </span>
+                    <span class='loading-spinner hidden'>
+                      {% render 'loading-spinner' %}
+                    </span>
+                  </button>
+                  <span>
+                    (
+                    {{- 'products.product.quantity.in_cart_html' | t: quantity: cart_qty -}}
+                    )
+                  </span>
+                {%- endform -%}
+              </div>
+            </div>
+
+            <click-collect-handler
+              id='click-and-collect'
+              class='popup-overlay'
+              style='display: none;'
+            >
+              <div class='product-preview__popup-content bg-desert-sand'>
+                <button class='popup-close-button' type='button'>×</button>
+                {%
+                  render 'click-collect',
+                  product: currently_selected_product,
+                  product.title: currently_selected_product.title,
+                  image: currently_selected_product.featured_image,
+                  section_id: section.id,
+                  price: variant_price,
+                  compare_at_price: variant_price_compare
+                %}
+              </div>
+            </click-collect-handler>
+          </fieldset>
+        </div>
+        {% if vault_variant.description != blank %}
+          <div
+            class='product-preview__product-description-container hidden md:my-64'
+            aria-labelledby='product-description-heading-{{ section.id }}'
+          >
+            <h1 id='product-description-heading-{{ section.id }}' class='sr-only'>
+              Produktbeskrivelse
+            </h1>
+            <div
+              class='product-preview__description-content expandable-content-text'
+              data-short-text-length='75'
+              id='description-content-{{ section.id }}'
+              type='text'
+              data-full-text='{{ vault_variant.description }}'
+            >
+              <show-more-button>
+                <button
+                  class='button-show-more description-content-inner cursor-pointer text-lg text-link-blue link underlined-link'
+                  id='Show-More-{{ section.id }}'
+                  type='button'
+                  aria-controls='description-content-inner'
+                >
+                  <span class='label-show-more label-text'>
+                    <span aria-hidden='true'>+</span>
+                  </span>
+                </button>
+              </show-more-button>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class='product-preview__metafield-main-grid'>
+  {% if vault_variant.materials %}
+    <div class='product-preview__metafield-subgrid expandable-metafield w-full h-fit items-center'>
+      <div
+        class='metafield-header'
+        data-metafield-toggle-trigger
+        role='button'
+        aria-controls='material-content-{{ section.id }}'
+        aria-expanded='false'
+      >
+        <span class='svg-wrapper-small'>
+          {{ 'icon-clipboard.svg' | inline_asset_content }}
+        </span>
+
+        <h4 class='metafield-title'>Materialer</h4>
+        <button
+          type='button'
+          class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right cursor-pointer'
+          aria-label='Vis eller skjul materialinformasjon'
+          aria-controls='material-content-{{ section.id }}'
+        >
+          <span class='icon-caret.open' aria-hidden='true'>
+            {{ 'icon-caret.svg' | inline_asset_content }}
+          </span>
+        </button>
+      </div>
+      <div
+        class='metafield-content max-w-none'
+        data-full-text='{{ vault_variant.materials | metafield_tag | escape }}'
+        data-short-text-length='20'
+        style='display: none;'
+        id='material-content-{{ section.id }}'
+      ></div>
+    </div>
+  {% endif %}
+  {% if vault_variant.usage %}
+    <div class='metafield-subgrid expandable-metafield'>
+      <div
+        class='metafield-header cursor-pointer'
+        data-metafield-toggle-trigger
+        role='button'
+        aria-controls='usage-content-{{ section.id }}'
+        aria-expanded='false'
+      >
+        <span class='svg-wrapper-small'>
+          {{- 'icon-book-guide.svg' | inline_asset_content -}}
+        </span>
+        <h4 class='metafield-title'>Bruksområder</h4>
+        <button
+          type='button'
+          class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right cursor-pointer'
+          aria-label='Vis eller skjul bruksområder'
+          aria-controls='usage-content-{{ section.id }}'
+        >
+          <span class='.icon-caret' aria-hidden='true'>
+            {{ 'icon-caret.svg' | inline_asset_content }}
+          </span>
+        </button>
+      </div>
+      <div
+        class='metafield-content  max-w-none'
+        data-full-text='<p>{{ vault_variant.usage | metafield_tag | escape }}</p>'
+        data-short-text-length='20'
+        style='display: none;'
+        id='usage-content-{{ section.id }}'
+      ></div>
+    </div>
+  {% endif %}
+  {% if vault_variant.functions %}
+    <div class='metafield-subgrid expandable-metafield'>
+      <div
+        class='metafield-header cursor-pointer'
+        data-metafield-toggle-trigger
+        role='button'
+        aria-controls='functions-content-{{ section.id }}'
+        aria-expanded='false'
+        type='button'
+      >
+        <span class='svg-wrapper-small'>
+          {{- 'icon-settings.svg' | inline_asset_content -}}
+        </span>
+        <h4 class='metafield-title'>Funksjoner</h4>
+        <button
+          type='button'
+          class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right cursor-pointer'
+          aria-label='Vis eller skjul funksjoner'
+          aria-controls='functions-content-{{ section.id }}'
+        >
+          <span class='.icon-caret' aria-hidden='true'>
+            {{ 'icon-caret.svg' | inline_asset_content }}
+          </span>
+        </button>
+      </div>
+      <div
+        class='metafield-content max-w-none'
+        data-full-text='<p>{{ vault_variant.functions | metafield_tag | escape  }}</p>'
+        data-short-text-length='20'
+        style='display: none;'
+        id='functions-content-{{ section.id }}'
+      ></div>
+    </div>
+  {% endif %}
+  {% if vault_variant.size_fit %}
+    <div class='metafield-subgrid expandable-metafield cursor-pointer'>
+      <div
+        class='metafield-header cursor-pointer'
+        data-metafield-toggle-trigger
+        role='button'
+        aria-controls='size-fit-content-{{ section.id }}'
+        aria-expanded='false'
+        type='button'
+      >
+        <span class='svg-wrapper-small'>
+          {{- 'icon-ruler.svg' | inline_asset_content -}}
+        </span>
+        <h4 class='metafield-title'>Passform</h4>
+        <button
+          type='button'
+          class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right'
+          aria-label='Vis eller skjul passformguide'
+          aria-controls='size-fit-content-{{ section.id }}'
+        >
+          <span class='.icon-caret' aria-hidden='true'>
+            {{ 'icon-caret.svg' | inline_asset_content }}
+          </span>
+        </button>
+      </div>
+      <div
+        class='metafield-content text-xl tracking-normal text-heading-gray max-w-none'
+        data-full-text='{{  vault_variant.size_fit | metafield_tag | escape }}'
+        style='display: none;'
+        id='size-fit-content-{{ section.id }}'
+      ></div>
+    </div>
+  {% endif %}
+  {% if vault_variant.storage_and_maintenance %}
+    <div class='metafield-subgrid expandable-metafield border-b border-heading-gray/60 pb-4 product-care-section cursor-pointer'>
+      <div
+        class='metafield-header cursor-pointer'
+        data-metafield-toggle-trigger
+        role='button'
+        aria-controls='wash-content-{{ section.id }}'
+        aria-expanded='false'
+        type='button'
+      >
+        <span class='svg-wrapper-small'>
+          {{- 'icon-wash.svg' | inline_asset_content -}}
+        </span>
+        <h4 class='metafield-title'>Vaskeanvisning</h4>
+        <button
+          type='button'
+          class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right'
+          aria-label='Vis eller skjul vaskeanvisning'
+          aria-controls='wash-content-{{ section.id }}'
+        >
+          <span class='.icon-caret' aria-hidden='true'>
+            {{ 'icon-caret.svg' | inline_asset_content }}
+          </span>
+        </button>
+      </div>
+      <div
+        class='metafield-content max-w-none'
+        data-full-text='{{ vault_variant.storage_and_maintenance | metafield_tag | escape }}'
+        style='display: none;'
+        id='wash-content-{{ section.id }}'
+      ></div>
+    </div>
+  {% endif %}
+</div>

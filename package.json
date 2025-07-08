@@ -1,19 +1,44 @@
 {
+  "name": "dawn-15",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "scripts": {
+    "dev": "npm-run-all --parallel vite:dev shopify:dev",
+    "vite:dev": "vite",
+    "shopify:dev": "shopify theme dev --store din-butikk.myshopify.com --theme-editor-sync",
+    "build": "vite build",
+    "deploy": "npm run build && shopify theme push --allow-live"
+  },
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.5",
-    "dotenv": "^16.5.0",
-    "tailwindcss": "^4.1.5"
+    "axios": "^1.10.0",
+    "dotenv": "^17.0.0",
+    "graphql-request": "^7.2.0",
+    "lodash-es": "^4.17.21",
+    "swiper": "^11.2.10"
   },
   "devDependencies": {
+    "@shopify/cli": "3.80.7",
     "@shopify/prettier-plugin-liquid": "^1.9.3",
-    "@tailwindcss/typography": "^0.5.16",
-    "prettier": "^3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.11"
+    "@shopify/shopify-api": "11.13.0",
+    "@shopify/theme-language-server-node": "^1.1.0",
+    "@tailwindcss/language-server": "0.14.21",
+    "acorn": "^8.14.1",
+    "esbuild": "^0.25.6",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.6.1",
+    "prettier-plugin-tailwindcss": "^0.6.13",
+    "stylelint": "^16.21.1",
+    "stylelint-config-standard": "^38.0.0",
+    "tailwindcss": "^4.1.11",
+    "vite": "^7.0.3",
+    "vite-plugin-inspect": "^11.3.0"
   },
-  "scripts": {
-    "tw": "npx tailwindcss -i ./assets/base-tw-input.css -o ./assets/base-tw-output.css --watch",
-    "push": "shopify theme push --theme 150386344184",
-    "pull": "shopify theme pull --theme 150386344184",
-    "dev": "shopify theme dev"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UtekosKristoffer/Dawn-15.3-Utekos/issues"
+  },
+  "homepage": "https://github.com/UtekosKristoffer/Dawn-15.3-Utekos#readme"
 }

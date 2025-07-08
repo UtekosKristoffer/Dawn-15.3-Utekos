@@ -1,0 +1,54 @@
+<section
+  id='section-{{ section.id }}'
+  class='product-preview'
+  data-update-url='true'
+  data-section-id='{{ section.id }}'
+  data-product-json='{{ product_to_display | json | escape }}' 
+  data-product-form-id='{{ product_form_id }}'
+  aria-labelledby='product-title-{{ section.id }}'
+>
+  {%- comment -%} Send all vaultvariant data til JS {%- endcomment -%}
+  <script type='application/json' data-all-vault-variants-json>
+     {
+       {%- for variant_loop_item in product_to_display.variants -%}
+         "{{ variant_loop_item.id }}": {{ variant_loop_item.metafields.bridgeFor.Varianthandler.value | json  }}
+         {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+     }
+  </script>
+  {# ... din form her ... #}
+
+  <div class='product-preview__main-grid grid grid-cols-1 md:justify-items-stretch md:grid-cols-[70%_30%]'>
+    <div class='product-preview-image-column h-auto'>
+      {# Nå bruker du din nye Custom Element her! #}
+      <vault-image-swiper> {# <--- Ny tag #}
+        <div
+          class='swiper-sticky-wrapper bg-finance-white md:h-[500px] p-12 md:!sticky md:top-[100px] mx-auto flex md:rounded-3xl'
+          role='region'
+          aria-label='Produktbilder'
+        >
+          <div class='swiper product-details-swiper bg-opacity-0 bg-transparent' id='mainSwiper'>
+            <div
+              class='swiper-wrapper bg-opacity-0bg-transparent'
+              id='mainSwiperWrapper'
+              data-swiper-wrapper
+              data-image-id 
+            ></div>
+            <div class='swiper-button-next hover:bg-[#f7e7ce]' aria-label='Neste bilde' role='button' type='button'></div>
+            <div class='swiper-button-prev hover:bg-[#f7e7ce]' aria-label='Forrige bilde' role='button' type='button'></div>
+          </div>
+        </div>
+        <div class='sticky-thumbs-wrapper md:sticky top-[605px]'>
+          <div class='product-thumbs-swiper thumb-swiper swiper' id='thumbsSwiper'>
+            <div
+              id='thumbsWrapper'
+              class='swiper-wrapper'
+              data-image-id 
+              data-thumb-swiper-wrapper
+            ></div>
+          </div>
+        </div>
+      </vault-image-swiper> {# <--- Ny tag #}
+    </div>
+  </div>
+</section>

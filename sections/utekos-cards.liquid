@@ -1,0 +1,168 @@
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+
+<section class='cards max-sm:min-h-[800px]'>
+  <div class='cards-heading mx-24 pt-8 my-8 text-heading-gray text-7xl'>
+    {{ section.settings.heading }}
+  </div>
+  <div class='dynamic-cards container pl-32 justify-center max-sm:min-h-[800px] mx-auto'>
+    <div class='swiper dynamicSwiper'>
+      <div class='swiper-wrapper'>
+        {% if section.settings.dun_image != blank %}
+          <div
+            class='swiper-slide'
+            id='DawnSwiperSlide'
+            style="background-image: url('{{ section.settings.dun_image_bg | image_url: width: 350 }}');"
+          >
+            <p class='dynamic-heading'>Utekos™ Dun</p>
+            <p class='dynamic-subheading !mb-4'>Komplett utendørsgeni.</p>
+
+            {{ section.settings.dun_image | image_url: width: 300 | image_tag: class: 'md:-mt-20' }}
+          </div>
+        {% endif %}
+        {% if section.settings.comfyrobe_image != blank %}
+          <div
+            class='swiper-slide'
+            style="background-image: url('{{ section.settings.comfyrobe_image_bg | image_url: width: 400, height: 750  }}');"
+          >
+            <p class='dynamic-heading'>Utekos™ Comfyrobe</p>
+            <p class='dynamic-subheading'>Den stilrene følgesvennen</p>
+
+            {{ section.settings.comfyrobe_image | image_url: width: 285, height: 380 | image_tag }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.mikrofiber_image != blank %}
+          <div class='swiper-slide bg-black'>
+            <p class='dynamic-heading'>Utekos™ Mikrofiber</p>
+            <p class='dynamic-subheading'>Den smarte lettvekteren.</p>
+
+            {{ section.settings.mikrofiber_image | image_url: width: 285, height: 380 | image_tag }}
+          </div>
+        {% endif %}
+        {% if section.settings.special_image != blank %}
+          <div
+            class='swiper-slide'
+            style="background-image: url('{{ section.settings.special_image_bg | image_url: width: 350, height: 900 }}');"
+          >
+            <p class='dynamic-heading'>Utekos™ Special Edition</p>
+            <p class='dynamic-subheading-uniq'>Unik vri. Kun i begrenset opplag.</p>
+
+            {{ section.settings.special_image | image_url: width: 500, height: 700 | image_tag }}
+          </div>
+        {% endif %}
+      </div>
+      <div class='swiper-pagination !opacity-0'></div>
+    </div>
+  </div>
+</section>
+<script src='{{ 'swiper-bundle.js' | asset_url }}' defer='defer'></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.dynamicSwiper', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      direction: 'horizontal',
+      loop: true, // Anbefales for en jevnere opplevelse
+      grabCursor: false, // Rettet skrivefeil fra "grapCursor"
+      mousewheel: {
+        enabled: true, // Aktiverer modulen
+        forceToAxis: true, // IGNORERER vertikal scroll på horisontal slider
+      },
+      freeMode: true,
+      keyboard: {
+        enabled: true,
+      },
+
+      // === Paginering og Navigasjon ===
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+      // === Breakpoints (justeringer for større skjermer) ===
+      breakpoints: {
+        // Fra 640px og oppover
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        // Fra 1024px og oppover
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Dynamic Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Lagoppstilling"
+    },
+    {
+      "type": "image_picker",
+      "id": "comfyrobe_image",
+      "label": "Comfyrobe"
+    },
+    {
+      "type": "image_picker",
+      "id": "comfyrobe_image_bg",
+      "label": "Bakgrunn for Comfyrobe "
+    },
+    {
+      "type": "image_picker",
+      "id": "dun_image",
+      "label": "Utekos Dun"
+    },
+    {
+      "type": "image_picker",
+      "id": "dun_image_bg",
+      "label": "Bakgrunn for Dun "
+    },
+    {
+      "type": "image_picker",
+      "id": "mikrofiber_image",
+      "label": "Utekos Mikrofiber"
+    },
+    {
+      "type": "image_picker",
+      "id": "mikrofiber_image_bg",
+      "label": "Bakgrunn for Mikrofiber "
+    },
+    {
+      "type": "image_picker",
+      "id": "special_image",
+      "label": "Utekos Special Edition"
+    },
+    {
+      "type": "image_picker",
+      "id": "special_image_bg",
+      "label": "Bakgrunn for SE "
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Bakgrunnsfarge",
+      "default": "#b3e4f4"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_second_image_on_mobile",
+      "label": "Skjul bilde 2 på mobil",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic Cards"
+    }
+  ]
+}
+{% endschema %}

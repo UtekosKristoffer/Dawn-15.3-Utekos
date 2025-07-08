@@ -1,0 +1,33 @@
+const pureMetaObjectGrids = 
+
+    [
+  "gid://shopify/Metaobject/116374077688",
+  "gid://shopify/Metaobject/116368605432",
+  "gid://shopify/Metaobject/116369948920",
+  "gid://shopify/Metaobject/116372373752",
+  "gid://shopify/Metaobject/116482932984",
+  "gid://shopify/Metaobject/116482408696",
+  "gid://shopify/Metaobject/116479754488",
+  "gid://shopify/Metaobject/117108801784",
+  "gid://shopify/Metaobject/120633164024",
+  "gid://shopify/Metaobject/121311985912",
+  "gid://shopify/Metaobject/120635064568",
+  "gid://shopify/Metaobject/121313263864",
+  "gid://shopify/Metaobject/116374307064",
+  "gid://shopify/Metaobject/116369195256",
+  "gid://shopify/Metaobject/116370014456",
+  "gid://shopify/Metaobject/116372046072",
+  "gid://shopify/Metaobject/116372668664",
+  "gid://shopify/Metaobject/121308053752",
+  "gid://shopify/Metaobject/121304842488",
+  "gid://shopify/Metaobject/120632606968",
+  "gid://shopify/Metaobject/120629723384",
+  "gid://shopify/Metaobject/116042334456",
+  "gid://shopify/Metaobject/116368146680",
+  "gid://shopify/Metaobject/116370211064",
+  "gid://shopify/Metaobject/116372209912",
+  "gid://shopify/Metaobject/116373389560",
+  "gid://shopify/Metaobject/121330565368",
+  "gid://shopify/Metaobject/121329778936",
+  "gid://shopify/Metaobject/121318572280"
+]

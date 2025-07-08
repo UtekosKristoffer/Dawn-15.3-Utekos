@@ -1,34 +1,34 @@
-<section class="sticky-product-specs-section">
-  <div class="sticky-specs-inner">
-    <h2 class="sticky-specs-heading">{{ section.settings.heading }}</h2>
+<section class='sticky-product-specs-section'>
+  <div class='sticky-specs-inner'>
+    <h2 class='sticky-specs-heading'>{{ section.settings.heading }}</h2>
 
     <!-- Tabs -->
-    <div class="specs-tabs">
-      <button class="specs-tab-button active">{{ section.settings.tab_1 }}</button>
-      <button class="specs-tab-button">{{ section.settings.tab_2 }}</button>
-      <button class="specs-tab-button">{{ section.settings.tab_3 }}</button>
+    <div class='specs-tabs'>
+      <button class='specs-tab-button active'>{{ section.settings.tab_1 }}</button>
+      <button class='specs-tab-button'>{{ section.settings.tab_2 }}</button>
+      <button class='specs-tab-button'>{{ section.settings.tab_3 }}</button>
     </div>
 
     <!-- Produktbilde -->
-    <div class="specs-image-wrapper">
+    <div class='specs-image-wrapper'>
       {% if section.settings.image_1 %}
         <img
-          id="productImage"
-          src="{{ section.settings.image_1 | image_url: width: 800 }}"
-          alt="Produktbilde"
-          width="800"
-          height="{{ section.settings.image_1.height | times: 800.0 | divided_by: section.settings.image_1.width | round }}"
-          loading="lazy"
+          id='productImage'
+          src='{{ section.settings.image_1 | image_url: width: 800 }}'
+          alt='Produktbilde'
+          width='800'
+          height='{{ section.settings.image_1.height | times: 800.0 | divided_by: section.settings.image_1.width | round }}'
+          loading='lazy'
         >
       {% endif %}
     </div>
   </div>
 
   <!-- B: Denne skal gli over -->
-  <div class="specs-carousel-wrapper">
-    <div class="specs-carousel">
+  <div class='specs-carousel-wrapper'>
+    <div class='specs-carousel'>
       {% for block in section.blocks %}
-        <div class="mobile-specs-block">
+        <div class='mobile-specs-block'>
           <h3>{{ block.settings.title }}</h3>
 
           {% for i in (1..5) %}

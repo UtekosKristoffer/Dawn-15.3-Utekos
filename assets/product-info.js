@@ -41,7 +41,10 @@ if (!customElements.get('product-info')) {
 
         this.setQuantityBoundries();
         if (!this.dataset.originalSection) {
-          this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartUpdate, this.fetchQuantityRules.bind(this));
+          this.cartUpdateUnsubscriber = subscribe(
+            PUB_SUB_EVENTS.cartUpdate,
+            this.fetchQuantityRules.bind(this)
+          );
         }
       }
 
@@ -52,7 +55,9 @@ if (!customElements.get('product-info')) {
 
       initializeProductSwapUtility() {
         this.preProcessHtmlCallbacks.push((html) =>
-          html.querySelectorAll('.scroll-trigger').forEach((element) => element.classList.add('scroll-trigger--cancel'))
+          html
+            .querySelectorAll('.scroll-trigger')
+            .forEach((element) => element.classList.add('scroll-trigger--cancel'))
         );
         this.postProcessHtmlCallbacks.push((newNode) => {
           window?.Shopify?.PaymentButton?.init();
@@ -71,7 +76,11 @@ if (!customElements.get('product-info')) {
         const shouldFetchFullPage = this.dataset.updateUrl === 'true' && shouldSwapProduct;
 
         this.renderProductInfo({
-          requestUrl: this.buildRequestUrlWithParams(productUrl, selectedOptionValues, shouldFetchFullPage),
+          requestUrl: this.buildRequestUrlWithParams(
+            productUrl,
+            selectedOptionValues,
+            shouldFetchFullPage
+          ),
           targetId: target.id,
           callback: shouldSwapProduct
             ? this.handleSwapProduct(productUrl, shouldFetchFullPage)
@@ -94,7 +103,8 @@ if (!customElements.get('product-info')) {
           this.updateURL(productUrl, variant?.id);
 
           if (updateFullPage) {
-            document.querySelector('head title').innerHTML = html.querySelector('head title').innerHTML;
+            document.querySelector('head title').innerHTML =
+              html.querySelector('head title').innerHTML;
 
             HTMLUpdateUtility.viewTransition(
               document.querySelector('main'),
@@ -138,7 +148,9 @@ if (!customElements.get('product-info')) {
       }
 
       getSelectedVariant(productInfoNode) {
-        const selectedVariant = productInfoNode.querySelector('variant-selects [data-selected-variant]')?.innerHTML;
+        const selectedVariant = productInfoNode.querySelector(
+          'variant-selects [data-selected-variant]'
+        )?.innerHTML;
         return !!selectedVariant ? JSON.parse(selectedVariant) : null;
       }
 
@@ -157,7 +169,11 @@ if (!customElements.get('product-info')) {
       updateOptionValues(html) {
         const variantSelects = html.querySelector('variant-selects');
         if (variantSelects) {
-          HTMLUpdateUtility.viewTransition(this.variantSelectors, variantSelects, this.preProcessHtmlCallbacks);
+          HTMLUpdateUtility.viewTransition(
+            this.variantSelectors,
+            variantSelects,
+            this.preProcessHtmlCallbacks
+          );
         }
       }
 
@@ -190,14 +206,18 @@ if (!customElements.get('product-info')) {
           updateSourceFromDestination('Sku', ({ classList }) => classList.contains('hidden'));
           updateSourceFromDestination('Inventory', ({ innerText }) => innerText === '');
           updateSourceFromDestination('Volume');
-          updateSourceFromDestination('Price-Per-Item', ({ classList }) => classList.contains('hidden'));
+          updateSourceFromDestination('Price-Per-Item', ({ classList }) =>
+            classList.contains('hidden')
+          );
 
           this.updateQuantityRules(this.sectionId, html);
           this.querySelector(`#Quantity-Rules-${this.dataset.section}`)?.classList.remove('hidden');
           this.querySelector(`#Volume-Note-${this.dataset.section}`)?.classList.remove('hidden');
 
           this.productForm?.toggleSubmitButton(
-            html.getElementById(`ProductSubmitButton-${this.sectionId}`)?.hasAttribute('disabled') ?? true,
+            html
+              .getElementById(`ProductSubmitButton-${this.sectionId}`)
+              ?.hasAttribute('disabled') ?? true,
             window.variantStrings.soldOut
           );
 
@@ -233,7 +253,15 @@ if (!customElements.get('product-info')) {
       setUnavailable() {
         this.productForm?.toggleSubmitButton(true, window.variantStrings.unavailable);
 
-        const selectors = ['price', 'Inventory', 'Sku', 'Price-Per-Item', 'Volume-Note', 'Volume', 'Quantity-Rules']
+        const selectors = [
+          'price',
+          'Inventory',
+          'Sku',
+          'Price-Per-Item',
+          'Volume-Note',
+          'Volume',
+          'Quantity-Rules',
+        ]
           .map((id) => `#${id}-${this.dataset.section}`)
           .join(', ');
         document.querySelectorAll(selectors).forEach(({ classList }) => classList.add('hidden'));
@@ -247,7 +275,9 @@ if (!customElements.get('product-info')) {
 
         const refreshSourceData = () => {
           if (this.hasAttribute('data-zoom-on-hover')) enableZoomOnHover(2);
-          const mediaGallerySourceItems = Array.from(mediaGallerySource.querySelectorAll('li[data-media-id]'));
+          const mediaGallerySourceItems = Array.from(
+            mediaGallerySource.querySelectorAll('li[data-media-id]')
+          );
           const sourceSet = new Set(mediaGallerySourceItems.map((item) => item.dataset.mediaId));
           const sourceMap = new Map(
             mediaGallerySourceItems.map((item, index) => [item.dataset.mediaId, { item, index }])
@@ -260,7 +290,9 @@ if (!customElements.get('product-info')) {
           const mediaGalleryDestinationItems = Array.from(
             mediaGalleryDestination.querySelectorAll('li[data-media-id]')
           );
-          const destinationSet = new Set(mediaGalleryDestinationItems.map(({ dataset }) => dataset.mediaId));
+          const destinationSet = new Set(
+            mediaGalleryDestinationItems.map(({ dataset }) => dataset.mediaId)
+          );
           let shouldRefresh = false;
 
           // add items from new data not present in DOM
@@ -312,7 +344,9 @@ if (!customElements.get('product-info')) {
 
       setQuantityBoundries() {
         const data = {
-          cartQuantity: this.quantityInput.dataset.cartQuantity ? parseInt(this.quantityInput.dataset.cartQuantity) : 0,
+          cartQuantity: this.quantityInput.dataset.cartQuantity
+            ? parseInt(this.quantityInput.dataset.cartQuantity)
+            : 0,
           min: this.quantityInput.dataset.min ? parseInt(this.quantityInput.dataset.min) : 1,
           max: this.quantityInput.dataset.max ? parseInt(this.quantityInput.dataset.max) : null,
           step: this.quantityInput.step ? parseInt(this.quantityInput.step) : 1,
@@ -340,14 +374,18 @@ if (!customElements.get('product-info')) {
         if (!currentVariantId) return;
 
         this.querySelector('.quantity__rules-cart .loading__spinner').classList.remove('hidden');
-        return fetch(`${this.dataset.url}?variant=${currentVariantId}&section_id=${this.dataset.section}`)
+        return fetch(
+          `${this.dataset.url}?variant=${currentVariantId}&section_id=${this.dataset.section}`
+        )
           .then((response) => response.text())
           .then((responseText) => {
             const html = new DOMParser().parseFromString(responseText, 'text/html');
             this.updateQuantityRules(this.dataset.section, html);
           })
           .catch((e) => console.error(e))
-          .finally(() => this.querySelector('.quantity__rules-cart .loading__spinner').classList.add('hidden'));
+          .finally(() =>
+            this.querySelector('.quantity__rules-cart .loading__spinner').classList.add('hidden')
+          );
       }
 
       updateQuantityRules(sectionId, html) {
@@ -397,7 +435,9 @@ if (!customElements.get('product-info')) {
           SectionId.parseId(this.sectionId),
           'related-products'
         );
-        return document.querySelector(`product-recommendations[data-section-id^="${relatedProductsSectionId}"]`);
+        return document.querySelector(
+          `product-recommendations[data-section-id^="${relatedProductsSectionId}"]`
+        );
       }
 
       get quickOrderList() {

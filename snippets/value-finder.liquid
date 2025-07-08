@@ -1,0 +1,28 @@
+{% comment %}
+
+
+
+  {% for field in mainsource.bridgeFields1 %}
+    {% if field.key == 'Origin' %}
+      <pre>{{ field | json }}</pre>
+    {% endif %}
+  {% endfor %}
+  /*
+    {% for mainsource in dock_bridge %}
+      <pre>{{ mainsource | json }}</pre>
+      {% if mainsource.type == 'mainsource' %}
+        {% for field in mainsource.bridgeFields1 %}
+          {% if field.key == 'Origin' %}
+
+
+
+    {% for mainsource in dock_bridge %}
+      <pre>{{ mainsource | json }}</pre>
+      {% if mainsource.type == 'mainsource' %}
+        {% for field in mainsource.bridgeFields1 %}
+          {% if field.key == 'Origin' %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+{% endcomment %}

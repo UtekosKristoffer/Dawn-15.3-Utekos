@@ -54,12 +54,7 @@
           }
         }
       },
-      "block_order": [
-        "row_Dgw6Rx",
-        "row_aNLBM7",
-        "row_rBPYHE",
-        "row_ULkKLg"
-      ],
+      "block_order": ["row_Dgw6Rx", "row_aNLBM7", "row_rBPYHE", "row_ULkKLg"],
       "name": "t:sections.multirow.presets.name",
       "settings": {
         "image_height": "medium",
@@ -78,7 +73,5 @@
       }
     }
   },
-  "order": [
-    "multirow_tYwYiK"
-  ]
+  "order": ["multirow_tYwYiK"]
 }

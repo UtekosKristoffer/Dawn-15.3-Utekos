@@ -1,0 +1,899 @@
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign product_form_id = 'product-form-' | append: section.id
+  assign product_to_display = product
+  if product_to_display == blank and section.settings.featured_product != blank
+    if section.settings.featured_product.handle
+      assign product_handle_to_fetch = section.settings.featured_product.handle | default: section.settings.featured_product
+      assign product_to_display = all_products[product_handle_to_fetch]
+    else
+      assign product_to_display = section.settings.featured_product
+    endif
+  endif
+
+  assign initial_selected_variant = product_to_display.selected_or_first_available_variant
+  assign chosen_variant = initial_selected_variant.metafields.bridgeFor.Varianthandler.value
+-%}
+{%- comment -%} --- SLUTT: Produkt- og initiell variantlogikk --- {%- endcomment -%}
+<purchase-handler
+  class='product-purchase-handler'
+  <variantselects
+  data-product-json='{{ initial_selected_variant | json | escape }}'
+>
+  <div
+    class='look-at-mee'
+    id='variant-selector-{{ section.id }}'
+    </variantselects
+  ></div>
+</purchase-handler>
+{% if product_to_display == blank %}
+  <div class='container text-center py-8 md:py-24' role='alert' aria-live='polite'>
+    <p>Vennligst velg et produkt i temaredigereren for å vise denne seksjonen.</p>
+  </div>
+{% else %}
+  <section
+    id='section-{{ section.id }}'
+    class='product-preview-section'
+    data-update-url='true'
+    {% for image in chosen_variant.images.value %}
+      {{ image.id }}
+      data-image-id='{{ image.id }}'
+    {% endfor %}
+    data-section-id='{{ section.id }}'
+    data-product-json='{{ product_to_display | json | escape }}'
+    data-product-form-id='{{ product_form_id }}'
+    aria-labelledby='product-title-{{ section.id }}'
+  >
+    {%- comment -%} Send all vaultvariant data til JS {%- endcomment -%}
+    <script type='application/json' data-all-vault-variants-json>
+       {
+         {%- for variant_loop_item in product_to_display.variants -%}
+           "{{ variant_loop_item.id }}": {{ variant_loop_item.metafields.bridgeFor.Varianthandler.value | json  }}
+           {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+       }
+    </script>
+
+    <div class='product-preview-container size-full md:mt-24'>
+      <form
+        method='post'
+        action='{{ routes.cart_add_url }}'
+        id='{{ product_form_id }}'
+        accept-charset='UTF-8'
+        class='shopify-product-form'
+        enctype='multipart/form-data'
+        novalidate='novalidate'
+      >
+        <input type='hidden' name='form_type' value='product'>
+        <input type='hidden' name='utf8' value='✓'>
+        <input
+          type='hidden'
+          name='id'
+          value='{{ initial_selected_variant.id }}'
+          data-variant-id-input
+        >
+
+        <div class='main-content-container md:mb-10 m-auto md:w-[87.5%]'>
+          <header class='intro w-full mt-20 max-sm:mx-4 md:mt-32 grid grid-cols-2 '>
+            <div class='product-preview-header' id='product-title-{{ section.id }}'>
+              <h1>{{ product_to_display.title | default: 'Produktnavn' }}</h1>
+              <p class='product-preview-subtext md:mb-12 text-2xl'>
+                {{ 'products.product.designet_for_eventyr' | t }}
+              </p>
+            </div>
+            <price-per-item
+              id='Price-Per-Item-{{ section.id }}'
+              data-section-id='{{ section.id }}'
+              data-variant-id='{{ product.selected_or_first_available_variant.id }}'
+              class='price-per-item justify-self-end max-sm:mr-6 w-[75%] md:w-[33%]'
+            >
+              <div class='price-per-item grid grid-rows-2 gap-y-3' id='InfoCardPricing'>
+                {% comment %} Pris {% endcomment %}
+                <div
+                  class='price-per-item grid grid-cols-2 py-2 px-4 bg-finance-white rounded-2xl'
+                  id='PriceCard'
+                >
+                  <span class='price-per-item flex flex-row' data-product-price-label>Pris</span>
+                  <span class='price-per-item' data-product-price>
+                    {{ initial_selected_variant.price | money }}
+                  </span>
+                </div>
+
+                {% if initial_selected_variant.compare_at_price > initial_selected_variant.price %}
+                  <div class='grid grid-cols-2 py-2 px-4 bg-finance-white rounded-2xl '>
+                    <span
+                      class='price-per-item'
+                      data-compare-price-label
+                      id='main-site-price'
+                    >
+                      Førpris
+                    </span>
+                    <span
+                      class='price-per-item line-through'
+                      data-compare-price
+                      id='main-compare-price'
+                    >
+                      {{ initial_selected_variant.compare_at_price | money }}
+                    </span>
+                  </div>
+                {% else %}
+
+                {% endif %}
+              </div>
+            </price-per-item>
+          </header>
+          <div class='product-preview-main-grid grid grid-cols-1 md:justify-items-stretch md:grid-cols-[70%_30%]'>
+            <div
+              class='product-preview-image-column h-auto'
+            >
+              <div
+                class='swiper-sticky-wrapper bg-finance-white md:h-[500px] p-12 md:!sticky md:top-[100px] mx-auto flex md:rounded-3xl'
+                role='region'
+                aria-label='Produktbilder'
+              >
+                <div
+                  class='swiper product-details-swiper bg-opacity-0 bg-transparent'
+                  id='mainSwiper'
+                >
+                  <div
+                    class='swiper-wrapper bg-opacity-0bg-transparent'
+                    id='mainSwiperWrapper'
+                    data-swiper-wrapper
+                    data-image-id
+                  ></div>
+                  <div
+                    class='swiper-button-next hover:bg-[#f7e7ce]'
+                    aria-label='Neste bilde'
+                    role='button'
+                    type='button'
+                  ></div>
+                  <div
+                    class='swiper-button-prev hover:bg-[#f7e7ce]'
+                    aria-label='Forrige bilde'
+                    role='button'
+                    type='button'
+                  ></div>
+                </div>
+              </div>
+              <div class='sticky-thumbs-wrapper md:sticky top-[605px]'>
+                <div class='product-thumbs-swiper thumb-swiper swiper' id='thumbsSwiper'>
+                  <div
+                    id='thumbsWrapper'
+                    class='swiper-wrapper'
+                    data-image-id
+                    data-thumb-swiper-wrapper
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <div class='options-column-positioner flex flex-col justify-self-center md:justify-self-end justify-items-stretch w-[85%] mt-42 md:basis-auto'>
+              <div class='options-column-content w-full flex flex-col md:justify-self-end justify-items-stretch md:justify-end'>
+                <div class='product-options-grid-container flex flex-col justify-items-stretch'>
+                  {%- assign size_option_name = 'Størrelse' -%}
+                  {%- assign size_option_object = product_to_display.options_with_values
+                    | where: 'name', size_option_name
+                    | first
+                  -%}
+                  {% if size_option_object %}
+                    <fieldset
+                      class='size-options-container justify-items-stretch flex-col w-full flex gap-y-3 md:gap-y-6'
+                      role='radiogroup'
+                      aria-labelledby='size-selection-heading-{{ section.id }}'
+                    >
+                      <legend>
+                        <h2 id='OptionContainerTitle' class='options-title-main mb-2' tabindex='-1'>
+                          <span>{{ size_option_name }}.</span>
+                          <span class='as-subheading'>Hvilken passer deg best?</span>
+                        </h2>
+                      </legend>
+                      <legend>
+                        <h2 id='size-selection-heading-{{ section.id }}' class='sr-only'>
+                          <span>{{ size_option_name }}</span>
+                          <span>Hvilken passer deg best?</span>
+                        </h2>
+                      </legend>
+                      {% for size_value_raw in size_option_object.values %}
+                        {%- assign display_size_value = size_value_raw -%}
+                        {%- assign size_value_lowercase = size_value_raw | downcase -%}
+                        {% case size_value_lowercase %}
+                          {% when 's' %}
+                            {%- assign display_size_value = 'Small' -%}
+                          {% when 'm' %}
+                            {%- assign display_size_value = 'Medium' -%}
+                          {% when 'l' %}
+                            {%- assign display_size_value = 'Large' -%}
+                        {% endcase %}
+                        {%- assign input_id = 'option-'
+                          | append: size_option_object.name
+                          | escape
+                          | handleize
+                          | append: '-'
+                          | append: forloop.index
+                          | append: '-'
+                          | append: section.id
+                        -%}
+
+                        <label
+                          for='{{ input_id }}'
+                          class='size-option--entry cursor-pointer py-4 flex flex-row justify-between px-4 items-center rounded-2xl hover:bg-gray-50 border-heading-gray/60 border transition-colors duration-150'
+                        >
+                          <input
+                            type='radio'
+                            name='options[{{ size_option_object.name | escape }}]'
+                            id='{{ input_id }}'
+                            value='{{ size_value_raw | escape }}'
+                            class='sr-only peer product-option-input'
+                            data-option-index='option{{ size_option_object.position }}'
+                            {% if size_option_object.selected_value == size_value_raw %}
+                              checked
+                            {% endif %}
+                            aria-label='{{ display_size_value }}'
+                          >
+                          <span
+                            class='option__button font-base text-3xl tracking-normal text-heading-gray rounded-lg transition-all duration-150'
+                            type='button'
+                          >
+                            {{ display_size_value }}
+                          </span>
+                          {% if chosen_variant.length != blank %}
+                            <ul class='measurement-details tracking-tight text-xl text-right text-heading-gray pr-4'>
+                              <li>Lengde til hals: {{ chosen_variant.length | metafield_tag }}</li>
+                              <li>
+                                Senter til ermetupp:
+                                {{ chosen_variant.center_to_wrist | metafield_tag }}
+                              </li>
+                              <li>
+                                Flatmål (bunn): {{ chosen_variant.flat_width | metafield_tag }}
+                              </li>
+                            </ul>
+                          {% endif %}
+                        </label>
+                      {% endfor %}
+                    </fieldset>
+                  {% endif %}
+                  <a
+                    href='https://www.utekos.no/pages/utekos/storrelsesguide-xpc31mav'
+                    target='_blank'
+                    rel='noopener'
+                    aria-label='Åpne størrelsesguide i ny fane'
+                    class='group p-4 bg-finance-white rounded-2xl mt-5 w-full justify-between flex flex-row gap-x-2 transition'
+                  >
+                    <h2
+                      id='SizeGuideInfo'
+                      class='size-guide-info-title md:text-xl text-heading-gray tracking-normal size-full py-8 font-body-family font-base cursor-pointer text-lg'
+                    >
+                      <span class='text-link-blue'>
+                        {{ 'products.product.size_guide_label' | t }}
+                      </span>
+                      <br>
+                      <span>{{ 'products.product.size_guide_sub_heading' | t }}</span>
+                    </h2>
+
+                    <div class='rounded-full size-6 border flex items-center justify-center group-hover:bg-black mr-2 transition'>
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentcolor'
+                        class='w-6 h-6 p-1 group-hover:stroke-white '
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M12 4v16m8-8H4" />
+                      </svg>
+                    </div>
+                  </a>
+
+                  {% assign color_option_object = product_to_display.options_by_name.Farge %}
+                  {% if color_option_object %}
+                    <div class='color-selector-container text-left items-center size-full md:mt-64'>
+                      <h2
+                        class='color-options-intro w-full text-subtext-gray mb-4 md:mb-8 font-base text-3xl tracking-normal'
+                        tabindex='-1'
+                        id='ColorSelectorTitle'
+                      >
+                        <span class='color-selector-intro-main text-heading-gray size-fit'>
+                          {{ 'products.product.color_selector_label' | t }}
+                        </span>
+                        <span>{{ 'products.product.color_selector_subtitle' | t }}</span>
+                      </h2>
+
+                      {%- assign color_map_raw = product_to_display.metafields.custom.color_styles.value -%}
+                      {%- assign color_styles_from_metafield = color_map_raw | split: '|' -%}
+                      <fieldset
+                        class='product-form__input product-form__input--custom-color-swatches flex-col rounded-3xl size-full w-full flex gap-y-3 md:gap-y-6'
+                        role='radiogroup'
+                        aria-labelledby='color-selection-heading'
+                      >
+                        <legend class='sr-only' id='color-selection-heading'>
+                          {{ color_option_object.name | escape }}:
+                          <span data-selected-value>
+                            {{ color_option_object.selected_value }}
+                          </span>
+                        </legend>
+                        {% for value in color_option_object.values %}
+                          {%- assign current_option_value_clean_for_meta = value | strip -%}
+                          {% for style_definition in color_styles_from_metafield %}
+                            {% assign parts = style_definition | split: ':' %}
+                            {% assign metafield_label_name = parts[0] | strip %}
+                            {% assign metafield_dot_bg = parts[1] | strip %}
+                            {% if metafield_label_name == current_option_value_clean_for_meta %}
+                              {% assign bg_color_from_meta = metafield_dot_bg %}
+                              {% break %}
+                            {% endif %}
+                          {% endfor %}
+                          {%- assign label_background_inline_style = 'background-color: #FFFFFF;' -%}
+                          {%- assign current_value_cleaned = value | strip | downcase -%}
+                          {%- assign color_slug = current_value_cleaned | handleize -%}
+                          {%- assign label_unique_class = 'color-label--' | append: color_slug -%}
+                          {%- assign dot_unique_class = 'color-dot--' | append: color_slug -%}
+                          {% if current_value_cleaned == 'vargnatt' %}
+                            {%- assign label_background_inline_style = 'background: radial-gradient(50px 50px ellipse at 50% 52% in oklab,oklch(0.7 0.1996 44.67) 0%, oklch(0.03 0.021 264.05) 50%);' -%}
+                          {% elsif current_value_cleaned == 'fjellblå' %}
+                            {%- assign label_background_inline_style = 'background: radial-gradient(45px 45px ellipse at 50% 52% in oklab, oklch(0.7 0.1996 44.67) 1%, oklch(26% 0.12 273) 50%);' -%}
+                          {% endif %}
+
+                          {% comment %}--- Start: Enkelt fargevalg-boks ---{% endcomment %}
+                          <div class='color-option-item flex items-center justify-between px-6 rounded-3xl border border-heading-gray/60 p-4'>
+                            {% comment %}--- Fargenavn (til venstre) ---{% endcomment %}
+                            <span class='color-option-name size-fit font-body-family text-heading-gray font-base md:text-3xl text-2xl mr-4'>
+                              {{ value }}
+                            </span>
+
+                            {% comment %}--- Fargevelger-sirkel (til høyre) ---{% endcomment %}
+                            <label
+                              class='color-swatch-background color-swatch-visual-wrapper relative flex items-center size-16 md:size-20 lg:size-24 rounded-full justify-center cursor-pointer {{ label_unique_class }}'
+                              style='{{ label_background_inline_style }}'
+                            >
+                              {% comment %}--- Fargedott ---{% endcomment %}
+                              <span
+                                class='color-option-dot color-swatch-dot-container {{ dot_unique_class }} w-5 h-5 rounded-full transition-all flex items-center justify-center'
+                                style='background: {{ bg_color_from_meta }};'
+                                aria-hidden='true'
+                              >
+                                <input
+                                  type='radio'
+                                  name='options[{{ color_option_object.name | escape }}]'
+                                  value='{{ value | escape }}'
+                                  class='sr-only peer product-option-input'
+                                  data-option-index='option{{ color_option_object.position }}'
+                                  {% if color_option_object.selected_value == value %}
+                                    checked
+                                  {% endif %}
+                                  aria-label='{{ value | escape }} fargevalg'
+                                >
+                              </span>
+                              {% comment %} Fargenavnet er flyttet UTENFOR label for å kunne plasseres separat {% endcomment %}
+                            </label>
+                          </div>
+                          {% comment %}--- Slutt: Enkelt fargevalg-boks ---{% endcomment %}
+                        {% endfor %}
+                      </fieldset>
+                    </div>
+                  {% endif %}
+
+                  {%- assign cart_qty = cart
+                    | item_count_for_variant: product.selected_or_first_available_variant.id
+                  -%}
+
+                  <div class='checkout-menu justify-items-center items-center md:mt-64 mb-6 grid grid-rows-auto gap-y-4'>
+                    <h2
+                      id='checkoutsection'
+                      class='checkout-title max-sm:place-self-start text-subtext-gray tracking-normal size-full py-8 font-body-family font-base text-3xl'
+                    >
+                      <span class='text-heading-gray'>Din nye Utekos er klar.</span>
+                      <br>
+                      <span>Velg antall, og hvordan du vil få den hjem</span>
+                    </h2>
+                    <div class='quantity-block !w-full md:w-[85%] pl-2 flex flex-row justify-between items-center rounded-xl bg-finance-white'>
+                      <div
+                        class='quantity-selector w-fit'
+                        data-section='{{ section.id }}'
+                      >
+                        <label
+                          for='quantity-input-{{ section.id }}'
+                          class='quantity-header font-body-family text-left ml-2 w-full md:size-fit font-base md:text-2xl text-heading-gray'
+                        >
+                          Antall
+                        </label>
+                      </div>
+                      <quantity-input class='quantity flex flex-row justify-center items-center mx-auto'>
+                        <button
+                          type='button'
+                          class='quantity__button text-heading-gray font-base cursor-pointer text-2xl w-6 quantity-decrease'
+                          id='quantity-decrease'
+                          name='minus'
+                          aria-label='Reduser antall'
+                        >
+                          -
+                        </button>
+                        <input
+                          type='number'
+                          name='quantity'
+                          value='1'
+                          min='1'
+                          class='quantity__input w-8 pr-1 pl-3 flex items-center justify-center text-heading-gray'
+                          aria-label='Antall'
+                          data-cart-quantity='{{ cart_qty }}'
+                          id='quantity-input-{{ section.id }}'
+                        >
+                        <button
+                          type='button'
+                          id='quantity-increase'
+                          name='plus'
+                          class='quantity__button text-heading-gray w-6 cursor-pointer font-base text-2xl quantity-increase'
+                          aria-label='Øk antall'
+                        >
+                          +
+                        </button>
+                      </quantity-input>
+                      {%- assign stock_status = product_to_display.selected_or_first_available_variant.inventory_quantity -%}
+                      <div class='quanity-label-and-status'>
+                        {% if stock_status > 0 and stock_status < 20 %}
+                          <p class='stock-amount space-y-4 justify-self-end bg-link-blue py-3 text-white rounded-xl tracking-normal text-[12px] font-normal font-body-family'>
+                            {{ stock_status }} på lager
+                          </p>
+                        {% else %}
+                          <p class='stock-amount flex justify-self-end bg-link-blue py-3 px-5 !text-white rounded-xl tracking-normal text-[12px] font-normal font-body-family'>
+                            Over 20 på lager
+                          </p>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <purchase-handler>
+                      <div
+                        id='delivery-options'
+                        class='delivery-options flex flex-col gap-3 w-full md:w-[85%]'
+                      >
+                        <button
+                          class='delivery-button max-sm:mt-4 w-full cursor-pointer flex items-center gap-3 p-4 rounded-xl bg-finance-white border-2 border-transparent transition-all'
+                          type='button'
+                          data-value='send'
+                        >
+                          <span class='svg-wrapper-small ml-1 w-6 h-6'>
+                            {{ 'icon-shipping-truck.svg' | inline_asset_content }}
+                          </span>
+                          <p class='text-base text-left leading-snug'>
+                            Få tilsendt – Leveringstid: 1–3 dager
+                          </p>
+                        </button>
+
+                        <button
+                          class='delivery-button w-full cursor-pointer flex items-center gap-3 p-4 rounded-xl bg-finance-white border-2 border-transparent transition-all'
+                          type='button'
+                          data-value='collect'
+                        >
+                          <span class='svg-wrapper-small ml-1 w-6 h-6'>
+                            {{ 'icon-blue-bag.svg' | inline_asset_content }}
+                          </span>
+                          <p class='text-base text-left leading-snug'>
+                            Click & collect – Klar til henting innen 1 time
+                          </p>
+                        </button>
+                      </div>
+
+                      <div class='submit-button max-sm:my-4 w-full md:w-[85%]'>
+                        <input
+                          type='hidden'
+                          value='{{ product_to_display.selected_or_first_available_variant.id }}'
+                        >
+                        <button
+                          type='button'
+                          name='add'
+                          id='addtobag'
+                          class='add-to-cart-button text-xl w-full py-6 add-to-cart-btn md:mt-2 font-body-family cursor-pointer text-center hover:bg-heading-gray/90 hover:text-text-white bg-heading-gray text-[#F5F5F7] transition-colors rounded-2xl duration-150'
+                          {% unless product_to_display.selected_or_first_available_variant.available %}
+                            disabled
+                          {% endunless %}
+                          aria-live='polite'
+                          aria-atomic='true'
+                        >
+                          {% if product_to_display.selected_or_first_available_variant.available %}
+                            Legg i handleposen
+                          {% else %}
+                            Utsolgt
+                          {% endif %}
+                        </button>
+
+                        <div id='ClickCollectPopUp' class='popup-overlay' style='display: none;'>
+                          <div class='popup-content !bg-desert-sand'>
+                            <span class='popup-close-button' type='button'>×</span>
+                            {% render 'click-collect' %}
+                          </div>
+                        </div>
+                      </div>
+                    </purchase-handler>
+                  </div>
+
+                  {% if chosen_variant.descriptions %}
+                    <div
+                      class='product-description-container hidden md:my-64'
+                      aria-labelledby='product-description-heading-{{ section.id }}'
+                    >
+                      <h2 id='product-description-heading-{{ section.id }}' class='sr-only'>
+                        Produktbeskrivelse
+                      </h2>
+
+                      <button
+                        class='description-toggle-button-top cursor-pointer text-link-blue'
+                        type='button'
+                        style='display: none; margin-bottom: 1em;'
+                        aria-controls='description-content-{{ section.id }}'
+                        aria-expanded='false'
+                      >
+                        Les mindre
+                      </button>
+
+                      <div
+                        class='description-content text-heading-gray expandable-content-text tracking-normal overflow-y-auto max-h-[400px]'
+                        data-full-text='{{ chosen_variant.description }}'
+                        data-short-text-length='75'
+                        id='description-content-{{ section.id }}'
+                        type='text'
+                      ></div>
+                      <button
+                        class='description-toggle-button cursor-pointer text-lg text-link-blue'
+                        type='button'
+                        aria-controls='description-content-{{ section.id }}'
+                        aria-expanded='false'
+                      >
+                        Les mer
+                      </button>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='metafield-main-grid bg-desert-sand rounded-t-[40px] mb-6 pt-12 h-fit lg:pb-24 lg:mt-16 mt-12 px-4 md:px-36 lg:px-42 items-center grid grid-cols-1 text-left max-sm:pt-16'>
+          {% if chosen_variant.materials %}
+            <div class='metafield-subgrid expandable-metafield w-full h-fit items-center'>
+              <div
+                class='metafield-header'
+                data-metafield-toggle-trigger
+                role='button'
+                aria-controls='material-content-{{ section.id }}'
+                aria-expanded='false'
+              >
+                <span class='svg-wrapper-small'>
+                  {{ 'icon-clipboard.svg' | inline_asset_content }}
+                </span>
+
+                <h4 class='metafield-title'>Materialer</h4>
+                <button
+                  type='button'
+                  class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right cursor-pointer'
+                  aria-label='Vis eller skjul materialinformasjon'
+                  aria-controls='material-content-{{ section.id }}'
+                >
+                  <span class='icon-caret.open' aria-hidden='true'>
+                    {{ 'icon-caret.svg' | inline_asset_content }}
+                  </span>
+                </button>
+              </div>
+              <div
+                class='metafield-content max-w-none'
+                data-full-text='{{ chosen_variant.materials | metafield_tag | escape }}'
+                data-short-text-length='20'
+                style='display: none;'
+                id='material-content-{{ section.id }}'
+              ></div>
+            </div>
+          {% endif %}
+          {% if chosen_variant.usage %}
+            <div class='metafield-subgrid expandable-metafield'>
+              <div
+                class='metafield-header cursor-pointer'
+                data-metafield-toggle-trigger
+                role='button'
+                aria-controls='usage-content-{{ section.id }}'
+                aria-expanded='false'
+              >
+                <span class='svg-wrapper-small'>
+                  {{- 'icon-book-guide.svg' | inline_asset_content -}}
+                </span>
+                <h4 class='metafield-title'>Bruksområder</h4>
+                <button
+                  type='button'
+                  class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right cursor-pointer'
+                  aria-label='Vis eller skjul bruksområder'
+                  aria-controls='usage-content-{{ section.id }}'
+                >
+                  <span class='icon-chevron' aria-hidden='true'>
+                    {{ 'icon-caret.svg' | inline_asset_content }}
+                  </span>
+                </button>
+              </div>
+              <div
+                class='metafield-content  max-w-none'
+                data-full-text='<p>{{ chosen_variant.usage | metafield_tag | escape }}</p>'
+                data-short-text-length='20'
+                style='display: none;'
+                id='usage-content-{{ section.id }}'
+              ></div>
+            </div>
+          {% endif %}
+
+          {% if chosen_variant.functions %}
+            <div class='metafield-subgrid expandable-metafield'>
+              <div
+                class='metafield-header cursor-pointer'
+                data-metafield-toggle-trigger
+                role='button'
+                aria-controls='functions-content-{{ section.id }}'
+                aria-expanded='false'
+                type='button'
+              >
+                <span class='svg-wrapper-small'>
+                  {{- 'icon-settings.svg' | inline_asset_content -}}
+                </span>
+                <h4 class='metafield-title'>Funksjoner</h4>
+
+                <button
+                  type='button'
+                  class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right cursor-pointer'
+                  aria-label='Vis eller skjul funksjoner'
+                  aria-controls='functions-content-{{ section.id }}'
+                >
+                  <span class='icon-chevron' aria-hidden='true'>
+                    {{ 'icon-caret.svg' | inline_asset_content }}
+                  </span>
+                </button>
+              </div>
+              <div
+                class='metafield-content max-w-none'
+                data-full-text='<p>{{ chosen_variant.functions | metafield_tag | escape  }}</p>'
+                data-short-text-length='20'
+                style='display: none;'
+                id='functions-content-{{ section.id }}'
+              ></div>
+            </div>
+          {% endif %}
+
+          {% if chosen_variant.size_fit %}
+            <div class='metafield-subgrid expandable-metafield cursor-pointer'>
+              <div
+                class='metafield-header cursor-pointer'
+                data-metafield-toggle-trigger
+                role='button'
+                aria-controls='size-fit-content-{{ section.id }}'
+                aria-expanded='false'
+                type='button'
+              >
+                <span class='svg-wrapper-small'>
+                  {{- 'icon-ruler.svg' | inline_asset_content -}}
+                </span>
+                <h4 class='metafield-title'>Passform</h4>
+                <button
+                  type='button'
+                  class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right'
+                  aria-label='Vis eller skjul passformguide'
+                  aria-controls='size-fit-content-{{ section.id }}'
+                >
+                  <span class='icon-chevron' aria-hidden='true'>
+                    {{ 'icon-caret.svg' | inline_asset_content }}
+                  </span>
+                </button>
+              </div>
+              <div
+                class='metafield-content text-xl tracking-normal text-heading-gray max-w-none'
+                data-full-text='{{  chosen_variant.size_fit | metafield_tag | escape }}'
+                style='display: none;'
+                id='size-fit-content-{{ section.id }}'
+              ></div>
+            </div>
+          {% endif %}
+
+          {% if chosen_variant.storage_and_maintenance %}
+            <div class='metafield-subgrid expandable-metafield border-b border-heading-gray/60 pb-4 product-care-section cursor-pointer'>
+              <div
+                class='metafield-header cursor-pointer'
+                data-metafield-toggle-trigger
+                role='button'
+                aria-controls='wash-content-{{ section.id }}'
+                aria-expanded='false'
+                type='button'
+              >
+                <span class='svg-wrapper-small'>
+                  {{- 'icon-wash.svg' | inline_asset_content -}}
+                </span>
+                <h4 class='metafield-title'>Vaskeanvisning</h4>
+                <button
+                  type='button'
+                  class='metafield-toggle-button text-gray-600 hover:text-gray-900 icon-right'
+                  aria-label='Vis eller skjul vaskeanvisning'
+                  aria-controls='wash-content-{{ section.id }}'
+                >
+                  <span class='icon-chevron' aria-hidden='true'>
+                    {{ 'icon-caret.svg' | inline_asset_content }}
+                  </span>
+                </button>
+              </div>
+              <div
+                class='metafield-content max-w-none'
+                data-full-text='{{  chosen_variant.storage_and_maintenance | metafield_tag | escape }}'
+                style='display: none;'
+                id='wash-content-{{ section.id }}'
+              ></div>
+            </div>
+          {% endif %}
+        </div>
+        {%- assign related_products_list = chosen_variant.related_products.value -%}
+        {%- if related_products_list != blank -%}
+          <div
+            class='related-productz rounded-t-[40px] pt-24 md:-mt-16 bg-black text-white text-center md:pt-4 font-normal'
+            role='complementary'
+            aria-labelledby='related-products-heading-{{ section.id }}'
+          >
+            <h3
+              class='py-12 text-white md:text-5xl tracking-tight'
+              id='related-products-heading-{{ section.id }}'
+            >
+              Flere som er klare for eventyr..
+            </h3>
+            <div class='related-products my-8 flex flex-row justify-evenly w-[75%] justify-self-center font-body-family h-auto'>
+              {%- for related_product_item in related_products_list -%}
+                <div
+                  class='related-productz-card h-[600px] max-sm:w-[35%] w-fit text-center justify-center'
+                  role='listitem'
+                >
+                  <a
+                    href='{{ related_product_item.url }}'
+                    aria-label='Se produktet {{ related_product_item.title | escape }}'
+                  >
+                    {%- if related_product_item.featured_image -%}
+                      <img
+                        src='{{ related_product_item.featured_image | image_url: width: 175 }}'
+                        alt='{{ related_product_item.title | escape }}'
+                        width='175'
+                        height='auto'
+                        style='aspect-ratio: 2/3; display: flex; place-self: center; border-radius: 12px;'
+                      >
+                    {%- else -%}
+                      {{
+                        'product-1'
+                        | placeholder_svg_tag: 'placeholder-svg related-product-placeholder'
+                      }}
+                    {%- endif -%}
+
+                    {%- if related_product_item.title -%}
+                      <h5 class='related-producz-title mt-6 text-3xl items-center justify-center font-base text-white'>
+                        {{ related_product_item.title }}
+                      </h5>
+                    {%- endif -%}
+                    {% if related_product_item.metafields.creative.title %}
+                      <h5 class='related-producz-creative-title mt-2 text-2xl items-center justify-center font-normal text-white'>
+                        {{ related_product_item.metafields.creative.title }}
+                      </h5>
+                    {%- endif -%}
+
+                    <price-per-item class='related-productz-price price-per-item mt-24 text-white'>
+                      {{ related_product_item.price | money }}
+                    </price-per-item>
+                  </a>
+                  {% if related_product_item.metafields.related.materials %}
+                    <div class='attributes border-t border-t-gray-400 mt-10 h-[400px]'>
+                      <span class='svg-wrapper-big'>
+                        {{- 'icon-thread.svg' | inline_asset_content -}}
+                      </span>
+                      <h5 class='mt-2 text-lg size-full overflow-y-visible font-normal text-white'>
+                        {{ related_product_item.metafields.related.materials | metafield_tag }}
+                      </h5>
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+
+            {% render 'temperatur' %}
+          </div>
+        {%- else -%}
+          <p class='sr-only' aria-live='polite'>Ingen relaterte produkter funnet.</p>
+        {%- endif -%}
+      </form>
+    </div>
+  </section>
+{% endif %}
+<script src='{{ 'purchase-handler.js' | asset_url }}' defer='defer'></script>
+<script src='{{ 'price-per-item.js' | asset_url }}' defer='defer'></script>
+<script src='{{ 'swiper-bundle.js' | asset_url }}' defer='defer'></script>
+<script src='{{ 'preview-handler.js' | asset_url }}' defer='defer'></script>
+
+{% schema %}
+{
+  "name": "Product Preview Handler",
+  "tag": "section",
+  "class": "product-swiper-details-section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Produkt",
+      "info": "Velg produktet som skal vises."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Modell, mål og temperatursoner"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_small",
+      "label": "Bilde – Small"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_medium",
+      "label": "Bilde – Medium"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_large",
+      "label": "Bilde – Large"
+    },
+    {
+      "type": "header",
+      "content": "Temperaturverdier – Dun"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_down",
+      "label": "Temperaturbilde – Dun"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_synthetic",
+      "label": "Temperaturbilde – Mikrofiber"
+    },
+    {
+      "type": "header",
+      "content": "Tekstforklaringer"
+    },
+    {
+      "type": "richtext",
+      "id": "text_comfort",
+      "label": "Comfort – forklaring",
+      "default": "<p>I komfortsonen vil en gjennomsnittskvinne kunne sove uavbrutt og komfortabelt gjennom natten i en avslappet stilling uten å fryse.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text_transition",
+      "label": "Transition – forklaring",
+      "default": "<p>I overgangssonen vil en gjennomsnittsmann kunne sove i sammentrukket stilling, men kan begynne å fryse.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text_risk",
+      "label": "Risk – forklaring",
+      "default": "<p>I risikosonen opplever en gjennomsnittsperson betydelig kulde og risiko for helseskader som hypotermi.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading_1",
+      "label": "Merk",
+      "default": "Merk"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Påminnelse",
+      "default": "Advarsel..."
+    },
+    {
+      "type": "text",
+      "id": "henvisning",
+      "label": "Kilde",
+      "default": "Kildehenvisning"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Preview Handler",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

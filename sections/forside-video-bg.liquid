@@ -119,11 +119,13 @@
   .logo-video-section {
     position: relative;
     width: 100%;
-    height: 950px;
+    height: 1050px;
     overflow: hidden;
     padding: 0rem 0rem;
     justify-content: center;
     display: flex;
+    top: 0;
+    margin-top: -1rem;
   }
 
   .video-container {
@@ -140,7 +142,6 @@
     height: 900px;
     object-fit: cover;
   }
-
   /* === BANNER === */
   .glass-banner {
     position: absolute;
@@ -159,6 +160,7 @@
     animation: floatUpDown 4s ease-in-out infinite;
     padding: 6rem 0rem;
     margin: 0 auto;
+    display: none;
   }
 
   .glass-banner__text {
@@ -172,7 +174,8 @@
 
   .banner-heading {
     font-size: 5rem;
-    font-family: 'DIN Next Rounded LT Pro', sans-serif;
+    font-family:
+      var(--font-body-family), '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif';
     font-weight: bold;
     font-style: normal;
     color: white;
@@ -184,9 +187,6 @@
 
   .banner-subtext {
     font-size: 2.8rem;
-    font-family: 'DIN Next Rounded LT Pro', sans-serif;
-    font-weight: normal;
-    font-style: normal;
     color: white;
     line-height: 1.5;
     margin: 0px 0px;
@@ -272,16 +272,44 @@
       transform: translate(-50%, 0);
     }
   }
+
+  @media screen and (min-width: 1481px) {
+    .logo-video-section {
+      height: 100rem;
+      margin-top: 0rem;
+    }
+
+    .video {
+      height: 130rem;
+      width: auto;
+      min-width: 100vw;
+    }
+  }
+  @media screen and (min-width: 1023px) and (max-width: 1480px) {
+    .logo-video-section {
+      height: 92rem;
+      margin-top: 0rem;
+    }
+
+    .video {
+      height: 100rem;
+      width: auto;
+      min-width: 100vw;
+    }
+  }
+
   /* === RESPONSIVT (mobil) === */
   @media screen and (max-width: 749px) {
     .logo-video-section {
-      height: 480px;
+      height: 375px;
       width: 100% !important;
+      margin-top: 0rem;
     }
 
     .video {
       width: 100%;
       height: 100%;
+      min-height: 900px;
       object-fit: cover;
       padding: 0rem 0 rem;
       margin: 0rem 0rem;
@@ -318,6 +346,10 @@
 
     .logo-text-container .headline {
       font-size: 1.6rem !important;
+    }
+
+    .video-overlay {
+      height: 320px;
     }
 
     .logo-text-container .subtext {

@@ -1,0 +1,40 @@
+<section class='Olivia'>
+  <div class='Oliva bg-red-500 text-white text-7xl'>
+    <h1>Hei, jeg heter Olivia</h1>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Olivia",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Specs etter size"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image for Tab 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image for Tab 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image for Tab 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Olivia",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

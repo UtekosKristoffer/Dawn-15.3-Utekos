@@ -12,7 +12,8 @@ if (!customElements.get('quick-add-modal')) {
       }
 
       hide(preventFocus = false) {
-        const cartNotification = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
+        const cartNotification =
+          document.querySelector('cart-notification') || document.querySelector('cart-drawer');
         if (cartNotification) cartNotification.setActiveElement(this.openedBy);
         this.modalContent.innerHTML = '';
 
@@ -95,7 +96,9 @@ if (!customElements.get('quick-add-modal')) {
         if (!galleryList) return;
 
         galleryList.setAttribute('role', 'presentation');
-        galleryList.querySelectorAll('[id^="Slide-"]').forEach((li) => li.setAttribute('role', 'presentation'));
+        galleryList
+          .querySelectorAll('[id^="Slide-"]')
+          .forEach((li) => li.setAttribute('role', 'presentation'));
       }
 
       updateImageSizes(productElement) {

@@ -1,0 +1,20 @@
+{% comment %}
+  Dette er en manuell loader for Vite.
+  - I utvikling (når du kjører 'shopify theme dev'), vil den laste skript fra Vite-serveren.
+  - I produksjon (live-butikken), vil den laste de kompilerte filene fra 'assets'-mappen.
+{% endcomment %}
+
+{%- assign vite_port = 5173 -%}
+{%- assign vite_url = 'http://localhost:' | append: vite_port -%}
+
+{% comment %} Sjekker om vi kjører i lokal utviklingsmodus {% endcomment %}
+{% if request.host contains '127.0.0.1' or request.host contains 'localhost' %}
+  {% comment %} UTVIKLINGSMODUS: Last inn fra Vite dev server for HMR {% endcomment %}
+  <script type='module' src='{{ vite_url }}/@vite/client'></script>
+  <script type='module' src='{{ vite_url }}/frontend/main.js' defer='defer'></script>
+
+{% else %}
+  {% comment %} PRODUKSJONSMODUS: Last inn kompilerte filer fra /assets {% endcomment %}
+  {{ 'styles.css' | asset_url | stylesheet_tag }}
+  {{ 'index.js' | asset_url | script_tag }}
+{% endif %}

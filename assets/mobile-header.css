@@ -1,0 +1,88 @@
+.mobile-header:hover {
+  background-color: white;
+}
+
+.header__icon--cart {
+  color: white;
+  height: 40px important;
+}
+#UtekosLogo {
+  display: flex;
+  margin: 0 auto;
+}
+
+#MobileHeaderIcons {
+  display: flex;
+  justify-self: right;
+  place-items: center;
+  place-content: center;
+  flex-direction: row;
+  place-self: center;
+  gap: 4px;
+}
+
+.mobile-header .header__icon + * {
+  color: white !important;
+}
+#menu-toggle {
+  cursor: pointer;
+}
+
+#MobileHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: transparent;
+  height: 6rem !important;
+  align-items: center;
+}
+
+#menu-toggle:hover .bar:nth-of-type(1) {
+  -webkit-transform: translateY(1.3px) rotate(-6deg);
+  -ms-transform: translateY(1.3px) rotate(-6deg);
+  transform: translateY(1.3px) rotate(-6deg);
+}
+
+#menu-toggle:hover .bar:nth-of-type(2) {
+  opacity: 0.9;
+}
+
+#menu-toggle:hover .bar:nth-of-type(3) {
+  -webkit-transform: translateY(-1.3px) rotate(6deg);
+  -ms-transform: translateY(-1.3px) rotate(6deg);
+  transform: translateY(-1.3px) rotate(6deg);
+}
+
+#menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+#menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+@media screen and (min-width: 1023px) {
+  #MobileHeaderIcons * {
+    display: flex;
+    justify-items: start;
+    margin: 0 auto !important;
+    margin: 2px;
+  }
+
+  details[open] .header__icon-close {
+    cursor: pointer;
+  }
+  .cart-icon-white svg {
+    scale: 100;
+  }
+
+  #MobileHeaderIcons {
+    padding-right: 2rem;
+  }
+
+  #MobileHeaderIcons:nth-of-type(3) {
+    display: flex;
+  }
+}

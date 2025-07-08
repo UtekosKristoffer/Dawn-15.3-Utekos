@@ -1,0 +1,63 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collapsible_content_eChEdQ": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_zXHTz8": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Utekos Dun",
+            "icon": "dryer",
+            "row_content": "<p>For å ta best mulig vare på dunens isolasjonsevne og spenst:</p><p>Maskinvaskes på maks <strong>30°C </strong>skånsomt program. Bruk mild såpe – helst spesialsåpe for dunprodukter. Følg alltid vaskesymbolene på produktets etikett.<br/><br/>– <strong>Ingen blekemidler</strong><br/><br/>– <strong>Ikke rens (dry clean)</strong><br/><br/>– <strong>Ikke stryk</strong><br/><br/><strong>Må ikke tørketromles</strong> uten spesifikke dunprogrammer og tørkeballer. Dun krever nøye tørking for å bevare luftigheten og isolasjonsevnen. Plagget må tørkes helt gjennom, gjerne over flere omganger – følg dedikerte instrukser for dun.<br/><br/><strong>Oppbevares tørt og  ukomprimert </strong>over tid. Langvarig kompresjon kan skade dunens struktur og redusere spensten. Bruk gjerne en luftig lagringspos<strong>e</strong> (ikke kompresjonspose) når plagget ikke er i bruk.<br/><br/>Sørg alltid for å tørke plagget fullstendig etter bruk i våte omgivelser for å unngå mugg og lukt.<br/><br/>Vask kun når nødvendig - hyppig vask kan svekke dunens naturlige egenskaper.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_9MTwpT": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Utekos Mikrofiber",
+            "icon": "washing",
+            "row_content": "<p>For å sikre lang levetid og optimal ytelse fra mikrofibermaterialet, anbefaler vi følgende:<br/><br/>Maskinvaskes på maks <strong>30 °C</strong> med mild såpe.<br/><br/>– <strong>Ingen blekemidler</strong><br/><br/>– <strong>Ikke rens (dry clean)</strong><br/><br/>– <strong>Ikke stryk</strong><br/><br/><strong>Må ikke tørketromles.</strong> Mikrofiber tørker svært raskt på egenhånd – heng til lufttørking for å bevare både struktur og ytelse.<br/><br/>Mikrofiber absorberer naturlig fuktighet under bruk. Sørg for at plagget tørker helt etter bruk i våte omgivelser.<br/><br/><strong>Oppbevares tørt og ukomprimert</strong>. For lengre lagring anbefales det å henge plagget eller brette det løst – dette bevarer loft, form og funksjon.<br/><br/>Vask kun ved behov for å bevare stoffets tekniske egenskaper og komfort.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Y7DNtP": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Utekos Comfyrobe",
+            "icon": "dryer",
+            "row_content": "<p>For å bevare plaggets tekniske egenskaper og komfort over tid anbefaler vi følgende:</p><p>Maskinvaskes på <strong>40°C </strong>skånsomt program med mildt vaskemiddel. Unngå blekemidler.<br/><br/>Skal ikke renses (dry clean) – sterke kjemikalier kan skade PU-coatingen.<br/><br/>Ikke stryk ytterstoffet (kan smelte) eller plysjfôret (kan bli flat og miste volum).<br/><br/>Tørketromling anbefales generelt ikke, da det kan redusere plaggets vanntetthet. Om nødvendig kan det kjøres kort på lav varme for å fluffe opp fôret – pass på at ytterstoffet ikke overopphetes.<br/><br/>Heng til tørk. Det indre fleecefôret slipper mesteparten av fukt raskt; resten drypptørker trygt i romtemperatur.<br/><br/><strong>Etterbehandling: </strong>Bruk vannavvisende spray eller impregnering ved behov – spesielt dersom vann slutter å perle seg på overflaten.<br/><br/><strong>Daglig vedlikehold:</strong> Heng gjerne til lufting etter bruk, spesielt ved eksponering for saltvann eller klor. Dette holder materialene friske, funksjonelle og luktfrie.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": ["collapsible_row_zXHTz8", "collapsible_row_9MTwpT", "collapsible_row_Y7DNtP"],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "Vask og vedlikehold",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image": "shopify://shop_images/coffe_utekos.webp",
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": ["collapsible_content_eChEdQ"]
+}

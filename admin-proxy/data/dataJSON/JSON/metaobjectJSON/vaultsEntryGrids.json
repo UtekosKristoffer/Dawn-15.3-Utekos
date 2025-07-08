@@ -1,0 +1,136 @@
+[
+  {
+    "id": "gid://shopify/Product/7710040391928",
+    "title": "Utekos Dun™",
+    "handle": "utekos-dun",
+    "metafield": {
+      "id": "gid://shopify/Metafield/34128344121592",
+      "type": "list.metaobject_reference",
+      "references": {
+        "edges": [
+          {
+            "node": {
+              "id": "gid://shopify/Metaobject/127203115256",
+              "type": "vault",
+              "handle": "vaultentriesdawn",
+              "fields": [
+                {
+                  "key": "entries",
+                  "value": "[\"gid://shopify/Metaobject/116374077688\",\"gid://shopify/Metaobject/116368605432\",\"gid://shopify/Metaobject/116369948920\",\"gid://shopify/Metaobject/116372373752\",\"gid://shopify/Metaobject/116482932984\",\"gid://shopify/Metaobject/116482408696\",\"gid://shopify/Metaobject/116479754488\",\"gid://shopify/Metaobject/117108801784\",\"gid://shopify/Metaobject/120633164024\",\"gid://shopify/Metaobject/121311985912\",\"gid://shopify/Metaobject/120635064568\",\"gid://shopify/Metaobject/121313263864\"]"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "vaults": [
+      {
+        "id": "gid://shopify/Metaobject/127203115256",
+        "handle": "vaultentriesdawn",
+        "entryGids": [
+          "gid://shopify/Metaobject/116374077688",
+          "gid://shopify/Metaobject/116368605432",
+          "gid://shopify/Metaobject/116369948920",
+          "gid://shopify/Metaobject/116372373752",
+          "gid://shopify/Metaobject/116482932984",
+          "gid://shopify/Metaobject/116482408696",
+          "gid://shopify/Metaobject/116479754488",
+          "gid://shopify/Metaobject/117108801784",
+          "gid://shopify/Metaobject/120633164024",
+          "gid://shopify/Metaobject/121311985912",
+          "gid://shopify/Metaobject/120635064568",
+          "gid://shopify/Metaobject/121313263864"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/7710040752376",
+    "title": "Utekos Mikrofiber™",
+    "handle": "utekos-mikrofiber™",
+    "metafield": {
+      "id": "gid://shopify/Metafield/34128348119288",
+      "type": "list.metaobject_reference",
+      "references": {
+        "edges": [
+          {
+            "node": {
+              "id": "gid://shopify/Metaobject/127203148024",
+              "type": "vault",
+              "handle": "vaultentriesmicrofiber",
+              "fields": [
+                {
+                  "key": "entries",
+                  "value": "[\"gid://shopify/Metaobject/116374307064\",\"gid://shopify/Metaobject/116369195256\",\"gid://shopify/Metaobject/116370014456\",\"gid://shopify/Metaobject/116372046072\",\"gid://shopify/Metaobject/116372668664\",\"gid://shopify/Metaobject/116482932984\",\"gid://shopify/Metaobject/116482408696\",\"gid://shopify/Metaobject/116479754488\",\"gid://shopify/Metaobject/121308053752\",\"gid://shopify/Metaobject/121304842488\",\"gid://shopify/Metaobject/120632606968\",\"gid://shopify/Metaobject/120629723384\"]"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "vaults": [
+      {
+        "id": "gid://shopify/Metaobject/127203148024",
+        "handle": "vaultentriesmicrofiber",
+        "entryGids": [
+          "gid://shopify/Metaobject/116374307064",
+          "gid://shopify/Metaobject/116369195256",
+          "gid://shopify/Metaobject/116370014456",
+          "gid://shopify/Metaobject/116372046072",
+          "gid://shopify/Metaobject/116372668664",
+          "gid://shopify/Metaobject/116482932984",
+          "gid://shopify/Metaobject/116482408696",
+          "gid://shopify/Metaobject/116479754488",
+          "gid://shopify/Metaobject/121308053752",
+          "gid://shopify/Metaobject/121304842488",
+          "gid://shopify/Metaobject/120632606968",
+          "gid://shopify/Metaobject/120629723384"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/8036341448952",
+    "title": "Comfyrobe™",
+    "handle": "comfyrobe",
+    "metafield": {
+      "id": "gid://shopify/Metafield/34128345301240",
+      "type": "list.metaobject_reference",
+      "references": {
+        "edges": [
+          {
+            "node": {
+              "id": "gid://shopify/Metaobject/127203246328",
+              "type": "vault",
+              "handle": "vaultentriescomfyrobe",
+              "fields": [
+                {
+                  "key": "entries",
+                  "value": "[\"gid://shopify/Metaobject/116042334456\",\"gid://shopify/Metaobject/116368146680\",\"gid://shopify/Metaobject/116370211064\",\"gid://shopify/Metaobject/116372209912\",\"gid://shopify/Metaobject/116373389560\",\"gid://shopify/Metaobject/121330565368\",\"gid://shopify/Metaobject/121329778936\",\"gid://shopify/Metaobject/121318572280\"]"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "vaults": [
+      {
+        "id": "gid://shopify/Metaobject/127203246328",
+        "handle": "vaultentriescomfyrobe",
+        "entryGids": [
+          "gid://shopify/Metaobject/116042334456",
+          "gid://shopify/Metaobject/116368146680",
+          "gid://shopify/Metaobject/116370211064",
+          "gid://shopify/Metaobject/116372209912",
+          "gid://shopify/Metaobject/116373389560",
+          "gid://shopify/Metaobject/121330565368",
+          "gid://shopify/Metaobject/121329778936",
+          "gid://shopify/Metaobject/121318572280"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,53 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "highlights",
+      "disabled": true,
+      "settings": {
+        "heading": "Generell produktinformasjon",
+        "subheading": "",
+        "mainsource": [],
+        "vaultvariant": [],
+        "sizefit": [],
+        "Origin": [],
+        "dimensions": []
+      }
+    },
+    "size_temp_exp_MhLkxL": {
+      "type": "size-temp-exp",
+      "name": "Temperaturseksjon",
+      "settings": {
+        "heading": "Modell, mål og temperatursoner",
+        "image_small": "shopify://shop_images/Utekos_Skisse_Str_S_1.svg",
+        "image_medium": "shopify://shop_images/Utekos_Skisse_Str_M_mettet.svg",
+        "image_large": "shopify://shop_images/Utekos_Skisse_Str_L_mettet_531c7312-331b-492c-8454-381c3b1fcdc5.svg",
+        "image_down": "shopify://shop_images/Nordic_Dun_Temp_Iphone_Max.svg",
+        "image_synthetic": "shopify://shop_images/Nordic_Mikrofiber_Temp_Iphone_M.svg",
+        "text_comfort": "<p>I komfortsonen vil en gjennomsnittskvinne kunne sove uavbrutt og komfortabelt gjennom natten i en avslappet stilling uten å fryse.</p>",
+        "text_transition": "<p>I overgangssonen vil en gjennomsnittsmann kunne sove i sammentrukket stilling, men kan begynne å fryse.</p>",
+        "text_risk": "<p>I risikosonen vil en sammenkrøllet gjennomsnittskvinne oppleve betydelig kulde og ha en rell sjanse for helseskader grunnet hypotermi. Temperatursonen beregnes for en bruker i en stressende kuldesituasjon kombinert med skjelving, som bare kan opprettholdes i en begrenset periode</p>",
+        "subheading_1": "Greit å vite...",
+        "text_1": "Temperaturgrensene som vises er et kvalifisert estimat basert på produktets isolasjon, konstruksjon og fyllmateriale. Faktisk opplevd komfort kan variere med individuelle forhold som f.eks. underlag, bekledning, vind og luftfuktighet. Avvik på ± 2–3°C er normalt.",
+        "henvisning": "Kilde: EN 23537-1: 2016"
+      }
+    },
+    "comfyrobe_sizeguide_GeEMPg": {
+      "type": "comfyrobe-sizeguide",
+      "name": "Sizetable",
+      "settings": {
+        "heading": "Størrelsesguide – Comfyrobe",
+        "image_2": "shopify://shop_images/ComfyFrontSkisse.png"
+      }
+    }
+  },
+  "order": ["main", "size_temp_exp_MhLkxL", "comfyrobe_sizeguide_GeEMPg"]
+}

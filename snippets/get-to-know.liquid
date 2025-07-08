@@ -1,0 +1,58 @@
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+
+<div class='grid grid-col-flow size-full justify-center gap-x-[20px] items-center'>
+  <div class='my-24 items-center justify-center mx-auto flex'>
+    <div class='swiper HelloSwiper'>
+      <div class='swiper-wrapper'>
+        <div class='swiper-slide aspect-ratio-[9/16] hover:scale-110 rounded-3xl bg-blue-500 md:w-[372px] md:h-[680px]'>
+          <img
+            src='https://res.cloudinary.com/doqxtgho6/image/upload/f_auto,q_auto,c_fill,ar_16:9,w_800/v1746182096/K_L_liggende_beskj%C3%A6rt_1_msw6t5.jpg'
+            alt='{{ image.alt | escape | default:  }}'
+            class='size-full rounded-3xl md:aspect-9/16 place-self-center'
+            width='{{ image.width }}'
+            height='{{ image.height }}'
+            loading='lazy'
+          >
+        </div>
+        <div class='swiper-slide aspect-ratio-[9/16] hover:scale-110 rounded-3xl bg-blue-500 md:w-[372px] md:h-[680px]'>
+          <img
+            src='https://res.cloudinary.com/doqxtgho6/image/upload/f_auto,q_auto,c_fill,ar_16:9,w_800/v1746182096/K_L_liggende_beskj%C3%A6rt_1_msw6t5.jpg'
+            alt='{{ image.alt | escape | default:  }}'
+            class='size-full rounded-3xl md:aspect-9/16 place-self-center'
+            width='{{ image.width }}'
+            height='{{ image.height }}'
+            loading='lazy'
+          >
+        </div>
+        <div class='swiper-slide aspect-ratio-[9/16] hover:scale-110 rounded-3xl bg-blue-500 md:w-[372px] md:h-[680px]'>
+          <img
+            src='https://res.cloudinary.com/doqxtgho6/image/upload/f_auto,q_auto,c_fill,ar_16:9,w_800/v1746182096/K_L_liggende_beskj%C3%A6rt_1_msw6t5.jpg'
+            alt='{{ image.alt | escape | default:  }}'
+            class='size-full rounded-3xl md:aspect-9/16 place-self-center'
+            width='{{ image.width }}'
+            height='{{ image.height }}'
+            loading='lazy'
+          >
+        </div>
+      </div>
+      <div class='swiper-button-next hidden'></div>
+      <div class='swiper-button-prev hidden'></div>
+      <div class='swiper-pagination'></div>
+    </div>
+  </div>
+</div>
+<script src='{{ 'swiper-bundle.js' | asset_url }}' defer='defer'></script>
+<script>
+  var swiper = new Swiper('.HelloSwiper', {
+    cssMode: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    mousewheel: true,
+    keyboard: true,
+  });
+</script>

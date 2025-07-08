@@ -1,0 +1,295 @@
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+
+<section class='what-is-utekos -mt-42 pt-52 bg-utekos-dark-blue'>
+  <div class='what-is-utekos-intro text-white text-left pt-24 bg-utekos-dark-blue  justify-center tracking-normal'>
+    <h1 class='text-6xl md:text-8xl mx-auto px-6 md:px-40 pb-12'>
+      Når dagen roer seg – og samtalene begynner
+    </h1>
+    <p class='mx-auto text-3xl px-6 md:text-6xl/20 md:px-40'>
+      Kveldene på campingplassen. Når solen senker seg, glassene fylles og samtalene flyter like
+      lett som vinden gjennom trekronene. Kanskje med gode venner, kanskje med nye bekjentskaper –
+      uansett handler det om å være til stede. Klærne våre er laget for disse øyeblikkene: varme nok
+      til å bli sittende ute lenge, myke nok til å glemme at du har dem på. For det er her minnene
+      skapes – rundt bordet, under teltduken, i det lave kveldslyset.
+    </p>
+  </div>
+  <div class='grid grid-cols-[69%_30%] lg:grid-cols-[39%_20%_39%] justify-between max-sm:overflow-auto px-6 md:px-40 items-center pt-2 mb-40 h-[250px] md:h-[500px]'>
+    <div class='picture_one bg-cover rounded-3xl size-full justify-center flex items-center'>
+      <img
+        src='{{ 'automn_walking_2048.webp' | asset_url }}'
+        width='2048'
+        class='object-cover w-full h-[80%]  rounded-3xl'
+        height='auto'
+        alt='Høst'
+      >
+    </div>
+    <div class='picture_two rounded-3xl size-full justify-center flex items-center'>
+      <img
+        src='{{ 'mb_girl_sitting_outside_coffee.webp' | asset_url }}'
+        width='1024'
+        height='auto'
+        class='object-cover w-full h-[80%] rounded-3xl'
+        alt='Utekos Kaffe'
+      >
+    </div>
+    <div class='picture_three hidden rounded-3xl justify-center lg:!flex items-center size-full'>
+      <img
+        src='{{ 'DSC9248.webp' | asset_url }}'
+        width='2048'
+        height='auto'
+        class='object-cover w-full h-[80%] rounded-3xl'
+        alt='Utekos Kos'
+      >
+    </div>
+  </div>
+
+  <div class='productdescription text-white text-left py-42 md:py-54  bg-shopify-green -mt-10 rounded-t-[42px]  justify-center tracking-normal'>
+    <h1 class='text-6xl md:text-8xl mx-auto px-6 md:px-20 lg:px-40 pb-12'>
+      Klar for værskifte – og små eventyr
+    </h1>
+    <p class='mx-auto text-3xl px-6 md:px-20 md:text-6xl/20 lg:px-40'>
+      Temperaturen kan svinge, vinden kan snu, og planene endres på et øyeblikk. Våre plagg gir deg
+      fleksibiliteten du trenger, med teknisk komfort og enkel styling i ett. Gå fra kyst til fjell,
+      fra varme soltimer til kalde kvelder – uten å skifte garderobe. Dette er klær for de som
+      reiser for å være ute, ikke bare komme fram.
+    </p>
+    <div class='bg-shopify-green rounded-t-[42px] md:px-20 py-24 md:py-52 -mt-10'>
+      <div class='test grid mx-auto justify-between max-xs:px-6 lg:px-20 bg-shopify-green max-h-[275px] md:max-h-[600px] grid-cols-[60%_39%] lg:grid-cols-[70%_30%]'>
+        <div
+          class='
+            about w-[95%] items-center max-h-[300px] md:max-h-[500px] container px-4 bg-[radial-gradient(circle,_#283f47_0%,_#0d232a_61%,_#192f37_100%)]
+            rounded-2xl justify-center
+          '
+        >
+          <div class='swiper bobilSwiper max-h-[300px] md:max-h-[500px]'>
+            <div class='swiper-wrapper'>
+              <div
+                class='swiper-slide'
+
+                style="background-image: url('{{ 'mob_blue_fargekolonner.png' | asset_url }}');"
+              >
+                <p class='about-heading'>Utekos™ Dun</p>
+                <p class='about-subheading !mb-4'>Komplett utendørsgeni.</p>
+
+                <img
+                  src='{{ 'UTEKOS_redigert_kr7dit.png' | asset_url }}'
+                  width='150'
+                  height='200'
+                  class='md:-mt-16 lg:-mt-24 -mt-14 scale-80 lg:scale-80 md:scale-90'
+                  alt='Beskrivende alternativ tekst'
+                >
+              </div>
+
+              <div
+                class='swiper-slide bg-[radial-gradient(circle,_#283f47_0%,_#0d232a_61%,_#192f37_100%)]'
+              >
+                <p class='about-heading'>Utekos™ Comfyrobe</p>
+                <p class='about-subheading'>Den stilrene følgesvennen</p>
+
+                <img
+                  src='{{ 'comfy_full_85.webp' | asset_url }}'
+                  width='150'
+                  height='auto'
+                  class='md:-mt-12 lg:scale-90 lg:-mt-20'
+                  alt='Utekos Comfyrobe bilde'
+                >
+              </div>
+
+              <div class='swiper-slide bg-black'>
+                <p class='about-heading'>Utekos™ Mikrofiber</p>
+                <p class='about-subheading'>Den smarte lettvekteren.</p>
+
+                <img
+                  src='{{ 'black_flat_without85.webp' | asset_url }}'
+                  width='150'
+                  height='auto'
+                  class='mt-12 md:-mt-8 lg:scale-90 lg:-mt-12'
+                  alt='Utekos Mikrofiber bilde'
+                >
+              </div>
+
+              <div
+                class='swiper-slide bg-[radial-gradient(circle,_#283f47_0%,_#0d232a_61%,_#192f37_100%)]'
+              >
+                <p class='dynamic-heading'>Utekos™ Special Edition</p>
+                <p class='about-subheading max-sm:pl-6 md:w-[90%] pr-2'>Unik vri.</p>
+                <img
+                  src='{{ 'kate_widthout.png' | asset_url }}'
+                  width='400'
+                  height='auto'
+                  class='md:w-[250px] md:-mt-22 bg-cover'
+                  alt='Utekos Special Edition bilde'
+                >
+              </div>
+            </div>
+            <div class='swiper-pagination !opacity-0'></div>
+          </div>
+        </div>
+        <div
+          class='test-column max-h-[300px] md:max-h-[500px] rounded-2xl items-center justify-center bg-[radial-gradient(circle,_#283f47_0%,_#0d232a_61%,_#192f37_100%)]'
+        >
+          <img
+            src='{{ 'blue_bag1.webp' | asset_url }}'
+            width='400'
+            height='auto'
+            class='md:w-[250px] flex justify-self-center place-self-center bg-cover'
+            alt='Blue Utekos Bag'
+          >
+          <h1 class='text-white px-4 md:px-12 md:mb-4 md:-mt-12 tracking-tight text-3xl md:text-5xl'>
+            Kast den i bagen og dra.
+          </h1>
+          <p class='text-white hidden px-12 tracking-normal lg:!flex text-3xl'>
+            Utekosen pakkes på sekunder. Bagen følger med. Lett, kompakt, klar for alt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='about-us text-white  bg-utekos-dark-blue text-left py-42 md:py-52 -mt-10 rounded-t-[42px] justify-center tracking-normal'>
+    <h1 class='text-6xl md:text-8xl mx-auto px-6 md:px-40 pb-12'>
+      Robuste plagg for fleksible dager
+    </h1>
+    <p class='mx-auto text-3xl px-6 md:text-6xl/20 md:px-40'>
+      På bobilferie blir klærne dine fort altmulig-verktøy: morgenkåpe, utejakke, pledd og
+      vindstopper – alt i ett. Derfor bruker vi slitesterke, pustende og hurtigtørkende materialer
+      som tåler både kveldsdugg, fuktig gress og kaffeflekker. Laget for bruk, ikke bare for
+      utseende – men de ser bra ut også.
+    </p>
+    <div class='grid grid-cols-[69%_30%] lg:grid-cols-[39%_39%_20%] px-6 justify-between md:px-40 items-center pt-2 mb-40 h-[300px] md:h-[500px]'>
+      <div class='picture_one bg-cover  opacity-30 hover:opacity-100 rounded-3xl size-full justify-center flex items-center'>
+        <img
+          src='{{ 'ke_relaxing_one_stone.webp' | asset_url }}'
+          width='3050'
+          class='object-cover w-full h-[80%]  rounded-3xl'
+          height='auto'
+          alt='Utekos Comfyrobe bilde'
+        >
+      </div>
+      <div class='picture_two rounded-3xl size-full justify-center flex items-center'>
+        <img
+          src='{{ 'stone_snow.jpg' | asset_url }}'
+          width='1024'
+          height='auto'
+          class='object-cover w-full h-[80%] rounded-3xl'
+          alt='Utekos Comfyrobe bilde'
+        >
+      </div>
+      <div class='picture_three !hidden rounded-3xl opacity-30 hover:opacity-100 justify-center lg:!flex items-center size-full'>
+        <img
+          src='{{ 'blue_back90.webp' | asset_url }}'
+          width='2048'
+          height='auto'
+          class='object-cover bg-[linear-gradient(90deg,rgba(2,_0,_36,_1)_0%,_rgba(9,_9,_121,_1)_35%,_rgba(0,_212,_255,_1)_100%)] w-full h-[80%] rounded-3xl'
+          alt='Utekos Comfyrobe bilde'
+        >
+      </div>
+    </div>
+    <div class='about-us text-white  bg-utekos-dark-blue text-left py-42 md:py-52 -mt-10 rounded-t-[42px] justify-center tracking-normal'>
+      <h1 class='text-6xl md:text-8xl mx-auto px-6 md:px-40 pb-12'>
+        For små turer og store øyeblikk
+      </h1>
+      <p class='mx-auto text-3xl px-6 md:text-6xl/20 md:px-40'>
+        Noen ganger er den beste utsikten rett utenfor døra. Et stillestående vann, en kopp kaffe i
+        soloppgangen, eller en stille kveld med vind i markisa. Klærne våre er laget for disse
+        stundene – lette, varme og enkle å bruke, med materialer som tåler både ro og aktivitet.
+        Perfekte for det uforutsigbare tempoet i bobilferien.
+      </p>
+      <div class='grid grid-cols-[69%_30%] lg:grid-cols-[39%_39%_20%] px-6 justify-between md:px-40 items-center pt-2 mb-40 h-[300px] md:h-[500px]'>
+        <div class='picture_one bg-cover  opacity-30 hover:opacity-100 rounded-3xl size-full justify-center flex items-center'>
+          <img
+            src='{{ 'ke_relaxing_one_stone.webp' | asset_url }}'
+            width='3050'
+            class='object-cover w-full h-[80%]  rounded-3xl'
+            height='auto'
+            alt='Utekos Comfyrobe bilde'
+          >
+        </div>
+        <div class='picture_two rounded-3xl size-full justify-center flex items-center'>
+          <img
+            src='{{ 'stone_snow.jpg' | asset_url }}'
+            width='1024'
+            height='auto'
+            class='object-cover w-full h-[80%] rounded-3xl'
+            alt='Utekos Comfyrobe bilde'
+          >
+        </div>
+        <div class='picture_three !hidden rounded-3xl opacity-30 hover:opacity-100 justify-center lg:!flex items-center size-full'>
+          <img
+            src='{{ 'blue_back90.webp' | asset_url }}'
+            width='2048'
+            height='auto'
+            class='object-cover bg-[linear-gradient(90deg,rgba(2,_0,_36,_1)_0%,_rgba(9,_9,_121,_1)_35%,_rgba(0,_212,_255,_1)_100%)] w-full h-[80%] rounded-3xl'
+            alt='Utekos Comfyrobe bilde'
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src='{{ 'swiper-bundle.js' | asset_url }}' defer='defer'></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.bobilSwiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loopFillGroupBlank: false,
+      direction: 'horizontal',
+      loop: true,
+      autoplay: {
+        delay: 5000,
+      },
+      grabCursor: false,
+      mousewheel: {
+        enabled: true,
+        forceToAxis: true,
+      },
+      freeMode: true,
+      keyboard: {
+        enabled: true,
+      },
+
+      // === Paginering og Navigasjon ===
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+      // === Breakpoints (justeringer for større skjermer) ===
+      breakpoints: {
+        // Fra 640px og oppover
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+        },
+        // Fra 1024px og oppover
+        1024: {
+          loopAddBlankSlides: false,
+          loopFillGroupBlank: false,
+          slidesOffsetAfter: 0,
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+      },
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Inspiration - Bobil",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Bobil med Utekos?"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inspiration - Bobil",
+      "category": "Produktinformasjon"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,49 @@
+{% comment %}
+  /snippets/spec-renderer.liquid
+  Denne snippeten kan rendre en hvilken som helst liste med metaobjekter dynamisk.
+  Den forventer to variabler:
+  - title: Tittelen for blokken (f.eks. "Materialer")
+  - object_list: Listen med metaobjekter som skal rendres
+{% endcomment %}
+
+{% if object_list.size > 0 %}
+  <div class='spec-block' style='margin-bottom: 25px;'>
+    <h3
+      class='spec-block__title'
+      style='border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; margin-bottom: 15px;'
+    >
+      {{ title }}
+    </h3>
+
+    {% for object in object_list %}
+      <div class='spec-item' style='margin-bottom: 10px;'>
+        {% if object_list.size > 1 %}
+          <h4 class='spec-item__title' style='margin: 0 0 5px 0; font-weight: 600;'>
+            - {{ object.handle | replace: '_', ' ' | capitalize }}
+          </h4>
+        {% endif %}
+
+        <dl
+          class='spec-item__details'
+          style='display: grid; grid-template-columns: 180px 1fr; gap: 8px 16px; {% if object_list.size > 1 %}margin-left: 20px;{% endif %}'
+        >
+          {% for field in object.fields %}
+            {% if field.value != blank %}
+              <dt>{{ field.key | replace: '_', ' ' | capitalize }}</dt>
+              <dd style='margin: 0;'>
+                {% if field.type == 'rich_text_field' %}
+                  {{ field.value | metafield_text }}
+                {% elsif field.type == 'dimension' %}
+                  {{ field.value.value }}
+                  {{ field.value.unit | downcase }}
+                {% else %}
+                  {{ field.value }}
+                {% endif %}
+              </dd>
+            {% endif %}
+          {% endfor %}
+        </dl>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

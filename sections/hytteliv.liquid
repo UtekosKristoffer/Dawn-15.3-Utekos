@@ -1,0 +1,303 @@
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+{% assign utekos_images = metaobjects.utekosimages %}
+
+<section class='what-is-utekos -mt-42 pt-52 bg-utekos-dark-blue'>
+  <div class='what-is-utekos-intro text-white text-left pt-24 bg-utekos-dark-blue  justify-center tracking-normal'>
+    <h1 class='text-6xl md:text-8xl mx-auto px-10 md:px-40 pb-12'>
+      Klar for regndråper på taket og ullsokker i tøfler.
+    </h1>
+    <p class='mx-auto text-3xl px-10 md:text-6xl/20 md:px-40'>
+      Hytteliv handler om kontraster. Den klare luften mot huden, den grove treveggen i ryggen,
+      varmen fra en jakke som nesten er for god til å ta av. Vi lager klær som rommer begge deler:
+      ute og inne, pause og aktivitet, bålrøyk og regnvær. For mange av de beste øyeblikkene skjer
+      mellom slagene.
+    </p>
+  </div>
+  <div class='grid grid-cols-[63%_33%] backdrop-blur-lg mx-8 rounded-3xl bg-[radial-gradient(200px_300px_ellipse_at_50%_34%_in_oklab,_oklch(75%_0.5_230)_0%,_4%,_oklch(26%_0.12_273)_125%_125%)] mt-10 lg:grid-cols-[39%_20%_39%] justify-between max-sm:overflow-auto px-8 md:mx-38 md:px-24 items-center pt-2 mb-40 h-[275px] md:h-[500px]'>
+    <div class='picture_one bg-cover rounded-3xl size-full justify-center flex items-center h-[250px] md:h-[395px]'>
+      {{
+        utekos_images.kvamskogen_45.picture.value
+        | image_url: width: 1024
+        | image_tag:
+          class: 'object-cover size-full rounded-3xl',
+          alt: utekos_images.kvamskogen_45.picture.value.alt
+      }}
+    </div>
+    <div class='picture_two rounded-3xl h-[250px] md:h-[395px] justify-center flex items-center'>
+      {{
+        utekos_images.linn_bonfire.picture.value
+        | image_url: width: 1024
+        | image_tag:
+          class: 'object-cover size-full rounded-3xl',
+          alt: utekos_images.linn_bonfire.picture.value.alt
+      }}
+    </div>
+    <div class='picture_three hidden rounded-3xl justify-center lg:!flex items-center h-[250px] md:h-[395px]'>
+      {{
+        utekos_images.malin_tjommi.picture.value
+        | image_url: width: 1024
+        | image_tag:
+          class: 'object-cover size-full rounded-3xl',
+          alt: utekos_images.malin_tjommi.picture.value.alt
+      }}
+    </div>
+  </div>
+
+  <div class='productdescription text-white text-left py-42 md:py-54  bg-shopify-green -mt-10 rounded-t-[42px]  justify-center tracking-normal'>
+    <h1 class='text-6xl md:text-8xl mx-auto px-6 md:px-20 lg:px-40 pb-12'>
+      Tekstiler som tåler gnister og stillhet.
+    </h1>
+    <p class='mx-auto text-3xl px-6 md:px-20 md:text-6xl/20 lg:px-40'>
+      Bål krever ro. Og tålmodighet. Det samme gjelder klærne du sitter i når flammene endelig tar
+      tak. Derfor bruker vi materialer som tåler både varme og venting. Myke mot huden. Slitesterke
+      i bruk. Lette å riste fri for røyklukt og bar. Klær som er mer enn utstyr – de blir en del av
+      stemningen.
+    </p>
+    <div class='bg-shopify-green rounded-t-[42px] md:px-20 py-24 md:py-52 -mt-10'>
+      <div class='test grid mx-auto justify-between max-xs:px-6 lg:px-20 bg-shopify-green items-center max-h-[500px] grid-cols-[60%_39%] lg:grid-cols-[70%_30%]'>
+        <div
+          class='
+            about w-[95%] items-center h-[300px] md:h-[500px] container px-4 bg-[radial-gradient(circle,_#283f47_0%,_#0d232a_61%,_#192f37_100%)]
+            rounded-2xl justify-center
+          '
+        >
+          <div class='swiper hytteSwiper !max-w-[170px] !w-[170px] max-h-[500px]'>
+            <div class='swiper-wrapper'>
+              <div
+                class='swiper-slide !max-w-[170px] !w-[170px]'
+
+                style="background-image: url('{{ 'mob_blue_fargekolonner.png' | asset_url }}');"
+              >
+                <p class='about-heading'>Utekos™ Dun</p>
+                <p class='about-subheading !mb-4'>Komplett utendørsgeni.</p>
+
+                <img
+                  src='{{ 'UTEKOS_redigert_kr7dit.png' | asset_url }}'
+                  width='150'
+                  height='175'
+                  class='scale-50'
+                  alt='Beskrivende alternativ tekst'
+                >
+              </div>
+
+              <div
+                class='swiper-slide border !max-w-[170px] !w-[170px] border-white scale-95 md:scale-100 bg-[radial-gradient(circle,_#283f47_0%,_#0d232a_61%,_#192f37_100%)]'
+              >
+                <p class='about-heading'>Utekos™ Comfyrobe</p>
+                <p class='about-subheading'>Den stilrene følgesvennen</p>
+
+                <img
+                  src='{{ 'comfy_full_85.webp' | asset_url }}'
+                  width='150'
+                  height='auto'
+                  class='md:-mt-12 lg:scale-90 lg:-mt-20'
+                  alt='Utekos Comfyrobe bilde'
+                >
+              </div>
+
+              <div class='swiper-slide !max-w-[170px] !w-[170px] border border-white scale-95 md:scale-100  bg-black'>
+                <p class='about-heading'>Utekos™ Mikrofiber</p>
+                <p class='about-subheading'>Den smarte lettvekteren.</p>
+
+                <img
+                  src='{{ 'black_flat_without85.webp' | asset_url }}'
+                  width='150'
+                  height='auto'
+                  class='md:-mt-8 scale-90 lg:-mt-12'
+                  alt='Utekos Mikrofiber bilde'
+                >
+              </div>
+
+              <div
+                class='swiper-slide !h-[260px] !max-w-[170px] !w-[170px] md:scale-100 border border-white bg-[radial-gradient(circle,_#283f47_0%,_#0d232a_61%,_#192f37_100%)]'
+              >
+                <p class='dynamic-heading !mt-2'>Utekos™ Special Edt</p>
+                <p class='flex mt-1 justify-self-center text-3xl'>Unik vri.</p>
+                <img
+                  src='{{ 'kate_widthout.png' | asset_url }}'
+                  width='400'
+                  height='auto'
+                  class='md:w-[250px] md:-mt-22 bg-cover'
+                  alt='Utekos Special Edition bilde'
+                >
+              </div>
+            </div>
+            <div class='swiper-pagination !opacity-0'></div>
+          </div>
+        </div>
+        <div
+          class='test-column h-[300px] md:h-[500px] rounded-2xl items-center justify-center bg-[radial-gradient(circle,_#283f47_0%,_#0d232a_61%,_#192f37_100%)]'
+        >
+          {{
+            utekos_images.bluebag.picture.value
+            | image_url: width: 1333
+            | image_tag:
+              class: 'md:w-[250px] flex justify-self-center place-self-center bg-cover',
+              alt: 'Blue Utekos Bag'
+          }}
+          <h1 class='text-white px-4 md:px-12 md:mb-4 md:-mt-12 tracking-tight text-3xl md:text-5xl'>
+            Kast den i bagen og dra.
+          </h1>
+          <p class='text-white hidden px-12 tracking-normal lg:!flex text-3xl'>
+            Utekosen pakkes på sekunder. Bagen følger med. Lett, kompakt, klar for alt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='about-us text-white  bg-utekos-dark-blue text-left py-42 md:py-52 -mt-10 rounded-t-[42px] justify-center tracking-normal'>
+    <h1 class='text-6xl md:text-8xl mx-auto px-10 md:px-40 pb-12'>Pusterom mellom turene.</h1>
+    <p class='mx-auto text-3xl px-10 md:text-6xl/20 md:px-40'>
+      Man trenger ikke være på vei et sted for å være ute. Noen ganger er det nok å sitte med ryggen
+      mot hytteveggen, kjenne solstrålene fange støvet i lufta og høre veden sprekke. Våre plagg er
+      laget for å brukes også når du ikke skal noe. Når du bare vil være.
+    </p>
+    <div class='grid grid-cols-[63%_33%] backdrop-blur-lg mx-6 rounded-3xl bg-[radial-gradient(200px_300px_ellipse_at_50%_34%_in_oklab,_oklch(75%_0.5_230)_0%,_4%,_oklch(26%_0.12_273)_125%_125%)] mt-10 lg:grid-cols-[39%_39%_20%] px-10 justify-between md:mx-38 md:px-24 items-center mb-40 h-[285px] md:h-[500px]'>
+      <div class='picture_one bg-cover rounded-3xl justify-center flex items-center h-[250px] md:h-[400px]'>
+        {{
+          utekos_images.kvartett_kvamskogen.picture.value
+          | image_url: width: 1024
+          | image_tag:
+            class: 'object-cover size-full rounded-3xl',
+            widths: '108, 186, 248, 484, 857, 968, 1024',
+            alt: utekos_images.kvartett_kvamskogen.picture.value.alt
+        }}
+      </div>
+      <div class='picture_two rounded-3xl justify-center flex items-center h-[250px] md:h-[400px]'>
+        {% capture current_image_sizes %}
+   (max-width: 739px) 102px,
+  (max-width: 1023px) 186px,
+  (min-width: 1024px) 484px
+{% endcapture %}
+        {{
+          utekos_images.stonesnow_100kb.picture.value
+          | image_url: width: 613, height: 653
+          | image_tag:
+            class: 'object-cover size-full rounded-3xl',
+            sizes: current_image_sizes,
+            widths: '102, 186, 248, 484, 613, 857, 968',
+            heights: '119',
+            alt: utekos_images.stonesnow_100kb.picture.value.alt
+        }}
+      </div>
+      <div class='picture_three !hidden rounded-3xl cursor-pointer opacity-30 hover:opacity-100 justify-center lg:!flex items-center h-[250px] md:h-[400px]'>
+        {{
+          utekos_images.innpakket_utekos.picture.value
+          | image_url: width: 1024, height: 2289
+          | image_tag:
+            class: 'object-cover size-full rounded-3xl',
+            widths: '108, 186, 248, 484, 857, 968, 1024',
+            alt: utekos_images.innpakket_utekos.picture.value.alt
+        }}
+      </div>
+    </div>
+    <div class='about-us text-white bg-shopify-green text-left py-46 -mb-42 md:-mb-60 md:py-52 -mt-10 rounded-t-[42px] justify-center tracking-normal'>
+      <h1 class='text-6xl md:text-8xl mx-auto px-7 md:px-40 pb-12'>Der inne, og litt ute.</h1>
+      <p class='mx-auto text-3xl px-8 md:text-6xl/20 md:px-40'>
+        Noe av det fineste med hytteliv er overgangen mellom inne og ute. Når døren står på gløtt og
+        bålet knitrer rett utenfor. Når du har varme klær over pysjen, og kaffekoppen står på
+        trappen. Våre plagg er laget for nettopp dette – for å kunne rusle rundt uten å kle helt om,
+        og bli ute lenger enn du trodde.
+      </p>
+      <div class='grid grid-cols-[63%_33%] lg:grid-cols-[39%_20%_39%] h-[300px] md:h-[500px] justify-between px-6 mx-6 rounded-3xl md:mt-16 mt-10 md:mx-38 md:px-24 items-center bg-[radial-gradient(circle,_#283f47_0%,_#0d232a_61%,_#192f37_100%)] mb-40'>
+        <div class='picture_one rounded-3xl justify-center flex items-center h-[250px] md:h-[400px]'>
+          {{
+            utekos_images.blue_utekos_coffee_closeup.picture.value
+            | image_url: width: 1024, height: 683
+            | image_tag:
+              class: 'object-cover size-full rounded-3xl',
+              widths: '108, 186, 248, 484, 857, 968, 1024',
+              alt: utekos_images.blue_utekos_coffee_closeup.picture.value.alt
+          }}
+        </div>
+        <div class='picture_two rounded-3xl justify-center flex items-center h-[250px] md:h-[400px]'>
+          {{
+            utekos_images.rainy_but_comfyrobe.picture.value
+            | image_url: width: 1158, height: 1490
+            | image_tag:
+              class: 'object-cover size-full rounded-3xl',
+              widths: '108, 173, 231, 463, 484, 695, 926, 1158',
+              alt: utekos_images.rainy_but_comfyrobe.picture.value.alt
+          }}
+        </div>
+        <div class='picture_three !hidden rounded-3xl cursor-pointer opacity-30 hover:opacity-100 justify-center lg:!flex items-center h-[250px] md:h-[400px]'>
+          {{
+            utekos_images.walking_cabin.picture.value
+            | image_url: width: 1024
+            | image_tag:
+              class: 'object-cover size-full rounded-3xl',
+              widths: '108, 186, 248, 484, 857, 968, 1024',
+              alt: utekos_images.walking_cabin.picture.value.alt
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src='{{ 'swiper-bundle.js' | asset_url }}' defer='defer'></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.hytteSwiper', {
+      slidesPerView: 1,
+      spaceBetween: 1000,
+      loopFillGroupBlank: false,
+      direction: 'horizontal',
+      loop: true,
+      autoplay: {
+        delay: 5000,
+      },
+      grabCursor: false,
+      mousewheel: {
+        enabled: true,
+        forceToAxis: true,
+      },
+      freeMode: true,
+      keyboard: {
+        enabled: true,
+      },
+
+      // === Paginering og Navigasjon ===
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+      // === Breakpoints (justeringer for større skjermer) ===
+      breakpoints: {
+        // Fra 640px og oppover
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+        },
+        // Fra 1024px og oppover
+        1024: {
+          loopAddBlankSlides: false,
+          loopFillGroupBlank: false,
+          slidesOffsetAfter: 0,
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+      },
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Inspiration - Hytteliv",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Utekos på hytten"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inspiration - Hytteliv",
+      "category": "Produktinformasjon"
+    }
+  ]
+}
+{% endschema %}

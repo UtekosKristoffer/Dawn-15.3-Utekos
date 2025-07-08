@@ -22,9 +22,7 @@
           }
         }
       },
-      "block_order": [
-        "announcement-bar-0"
-      ],
+      "block_order": ["announcement-bar-0"],
       "settings": {
         "auto_rotate": false,
         "change_slides_speed": 5,
@@ -38,23 +36,14 @@
     "header": {
       "type": "header",
       "settings": {
-        "logo_position": "middle-left",
-        "mobile_logo_position": "center",
+        "desktop_logo": "shopify://shop_images/logo-pic.svg",
+        "desktop_logo_width": 140,
+        "mobile_logo": "shopify://shop_images/logo-pic.svg",
+        "mobile_logo_width": 100,
         "menu": "header-mega-menu",
-        "menu_type_desktop": "mega",
-        "sticky_header_type": "none",
-        "show_line_separator": true,
-        "color_scheme": "scheme-1",
-        "menu_color_scheme": "scheme-1",
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "enable_customer_avatar": true,
-        "margin_bottom": 0
+        "navigation": "header-mega-menu"
       }
     }
   },
-  "order": [
-    "announcement-bar",
-    "header"
-  ]
+  "order": ["announcement-bar", "header"]
 }
