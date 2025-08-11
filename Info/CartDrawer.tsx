@@ -1,4 +1,5 @@
 // Fil: components/CartDrawer.tsx
+//Opprettet før refaktorering
 "use client";
 
 import { ShoppingBagIcon, Minus, Plus } from "lucide-react";
