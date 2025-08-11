@@ -1,8 +1,8 @@
 // src/Lib/Stores/cartStore.ts
+//Kun et forslag. Tilnærmingen kan/bør diskuteres. Ingenting er satt.
 'use client';
 
 import { createStore } from '@xstate/store';
-import type { CartLine } from '@/Types/types';
 
 export type CartState = { lines: CartLine[] };
 
