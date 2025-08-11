@@ -1,3 +1,4 @@
+//opprettet før refaktorering
 "use server";
 
 import { cookies } from "next/headers";
