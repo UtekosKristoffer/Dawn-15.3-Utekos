@@ -1,4 +1,6 @@
 // src/hooks/useCartDrawer.ts
+//Opprettet før refaktorering
+
 import { useTransition } from "react";
 import { useCart, useCartDispatch } from "@/Components/Cart/CartProvider";
 import clearCart from "@/Actions/Cart/clearCart";
