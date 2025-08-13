@@ -4,36 +4,18 @@ import ADD_LINES from "@/Server/DAL/Cart/addLines";
 import REMOVE_CART_LINE from "@/Server/DAL/Cart/removeCartLine";
 import UPDATE_LINES from "@/Server/DAL/Cart/updateLines";
 import CLEAR_CART from "@/Server/DAL/Cart/clearCart";
-
-import type { CompleteCartFragment as Cart } from "@/GraphQL/Fragments/CartFragment.generated";
-// src/lib/state/cartUiMachine.ts
-
-import { setup, assign, fromPromise, assertEvent } from "xstate";
+import { setup, assign, assertEvent } from "xstate";
 import { cartDataActor } from "./cartDataActor";
+import { serverActionActor } from "@/Helpers/serverActionActor";
 
-const addLines = fromPromise<
-  CART_ACTION_RESULT,
-  { merchandiseId: string; quantity: number }
->(async ({ input }) => {
-  const result = await ADD_LINES(undefined as any, input);
-  return result; // returner CART_ACTION_RESULT
-});
-
-const removeLine = fromPromise<CART_ACTION_RESULT, { lineId: string }>(
-  async ({ input }) => {
-    return await REMOVE_CART_LINE(undefined as any, input);
-  }
+const addLines = serverActionActor<{ merchandiseId: string; quantity: number }>(
+  ADD_LINES
 );
-const updateLine = fromPromise<
-  CART_ACTION_RESULT,
-  { lineId: string; quantity: number }
->(async ({ input }) => {
-  return await UPDATE_LINES(undefined as any, input);
-});
-
-const clearCart = fromPromise<CART_ACTION_RESULT, void>(async () => {
-  return await CLEAR_CART(undefined as any);
-});
+const removeLine = serverActionActor<{ lineId: string }>(REMOVE_CART_LINE);
+const updateLine = serverActionActor<{ lineId: string; quantity: number }>(
+  UPDATE_LINES
+);
+const clearCart = serverActionActor<void>(CLEAR_CART);
 
 export const cartUiMachine = setup({
   types: {
@@ -56,10 +38,6 @@ export const cartUiMachine = setup({
   actions: {
     openDrawer: assign({ isDrawerOpen: true }),
     closeDrawer: assign({ isDrawerOpen: false }),
-    syncCart: ({ event }) => {
-      // event.output er sterkt typet til Cart:contentReference[oaicite:4]{index=4}
-      cartDataActor.send({ type: "SYNC_CART", cart: event.output });
-    },
   },
 }).createMachine({
   id: "cartUi",
@@ -100,7 +78,7 @@ export const cartUiMachine = setup({
         },
         onError: {
           target: "idle",
-          actions: ({ event }) => {
+          actions: () => {
             cartDataActor.send({ type: "SYNC_CART", cart: null });
           },
         },
@@ -110,9 +88,10 @@ export const cartUiMachine = setup({
       invoke: {
         src: "removeLine",
         id: "removeLine",
-        input: ({ event }) => ({
-          lineId: event.lineId,
-        }),
+        input: ({ event }) => {
+          assertEvent(event, "REMOVE_ITEM");
+          return { lineId: event.lineId };
+        },
         onDone: {
           target: "idle",
           actions: ({ event }) => {
@@ -120,6 +99,12 @@ export const cartUiMachine = setup({
               type: "SYNC_CART",
               cart: event.output.cart ?? null,
             });
+          },
+        },
+        onError: {
+          target: "idle",
+          actions: () => {
+            cartDataActor.send({ type: "SYNC_CART", cart: null });
           },
         },
       },
@@ -128,10 +113,10 @@ export const cartUiMachine = setup({
       invoke: {
         src: "updateLine",
         id: "updateLine",
-        input: ({ event }) => ({
-          lineId: event.lineId,
-          quantity: event.quantity,
-        }),
+        input: ({ event }) => {
+          assertEvent(event, "UPDATE_ITEM_QUANTITY");
+          return { lineId: event.lineId, quantity: event.quantity };
+        },
         onDone: {
           target: "idle",
           actions: ({ event }) => {
@@ -143,7 +128,9 @@ export const cartUiMachine = setup({
         },
         onError: {
           target: "idle",
-          actions: () => cartDataActor.send({ type: "SYNC_CART", cart: null }),
+          actions: () => {
+            cartDataActor.send({ type: "SYNC_CART", cart: null });
+          },
         },
       },
     },
@@ -151,6 +138,10 @@ export const cartUiMachine = setup({
       invoke: {
         src: "clearCart",
         id: "clearCart",
+        input: ({ event }) => {
+          assertEvent(event, "CLEAR_CART");
+          return; // ingen input
+        },
         onDone: {
           target: "idle",
           actions: ({ event }) => {
@@ -162,7 +153,9 @@ export const cartUiMachine = setup({
         },
         onError: {
           target: "idle",
-          actions: () => cartDataActor.send({ type: "SYNC_CART", cart: null }),
+          actions: () => {
+            cartDataActor.send({ type: "SYNC_CART", cart: null });
+          },
         },
       },
     },
