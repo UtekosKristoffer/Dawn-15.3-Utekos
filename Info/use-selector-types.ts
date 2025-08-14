@@ -56,3 +56,17 @@ export declare function useAtom<T>(atom: BaseAtom<T>): T;
 export declare function useAtom<T, S>(atom: BaseAtom<T>, selector: (snapshot: T) => S, compare?: (a: S, b: S) => boolean): S;
 
 
+import { AnyActorRef } from 'xstate';
+export declare function useSelector<TActor extends Pick<AnyActorRef, 'subscribe' | 'getSnapshot'> | undefined, T>(actor: TActor, selector: (snapshot: TActor extends {
+    getSnapshot(): infer TSnapshot;
+} ? TSnapshot : undefined) => T, compare?: (a: T, b: T) => boolean): T;
+
+
+//Pick
+
+/**
+ * Construct a type with a set of properties K of type T
+ */
+type Record<K extends keyof any, T> = {
+    [P in K]: T;
+};
