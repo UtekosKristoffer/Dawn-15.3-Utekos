@@ -263,6 +263,57 @@ export const createCartProcess = (
   });
 
 
+
+
+// src/ServerFunctions/Cart/CartFromAsyncedCookiesQuery.ts
+import { unstable_cache } from "next/cache";
+import {
+  GetCartDocument,
+  type GetCartQuery,
+  type GetCartQueryVariables,
+} from "@/GraphQL/Queries/GetCart.generated";
+
+import queryShopify from "@/Lib/Clients/shopifyQuery";
+
+export const CART_FROM_ASYNCED_COOKIESQUERY = unstable_cache(
+  async (cartId: string) => {
+    const data = await queryShopify<GetCartQuery, GetCartQueryVariables>(
+      GetCartDocument,
+      { cartId }
+    );
+    return data.cart ?? null;
+  },
+  ["cart"],
+  { tags: ["cart"] }
+);
+
+export default CART_FROM_ASYNCED_COOKIESQUERY;
+
+
+
+// Fil: src/ServerFunctions/Cart/CartFromCookiesAndCacheonServer.ts
+"use server";
+import { queryOptions } from "@tanstack/react-query";
+import { cookies } from "next/headers";
+import { CART_FROM_ASYNCED_COOKIESQUERY } from "@/ServerFunctions/Cart/CartFromAsyncedCookiesQuery";
+
+const CART_FROM_COOKIES_AND_CACHE_ON_SERVER = queryOptions({
+  queryKey: ["cart"],
+  queryFn: async () => {
+    const cartId = (await cookies()).get("cartId")?.value;
+    if (!cartId) {
+      return null;
+    }
+    return CART_FROM_ASYNCED_COOKIESQUERY(cartId);
+  },
+  staleTime: 1000 * 60 * 5, // 5 minutter
+});
+
+export default CART_FROM_COOKIES_AND_CACHE_ON_SERVER;
+
+
+
+
 //src/Components/Cart/CartProcessClient.tsx
 "use client";
 import { createActorContext } from "@xstate/react";
@@ -301,44 +352,3 @@ export default function CartProcessClient({
   );
 }
 
-
-// src/ServerFunctions/Cart/CartFromAsyncedCookiesQuery.ts
-import { unstable_cache } from "next/cache";
-import {
-  GetCartDocument,
-  type GetCartQuery,
-  type GetCartQueryVariables,
-} from "@/GraphQL/Queries/GetCart.generated";
-import StoreFrontApiClient from "@/Lib/Clients/StoreFrontApiClient";
-import { GraphqlQueryError } from "@shopify/shopify-api";
-
-async function queryShopify<TResult, TVars extends Record<string, any>>(
-  query: string,
-  variables?: TVars
-): Promise<TResult> {
-  const res = await StoreFrontApiClient.request<TResult>(query, {
-    variables,
-    retries: 2,
-  });
-  if ((res as any).errors) {
-    throw new GraphqlQueryError({
-      message: (res as any).errors.message ?? "GraphQL error",
-      response: res as any,
-      body: (res as any).errors.graphQLErrors as Record<string, any>,
-    });
-  }
-  if (!res.data) throw new Error("No data from Shopify");
-  return res.data;
-}
-
-export const CART_FROM_ASYNCED_COOKIESQUERY = unstable_cache(
-  async (cartId: string) => {
-    const data = await queryShopify<GetCartQuery, GetCartQueryVariables>(
-      GetCartDocument,
-      { cartId }
-    );
-    return data.cart ?? null;
-  },
-  ["cart"],
-  { tags: ["cart"] }
-);
