@@ -80,176 +80,188 @@ export const useCartPending = () =>useSelector(cartStore, (s) => s.context.pendi
 export const useCartOptimistic = () =>  useSelector(cartStore, (s) => s.context.optimistic);
 
 
-
-//Lib/State/CarteMachineUI.ts
 "use client";
+import "client-only"
+import { createMachine, setup, fromPromise } from "xstate";
+import * as actions from "@/ServerFunctions/Cart/actions";
+import { cartStore } from "@/Lib/State/CartModel";
 
-import ADD_LINES from "@/ServerFunctions/Cart/addLines";
-import REMOVE_CART_LINE from "@/ServerFunctions/Cart/removeCartLine";
-import UPDATE_LINES from "@/ServerFunctions/Cart/UPPDATE_LINES";
-import CLEAR_CART from "@/ServerFunctions//Cart/clearCart";
-import { setup, assign, assertEvent } from "xstate";
-import { CartDataActor } from "./CartDataActor";
-import serverActionActor from "@/Helpers/serverActionActor";
+export type CartActions = {
+  addLines(input: {
+    merchandiseId: string;
+    quantity: number;
+  }): Promise<CART_ACTION_RESULT>;
+  updateLine(input: {
+    lineId: string;
+    quantity: number;
+  }): Promise<CART_ACTION_RESULT>;
+  removeLine(input: { lineId: string }): Promise<CART_ACTION_RESULT>;
+  clear(): Promise<CART_ACTION_RESULT>;
+};
 
-const addLines = serverActionActor<{ merchandiseId: string; quantity: number }>(
-  ADD_LINES
+type EAdd = {
+  type: "ADD_LINES";
+  input: { merchandiseId: string; quantity: number };
+};
+type EUpdate = {
+  type: "UPDATE_LINE";
+  input: { lineId: string; quantity: number };
+};
+type ERemove = { type: "REMOVE_LINE"; input: { lineId: string } };
+type EClear = { type: "CLEAR" };
+
+export const cartProcess = createMachine(
+  {
+    id: "cartProcess",
+    initial: "idle",
+    states: {
+      idle: {
+        on: {
+          ADD_LINES: "adding",
+          UPDATE_LINE: "updating",
+          REMOVE_LINE: "removing",
+          CLEAR: "clearing",
+        },
+      },
+      adding: { invoke: { src: "addLines", onDone: "idle", onError: "idle" } },
+      updating: {
+        invoke: { src: "updateLine", onDone: "idle", onError: "idle" },
+      },
+      removing: {
+        invoke: { src: "removeLine", onDone: "idle", onError: "idle" },
+      },
+      clearing: { invoke: { src: "clear", onDone: "idle", onError: "idle" } },
+    },
+  },
+  {
+    actors: {
+      addLines: fromPromise<CART_ACTION_RESULT, EAdd["input"]>(({ input }) =>
+        actions.addLines(input)
+      ),
+      updateLine: fromPromise<CART_ACTION_RESULT, EUpdate["input"]>(
+        ({ input }) => actions.updateLine(input)
+      ),
+      removeLine: fromPromise<CART_ACTION_RESULT, ERemove["input"]>(
+        ({ input }) => actions.removeLine(input)
+      ),
+      clear: fromPromise<CART_ACTION_RESULT, void>(() => actions.clear()),
+    },
+  }
 );
-const removeLine = serverActionActor<{ lineId: string }>(REMOVE_CART_LINE);
-const updateLine = serverActionActor<{ lineId: string; quantity: number }>(
-  UPDATE_LINES
-);
-const clearCart = serverActionActor<void>(CLEAR_CART);
 
-export const CartMachineUI = setup({
-  types: {
-    context: {} as { isDrawerOpen: boolean; error: string | null },
-    events: {} as
-      | { type: "OPEN_DRAWER" }
-      | { type: "CLOSE_DRAWER" }
-      | { type: "ADD_ITEM"; merchandiseId: string; quantity: number }
-      | { type: "REMOVE_ITEM"; lineId: string }
-      | { type: "UPDATE_ITEM_QUANTITY"; lineId: string; quantity: number }
-      | { type: "CLEAR_CART" },
-    children: {} as {
-      addLines: "addLines";
-      removeLine: "removeLine";
-      updateLine: "updateLine";
-      clearCart: "clearCart";
+export const createCartProcess = (
+  actions: CartActions,
+  onCartUpdated: () => void
+) =>
+  setup({
+    types: {
+      context: {} as {},
+      events: {} as EAdd | EUpdate | ERemove | EClear,
     },
-  },
-  actors: { addLines, removeLine, updateLine, clearCart },
-  actions: {
-    openDrawer: assign({ isDrawerOpen: true }),
-    closeDrawer: assign({ isDrawerOpen: false }),
-  },
-}).createMachine({
-  id: "cartUi",
-  initial: "idle",
-  context: { isDrawerOpen: false, error: null },
-  on: {
-    OPEN_DRAWER: { actions: "openDrawer" },
-    CLOSE_DRAWER: { actions: "closeDrawer" },
-  },
-  states: {
-    idle: {
-      on: {
-        ADD_ITEM: "adding",
-        REMOVE_ITEM: "removing",
-        UPDATE_ITEM_QUANTITY: "updating",
-        CLEAR_CART: "clearing",
+    actors: {
+      addLines: fromPromise<CART_ACTION_RESULT, EAdd["input"]>(({ input }) =>
+        actions.addLines(input)
+      ),
+      updateLine: fromPromise<CART_ACTION_RESULT, EUpdate["input"]>(
+        ({ input }) => actions.updateLine(input)
+      ),
+      removeLine: fromPromise<CART_ACTION_RESULT, ERemove["input"]>(
+        ({ input }) => actions.removeLine(input)
+      ),
+      clear: fromPromise<CART_ACTION_RESULT>(() => actions.clear()),
+    },
+    actions: {
+      inc: () => cartStore.send({ type: "PENDING_INC" }),
+      dec: () => cartStore.send({ type: "PENDING_DEC" }),
+      last: ({ event }) => {
+        const any = event as EAdd | EUpdate | ERemove | EClear;
+        cartStore.send({
+          type: "SET_LAST",
+          value: {
+            type: any.type.toLowerCase() as any,
+            at: Date.now(),
+            payload: (any as any).input,
+          },
+        });
+      },
+      optimisticAdd: ({ event }) => {
+        const e = event as EAdd;
+        cartStore.send({
+          type: "OPTIMISTIC_MERGE",
+          delta: { [e.input.merchandiseId]: e.input.quantity },
+        });
+      },
+      optimisticRemove: ({ event }) => {
+        const e = event as ERemove;
+        cartStore.send({
+          type: "OPTIMISTIC_MERGE",
+          delta: { [e.input.lineId]: 0 },
+        });
+      },
+      clearOptimistic: () => cartStore.send({ type: "OPTIMISTIC_CLEAR" }),
+      notifyUpdate: () => {
+        cartStore.send({ type: "OPTIMISTIC_CLEAR" });
+        onCartUpdated();
+      },
+      notifyError: ({ event }) => {
+        console.error(event);
       },
     },
-    adding: {
-      tags: "busy",
-      invoke: {
-        src: "addLines",
-        id: "addLines",
-        input: ({ event }) => {
-          assertEvent(event, "ADD_ITEM");
-          return {
-            merchandiseId: event.merchandiseId,
-            quantity: event.quantity,
-          };
+  }).createMachine({
+    id: "cartProcess",
+    initial: "idle",
+    states: {
+      idle: {
+        on: {
+          ADD_LINES: {
+            target: "adding",
+            actions: ["inc", "optimisticAdd", "last"],
+          },
+          UPDATE_LINE: { target: "updating", actions: ["inc", "last"] },
+          REMOVE_LINE: {
+            target: "removing",
+            actions: ["inc", "optimisticRemove", "last"],
+          },
+          CLEAR: {
+            target: "clearing",
+            actions: ["inc", "clearOptimistic", "last"],
+          },
         },
+      },
+      adding: {
+        invoke: {
+          src: "addLines",
+          input: ({ event }) => (event as EAdd).input,
+          onDone: { target: "idle", actions: ["dec", "notifyUpdate"] },
+          onError: { target: "idle", actions: ["dec", "notifyError"] },
+        },
+      },
+      updating: {
+        invoke: {
+          src: "updateLine",
+          input: ({ event }) => (event as EUpdate).input,
+          onDone: { target: "idle", actions: ["dec", "notifyUpdate"] },
+          onError: { target: "idle", actions: ["dec", "notifyError"] },
+        },
+      },
+      removing: {
+        invoke: {
+          src: "removeLine",
+          input: ({ event }) => (event as ERemove).input,
+          onDone: { target: "idle", actions: ["dec", "notifyUpdate"] },
+          onError: { target: "idle", actions: ["dec", "notifyError"] },
+        },
+      },
+      clearing: {
+        invoke: {
+          src: "clear",
+          onDone: { target: "idle", actions: ["dec", "notifyUpdate"] },
+          onError: { target: "idle", actions: ["dec", "notifyError"] },
+        },
+      },
+    },
+  });
 
-        onDone: {
-          target: "idle",
-          actions: ({ event }) => {
-            CartDataActor.send({
-              type: "SYNC_CART",
-              cart: event.output.cart ?? null,
-            });
-          },
-        },
-        onError: {
-          target: "idle",
-          actions: () => {
-            CartDataActor.send({ type: "SYNC_CART", cart: null });
-          },
-        },
-      },
-    },
-    removing: {
-      tags: "busy",
-      invoke: {
-        src: "removeLine",
-        id: "removeLine",
-        input: ({ event }) => {
-          assertEvent(event, "REMOVE_ITEM");
-          return { lineId: event.lineId };
-        },
-        onDone: {
-          target: "idle",
-          actions: ({ event }) => {
-            CartDataActor.send({
-              type: "SYNC_CART",
-              cart: event.output.cart ?? null,
-            });
-          },
-        },
-        onError: {
-          target: "idle",
-          actions: () => {
-            CartDataActor.send({ type: "SYNC_CART", cart: null });
-          },
-        },
-      },
-    },
-    updating: {
-      tags: "busy",
-      invoke: {
-        src: "updateLine",
-        id: "updateLine",
-        input: ({ event }) => {
-          assertEvent(event, "UPDATE_ITEM_QUANTITY");
-          return { lineId: event.lineId, quantity: event.quantity };
-        },
-        onDone: {
-          target: "idle",
-          actions: ({ event }) => {
-            CartDataActor.send({
-              type: "SYNC_CART",
-              cart: event.output.cart ?? null,
-            });
-          },
-        },
-        onError: {
-          target: "idle",
-          actions: () => {
-            CartDataActor.send({ type: "SYNC_CART", cart: null });
-          },
-        },
-      },
-    },
-    clearing: {
-      tags: "busy",
-      invoke: {
-        src: "clearCart",
-        id: "clearCart",
-        input: ({ event }) => {
-          assertEvent(event, "CLEAR_CART");
-          return; // ingen input
-        },
-        onDone: {
-          target: "idle",
-          actions: ({ event }) => {
-            CartDataActor.send({
-              type: "SYNC_CART",
-              cart: event.output.cart ?? null,
-            });
-          },
-        },
-        onError: {
-          target: "idle",
-          actions: () => {
-            CartDataActor.send({ type: "SYNC_CART", cart: null });
-          },
-        },
-      },
-    },
-  },
-});
 
 
 //CartProcessClient.ts
@@ -449,3 +461,43 @@ export async function clear(): Promise<Result> {
 }
 
 
+// src/ServerFunctions/Cart/CartFromAsyncedCookiesQuery.ts
+import { unstable_cache } from "next/cache";
+import {
+  GetCartDocument,
+  type GetCartQuery,
+  type GetCartQueryVariables,
+} from "@/GraphQL/Queries/GetCart.generated";
+import StoreFrontApiClient from "@/Lib/Clients/StoreFrontApiClient";
+import { GraphqlQueryError } from "@shopify/shopify-api";
+
+async function queryShopify<TResult, TVars extends Record<string, any>>(
+  query: string,
+  variables?: TVars
+): Promise<TResult> {
+  const res = await StoreFrontApiClient.request<TResult>(query, {
+    variables,
+    retries: 2,
+  });
+  if ((res as any).errors) {
+    throw new GraphqlQueryError({
+      message: (res as any).errors.message ?? "GraphQL error",
+      response: res as any,
+      body: (res as any).errors.graphQLErrors as Record<string, any>,
+    });
+  }
+  if (!res.data) throw new Error("No data from Shopify");
+  return res.data;
+}
+
+export const CART_FROM_ASYNCED_COOKIESQUERY = unstable_cache(
+  async (cartId: string) => {
+    const data = await queryShopify<GetCartQuery, GetCartQueryVariables>(
+      GetCartDocument,
+      { cartId }
+    );
+    return data.cart ?? null;
+  },
+  ["cart"],
+  { tags: ["cart"] }
+);
