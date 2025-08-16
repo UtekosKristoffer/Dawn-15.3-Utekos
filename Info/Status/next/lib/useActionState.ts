@@ -1,4 +1,5 @@
 const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
+const { pending, data, method, action } = useFormStatus();
 
 export function useActionState<State>(
         action: (state: Awaited<State>) => State | Promise<State>,
