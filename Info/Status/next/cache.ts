@@ -1,3 +1,10 @@
+import { IncrementalCacheKind, type IncrementalResponseCacheEntry, type ResponseCacheEntry } from './types';
+import { RouteKind } from '../route-kind';
+export declare function fromResponseCacheEntry(cacheEntry: ResponseCacheEntry): Promise<IncrementalResponseCacheEntry>;
+export declare function toResponseCacheEntry(response: IncrementalResponseCacheEntry | null): Promise<ResponseCacheEntry | null>;
+export declare function routeKindToIncrementalCacheKind(routeKind: RouteKind): Exclude<IncrementalCacheKind, IncrementalCacheKind.FETCH>;
+
+
 export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'
 
 export {
@@ -147,3 +154,5 @@ export function unstable_cacheLife(profile: {
    */
   expire?: number
 }): void
+
+
