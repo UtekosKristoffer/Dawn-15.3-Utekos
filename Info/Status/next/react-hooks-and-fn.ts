@@ -1,0 +1,1047 @@
+    interface Context<T> extends Provider<T> {
+        Provider: Provider<T>;
+        Consumer: Consumer<T>;
+        /**
+         * Used in debugging messages. You might want to set it
+         * explicitly if you want to display a different name for
+         * debugging purposes.
+         *
+         * @see {@link https://legacy.reactjs.org/docs/react-component.html#displayname Legacy React Docs}
+         */
+        displayName?: string | undefined;
+    }
+
+    /**
+     * Lets you create a {@link Context} that components can provide or read.
+     *
+     * @param defaultValue The value you want the context to have when there is no matching
+     * {@link Provider} in the tree above the component reading the context. This is meant
+     * as a "last resort" fallback.
+     *
+     * @see {@link https://react.dev/reference/react/createContext#reference React Docs}
+     * @see {@link https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/context/ React TypeScript Cheatsheet}
+     *
+     * @example
+     *
+     * ```tsx
+     * import { createContext } from 'react';
+     *
+     * const ThemeContext = createContext('light');
+     * function App() {
+     *   return (
+     *     <ThemeContext value="dark">
+     *       <Toolbar />
+     *     </ThemeContext>
+     *   );
+     * }
+     * ```
+     */
+    function createContext<T>(
+        // If you thought this should be optional, see
+        // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/24509#issuecomment-382213106
+        defaultValue: T,
+    ): Context<T>;
+
+    function isValidElement<P>(object: {} | null | undefined): object is ReactElement<P>;
+
+    const Children: {
+        map<T, C>(
+            children: C | readonly C[],
+            fn: (child: C, index: number) => T,
+        ): C extends null | undefined ? C : Array<Exclude<T, boolean | null | undefined>>;
+        forEach<C>(children: C | readonly C[], fn: (child: C, index: number) => void): void;
+        count(children: any): number;
+        only<C>(children: C): C extends any[] ? never : C;
+        toArray(children: ReactNode | ReactNode[]): Array<Exclude<ReactNode, boolean | null | undefined>>;
+    };
+
+    export interface FragmentProps {
+        children?: React.ReactNode;
+    }
+    /**
+     * Lets you group elements without a wrapper node.
+     *
+     * @see {@link https://react.dev/reference/react/Fragment React Docs}
+     *
+     * @example
+     *
+     * ```tsx
+     * import { Fragment } from 'react';
+     *
+     * <Fragment>
+     *   <td>Hello</td>
+     *   <td>World</td>
+     * </Fragment>
+     * ```
+     *
+     * @example
+     *
+     * ```tsx
+     * // Using the <></> shorthand syntax:
+     *
+     * <>
+     *   <td>Hello</td>
+     *   <td>World</td>
+     * </>
+     * ```
+     */
+    const Fragment: ExoticComponent<FragmentProps>;
+
+    /**
+     * Lets you find common bugs in your components early during development.
+     *
+     * @see {@link https://react.dev/reference/react/StrictMode React Docs}
+     *
+     * @example
+     *
+     * ```tsx
+     * import { StrictMode } from 'react';
+     *
+     * <StrictMode>
+     *   <App />
+     * </StrictMode>
+     * ```
+     */
+    const StrictMode: ExoticComponent<{ children?: ReactNode | undefined }>;
+
+    /**
+     * The props accepted by {@link Suspense}.
+     *
+     * @see {@link https://react.dev/reference/react/Suspense React Docs}
+     */
+    interface SuspenseProps {
+        children?: ReactNode | undefined;
+
+        /** A fallback react tree to show when a Suspense child (like React.lazy) suspends */
+        fallback?: ReactNode;
+
+        /**
+         * A name for this Suspense boundary for instrumentation purposes.
+         * The name will help identify this boundary in React DevTools.
+         */
+        name?: string | undefined;
+    }
+
+    /**
+     * Lets you display a fallback until its children have finished loading.
+     *
+     * @see {@link https://react.dev/reference/react/Suspense React Docs}
+     *
+     * @example
+     *
+     * ```tsx
+     * import { Suspense } from 'react';
+     *
+     * <Suspense fallback={<Loading />}>
+     *   <ProfileDetails />
+     * </Suspense>
+     * ```
+     */
+    const Suspense: ExoticComponent<SuspenseProps>;
+    const version: string;
+
+    /**
+     * The callback passed to {@link ProfilerProps.onRender}.
+     *
+     * @see {@link https://react.dev/reference/react/Profiler#onrender-callback React Docs}
+     */
+    type ProfilerOnRenderCallback = (
+        /**
+         * The string id prop of the {@link Profiler} tree that has just committed. This lets
+         * you identify which part of the tree was committed if you are using multiple
+         * profilers.
+         *
+         * @see {@link https://react.dev/reference/react/Profiler#onrender-callback React Docs}
+         */
+        id: string,
+        /**
+         * This lets you know whether the tree has just been mounted for the first time
+         * or re-rendered due to a change in props, state, or hooks.
+         *
+         * @see {@link https://react.dev/reference/react/Profiler#onrender-callback React Docs}
+         */
+        phase: "mount" | "update" | "nested-update",
+        /**
+         * The number of milliseconds spent rendering the {@link Profiler} and its descendants
+         * for the current update. This indicates how well the subtree makes use of
+         * memoization (e.g. {@link memo} and {@link useMemo}). Ideally this value should decrease
+         * significantly after the initial mount as many of the descendants will only need to
+         * re-render if their specific props change.
+         *
+         * @see {@link https://react.dev/reference/react/Profiler#onrender-callback React Docs}
+         */
+        actualDuration: number,
+        /**
+         * The number of milliseconds estimating how much time it would take to re-render the entire
+         * {@link Profiler} subtree without any optimizations. It is calculated by summing up the most
+         * recent render durations of each component in the tree. This value estimates a worst-case
+         * cost of rendering (e.g. the initial mount or a tree with no memoization). Compare
+         * {@link actualDuration} against it to see if memoization is working.
+         *
+         * @see {@link https://react.dev/reference/react/Profiler#onrender-callback React Docs}
+         */
+        baseDuration: number,
+        /**
+         * A numeric timestamp for when React began rendering the current update.
+         *
+         * @see {@link https://react.dev/reference/react/Profiler#onrender-callback React Docs}
+         */
+        startTime: number,
+        /**
+         * A numeric timestamp for when React committed the current update. This value is shared
+         * between all profilers in a commit, enabling them to be grouped if desirable.
+         *
+         * @see {@link https://react.dev/reference/react/Profiler#onrender-callback React Docs}
+         */
+        commitTime: number,
+    ) => void;
+
+    /**
+     * The props accepted by {@link Profiler}.
+     *
+     * @see {@link https://react.dev/reference/react/Profiler React Docs}
+     */
+    interface ProfilerProps {
+        children?: ReactNode | undefined;
+        id: string;
+        onRender: ProfilerOnRenderCallback;
+    }
+
+    /**
+     * Lets you measure rendering performance of a React tree programmatically.
+     *
+     * @see {@link https://react.dev/reference/react/Profiler#onrender-callback React Docs}
+     *
+     * @example
+     *
+     * ```tsx
+     * <Profiler id="App" onRender={onRender}>
+     *   <App />
+     * </Profiler>
+     * ```
+     */
+    const Profiler: ExoticComponent<ProfilerProps>;
+
+    //
+    // Component API
+    // ----------------------------------------------------------------------
+
+    type ReactInstance = Component<any> | Element;
+
+    // Base component for plain JS classes
+    interface Component<P = {}, S = {}, SS = any> extends ComponentLifecycle<P, S, SS> {}
+    class Component<P, S> {
+        /**
+         * If set, `this.context` will be set at runtime to the current value of the given Context.
+         *
+         * @example
+         *
+         * ```ts
+         * type MyContext = number
+         * const Ctx = React.createContext<MyContext>(0)
+         *
+         * class Foo extends React.Component {
+         *   static contextType = Ctx
+         *   context!: React.ContextType<typeof Ctx>
+         *   render () {
+         *     return <>My context's value: {this.context}</>;
+         *   }
+         * }
+         * ```
+         *
+         * @see {@link https://react.dev/reference/react/Component#static-contexttype}
+         */
+        static contextType?: Context<any> | undefined;
+
+        /**
+         * Ignored by React.
+         * @deprecated Only kept in types for backwards compatibility. Will be removed in a future major release.
+         */
+        static propTypes?: any;
+
+        /**
+         * If using React Context, re-declare this in your class to be the
+         * `React.ContextType` of your `static contextType`.
+         * Should be used with type annotation or static contextType.
+         *
+         * @example
+         * ```ts
+         * static contextType = MyContext
+         * // For TS pre-3.7:
+         * context!: React.ContextType<typeof MyContext>
+         * // For TS 3.7 and above:
+         * declare context: React.ContextType<typeof MyContext>
+         * ```
+         *
+         * @see {@link https://react.dev/reference/react/Component#context React Docs}
+         */
+        context: unknown;
+
+        // Keep in sync with constructor signature of JSXElementConstructor and ComponentClass.
+        constructor(props: P);
+        /**
+         * @param props
+         * @param context value of the parent {@link https://react.dev/reference/react/Component#context Context} specified
+         * in `contextType`.
+         */
+        // TODO: Ideally we'd infer the constructor signatur from `contextType`.
+        // Might be hard to ship without breaking existing code.
+        constructor(props: P, context: any);
+
+        // We MUST keep setState() as a unified signature because it allows proper checking of the method return type.
+        // See: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/18365#issuecomment-351013257
+        // Also, the ` | S` allows intellisense to not be dumbisense
+        setState<K extends keyof S>(
+            state: ((prevState: Readonly<S>, props: Readonly<P>) => Pick<S, K> | S | null) | (Pick<S, K> | S | null),
+            callback?: () => void,
+        ): void;
+
+        forceUpdate(callback?: () => void): void;
+        render(): ReactNode;
+
+        readonly props: Readonly<P>;
+        state: Readonly<S>;
+    }
+
+    class PureComponent<P = {}, S = {}, SS = any> extends Component<P, S, SS> {}
+
+    /**
+     * @deprecated Use `ClassicComponent` from `create-react-class`
+     *
+     * @see {@link https://legacy.reactjs.org/docs/react-without-es6.html Legacy React Docs}
+     * @see {@link https://www.npmjs.com/package/create-react-class `create-react-class` on npm}
+     */
+    interface ClassicComponent<P = {}, S = {}> extends Component<P, S> {
+        replaceState(nextState: S, callback?: () => void): void;
+        isMounted(): boolean;
+        getInitialState?(): S;
+    }
+
+    //
+    // Class Interfaces
+    // ----------------------------------------------------------------------
+
+    /**
+     * Represents the type of a function component. Can optionally
+     * receive a type argument that represents the props the component
+     * receives.
+     *
+     * @template P The props the component accepts.
+     * @see {@link https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/function_components React TypeScript Cheatsheet}
+     * @alias for {@link FunctionComponent}
+     *
+     * @example
+     *
+     * ```tsx
+     * // With props:
+     * type Props = { name: string }
+     *
+     * const MyComponent: FC<Props> = (props) => {
+     *  return <div>{props.name}</div>
+     * }
+     * ```
+     *
+     * @example
+     *
+     * ```tsx
+     * // Without props:
+     * const MyComponentWithoutProps: FC = () => {
+     *   return <div>MyComponentWithoutProps</div>
+     * }
+     * ```
+     */
+    type FC<P = {}> = FunctionComponent<P>;
+
+    /**
+     * Represents the type of a function component. Can optionally
+     * receive a type argument that represents the props the component
+     * accepts.
+     *
+     * @template P The props the component accepts.
+     * @see {@link https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/function_components React TypeScript Cheatsheet}
+     *
+     * @example
+     *
+     * ```tsx
+     * // With props:
+     * type Props = { name: string }
+     *
+     * const MyComponent: FunctionComponent<Props> = (props) => {
+     *  return <div>{props.name}</div>
+     * }
+     * ```
+     *
+     * @example
+     *
+     * ```tsx
+     * // Without props:
+     * const MyComponentWithoutProps: FunctionComponent = () => {
+     *   return <div>MyComponentWithoutProps</div>
+     * }
+     * ```
+     */
+    interface FunctionComponent<P = {}> {
+        (props: P): ReactNode | Promise<ReactNode>;
+        /**
+         * Ignored by React.
+         * @deprecated Only kept in types for backwards compatibility. Will be removed in a future major release.
+         */
+        propTypes?: any;
+        /**
+         * Used in debugging messages. You might want to set it
+         * explicitly if you want to display a different name for
+         * debugging purposes.
+         *
+         * @see {@link https://legacy.reactjs.org/docs/react-component.html#displayname Legacy React Docs}
+         *
+         * @example
+         *
+         * ```tsx
+         *
+         * const MyComponent: FC = () => {
+         *   return <div>Hello!</div>
+         * }
+         *
+         * MyComponent.displayName = 'MyAwesomeComponent'
+         * ```
+         */
+        displayName?: string | undefined;
+    }
+
+    /**
+     * The type of the ref received by a {@link ForwardRefRenderFunction}.
+     *
+     * @see {@link ForwardRefRenderFunction}
+     */
+    // Making T nullable is assuming the refs will be managed by React or the component impl will write it somewhere else.
+    // But this isn't necessarily true. We haven't heard complains about it yet and hopefully `forwardRef` is removed from React before we do.
+    type ForwardedRef<T> = ((instance: T | null) => void) | RefObject<T | null> | null;
+
+    /**
+     * The type of the function passed to {@link forwardRef}. This is considered different
+     * to a normal {@link FunctionComponent} because it receives an additional argument,
+     *
+     * @param props Props passed to the component, if any.
+     * @param ref A ref forwarded to the component of type {@link ForwardedRef}.
+     *
+     * @template T The type of the forwarded ref.
+     * @template P The type of the props the component accepts.
+     *
+     * @see {@link https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/forward_and_create_ref/ React TypeScript Cheatsheet}
+     * @see {@link forwardRef}
+     */
+    interface ForwardRefRenderFunction<T, P = {}> {
+        (props: P, ref: ForwardedRef<T>): ReactNode;
+        /**
+         * Used in debugging messages. You might want to set it
+         * explicitly if you want to display a different name for
+         * debugging purposes.
+         *
+         * Will show `ForwardRef(${Component.displayName || Component.name})`
+         * in devtools by default, but can be given its own specific name.
+         *
+         * @see {@link https://legacy.reactjs.org/docs/react-component.html#displayname Legacy React Docs}
+         */
+        displayName?: string | undefined;
+        /**
+         * Ignored by React.
+         * @deprecated Only kept in types for backwards compatibility. Will be removed in a future major release.
+         */
+        propTypes?: any;
+    }
+
+    /**
+     * Represents a component class in React.
+     *
+     * @template P The props the component accepts.
+     * @template S The internal state of the component.
+     */
+    interface ComponentClass<P = {}, S = ComponentState> extends StaticLifecycle<P, S> {
+        // constructor signature must match React.Component
+        new(
+            props: P,
+            /**
+             * Value of the parent {@link https://react.dev/reference/react/Component#context Context} specified
+             * in `contextType`.
+             */
+            context?: any,
+        ): Component<P, S>;
+        /**
+         * Ignored by React.
+         * @deprecated Only kept in types for backwards compatibility. Will be removed in a future major release.
+         */
+        propTypes?: any;
+        contextType?: Context<any> | undefined;
+        defaultProps?: Partial<P> | undefined;
+        /**
+         * Used in debugging messages. You might want to set it
+         * explicitly if you want to display a different name for
+         * debugging purposes.
+         *
+         * @see {@link https://legacy.reactjs.org/docs/react-component.html#displayname Legacy React Docs}
+         */
+        displayName?: string | undefined;
+    }
+
+    /**
+     * @deprecated Use `ClassicComponentClass` from `create-react-class`
+     *
+     * @see {@link https://legacy.reactjs.org/docs/react-without-es6.html Legacy React Docs}
+     * @see {@link https://www.npmjs.com/package/create-react-class `create-react-class` on npm}
+     */
+    interface ClassicComponentClass<P = {}> extends ComponentClass<P> {
+        new(props: P): ClassicComponent<P, ComponentState>;
+        getDefaultProps?(): P;
+    }
+
+    /**
+     * Used in {@link createElement} and {@link createFactory} to represent
+     * a class.
+     *
+     * An intersection type is used to infer multiple type parameters from
+     * a single argument, which is useful for many top-level API defs.
+     * See {@link https://github.com/Microsoft/TypeScript/issues/7234 this GitHub issue}
+     * for more info.
+     */
+    type ClassType<P, T extends Component<P, ComponentState>, C extends ComponentClass<P>> =
+        & C
+        & (new(props: P, context: any) => T);
+
+    //
+    // Component Specs and Lifecycle
+    // ----------------------------------------------------------------------
+
+    // This should actually be something like `Lifecycle<P, S> | DeprecatedLifecycle<P, S>`,
+    // as React will _not_ call the deprecated lifecycle methods if any of the new lifecycle
+    // methods are present.
+    interface ComponentLifecycle<P, S, SS = any> extends NewLifecycle<P, S, SS>, DeprecatedLifecycle<P, S> {
+        /**
+         * Called immediately after a component is mounted. Setting state here will trigger re-rendering.
+         */
+        componentDidMount?(): void;
+        /**
+         * Called to determine whether the change in props and state should trigger a re-render.
+         *
+         * `Component` always returns true.
+         * `PureComponent` implements a shallow comparison on props and state and returns true if any
+         * props or states have changed.
+         *
+         * If false is returned, {@link Component.render}, `componentWillUpdate`
+         * and `componentDidUpdate` will not be called.
+         */
+        shouldComponentUpdate?(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): boolean;
+        /**
+         * Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as
+         * cancelled network requests, or cleaning up any DOM elements created in `componentDidMount`.
+         */
+        componentWillUnmount?(): void;
+        /**
+         * Catches exceptions generated in descendant components. Unhandled exceptions will cause
+         * the entire component tree to unmount.
+         */
+        componentDidCatch?(error: Error, errorInfo: ErrorInfo): void;
+    }
+
+    // Unfortunately, we have no way of declaring that the component constructor must implement this
+    interface StaticLifecycle<P, S> {
+        getDerivedStateFromProps?: GetDerivedStateFromProps<P, S> | undefined;
+        getDerivedStateFromError?: GetDerivedStateFromError<P, S> | undefined;
+    }
+
+    type GetDerivedStateFromProps<P, S> =
+        /**
+         * Returns an update to a component's state based on its new props and old state.
+         *
+         * Note: its presence prevents any of the deprecated lifecycle methods from being invoked
+         */
+        (nextProps: Readonly<P>, prevState: S) => Partial<S> | null;
+
+    type GetDerivedStateFromError<P, S> =
+        /**
+         * This lifecycle is invoked after an error has been thrown by a descendant component.
+         * It receives the error that was thrown as a parameter and should return a value to update state.
+         *
+         * Note: its presence prevents any of the deprecated lifecycle methods from being invoked
+         */
+        (error: any) => Partial<S> | null;
+
+    // This should be "infer SS" but can't use it yet
+    interface NewLifecycle<P, S, SS> {
+        /**
+         * Runs before React applies the result of {@link Component.render render} to the document, and
+         * returns an object to be given to {@link componentDidUpdate}. Useful for saving
+         * things such as scroll position before {@link Component.render render} causes changes to it.
+         *
+         * Note: the presence of this method prevents any of the deprecated
+         * lifecycle events from running.
+         */
+        getSnapshotBeforeUpdate?(prevProps: Readonly<P>, prevState: Readonly<S>): SS | null;
+        /**
+         * Called immediately after updating occurs. Not called for the initial render.
+         *
+         * The snapshot is only present if {@link getSnapshotBeforeUpdate} is present and returns non-null.
+         */
+        componentDidUpdate?(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot?: SS): void;
+    }
+
+    interface DeprecatedLifecycle<P, S> {
+        /**
+         * Called immediately before mounting occurs, and before {@link Component.render}.
+         * Avoid introducing any side-effects or subscriptions in this method.
+         *
+         * Note: the presence of {@link NewLifecycle.getSnapshotBeforeUpdate getSnapshotBeforeUpdate}
+         * or {@link StaticLifecycle.getDerivedStateFromProps getDerivedStateFromProps} prevents
+         * this from being invoked.
+         *
+         * @deprecated 16.3, use {@link ComponentLifecycle.componentDidMount componentDidMount} or the constructor instead; will stop working in React 17
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#initializing-state}
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path}
+         */
+        componentWillMount?(): void;
+        /**
+         * Called immediately before mounting occurs, and before {@link Component.render}.
+         * Avoid introducing any side-effects or subscriptions in this method.
+         *
+         * This method will not stop working in React 17.
+         *
+         * Note: the presence of {@link NewLifecycle.getSnapshotBeforeUpdate getSnapshotBeforeUpdate}
+         * or {@link StaticLifecycle.getDerivedStateFromProps getDerivedStateFromProps} prevents
+         * this from being invoked.
+         *
+         * @deprecated 16.3, use {@link ComponentLifecycle.componentDidMount componentDidMount} or the constructor instead
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#initializing-state}
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path}
+         */
+        UNSAFE_componentWillMount?(): void;
+        /**
+         * Called when the component may be receiving new props.
+         * React may call this even if props have not changed, so be sure to compare new and existing
+         * props if you only want to handle changes.
+         *
+         * Calling {@link Component.setState} generally does not trigger this method.
+         *
+         * Note: the presence of {@link NewLifecycle.getSnapshotBeforeUpdate getSnapshotBeforeUpdate}
+         * or {@link StaticLifecycle.getDerivedStateFromProps getDerivedStateFromProps} prevents
+         * this from being invoked.
+         *
+         * @deprecated 16.3, use static {@link StaticLifecycle.getDerivedStateFromProps getDerivedStateFromProps} instead; will stop working in React 17
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props}
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path}
+         */
+        componentWillReceiveProps?(nextProps: Readonly<P>, nextContext: any): void;
+        /**
+         * Called when the component may be receiving new props.
+         * React may call this even if props have not changed, so be sure to compare new and existing
+         * props if you only want to handle changes.
+         *
+         * Calling {@link Component.setState} generally does not trigger this method.
+         *
+         * This method will not stop working in React 17.
+         *
+         * Note: the presence of {@link NewLifecycle.getSnapshotBeforeUpdate getSnapshotBeforeUpdate}
+         * or {@link StaticLifecycle.getDerivedStateFromProps getDerivedStateFromProps} prevents
+         * this from being invoked.
+         *
+         * @deprecated 16.3, use static {@link StaticLifecycle.getDerivedStateFromProps getDerivedStateFromProps} instead
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props}
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path}
+         */
+        UNSAFE_componentWillReceiveProps?(nextProps: Readonly<P>, nextContext: any): void;
+        /**
+         * Called immediately before rendering when new props or state is received. Not called for the initial render.
+         *
+         * Note: You cannot call {@link Component.setState} here.
+         *
+         * Note: the presence of {@link NewLifecycle.getSnapshotBeforeUpdate getSnapshotBeforeUpdate}
+         * or {@link StaticLifecycle.getDerivedStateFromProps getDerivedStateFromProps} prevents
+         * this from being invoked.
+         *
+         * @deprecated 16.3, use getSnapshotBeforeUpdate instead; will stop working in React 17
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#reading-dom-properties-before-an-update}
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path}
+         */
+        componentWillUpdate?(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void;
+        /**
+         * Called immediately before rendering when new props or state is received. Not called for the initial render.
+         *
+         * Note: You cannot call {@link Component.setState} here.
+         *
+         * This method will not stop working in React 17.
+         *
+         * Note: the presence of {@link NewLifecycle.getSnapshotBeforeUpdate getSnapshotBeforeUpdate}
+         * or {@link StaticLifecycle.getDerivedStateFromProps getDerivedStateFromProps} prevents
+         * this from being invoked.
+         *
+         * @deprecated 16.3, use getSnapshotBeforeUpdate instead
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#reading-dom-properties-before-an-update}
+         * @see {@link https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path}
+         */
+  
+
+    /**
+     * Lets you defer loading a component’s code until it is rendered for the first time.
+     *
+     * @see {@link https://react.dev/reference/react/lazy React Docs}
+     *
+     * @param load A function that returns a `Promise` or another thenable (a `Promise`-like object with a
+     * then method). React will not call `load` until the first time you attempt to render the returned
+     * component. After React first calls load, it will wait for it to resolve, and then render the
+     * resolved value’s `.default` as a React component. Both the returned `Promise` and the `Promise`’s
+     * resolved value will be cached, so React will not call load more than once. If the `Promise` rejects,
+     * React will throw the rejection reason for the nearest Error Boundary to handle.
+     *
+     * @example
+     *
+     * ```tsx
+     * import { lazy } from 'react';
+     *
+     * const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
+     * ```
+     */
+    function lazy<T extends ComponentType<any>>(
+        load: () => Promise<{ default: T }>,
+    ): LazyExoticComponent<T>;
+
+    //
+    // React Hooks
+    // ----------------------------------------------------------------------
+
+    /**
+     * The instruction passed to a {@link Dispatch} function in {@link useState}
+     * to tell React what the next value of the {@link useState} should be.
+     *
+     * Often found wrapped in {@link Dispatch}.
+     *
+     * @template S The type of the state.
+     *
+     * @example
+     *
+     * ```tsx
+     * // This return type correctly represents the type of
+     * // `setCount` in the example below.
+     * const useCustomState = (): Dispatch<SetStateAction<number>> => {
+     *   const [count, setCount] = useState(0);
+     *
+     *   return setCount;
+     * }
+     * ```
+     */
+    type SetStateAction<S> = S | ((prevState: S) => S);
+
+    /**
+     * A function that can be used to update the state of a {@link useState}
+     * or {@link useReducer} hook.
+     */
+    type Dispatch<A> = (value: A) => void;
+    /**
+     * A {@link Dispatch} function can sometimes be called without any arguments.
+     */
+    type DispatchWithoutAction = () => void;
+    // Limit the reducer to accept only 0 or 1 action arguments
+    // eslint-disable-next-line @definitelytyped/no-single-element-tuple-type
+    type AnyActionArg = [] | [any];
+    // Get the dispatch type from the reducer arguments (captures optional action argument correctly)
+    type ActionDispatch<ActionArg extends AnyActionArg> = (...args: ActionArg) => void;
+    // Unlike redux, the actions _can_ be anything
+    type Reducer<S, A> = (prevState: S, action: A) => S;
+    // If useReducer accepts a reducer without action, dispatch may be called without any parameters.
+    type ReducerWithoutAction<S> = (prevState: S) => S;
+    // types used to try and prevent the compiler from reducing S
+    // to a supertype common with the second argument to useReducer()
+    type ReducerState<R extends Reducer<any, any>> = R extends Reducer<infer S, any> ? S : never;
+    type DependencyList = readonly unknown[];
+
+    // NOTE: callbacks are _only_ allowed to return either void, or a destructor.
+    type EffectCallback = () => void | Destructor;
+
+    /**
+     * @deprecated Use `RefObject` instead.
+     */
+    interface MutableRefObject<T> {
+        current: T;
+    }
+
+    // This will technically work if you give a Consumer<T> or Provider<T> but it's deprecated and warns
+    /**
+     * Accepts a context object (the value returned from `React.createContext`) and returns the current
+     * context value, as given by the nearest context provider for the given context.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useContext}
+     */
+    function useContext<T>(context: Context<T> /*, (not public API) observedBits?: number|boolean */): T;
+    /**
+     * Returns a stateful value, and a function to update it.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useState}
+     */
+    function useState<S>(initialState: S | (() => S)): [S, Dispatch<SetStateAction<S>>];
+    // convenience overload when first argument is omitted
+    /**
+     * Returns a stateful value, and a function to update it.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useState}
+     */
+    function useState<S = undefined>(): [S | undefined, Dispatch<SetStateAction<S | undefined>>];
+    /**
+     * An alternative to `useState`.
+     *
+     * `useReducer` is usually preferable to `useState` when you have complex state logic that involves
+     * multiple sub-values. It also lets you optimize performance for components that trigger deep
+     * updates because you can pass `dispatch` down instead of callbacks.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useReducer}
+     */
+    function useReducer<S, A extends AnyActionArg>(
+        reducer: (prevState: S, ...args: A) => S,
+        initialState: S,
+    ): [S, ActionDispatch<A>];
+    /**
+     * An alternative to `useState`.
+     *
+     * `useReducer` is usually preferable to `useState` when you have complex state logic that involves
+     * multiple sub-values. It also lets you optimize performance for components that trigger deep
+     * updates because you can pass `dispatch` down instead of callbacks.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useReducer}
+     */
+    function useReducer<S, I, A extends AnyActionArg>(
+        reducer: (prevState: S, ...args: A) => S,
+        initialArg: I,
+        init: (i: I) => S,
+    ): [S, ActionDispatch<A>];
+    /**
+     * `useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument
+     * (`initialValue`). The returned object will persist for the full lifetime of the component.
+     *
+     * Note that `useRef()` is useful for more than the `ref` attribute. It’s handy for keeping any mutable
+     * value around similar to how you’d use instance fields in classes.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useRef}
+     */
+    function useRef<T>(initialValue: T): RefObject<T>;
+    // convenience overload for refs given as a ref prop as they typically start with a null value
+    /**
+     * `useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument
+     * (`initialValue`). The returned object will persist for the full lifetime of the component.
+     *
+     * Note that `useRef()` is useful for more than the `ref` attribute. It’s handy for keeping any mutable
+     * value around similar to how you’d use instance fields in classes.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useRef}
+     */
+    function useRef<T>(initialValue: T | null): RefObject<T | null>;
+    // convenience overload for undefined initialValue
+    /**
+     * `useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument
+     * (`initialValue`). The returned object will persist for the full lifetime of the component.
+     *
+     * Note that `useRef()` is useful for more than the `ref` attribute. It’s handy for keeping any mutable
+     * value around similar to how you’d use instance fields in classes.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useRef}
+     */
+    function useRef<T>(initialValue: T | undefined): RefObject<T | undefined>;
+    /**
+     * The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations.
+     * Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside
+     * `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
+     *
+     * Prefer the standard `useEffect` when possible to avoid blocking visual updates.
+     *
+     * If you’re migrating code from a class component, `useLayoutEffect` fires in the same phase as
+     * `componentDidMount` and `componentDidUpdate`.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useLayoutEffect}
+     */
+    function useLayoutEffect(effect: EffectCallback, deps?: DependencyList): void;
+    /**
+     * Accepts a function that contains imperative, possibly effectful code.
+     *
+     * @param effect Imperative function that can return a cleanup function
+     * @param deps If present, effect will only activate if the values in the list change.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useEffect}
+     */
+    function useEffect(effect: EffectCallback, deps?: DependencyList): void;
+    // NOTE: this does not accept strings, but this will have to be fixed by removing strings from type Ref<T>
+    /**
+     * `useImperativeHandle` customizes the instance value that is exposed to parent components when using
+     * `ref`. As always, imperative code using refs should be avoided in most cases.
+     *
+     * `useImperativeHandle` should be used with `React.forwardRef`.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useImperativeHandle}
+     */
+    function useImperativeHandle<T, R extends T>(ref: Ref<T> | undefined, init: () => R, deps?: DependencyList): void;
+    // I made 'inputs' required here and in useMemo as there's no point to memoizing without the memoization key
+    // useCallback(X) is identical to just using X, useMemo(() => Y) is identical to just using Y.
+    /**
+     * `useCallback` will return a memoized version of the callback that only changes if one of the `inputs`
+     * has changed.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useCallback}
+     */
+    // A specific function type would not trigger implicit any.
+    // See https://github.com/DefinitelyTyped/DefinitelyTyped/issues/52873#issuecomment-845806435 for a comparison between `Function` and more specific types.
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+    function useCallback<T extends Function>(callback: T, deps: DependencyList): T;
+    /**
+     * `useMemo` will only recompute the memoized value when one of the `deps` has changed.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useMemo}
+     */
+    // allow undefined, but don't make it optional as that is very likely a mistake
+    function useMemo<T>(factory: () => T, deps: DependencyList): T;
+    /**
+     * `useDebugValue` can be used to display a label for custom hooks in React DevTools.
+     *
+     * NOTE: We don’t recommend adding debug values to every custom hook.
+     * It’s most valuable for custom hooks that are part of shared libraries.
+     *
+     * @version 16.8.0
+     * @see {@link https://react.dev/reference/react/useDebugValue}
+     */
+    // the name of the custom hook is itself derived from the function name at runtime:
+    // it's just the function name without the "use" prefix.
+    function useDebugValue<T>(value: T, format?: (value: T) => any): void;
+
+    export type TransitionFunction = () => VoidOrUndefinedOnly | Promise<VoidOrUndefinedOnly>;
+    // strange definition to allow vscode to show documentation on the invocation
+    export interface TransitionStartFunction {
+        /**
+         * State updates caused inside the callback are allowed to be deferred.
+         *
+         * **If some state update causes a component to suspend, that state update should be wrapped in a transition.**
+         *
+         * @param callback A function which causes state updates that can be deferred.
+         */
+        (callback: TransitionFunction): void;
+    }
+
+    /**
+     * Returns a deferred version of the value that may “lag behind” it.
+     *
+     * This is commonly used to keep the interface responsive when you have something that renders immediately
+     * based on user input and something that needs to wait for a data fetch.
+     *
+     * A good example of this is a text input.
+     *
+     * @param value The value that is going to be deferred
+     * @param initialValue A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there’s no previous version of `value` that it can render instead.
+     *
+     * @see {@link https://react.dev/reference/react/useDeferredValue}
+     */
+    export function useDeferredValue<T>(value: T, initialValue?: T): T;
+
+    /**
+     * Allows components to avoid undesirable loading states by waiting for content to load
+     * before transitioning to the next screen. It also allows components to defer slower,
+     * data fetching updates until subsequent renders so that more crucial updates can be
+     * rendered immediately.
+     *
+     * The `useTransition` hook returns two values in an array.
+     *
+     * The first is a boolean, React’s way of informing us whether we’re waiting for the transition to finish.
+     * The second is a function that takes a callback. We can use it to tell React which state we want to defer.
+     *
+     * **If some state update causes a component to suspend, that state update should be wrapped in a transition.**
+     *
+     * @see {@link https://react.dev/reference/react/useTransition}
+     */
+    export function useTransition(): [boolean, TransitionStartFunction];
+
+    /**
+     * Similar to `useTransition` but allows uses where hooks are not available.
+     *
+     * @param callback A function which causes state updates that can be deferred.
+     */
+    export function startTransition(scope: TransitionFunction): void;
+
+    /**
+     * Wrap any code rendering and triggering updates to your components into `act()` calls.
+     *
+     * Ensures that the behavior in your tests matches what happens in the browser
+     * more closely by executing pending `useEffect`s before returning. This also
+     * reduces the amount of re-renders done.
+     *
+     * @param callback A synchronous, void callback that will execute as a single, complete React commit.
+     *
+     * @see https://reactjs.org/blog/2019/02/06/react-v16.8.0.html#testing-hooks
+     */
+    // NOTES
+    // - the order of these signatures matters - typescript will check the signatures in source order.
+    //   If the `() => VoidOrUndefinedOnly` signature is first, it'll erroneously match a Promise returning function for users with
+    //   `strictNullChecks: false`.
+    // - VoidOrUndefinedOnly is there to forbid any non-void return values for users with `strictNullChecks: true`
+    // While act does always return Thenable, if a void function is passed, we pretend the return value is also void to not trigger dangling Promise lint rules.
+    export function act(callback: () => VoidOrUndefinedOnly): void;
+    export function act<T>(callback: () => T | Promise<T>): Promise<T>;
+
+    export function useId(): string;
+
+    /**
+     * @param effect Imperative function that can return a cleanup function
+     * @param deps If present, effect will only activate if the values in the list change.
+     *
+     * @see {@link https://github.com/facebook/react/pull/21913}
+     */
+    export function useInsertionEffect(effect: EffectCallback, deps?: DependencyList): void;
+
+    /**
+     * @param subscribe
+     * @param getSnapshot
+     *
+     * @see {@link https://github.com/reactwg/react-18/discussions/86}
+     */
+    // keep in sync with `useSyncExternalStore` from `use-sync-external-store`
+    export function useSyncExternalStore<Snapshot>(
+        subscribe: (onStoreChange: () => void) => () => void,
+        getSnapshot: () => Snapshot,
+        getServerSnapshot?: () => Snapshot,
+    ): Snapshot;
+
+    export function useOptimistic<State>(
+        passthrough: State,
+    ): [State, (action: State | ((pendingState: State) => State)) => void];
+    export function useOptimistic<State, Action>(
+        passthrough: State,
+        reducer: (state: State, action: Action) => State,
+    ): [State, (action: Action) => void];
+
+    export type Usable<T> = PromiseLike<T> | Context<T>;
+
+    export function use<T>(usable: Usable<T>): T;
+
+    export function useActionState<State>(
+        action: (state: Awaited<State>) => State | Promise<State>,
+        initialState: Awaited<State>,
+        permalink?: string,
+    ): [state: Awaited<State>, dispatch: () => void, isPending: boolean];
+    export function useActionState<State, Payload>(
+        action: (state: Awaited<State>, payload: Payload) => State | Promise<State>,
+        initialState: Awaited<State>,
+        permalink?: string,
+    ): [state: Awaited<State>, dispatch: (payload: Payload) => void, isPending: boolean];
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+    export function cache<CachedFunction extends Function>(fn: CachedFunction): CachedFunction;
+
+    /**
+     * Warning: Only available in development builds.
+     *
+     * @see {@link https://react.dev/reference/react/captureOwnerStack Reference docs}
+     */
+    function captureOwnerStack(): string | null;
