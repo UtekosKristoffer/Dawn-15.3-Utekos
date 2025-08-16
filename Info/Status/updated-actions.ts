@@ -4,23 +4,7 @@ import "server-only";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import type { Cart } from "@/GraphQL/schema";
-import {
-  CartCreateDocument,
-  type CartCreateMutation,
-  type CartCreateMutationVariables,
-  CartLinesAddDocument,
-  type CartLinesAddMutation,
-  type CartLinesAddMutationVariables,
-  CartLinesUpdateDocument,
-  type CartLinesUpdateMutation,
-  type CartLinesUpdateMutationVariables,
-  CartLinesRemoveDocument,
-  type CartLinesRemoveMutation,
-  type CartLinesRemoveMutationVariables,
-  CartClearDocument,
-  type CartClearMutation,
-  type CartClearMutationVariables,
-} from "@/GraphQL/Mutations/CartMutations.generated";
+import { CartCreateDocument, type CartCreateMutation, type CartCreateMutationVariables, CartLinesAddDocument, type CartLinesAddMutation, type CartLinesAddMutationVariables, CartLinesUpdateDocument, type CartLinesUpdateMutation, type CartLinesUpdateMutationVariables, CartLinesRemoveDocument, type CartLinesRemoveMutation, type CartLinesRemoveMutationVariables, CartClearDocument, type CartClearMutation, type CartClearMutationVariables } from "@/GraphQL/Mutations/CartMutations.generated";
 import { ShopifyRequestClient } from "@/Lib/Clients/ShopifyRequestClient";
 
 type Result = {
@@ -35,14 +19,11 @@ type UpdateLineInput = { lineId: string; quantity: number };
 type RemoveLineInput = { lineId: string };
 
 async function ensureCartId(): Promise<string> {
-  const store = await cookies(); // Next 15: async API
-  let id = store.get("cartId")?.value;
+  const cookieStore = await cookies();
+  let id = cookieStore.get("cartId")?.value;
 
   if (!id) {
-    const run = ShopifyRequestClient<
-      CartCreateMutation,
-      CartCreateMutationVariables
-    >(CartCreateDocument, {
+    const run = ShopifyRequestClient<CartCreateMutation, CartCreateMutationVariables>(CartCreateDocument, {
       input: {} as CartCreateMutationVariables["input"],
     });
 
@@ -50,7 +31,7 @@ async function ensureCartId(): Promise<string> {
     id = data.cartCreate?.cart?.id ?? "";
     if (!id) throw new Error("CartCreate returned no id");
 
-    store.set({
+    cookieStore.set({
       name: "cartId",
       value: id,
       httpOnly: true,
@@ -63,35 +44,23 @@ async function ensureCartId(): Promise<string> {
 }
 
 /** Generisk mutasjon som normaliserer til Cart via selector */
-async function mutateCart<TData, TVars extends Record<string, any>>(
-  doc: any,
-  vars: TVars,
-  pickCart: (data: NonNullable<TData>) => Cart | null
-): Promise<Cart | null> {
+async function mutateCart<TData, TVars extends Record<string, any>>(doc: any, vars: TVars, pickCart: (data: NonNullable<TData>) => Cart | null): Promise<Cart | null> {
   const run = ShopifyRequestClient<TData, TVars>(doc, vars);
   const data = (await run()) as NonNullable<TData>;
   revalidateTag("cart"); // ISR via tag
   return pickCart(data);
 }
 
-export async function addLines(input: {
-  merchandiseId: string;
-  quantity: number;
-}): Promise<Result> {
+export async function addLines(input: { merchandiseId: string; quantity: number }): Promise<Result> {
   try {
     const cartId = await ensureCartId();
-    const cart = await mutateCart<
-      CartLinesAddMutation,
-      CartLinesAddMutationVariables
-    >(
+    const cart = await mutateCart<CartLinesAddMutation, CartLinesAddMutationVariables>(
       CartLinesAddDocument,
       {
         cartId,
-        lines: [
-          { merchandiseId: input.merchandiseId, quantity: input.quantity },
-        ],
+        lines: [{ merchandiseId: input.merchandiseId, quantity: input.quantity }],
       },
-      (d) => d.cartLinesAdd?.cart ?? null
+      d => d.cartLinesAdd?.cart ?? null
     );
     return { success: true, message: "OK", cart };
   } catch (e: any) {
@@ -103,20 +72,10 @@ export async function addLines(input: {
   }
 }
 
-export async function updateLine(input: {
-  lineId: string;
-  quantity: number;
-}): Promise<Result> {
+export async function updateLine(input: { lineId: string; quantity: number }): Promise<Result> {
   try {
     const cartId = await ensureCartId();
-    const cart = await mutateCart<
-      CartLinesUpdateMutation,
-      CartLinesUpdateMutationVariables
-    >(
-      CartLinesUpdateDocument,
-      { cartId, lines: [{ id: input.lineId, quantity: input.quantity }] },
-      (d) => d.cartLinesUpdate?.cart ?? null
-    );
+    const cart = await mutateCart<CartLinesUpdateMutation, CartLinesUpdateMutationVariables>(CartLinesUpdateDocument, { cartId, lines: [{ id: input.lineId, quantity: input.quantity }] }, d => d.cartLinesUpdate?.cart ?? null);
     return { success: true, message: "OK", cart };
   } catch (e: any) {
     return {
@@ -130,13 +89,10 @@ export async function updateLine(input: {
 export async function removeLine(input: { lineId: string }): Promise<Result> {
   try {
     const cartId = await ensureCartId();
-    const cart = await mutateCart<
-      CartLinesRemoveMutation,
-      CartLinesRemoveMutationVariables
-    >(
+    const cart = await mutateCart<CartLinesRemoveMutation, CartLinesRemoveMutationVariables>(
       CartLinesRemoveDocument,
       { cartId, lineIds: [input.lineId] }, // lineIds er påkrevd
-      (d) => d.cartLinesRemove?.cart ?? null
+      d => d.cartLinesRemove?.cart ?? null
     );
     return { success: true, message: "OK", cart };
   } catch (e: any) {
@@ -151,10 +107,7 @@ export async function removeLine(input: { lineId: string }): Promise<Result> {
 export async function clear(): Promise<Result> {
   try {
     const cartId = await ensureCartId();
-    const cart = await mutateCart<
-      CartClearMutation,
-      CartClearMutationVariables
-    >(CartClearDocument, { cartId }, (d) => d.cartClear?.cart ?? null);
+    const cart = await mutateCart<CartClearMutation, CartClearMutationVariables>(CartClearDocument, { cartId }, d => d.cartClear?.cart ?? null);
     return { success: true, message: "OK", cart };
   } catch (e: any) {
     return {
@@ -165,10 +118,7 @@ export async function clear(): Promise<Result> {
   }
 }
 
-export async function ADD_LINES(
-  _prev: Result,
-  form: FormData | AddLinesInput
-): Promise<Result> {
+export async function ADD_LINES(_prev: Result, form: FormData | AddLinesInput): Promise<Result> {
   const input =
     form instanceof FormData
       ? {
@@ -176,15 +126,11 @@ export async function ADD_LINES(
           quantity: Number(form.get("quantity") ?? 1),
         }
       : form;
-  if (!input.merchandiseId)
-    return { success: false, message: "variantId mangler" };
+  if (!input.merchandiseId) return { success: false, message: "variantId mangler" };
   return addLines(input);
 }
 
-export async function UPDATE_LINE(
-  _prev: Result,
-  form: FormData | UpdateLineInput
-): Promise<Result> {
+export async function UPDATE_LINE(_prev: Result, form: FormData | UpdateLineInput): Promise<Result> {
   const input =
     form instanceof FormData
       ? {
@@ -196,14 +142,8 @@ export async function UPDATE_LINE(
   return updateLine(input);
 }
 
-export async function REMOVE_LINE(
-  _prev: Result,
-  form: FormData | RemoveLineInput
-): Promise<Result> {
-  const input =
-    form instanceof FormData
-      ? { lineId: String(form.get("lineId") ?? "") }
-      : form;
+export async function REMOVE_LINE(_prev: Result, form: FormData | RemoveLineInput): Promise<Result> {
+  const input = form instanceof FormData ? { lineId: String(form.get("lineId") ?? "") } : form;
   if (!input.lineId) return { success: false, message: "lineId mangler" };
   return removeLine(input);
 }
