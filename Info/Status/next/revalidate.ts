@@ -22,3 +22,33 @@ export declare function unstable_expireTag(...tags: string[]): void;
  * Read more: [Next.js Docs: `revalidatePath`](https://nextjs.org/docs/app/api-reference/functions/revalidatePath)
  */
 export declare function revalidatePath(originalPath: string, type?: 'layout' | 'page'): void;
+
+//Server Action
+// 'use server'
+ 
+import { revalidateTag } from 'next/cache'
+ 
+export default async function submit() {
+  await addPost()
+  revalidateTag('posts')
+}
+
+//Route Handler
+
+import type { NextRequest } from 'next/server'
+import { revalidateTag } from 'next/cache'
+ 
+export async function GET(request: NextRequest) {
+  const tag = request.nextUrl.searchParams.get('tag')
+ 
+  if (tag) {
+    revalidateTag(tag)
+    return Response.json({ revalidated: true, now: Date.now() })
+  }
+ 
+  return Response.json({
+    revalidated: false,
+    now: Date.now(),
+    message: 'Missing tag to revalidate',
+  })
+}
